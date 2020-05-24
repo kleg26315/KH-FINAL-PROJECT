@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,8 +69,28 @@
                     <p class="navbar-text navbar-right actions" style="padding-right: 30px;">
 				    <img class="sc-cmthru gbhGvn" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cg fill='none' fill-rule='nonzero'%3E %3Cpath d='M0 0h24v24H0z'/%3E %3Ccircle cx='11' cy='11' r='5' stroke='%233397FF' stroke-width='2'/%3E %3Cpath stroke='%233397FF' stroke-width='2' d='M15 15l3.536 3.536'/%3E %3C/g%3E %3C/svg%3E" alt="">
                     <input type="text" class="input" placeholder="">
-                    <a class="navbar-link login" href="loginView.me">로그인</a>
-					<a class="btn btn-default action-button" role="button" href="#">회원가입</a>
+                    
+                    <c:if test="${ empty sessionScope.loginUser }">
+	                    <a class="navbar-link login" href="loginView.me">로그인</a>
+						<a class="btn btn-default action-button" role="button" href="signUpView.me">회원가입</a>
+					</c:if>
+					<c:if test="${ !empty sessionScope.loginUser }">
+						<c:if test="${ sessionScope.loginUser.id eq 'admin@admin.com' }">
+							<span id="login" class="login"><label
+								onclick="location.href='logout.me'">로그아웃</label></span>
+							<span id="login" class="login"><label>${loginUser.nickName}</label></span>
+							<span id="login" class="login"><label
+								onclick="location.href='adminPage.me'">관리자페이지</label></span>
+						</c:if>
+						
+						<c:if test="${ sessionScope.loginUser.id ne 'admin@admin.com' }">
+							<span id="login" class="login"><label
+								onclick="location.href='logout.me'">로그아웃</label></span>
+							<c:if test="${ fn:contains(sessionScope.loginUser.profile, 'http')}">
+								<img id="login" class="login" style="width: 50px; height: 50px; border-radius: 50px; float: right; margin-top: 40px" src="${sessionScope.loginUser.profile}" />
+							</c:if>
+						</c:if>
+					</c:if>
 					</p>
                 </div>
             </div>

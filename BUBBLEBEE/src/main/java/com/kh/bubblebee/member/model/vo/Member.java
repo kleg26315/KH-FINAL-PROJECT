@@ -27,6 +27,14 @@ public class Member {
 		this.email = email;
 	}
 
+	public Member(String id, String nickName, String profile, String email) {
+		super();
+		this.id = id;
+		this.nickName = nickName;
+		this.profile = profile;
+		this.email = email;
+	}
+
 	public String getId() {
 		return id;
 	}
