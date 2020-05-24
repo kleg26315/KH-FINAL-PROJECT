@@ -12,13 +12,18 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.bubblebee.member.model.exception.MemberException;
 import com.kh.bubblebee.member.model.service.MemberService;
 import com.kh.bubblebee.member.model.vo.Member;
 
@@ -28,6 +33,9 @@ public class MemberController {
 
 	@Autowired
 	private MemberService mService;
+	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	@RequestMapping("loginView.me")
 	public String enrollView() {
@@ -49,12 +57,9 @@ public class MemberController {
 		return "signUp";
 	}
 	
-	@RequestMapping(value="callbackView.me", method=RequestMethod.GET)
-	public ModelAndView callbackView(@RequestParam(value="code", required = false) String code, @RequestParam(value="state", required = false) String state, ModelAndView mv) {
-		mv.addObject("state", state);
-		mv.addObject("code",code);
-		mv.setViewName("callback");
-		return mv;
+	@RequestMapping(value="/callback.me")
+	public String navLogin(HttpServletRequest resquest) throws Exception{
+		return "callback";
 	}
 	
 	@RequestMapping("naver.me")
@@ -85,28 +90,35 @@ public class MemberController {
             
             JSONParser parser = new JSONParser();
             JSONObject result = (JSONObject)parser.parse(res.toString());
-            
+            System.out.println(result);
             // 이름, 프로필, 이메일
             String id = (String)((JSONObject)result.get("response")).get("id");
             String email = (String)((JSONObject)result.get("response")).get("email");         
-            String name = (String)((JSONObject)result.get("response")).get("name");
-            String profileimage = (String)((JSONObject)result.get("response")).get("profileimage");
+            String nickName = (String)((JSONObject)result.get("response")).get("name");
+            String profileImage = (String)((JSONObject)result.get("response")).get("profile_image");
             
-            System.out.println(id);
-            System.out.println(email);
-            System.out.println(name);
-            System.out.println(profileimage);
+            System.out.println("\nid : " +id);
+            System.out.println("email : " + email);
+            System.out.println("name : " + nickName);
+            System.out.println("profileImage : " +profileImage);
             Member loginUser = mService.checkMember(id);
             if(loginUser != null) {
     			session.setAttribute("loginUser", loginUser);
     			session.setMaxInactiveInterval(6000);
     			mv.setViewName("redirect:home.do");
             } else {
-            	mv.addObject("id",id);
-            	mv.addObject("email",email);
-            	mv.addObject("name",name);
-            	mv.addObject("profileimage",profileimage);
-            	mv.setViewName("signUp");
+            	Member member = new Member(id, nickName, profileImage, email);
+            	
+            	int signupResult = mService.signupMember(member);
+            	
+            	if(signupResult  > 0) {
+            		loginUser = mService.checkMember(id);
+            		session.setAttribute("loginUser", loginUser);
+        			session.setMaxInactiveInterval(6000);
+        			mv.setViewName("redirect:home.do");
+            	} else {
+            		throw new MemberException("소셜로그인 회원가입 실패하였습니다.");
+            	}
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -114,4 +126,41 @@ public class MemberController {
         
         return mv;
 	}
+	
+	@RequestMapping("logout.me")
+	public String loggout(SessionStatus status) {
+		status.setComplete();
+		
+		return "redirect:home.do";
+	}
+	
+	@RequestMapping(value="login.me", method=RequestMethod.POST)
+	public String memberLogin(Member m, Model model) {
+		Member loginUser = mService.memberLogin(m);
+		
+		if(bcryptPasswordEncoder.matches(m.getPwd(), loginUser.getPwd())) {
+			model.addAttribute("loginUser", loginUser);
+			return "redirect:home.do";
+		} else {
+			throw new MemberException("로그인에 실패하였습니다.");
+		}	
+	}
+	
+	@RequestMapping("minsert.me")
+	public String memberInsert(@ModelAttribute Member m) {
+		
+		// bcrypt 암호화 방식
+		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
+		System.out.println("1: " +encPwd);
+		m.setPwd(encPwd);
+		
+		int result = mService.insertMember(m);
+		System.out.println(result); 
+		if(result > 0) {
+			return "redirect:home.do";
+		} else {
+			throw new MemberException("회원가입에 실패하였습니다.");
+		}
+	}
+	
 }

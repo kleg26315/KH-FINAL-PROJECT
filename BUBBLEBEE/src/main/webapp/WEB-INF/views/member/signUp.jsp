@@ -47,18 +47,18 @@
 	<section style="padding-top: 115px; padding-left: 20%; width: 78%; text-align: center;">
 		<h3 style="font-weight: bold; text-align: left; padding-left: 390px;">이메일로 회원가입</h3>
 		<br>
-		<form class="">
+		<form class="" action="minsert.me" method="post">
 		<div class="">
 			<div class="">
-				<input class="inputBox" type="email" placeholder="이메일 입력" size="46" value="" name="email">
+				<input class="inputBox" type="email" placeholder="이메일 입력" size="46" value="" name="id">
 			</div>
 			<br>
 			<div class="">
-				<input class="inputBox" type="password" placeholder="비밀번호 입력" size="46" value="" name="password">
+				<input class="inputBox" type="password" placeholder="비밀번호 입력" size="46" value="" name="pwd">
 			</div>
 			<br>
 			<div class="">
-				<input class="inputBox" type="password" placeholder="비밀번호 확인" size="46" value="" name="passwordCheck">
+				<input class="inputBox" type="password" placeholder="비밀번호 확인" size="46" value="" name="pwd2">
 			</div>
 		</div>
 		<br><br>
