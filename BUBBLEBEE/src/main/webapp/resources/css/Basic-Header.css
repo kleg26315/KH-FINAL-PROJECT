@@ -222,3 +222,158 @@ html{
     margin-bottom:20px;
   }
 }
+
+.profile_modal_cover {
+    display: none;
+    position: absolute;
+    width: 316px;
+    height: 506px;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px 0 rgba(33,37,41,.24);
+    background-color: #fff;
+    top: 55px;
+    right: -15px;
+    z-index: 10;
+    border: 1px solid #e0e0e0;
+}
+
+.profile_modal {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile_modal .close_content {
+    display: none;
+    padding: 20px 20px 0;
+    color: #adb5bd;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile_modal .close_content .message-icon-cover {
+    position: relative;
+    color: #212529;
+}
+.profile_modal .info_content {
+    padding: 1rem;
+}
+.profile_modal .user_content {
+    display: flex;
+    width: 100%;
+    margin-bottom: 16px;
+}
+.profile_modal .user_content .left_content {
+    width: 48px;
+    height: 48px;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+.profile_modal .user_content .left_content .thumbnail {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 100%;
+}
+.profile_modal .user_content .left_content .thumbnail a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(33,37,41,.64);
+    color: #fff;
+    font-size: 12px;
+    position: absolute;
+    bottom: 0;
+}
+.profile_modal .user_content .right_content {
+    display: flex;
+    flex-direction: column;
+}
+.profile_modal .user_content .right_content a {
+    display: flex;
+    color: #212529;
+    font-weight: 600;
+}
+.profile_modal .user_content .right_content a .name {
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 3rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.profile_modal .user_content .right_content a .icon {
+    width: 16px;
+    height: 16px;
+    font-size: 14px;
+    margin-left: 2px;
+    margin-top: 6px;
+    flex-shrink: 0;
+}
+.profile_modal .user_content .right_content .policy {
+    color: #495057;
+    font-size: 14px;
+}
+.profile_modal .point_content {
+    display: flex;
+    width: 100%;
+}
+.profile_modal .point_content .point_box.mileage {
+    flex: 2;
+}
+.profile_modal .point_content .point_box .title {
+    color: #495057;
+    font-size: 14px;
+    line-height: 1.43;
+    margin-bottom: unset;
+    font-weight: 500;
+}
+.content {
+    display: flex;
+    height: 100%;
+}
+.profile_modal .menu_content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    height: 0;
+}
+.profile_modal .menu_content .tab_content {
+    display: flex;
+}
+.profile_modal .menu_content .tab_content .tab_menu.active {
+    color: #212529;
+    border-bottom: 2px solid #00c471;
+    font-weight: 600;
+}
+.profile_modal .menu_content .list_content {
+    background-color: #f8f9fa;
+    flex: 1 1 auto;
+    height: 0;
+    overflow-y: auto;
+}
+.profile_modal .menu_content .list_content .tab_list.active {
+    display: block;
+}
+.profile_modal .menu_content .list_content .tab_list .list_el:not(:last-child) {
+    margin-bottom: 1rem;
+}
+.profile_modal .footer_content {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #495057;
+}
+.profile_modal .footer_content .right_content .link {
+    display: inline-flex;
+    align-items: center;
+}
+.profile_modal .footer_content .right_content .link .icon {
+    font-size: 14px;
+}
+
+
