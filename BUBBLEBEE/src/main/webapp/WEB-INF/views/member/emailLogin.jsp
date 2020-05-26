@@ -35,14 +35,14 @@
 	<section style="padding-top: 115px; padding-left: 20%; width: 78%; text-align: center;">
 		<h3 style="font-weight: bold;">로그인</h3>
 		<br>
-		<form class="">
+		<form class="" action="login.me" method="post">
 		<div class="">
 			<div class="">
-				<input class="inputBox" type="email" placeholder="이메일 입력" size="46" value="" name="email">
+				<input class="inputBox" type="email" placeholder="이메일 입력" size="46" value="" name="id">
 			</div>
 			<br>
 			<div class="">
-				<input class="inputBox" type="password" placeholder="비밀번호 입력" size="46" value="" name="password">
+				<input class="inputBox" type="password" placeholder="비밀번호 입력" size="46" value="" name="pwd">
 			</div>
 		</div>
 		<br><br>
