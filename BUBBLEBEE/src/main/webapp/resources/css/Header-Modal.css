@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/* 프로필 모달 css */
 .title {
     color: black;
     text-decoration: none;
@@ -212,7 +213,7 @@
     font-size: 14px;
 }
 
-/* 카트 모달창  */
+/* 카트 모달 css  */
 .cart_modal_cover {
     display: none;
     position: absolute;
@@ -338,4 +339,117 @@
     font-weight: bold;
     margin-bottom: 8px;
     font-size: 15px;
+}
+
+/* 알림 모달 css */
+.message_modal_cover {
+    display: none;
+    position: absolute;
+    width: 400px;
+    border-radius: 3px;
+    background-color: #fff;
+    top: 70px;
+    right: 514px;
+    z-index: 10;
+    border: 1px solid #e0e0e0;
+}
+.message_modal_cover .message-modal {
+    display: flex;
+    flex-direction: column;
+    border-radius: 3px;
+}
+.message_modal_cover .message-modal .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 18px;
+    color: #212529;
+    border-bottom: 2px solid #f1f3f5;
+    width: 100%;
+    height: 55px;
+}
+.message_modal_cover .message-modal .header-content .num {
+    display: inline-block;
+    margin-left: 6px;
+    color: #F39C12;
+}
+.message_modal_cover .message-modal .list-content .infd-message-cover {
+    padding: 0 14px;
+    background-color: #f8f9fa;
+}
+.message_modal_cover .message-modal .list-content .infd-message-cover .infd-message-el {
+    display: flex;
+    padding: 12px 12px 12px 22px;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+}
+.message_modal_cover .message-modal .list-content .infd-message-cover .infd-message-el .title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #212529;
+    margin-bottom: unset;
+    display: inline-block;
+    margin-right: 10px;
+}
+.message_modal_cover .message-modal .list-content .infd-message-cover .infd-message-el .date {
+    font-weight: 400;
+    display: inline-block;
+    margin-left: 24px;
+    color: #495057;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+.message_modal_cover .message-modal .button-content a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 48px;
+    background-color: #F39C12;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+}
+.message_modal_cover .message-modal .list-content .infd-message-cover .infd-message-el:before {
+    position: absolute;
+    display: inline-block;
+    content: "";
+    background-color: #ff5b16;
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    top: 20px;
+    left: 4px;
+}
+.message_modal_cover .message-modal .list-content .infd-message-cover.checked .infd-message-el:before {
+    background-color: #ced4da;
+}
+.message_modal_cover .message-modal .list-content .infd-message-cover.checked .infd-message-el .title {
+    color: #495057;
+    font-weight: 400;
+}
+
+/* 검색창 css */
+.input{
+	border-radius: 15px;
+    box-shadow: none;
+    background: #ececec;
+    color: #5f5f5f;
+    border: 1px solid transparent;
+    margin-right: 20px;
+    width: 20rem;
+    height: 36px;
+    font-weight: bold;
+    
+    padding: calc(.375em - 1px) calc(1em - 1px);
+    position: relative;
+    vertical-align: top;
+}
+.input:hover{
+    border-color: #b5b5b5;
+}
+.input:focus {
+    outline: .04rem auto #F39C12;
 }
