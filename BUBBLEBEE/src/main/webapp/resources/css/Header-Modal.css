@@ -1,0 +1,455 @@
+@charset "UTF-8";
+/* 프로필 모달 css */
+.title {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.title:hover{
+	color: #868e96;
+    text-decoration: none;
+    cursor: pointer;
+}
+.link {
+	color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.link:hover{
+	color: #F39C12;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.profile_modal_cover {
+    display: none;
+    position: absolute;
+    width: 235px;
+    height: 452px;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px 0 rgba(33,37,41,.24);
+    background-color: #fff;
+    top: 70px;
+    right: 427px;
+    z-index: 10;
+    border: 1px solid #e0e0e0;
+}
+.has_bubble::after{
+	display: inline-block;
+	position: absolute;
+	content: "";
+	width: 19px;
+	height: 19px;
+	top: -11px;
+	right: 17px;
+	transform: rotate(45deg);
+	background : white;
+	border: 1px solid #e0e0e0;
+	border-right: none;
+	border-bottom: none;
+}
+.profile_modal {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile_modal .close_content {
+    display: none;
+    padding: 20px 20px 0;
+    color: #adb5bd;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile_modal .close_content .message-icon-cover {
+    position: relative;
+    color: #212529;
+}
+.profile_modal .info_content {
+    padding: 1.5rem 1.5rem 0rem 1.5rem;
+}
+.profile_modal .user_content {
+    display: flex;
+    width: 100%;
+    margin-bottom: 16px;
+}
+.profile_modal .user_content .left_content {
+    width: 48px;
+    height: 48px;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+.profile_modal .user_content .left_content .thumbnail {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 100%;
+}
+.profile_modal .user_content .left_content .thumbnail a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(33,37,41,.64);
+    color: #fff;
+    font-size: 12px;
+    position: absolute;
+    bottom: 0;
+}
+.profile_modal .user_content .right_content {
+    display: flex;
+    flex-direction: column;
+}
+.profile_modal .user_content .right_content a {
+    display: flex;
+    color: #212529;
+    font-weight: 600;
+}
+.profile_modal .user_content .right_content a .name {
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 3rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.profile_modal .user_content .right_content a .icon {
+    width: 16px;
+    height: 16px;
+    font-size: 14px;
+    margin-left: 2px;
+    margin-top: 6px;
+    flex-shrink: 0;
+}
+.profile_modal .user_content .right_content .policy {
+    color: #495057;
+    font-size: 14px;
+}
+.profile_modal .point_content {
+    display: flex;
+    width: 100%;
+}
+.profile_modal .point_content .point_box.mileage {
+    flex: 2;
+}
+.profile_modal .point_content .point_box .content_modal .value {
+    /* 마일리지 숫자 색 변경 */
+    color: #F39C12;
+    margin-right: 4px;
+    font-weight: 600;
+}
+.profile_modal .point_content .point_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f1f3f5;
+    color: #495057;
+    font-size: 14px;
+    border-radius: 2px;
+    flex-wrap: wrap;
+    padding: 8px;
+}
+.profile_modal .point_content .point_box .title {
+    color: #495057;
+    font-size: 14px;
+    line-height: 1.43;
+    margin-bottom: unset;
+    font-weight: 500;
+}
+.content {
+    display: flex;
+    height: 100%;
+}
+.profile_modal .menu_content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    height: 0;
+}
+.profile_modal .menu_content .tab_content {
+    display: flex;
+}
+.profile_modal .menu_content .tab_content .tab_menu.active {
+    color: #212529;
+    border-bottom: 2px solid #f1e333;
+    font-weight: 600;
+}
+.profile_modal .menu_content .tab_content .tab_menu {
+    flex: 1;
+    padding: 8px;
+    text-align: center;
+    color: #343a40;
+    border-bottom: 2px solid #e9ecef;
+    cursor: pointer;
+}
+.profile_modal .menu_content .list_content {
+    background-color: #f8f9fa;
+    flex: 1 1 auto;
+    height: 0;
+    overflow-y: auto;
+}
+.profile_modal .menu_content .list_content .tab_list.active {
+    display: block;
+}
+.profile_modal .menu_content .list_content .tab_list .list_el {
+    margin: 1.5rem;
+}
+.profile_modal .footer_content {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #495057;
+}
+.profile_modal .footer_content .right_content .link {
+    display: inline-flex;
+    align-items: center;
+}
+.profile_modal .footer_content .right_content .link .icon {
+    font-size: 14px;
+}
+
+/* 카트 모달 css  */
+.cart_modal_cover {
+    display: none;
+    position: absolute;
+    width: 365px;
+    height: 385px;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px 0 rgba(33,37,41,.24);
+    background-color: #fff;
+    top: 70px;
+    right: 469px;
+    z-index: 10;
+    border: 1px solid #e0e0e0;
+}
+.cart_modal_cover .cart_modal {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.cart_modal_cover .tab_content {
+    display: flex;
+}
+.cart_modal_cover .tab_content .tab_menu.active {
+    color: #212529;
+    border-bottom: 2px solid #F39C12;
+    font-weight: 600;
+}
+.cart_modal_cover .tab_content .tab_menu {
+    flex: 1;
+    padding: 16px 8px 8px;
+    text-align: center;
+    color: #343a40;
+    border-bottom: 2px solid #e9ecef;
+    cursor: pointer;
+}
+.cart_modal_cover .bottom_content {
+    flex: 1 1 auto;
+    height: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+.cart_modal_cover .list_content {
+    flex: 1 1 auto;
+    height: 0;
+    overflow-y: auto;
+    margin-bottom: 8px;
+}
+
+.list_content::-webkit-scrollbar {
+    width: 7px;
+  }
+.list_content::-webkit-scrollbar-thumb {
+    background-color: gray;
+  }
+.list_content::-webkit-scrollbar-track {
+    background-color: #c0c0c0;
+  }
+  
+.cart_modal_cover .list_content .tab_list .no_result {
+    color: #757575;
+    text-align: center;
+}
+.cart_modal_cover .button_content .tab_button.active {
+    display: block;
+}
+.cart_modal_cover .list_content .tab_list .list_el:not(:last-child) {
+    margin-bottom: 8px;
+}
+.cart_modal_cover .list_content .tab_list .list_el .thumb_content {
+    width: 103px;
+    height: 83px;
+    overflow: hidden;
+    margin-right: 8px;
+}
+.cart_modal_cover .list_content .tab_list .list_el .thumb_content img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+.cart_modal_cover .list_content .tab_list .list_el .item_content {
+    flex: 1 1 auto;
+    width: 0;
+}
+.cart_modal_cover .list_content .tab_list .list_el .item_content .item_price {
+    text-align: right;
+}
+.cart_modal_cover .list_content .tab_list .list_el {
+    display: flex;
+    padding: 0 8px;
+}
+.cart_modal_cover .button_content .tab_button.cart_link {
+    background-color: #F39C12;
+    color: #fff;
+}
+.cart_modal_cover .button_content .tab_button.wish_link {
+    background-color: #ff7867;
+    color: #fff;
+}
+.cart_modal_cover .button_content .tab_button.active {
+    display: block !important;
+}
+.button {
+	cursor: pointer;
+    text-align: center;
+    border-radius: 4px;
+    padding: 13px;
+    vertical-align: top;
+    line-height: 1;
+}
+
+.list_el {
+    color: currentColor;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+.list_el:hover {
+    color: currentColor;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+/* 알림 모달 css */
+.message_modal_cover {
+    display: none;
+    position: absolute;
+    width: 400px;
+    border-radius: 3px;
+    background-color: #fff;
+    top: 70px;
+    right: 514px;
+    z-index: 10;
+    border: 1px solid #e0e0e0;
+}
+.message_modal_cover .message-modal {
+    display: flex;
+    flex-direction: column;
+    border-radius: 3px;
+}
+.message_modal_cover .message-modal .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 18px;
+    color: #212529;
+    border-bottom: 2px solid #f1f3f5;
+    width: 100%;
+    height: 55px;
+}
+.message_modal_cover .message-modal .header-content .num {
+    display: inline-block;
+    margin-left: 6px;
+    color: #F39C12;
+}
+.message_modal_cover .message-modal .list-content .infd-message-cover {
+    padding: 0 14px;
+    background-color: #f8f9fa;
+}
+.message_modal_cover .message-modal .list-content .infd-message-cover .infd-message-el {
+    display: flex;
+    padding: 12px 12px 12px 22px;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+}
+.message_modal_cover .message-modal .list-content .infd-message-cover .infd-message-el .title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #212529;
+    margin-bottom: unset;
+    display: inline-block;
+    margin-right: 10px;
+}
+.message_modal_cover .message-modal .list-content .infd-message-cover .infd-message-el .date {
+    font-weight: 400;
+    display: inline-block;
+    margin-left: 24px;
+    color: #495057;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+.message_modal_cover .message-modal .button-content a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 48px;
+    background-color: #F39C12;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+}
+.message_modal_cover .message-modal .list-content .infd-message-cover .infd-message-el:before {
+    position: absolute;
+    display: inline-block;
+    content: "";
+    background-color: #ff5b16;
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    top: 20px;
+    left: 4px;
+}
+.message_modal_cover .message-modal .list-content .infd-message-cover.checked .infd-message-el:before {
+    background-color: #ced4da;
+}
+.message_modal_cover .message-modal .list-content .infd-message-cover.checked .infd-message-el .title {
+    color: #495057;
+    font-weight: 400;
+}
+
+/* 검색창 css */
+.input{
+	border-radius: 15px;
+    box-shadow: none;
+    background: #ececec;
+    color: #5f5f5f;
+    border: 1px solid transparent;
+    margin-right: 20px;
+    width: 20rem;
+    height: 36px;
+    font-weight: bold;
+    
+    padding: calc(.375em - 1px) calc(1em - 1px);
+    position: relative;
+    vertical-align: top;
+}
+.input:hover{
+    border-color: #b5b5b5;
+}
+.input:focus {
+    outline: .04rem auto #F39C12;
+}
