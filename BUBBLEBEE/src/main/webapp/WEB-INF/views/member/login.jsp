@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>navigation-with-button</title>
 </head>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <style>
@@ -81,12 +82,29 @@ input.loginFBtn {
 		</div>
 		<br><br>
 		<div>
-			<a href="#">
+			<!-- <a href="https://kauth.kakao.com/oauth/authorize?client_id=27cfa1d7725d616c3b4f7135fba99e8e&redirect_uri=http://localhost:8780/bubblebee/kakao.me&response_type=code"> -->
+			<a id="login-form-btn" href="javascript:loginFormWithKakao()">
 				<input type="button" class="loginFBtnK" value="카카오톡 로그인">
 			</a>
 		</div>
 		
-		<br>
+		<script type="text/javascript">
+		  // input your appkey
+		  Kakao.init('be0b8d3e154f1e2bf1a278bd7fbf3d2a')
+		  function loginFormWithKakao() {
+		    Kakao.Auth.loginForm({
+		      success: function(authObj) {
+		        /* alert(JSON.stringify(authObj)) */
+		        $(function send(authObj){
+		        	location.href="https://kauth.kakao.com/oauth/authorize?client_id=27cfa1d7725d616c3b4f7135fba99e8e&redirect_uri=http://localhost:8780/bubblebee/kakao.me&response_type=code";
+		        });
+		      },
+		      fail: function(err) {
+		        alert(JSON.stringify(err))
+		      },
+		    })
+		  }
+		</script>
 		
 		<div>
 			<a href="signUpView.me">

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.bubblebee.member.model.exception.MemberException;
+import com.kh.bubblebee.member.model.service.KakaoAPI;
 import com.kh.bubblebee.member.model.service.MemberService;
 import com.kh.bubblebee.member.model.vo.Member;
 
@@ -36,6 +38,9 @@ public class MemberController {
 	
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
+	@Autowired
+	private KakaoAPI kakao;
 	
 	@RequestMapping("loginView.me")
 	public String enrollView() {
@@ -161,6 +166,32 @@ public class MemberController {
 		} else {
 			throw new MemberException("회원가입에 실패하였습니다.");
 		}
+	}
+	
+	@RequestMapping("kakao.me")
+	public String kakaoLogin(@RequestParam("code") String code, HttpSession session) {
+//		System.out.println("code : " + code);
+		String access_Token = kakao.getAccessToken(code);
+//		System.out.println("controller access_token : " + access_Token); 
+		HashMap<String, String> userInfo = kakao.getUserInfo(access_Token);
+		System.out.println("login Controller : " + userInfo);
+		
+		int result = mService.insertkakaoMember(userInfo);
+		
+		if(userInfo.get("id") != null) {
+			session.setAttribute("userId", userInfo.get("id"));
+			session.setAttribute("access_Token", access_Token);
+		}
+		return "../home";
+	}
+	
+	@RequestMapping("kakaologout.me")
+	public String logout(HttpSession session) {
+		kakao.kakaoLogout((String)session.getAttribute("access_Token"));
+		session.removeAttribute("access_Token");
+		session.removeAttribute("userId");
+		
+		return "index";
 	}
 	
 }
