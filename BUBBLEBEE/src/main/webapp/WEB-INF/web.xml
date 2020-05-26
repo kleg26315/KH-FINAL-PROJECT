@@ -48,6 +48,21 @@
 		<url-pattern>*.me</url-pattern>
 	</servlet-mapping>
 	
+	<!-- 관리자 관련 -->
+	<servlet>
+		<servlet-name>adminServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/admin-context.xml</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>adminServlet</servlet-name>
+		<url-pattern>*.ad</url-pattern>
+	</servlet-mapping>
+	
 	<!-- 한글깨짐 방지 인코딩 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
