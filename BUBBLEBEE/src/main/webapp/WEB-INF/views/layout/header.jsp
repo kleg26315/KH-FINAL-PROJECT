@@ -29,19 +29,11 @@
 .navbar-nav>li{
 	font-size: 20px;
 }
-.input{
-	border-radius: 3px;
-    box-shadow: none;
-    background: #ececec;
-    color: #5f5f5f;
-    border: 1px solid transparent;
-    margin-right: 20px;
-}
 </style>
 <body>
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
 	<div style="box-shadow: 0 2px 4px 0 hsla(0,0%,80.8%,.5);">
-        <nav class="navbar navbar-default navigation-clean-button" style="background-color: white; border-color: white;">
+        <nav class="navbar navbar-default navigation-clean-button" style="background-color: white; border-color: white; width: 1903px;">
             <div class="container">
                 <div class="navbar-header"><a class="navbar-brand" href="home.do" style="height: 55px; padding: 0px 0px; padding-left: 20px;">
                 <img height="30px" width="30px" alt="메인" src="${ pageContext.servletContext.contextPath }/resources/img/main_resize.png">
@@ -68,24 +60,47 @@
                         </li>
                         <li role="presentation"><a href="#">작품</a></li>
                     </ul>
-                    <p class="navbar-text navbar-right actions" style="padding-right: 60px;">
-				    <img class="sc-cmthru gbhGvn" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cg fill='none' fill-rule='nonzero'%3E %3Cpath d='M0 0h24v24H0z'/%3E %3Ccircle cx='11' cy='11' r='5' stroke='%233397FF' stroke-width='2'/%3E %3Cpath stroke='%233397FF' stroke-width='2' d='M15 15l3.536 3.536'/%3E %3C/g%3E %3C/svg%3E" alt="">
+                    
+                    <c:if test="${ empty sessionScope.loginUser}">
+                    	<p class="navbar-text navbar-right actions" style="padding-right: 29px; padding-top: 3px;">
+                    </c:if>
+                    <c:if test="${ !empty sessionScope.loginUser && sessionScope.loginUser.id ne 'admin@admin.admin'}">
+                    	<p class="navbar-text navbar-right actions" style="padding-right: 60px; padding-top: 3px;">
+                    </c:if>
+                    <c:if test="${ sessionScope.loginUser.id eq 'admin@admin.admin'}">
+                    	<p class="navbar-text navbar-right actions" style="padding-right: 29px; padding-top: 3px;">
+                    </c:if>
+                    
+				    <!-- 검색창 -->
+				    <img class="" style="width: 24px; height: 24px; position: absolute; right: 786px; z-index: 10; top: 26px;" src="${ pageContext.servletContext.contextPath }/resources/img/search.png" alt="검색아이콘">
                     <input type="text" class="input" placeholder="">
                     
+                    <!-- 비로그인 시 -->
                     <c:if test="${ empty sessionScope.loginUser }">
 	                    <a class="navbar-link login" href="loginView.me">로그인</a>
 						<a class="btn btn-default action-button" role="button" href="signUpView.me">회원가입</a>
 					</c:if>
+					
+					<!-- 로그인 시 -->
 					<c:if test="${ !empty sessionScope.loginUser }">
-						<c:if test="${ sessionScope.loginUser.id eq 'admin@admin.com' }">
-							<span id="login" class="login"><label
+						<!-- 관리자 로그인 시 -->
+						<c:if test="${ sessionScope.loginUser.id eq 'admin@admin.admin' }">
+							<span id="" class="login" style="vertical-align: -webkit-baseline-middle;"><label
 								onclick="location.href='logout.me'">로그아웃</label></span>
-							<span id="login" class="login"><label>${loginUser.nickName}</label></span>
-							<span id="login" class="login"><label
+							<span id="" class="login" style="vertical-align: -webkit-baseline-middle;"><label
 								onclick="location.href='adminPage.me'">관리자페이지</label></span>
 						</c:if>
 						
-						<c:if test="${ sessionScope.loginUser.id ne 'admin@admin.com' }">
+						<!-- 회원 로그인 시 -->
+						<c:if test="${ sessionScope.loginUser.id ne 'admin@admin.admin' }">
+							<!-- 알림 이미지 -->
+							<span class="alarm alarm_cover ">
+					        	<img id="alarm_img1" class="alarm_img" style="width: 30px; height: 30px; cursor: pointer; margin-right: 1rem;" src="${ pageContext.servletContext.contextPath }/resources/img/bell.png" />
+					        </span>
+					        <span class="alarm alarm_cover is_active_alarm">
+					        	<img id="alarm_img2" class="alarm_img" style="width: 30px; height: 30px; cursor: pointer; margin-right: 1rem;" src="${ pageContext.servletContext.contextPath }/resources/img/bell2.png" />
+					        </span>
+							
 							<!-- 장바구니 이미지 -->
 					        <span class="icon icon_cover ">
 					        	<img id="cart_img1" class="cart_img" style="width: 30px; height: 30px; cursor: pointer; margin-right: 1rem;" src="${ pageContext.servletContext.contextPath }/resources/img/cart.png" />
@@ -98,6 +113,31 @@
 							<c:if test="${ fn:contains(sessionScope.loginUser.profile, 'http')}">
 								<img id="login" class="profile_img" style="width: 30px; height: 30px; border-radius: 50px; cursor: pointer;" src="${sessionScope.loginUser.profile}" />
 							</c:if>
+					        
+					        <!-- 알림 모달창 -->
+					        <div class="message_modal_cover has_bubble nav-modal-cover">
+								<div class="message-modal">
+									<!-- span 사이 2는 나중에 db에서 count로 가져오기 -->
+									<div class="header-content unchecked-cnt">읽지 않은 알림 <span class="num">2</span>개</div>
+							    <div class="list-content">
+							    	<!-- 공지사항들 -->
+									<div class="infd-message-cover ">
+							  			<a href="#" class="infd-message-el">
+										    <span class="title">[공지사항] [인프런 소식] 카테고리 정리, 할인 관리, 카드 디자인 변경</span>
+										    <span class="date">14일 전</span>
+							  			</a>
+									</div>
+									
+									<div class="infd-message-cover ">  <!-- 여기에 읽으면 addClass('checked') 해주기 -->
+									  <a href="#" class="infd-message-el">
+									    <span class="title">[공지사항] [업데이트 소식] 4월 셋째주 - 알람 기능 오픈 📣</span>
+									    <span class="date">1달 전</span>
+									  </a>
+									</div>
+								</div>
+				          		<div class="button-content"><a href="#">더 많은 알람 보기</a></div>
+						        </div>
+					        </div>
 					        
 					        <!-- 장바구니 모달창 -->
 						    <div class="cart_modal_cover has_bubble nav-modal-cover">
@@ -148,35 +188,6 @@
 								</div>
 							</div>
 						    
-							<!-- 알림 모달창 -->
-							<!-- <div class="navbar-item">
-							    <span class="message-hoverable">
-							      <span class="message_modal_btn e_message_modal_btn nav-modal-btn">
-							        <a href="/messages" class="icon_cover"><span class="icon"><i class="fal fa-bell"></i></span></a>
-							        <a href="/messages" class="icon_cover is_active"><span class="icon"><i class="fas fa-bell"></i></span></a>
-							        <span class="new-message-mark"></span>
-							      </span>
-							      <div class="message_modal_cover has_bubble nav-modal-cover">
-							        <div class="message-modal">
-							          <div class="header-content unchecked-cnt">읽지 않은 알림 <span class="num">2</span>개</div>
-							          <div class="list-content">
-							<div class="infd-message-cover ">
-							  <a href="/messages/6956" class="infd-message-el">
-							    <span class="title">[공지사항] [인프런 소식] 카테고리 정리, 할인 관리, 카드 디자인 변경</span>
-							    <span class="date">14일 전</span>
-							  </a>
-							</div>
-							<div class="infd-message-cover ">
-							  <a href="/messages/544" class="infd-message-el">
-							    <span class="title">[공지사항] [업데이트 소식] 4월 셋째주 - 알람 기능 오픈 📣</span>
-							    <span class="date">1달 전</span>
-							  </a>
-							</div></div>
-							          <div class="button-content"><a href="/messages">더 많은 알람 보기</a></div>
-							        </div>
-							      </div>
-							    </span>
-							  </div> -->
 							<!-- 프사 모달창 -->
 							<div class="profile_modal_cover has_bubble nav-modal-cover"><div class="profile_modal">
 						    <div class="close_content">
@@ -273,22 +284,28 @@
     </div>
     
     <script>
-    	$('#go_wish').hide();
+    	/* 모달창 조작 자바스크립트 */
+    	
     	$('.profile_modal_cover').hide();
         $('.profile_img').click(function(e){
         	e.stopPropagation();
         	if($('.profile_modal_cover')[0].style.display=='none'){
         		$('.profile_modal_cover').show();
+        		
         		$('.cart_modal_cover').hide(); 
         		$('.icon_cover').show();
         		$('.is_active').hide();
         		
+        		$('.message_modal_cover').hide();
+        		$('.alarm_cover').show();
+        		$('.is_active_alarm').hide();
         	} else{
         		$('.profile_modal_cover').hide();        		
         	}
         });
         
         $('.cart_modal_cover').hide();
+        $('#go_wish').hide();
         $('.is_active').hide();
         $('.icon_cover').click(function(e){
         	e.stopPropagation();
@@ -296,7 +313,12 @@
         		$('.cart_modal_cover').show();
         		$('.icon_cover').hide();
         		$('.is_active').show();
+        		
         		$('.profile_modal_cover').hide(); 
+        		
+        		$('.message_modal_cover').hide();
+        		$('.alarm_cover').show();
+        		$('.is_active_alarm').hide();
         	} else{
         		$('.cart_modal_cover').hide(); 
         		$('.icon_cover').show();
@@ -304,16 +326,39 @@
         	}
         });
         
+        $('.message_modal_cover').hide();
+        $('.is_active_alarm').hide();
+        $('.alarm_cover').click(function(e){
+        	e.stopPropagation();
+        	if($('.message_modal_cover')[0].style.display=='none'){
+        		$('.message_modal_cover').show();
+        		$('.alarm_cover').hide();
+        		$('.is_active_alarm').show();
+        		
+        		$('.profile_modal_cover').hide();
+        		
+        		$('.cart_modal_cover').hide();
+        		$('.icon_cover').show();
+        		$('.is_active').hide();
+        	} else{
+        		$('.message_modal_cover').hide(); 
+        		$('.alarm_cover').show();
+        		$('.is_active_alarm').hide();
+        	}
+        });
+        
         $(document).click(function(){
         	$('.profile_modal_cover').hide();
-        })
-        $(document).click(function(){
+        	
         	$('.cart_modal_cover').hide();
         	$('.icon_cover').show();
         	$('.is_active').hide();
+        	
+        	$('.message_modal_cover').hide();
+        	$('.alarm_cover').show();
+        	$('.is_active_alarm').hide();
         })
-        
-        
+
         $('#cart').click(function(e){
         	e.stopPropagation();
         	$('#go_cart').addClass('active');
@@ -333,8 +378,6 @@
         	$('#go_cart').hide();
         	$('#go_wish').show();
         })
-        
-        
     </script>
     
 </body>
