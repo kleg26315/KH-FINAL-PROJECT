@@ -8,7 +8,6 @@ public class BoardController {
 	
 	@RequestMapping("mlist.bo")
 	public String moimList() {
-		System.out.println("도달성공");
 		return "listView_moim";
 	}
 	
