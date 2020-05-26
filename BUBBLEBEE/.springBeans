@@ -8,9 +8,11 @@
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/member-context.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/admin-context.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/resources/root-context.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/spring-security.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>
 	</autoconfigs>
 	<configSets>

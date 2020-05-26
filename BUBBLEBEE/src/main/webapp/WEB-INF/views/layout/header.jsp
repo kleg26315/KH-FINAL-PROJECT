@@ -44,7 +44,7 @@
                     <ul class="nav navbar-nav">
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">모임 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li role="presentation"><a href="#">토크/파티</a></li>
+                                <li role="presentation"><a href="mlist.bo">토크/파티</a></li>
                                 <li role="presentation"><a href="#">취향</a></li>
                                 <li role="presentation"><a href="#">스터디</a></li>
                                 <li role="presentation"><a href="#">이벤트/공간</a></li>
@@ -88,7 +88,7 @@
 							<span id="" class="login" style="vertical-align: -webkit-baseline-middle;"><label
 								onclick="location.href='logout.me'">로그아웃</label></span>
 							<span id="" class="login" style="vertical-align: -webkit-baseline-middle;"><label
-								onclick="location.href='adminPage.me'">관리자페이지</label></span>
+								onclick="location.href='adminPageView.ad'">관리자페이지</label></span>
 						</c:if>
 						
 						<!-- 회원 로그인 시 -->
