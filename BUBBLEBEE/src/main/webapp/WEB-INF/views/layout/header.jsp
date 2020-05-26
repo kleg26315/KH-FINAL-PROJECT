@@ -44,7 +44,7 @@
                     <ul class="nav navbar-nav">
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">모임 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li role="presentation"><a href="#">토크/파티</a></li>
+                                <li role="presentation"><a href="mlist.bo">토크/파티</a></li>
                                 <li role="presentation"><a href="#">취향</a></li>
                                 <li role="presentation"><a href="#">스터디</a></li>
                                 <li role="presentation"><a href="#">이벤트/공간</a></li>
