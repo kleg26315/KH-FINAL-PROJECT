@@ -44,21 +44,21 @@
                     <ul class="nav navbar-nav">
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">모임 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li role="presentation"><a href="mlist.bo">토크/파티</a></li>
-                                <li role="presentation"><a href="#">취향</a></li>
-                                <li role="presentation"><a href="#">스터디</a></li>
-                                <li role="presentation"><a href="#">이벤트/공간</a></li>
+                                <li role="presentation"><a href="tplist.bo">토크/파티</a></li>
+                                <li role="presentation"><a href="tslist.bo">취향</a></li>
+                                <li role="presentation"><a href="stlist.bo">스터디</a></li>
+                                <li role="presentation"><a href="evlist.bo">이벤트/공간</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">클래스 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li role="presentation"><a href="#">공예/DIY</a></li>
-                                <li role="presentation"><a href="#">요리</a></li>
-                                <li role="presentation"><a href="#">스포츠</a></li>
-                                <li role="presentation"><a href="#">어학/취업</a></li>
+                                <li role="presentation"><a href="diylist.bo">공예/DIY</a></li>
+                                <li role="presentation"><a href="cklist.bo">요리</a></li>
+                                <li role="presentation"><a href="splist.bo">스포츠</a></li>
+                                <li role="presentation"><a href="lalist.bo">어학/취업</a></li>
                             </ul>
                         </li>
-                        <li role="presentation"><a href="#">작품</a></li>
+                        <li role="presentation"><a href="wklist.bo">작품</a></li>
                     </ul>
                     
                     <c:if test="${ empty sessionScope.loginUser}">

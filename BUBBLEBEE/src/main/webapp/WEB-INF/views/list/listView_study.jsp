@@ -35,11 +35,9 @@
      				<hr id="chline" align="left">
      			<table id="categoryT" >	
      			<tr>
-     				<td>클럽</td>
      				<td>토크/파티</td>
      				<td>취향</td>
      				<td>스터디</td>
-     				<td>봉사/임팩트</td>
      				<td>이벤트/공간</td>
      			</tr>
      		</table>
@@ -188,7 +186,7 @@
      	
      	<!-- 인기모임 -->
 		<div id="hotmoim">
-         <label style="font-weight: bold; font-size: 20px;">인기 모임</label>
+         <label style="font-weight: bold; font-size: 20px;">인기 스터디</label>
          <label style="float: right; padding-right: 5px;">전체보기</label>
          <br><br>
          <div class="moim">
@@ -292,7 +290,7 @@
       
       	<!-- 최신모임 -->
       	<div id="latestmoim">
-         <label style="font-weight: bold; font-size: 20px;">최신 모임</label>
+         <label style="font-weight: bold; font-size: 20px;">최신 스터디</label>
          <label style="float: right; padding-right: 5px;">전체보기</label>
          <br><br>
          <div class="moim">
@@ -395,7 +393,7 @@
       </div>
       	<!-- 전체보기 -->
       	<div id="allView">
-      		58개 전체보기
+      		전체보기
       	</div>
       	
       	
