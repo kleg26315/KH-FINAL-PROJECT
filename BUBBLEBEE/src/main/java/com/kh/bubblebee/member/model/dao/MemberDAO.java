@@ -1,5 +1,7 @@
 package com.kh.bubblebee.member.model.dao;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -24,6 +26,10 @@ public class MemberDAO {
 		System.out.println("dao");
 		int r = sqlSession.insert("memberMapper.insertMember", m);
 		return r;
+	}
+
+	public int insertkakaoMember(SqlSessionTemplate sqlSession, HashMap<String, String> userInfo) {
+		return sqlSession.insert("memberMapper.insertkakaoMember", userInfo);
 	}
 
 }
