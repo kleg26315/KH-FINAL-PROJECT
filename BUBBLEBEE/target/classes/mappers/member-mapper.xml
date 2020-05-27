@@ -58,6 +58,6 @@
 	
 	<insert id="insertkakaoMember">
 		insert into member
-		values(#{id}, null, #{nickname}, '꿀벌', null, default, default, #{profile}, null)
+		values(#{id}, null, null, #{nickname} , null, default, default, #{profile}, null)
 	</insert>
 </mapper>
