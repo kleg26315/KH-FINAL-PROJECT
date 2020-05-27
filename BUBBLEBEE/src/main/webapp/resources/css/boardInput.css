@@ -1,0 +1,72 @@
+*{	font-family: 'Noto Sans KR', sans-serif;}
+
+header{
+	   position: fixed;
+	   width : 100%;
+	}
+
+#bmain{
+		width : 58%;
+	   margin-left : 20%;
+	   height : 1980px;
+	   padding-top :80px;
+	}	
+	
+/* table,tr,td{border:1px solid red;} */
+
+th{
+	width: 48%;
+	font-size: 28px; 
+	color: gray; 
+	height: 15px;
+	 }
+	 
+.B_n{
+	color: gray;
+    font-size: 12px;
+    padding : 16px;
+    height: 100%;
+    line-height: 1.83;
+    padding-left: 35px;
+}
+
+#catch, #title, #me, #op, #op2, #bTime, #bDetail, #b_Qt, #b_An
+{
+	width:417px;
+}
+
+#btn_op{   width: 103px;}
+
+.bText500{
+			
+		    resize: none;
+		    border-width: 1px;
+		    border-style: solid;
+		    border-image: initial;
+		    border-radius: 4px;
+		    padding: 10px 16px;
+		    border-color: rgb(230, 230, 230)
+	}
+	
+.btext{
+	
+    font-size: 31*20;
+   
+    bottom: 12px;
+    right: 12px;
+}
+	
+#btn_DetailSet, #btn_Q, #postcodify_search_button, #btn_op, #complete{
+	background:#f1e018;
+    border-radius: 3px;
+    color: white;
+    box-shadow: none;
+    border: none;
+}
+
+#complete, #cancel{
+	width: 330px;
+    height: 75px;
+    font-size: xxx-large;
+}
+
