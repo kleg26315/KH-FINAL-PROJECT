@@ -1,5 +1,7 @@
 package com.kh.bubblebee.member.model.service;
 
+import java.util.HashMap;
+
 import com.kh.bubblebee.member.model.vo.Member;
 
 public interface MemberService {
@@ -11,5 +13,7 @@ public interface MemberService {
 	Member memberLogin(Member m);
 
 	int insertMember(Member m);
+
+	int insertkakaoMember(HashMap<String, String> userInfo);
 
 }

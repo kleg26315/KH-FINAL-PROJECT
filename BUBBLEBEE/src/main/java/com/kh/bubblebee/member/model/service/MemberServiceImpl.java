@@ -1,5 +1,7 @@
 package com.kh.bubblebee.member.model.service;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,11 @@ public class MemberServiceImpl implements MemberService{
 	public int insertMember(Member m) {
 		System.out.println("service");
 		return mDAO.insertMember(sqlSession, m);
+	}
+
+	@Override
+	public int insertkakaoMember(HashMap<String, String> userInfo) {
+		return mDAO.insertkakaoMember(sqlSession, userInfo);
 	}
 
 }
