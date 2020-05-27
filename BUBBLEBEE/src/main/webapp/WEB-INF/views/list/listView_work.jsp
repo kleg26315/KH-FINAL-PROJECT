@@ -121,7 +121,6 @@
      	<!-- 인기작품 -->
 		<div id="hotmoim">
          <label style="font-weight: bold; font-size: 20px;">인기 작품</label>
-         <label style="float: right; padding-right: 5px;">전체보기</label>
          <br><br>
          <div class="moim">
             <div class="moim_total">
@@ -225,7 +224,6 @@
       	<!-- 최신작품 -->
       	<div id="latestmoim">
          <label style="font-weight: bold; font-size: 20px;">최신 작품</label>
-         <label style="float: right; padding-right: 5px;">전체보기</label>
          <br><br>
          <div class="moim">
             <div class="moim_total">
@@ -327,7 +325,7 @@
       </div>
       	<!-- 전체보기 -->
       	<div id="allView">
-      		전체보기
+      		<a href="wkallList.bo">전체보기</a>
       	</div>
       	
       	

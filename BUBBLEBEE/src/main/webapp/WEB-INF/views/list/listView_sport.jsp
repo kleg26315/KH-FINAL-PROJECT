@@ -187,7 +187,6 @@
      	<!-- 인기 클래스 -->
 		<div id="hotmoim">
          <label style="font-weight: bold; font-size: 20px;">인기 스포츠</label>
-         <label style="float: right; padding-right: 5px;">전체보기</label>
          <br><br>
          <div class="moim">
             <div class="moim_total">
@@ -291,7 +290,6 @@
       	<!-- 최신클래스 -->
       	<div id="latestmoim">
          <label style="font-weight: bold; font-size: 20px;">최신 스포츠</label>
-         <label style="float: right; padding-right: 5px;">전체보기</label>
          <br><br>
          <div class="moim">
             <div class="moim_total">
@@ -393,7 +391,7 @@
       </div>
       	<!-- 전체보기 -->
       	<div id="allView">
-      		전체보기
+      		<a href="spallList.bo">전체보기</a>
       	</div>
       	
       	
