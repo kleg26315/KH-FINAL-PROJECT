@@ -6,6 +6,7 @@ public class Board {
 	private int ftype;
 	private int price;
 	private String small_title;
+	private String ftitle;
 	private String category;
 	private String location;
 	private int lat;
@@ -22,14 +23,15 @@ public class Board {
 	
 	public Board() {}
 
-	public Board(int fno, int ftype, int price, String small_title, String category, String location, int lat, int lon,
-			String fcontain, String fncontain, String fcalendar, String fmaterials, String fminfo, String fprecaution,
-			String user_id, int heart, String f_status) {
+	public Board(int fno, int ftype, int price, String small_title, String ftitle, String category, String location,
+			int lat, int lon, String fcontain, String fncontain, String fcalendar, String fmaterials, String fminfo,
+			String fprecaution, String user_id, int heart, String f_status) {
 		super();
 		this.fno = fno;
 		this.ftype = ftype;
 		this.price = price;
 		this.small_title = small_title;
+		this.ftitle = ftitle;
 		this.category = category;
 		this.location = location;
 		this.lat = lat;
@@ -75,6 +77,14 @@ public class Board {
 
 	public void setSmall_title(String small_title) {
 		this.small_title = small_title;
+	}
+
+	public String getFtitle() {
+		return ftitle;
+	}
+
+	public void setFtitle(String ftitle) {
+		this.ftitle = ftitle;
 	}
 
 	public String getCategory() {
@@ -184,11 +194,13 @@ public class Board {
 	@Override
 	public String toString() {
 		return "Board [fno=" + fno + ", ftype=" + ftype + ", price=" + price + ", small_title=" + small_title
-				+ ", category=" + category + ", location=" + location + ", lat=" + lat + ", lon=" + lon + ", fcontain="
-				+ fcontain + ", fncontain=" + fncontain + ", fcalendar=" + fcalendar + ", fmaterials=" + fmaterials
-				+ ", fminfo=" + fminfo + ", fprecaution=" + fprecaution + ", user_id=" + user_id + ", heart=" + heart
-				+ ", f_status=" + f_status + "]";
+				+ ", ftitle=" + ftitle + ", category=" + category + ", location=" + location + ", lat=" + lat + ", lon="
+				+ lon + ", fcontain=" + fcontain + ", fncontain=" + fncontain + ", fcalendar=" + fcalendar
+				+ ", fmaterials=" + fmaterials + ", fminfo=" + fminfo + ", fprecaution=" + fprecaution + ", user_id="
+				+ user_id + ", heart=" + heart + ", f_status=" + f_status + "]";
 	}
+
+	
 	
 	
 	
