@@ -230,7 +230,7 @@
 	  <c:import url="layout/header.jsp"/>
    	</header>
 
-	<section style="padding-top: 115px; padding-left: 20%; width: 78%;">
+	<section style="padding-top: 115px; padding-left: 20%; width: 78%;" id="section">
 		<!-- 슬라이드 -->
 		<div id="slide">
 			<button class="btn-direction">

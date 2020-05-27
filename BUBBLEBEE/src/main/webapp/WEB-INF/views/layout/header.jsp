@@ -60,7 +60,7 @@
                         </li>
                         <li role="presentation"><a href="wklist.bo">작품</a></li>
                     </ul>
-                    
+                 <form action="#" id="searchForm">
                     <c:if test="${ empty sessionScope.loginUser}">
                     	<p class="navbar-text navbar-right actions" style="padding-right: 29px; padding-top: 3px;">
                     </c:if>
@@ -113,7 +113,7 @@
 							<c:if test="${ fn:contains(sessionScope.loginUser.profile, 'http')}">
 								<img id="login" class="profile_img" style="width: 30px; height: 30px; border-radius: 50px; cursor: pointer;" src="${sessionScope.loginUser.profile}" />
 							</c:if>
-					        
+		        </form>
 					        <!-- 알림 모달창 -->
 					        <div class="message_modal_cover has_bubble nav-modal-cover">
 								<div class="message-modal">
@@ -282,7 +282,119 @@
             </div>
         </nav>
     </div>
-    
+    <!-- 검색창 클릭시 나오는 div -->
+    <div class="sc-cQFLBn jsQIBQ sc-gzVnrw bGFEwv search_modal" style="opacity: 1; display: block;">
+    	<div class="sc-gojNiO grZaTa"></div>
+    	<div class="sc-hXRMBi gdSctU">
+    		<div class="sc-epnACN dTGVDR sc-elJkPf epzdvI">
+    			<section class="sc-ibxdXY eHHfdL" id="recent_section">
+    				<header class="sc-RefOD dzvleS">
+    					<label class="sc-iQKALj iozWPr">최근 검색어</label>
+    					<button type="button" class="sc-eTuwsz hUAMtM sc-iyvyFf gkEcoP" font-size="12" color="#9b9b9b" id="recent_delete">지우기</button>
+    				</header>
+    				<div id="recent_search">
+    					<!-- <button class="sc-gwVKww bjXqly sc-VigVT jechLO" width="100%" height="40px" font-size="12px" font-weight="500">전상면</button> -->
+    				</div>
+    			</section>
+    			<section class="sc-ibxdXY eHHfdL">
+    				<header class="sc-RefOD dzvleS">
+    					<label class="sc-iQKALj iozWPr">인기 검색어</label>
+    				</header>
+    				<div class="sc-bwCtUz edfQHX">
+    					<button class="sc-hrWEMg cYhmRL sc-VigVT kSYzHo" height="34px" color="#3397ff" font-size="12px" font-weight="500">와인</button>
+    					<button class="sc-hrWEMg cYhmRL sc-VigVT kSYzHo" height="34px" color="#3397ff" font-size="12px" font-weight="500">서핑</button>
+    					<button class="sc-hrWEMg cYhmRL sc-VigVT kSYzHo" height="34px" color="#3397ff" font-size="12px" font-weight="500">댄스</button>
+    					<button class="sc-hrWEMg cYhmRL sc-VigVT kSYzHo" height="34px" color="#3397ff" font-size="12px" font-weight="500">스터디</button>
+    					<button class="sc-hrWEMg cYhmRL sc-VigVT kSYzHo" height="34px" color="#3397ff" font-size="12px" font-weight="500">공방</button>
+    				</div>
+    			</section>
+    		</div>
+    	</div>
+    </div>
+    <script>
+    	/* 검색창 쿠키 */
+    	
+    	/* 쿠키 설정 */
+    	function setCookie(cookie_name, value, days){
+    		var exdate = new Date();
+	   		exdate.setDate(exdate.getDate() + days);
+	    	// 설정 일수만큼 현재시간에 만료값으로 지정
+	
+	    	var prevCookie = getCookie(cookie_name);
+	    	var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
+	    	
+	    	if(prevCookie == ''){
+	    		document.cookie = cookie_name + '=' + value;
+	    	} else{
+	    		document.cookie = cookie_name + '=' + prevCookie + "/" + value;
+	    	}
+    	}
+    	
+    	/* 쿠키 얻기 */
+    	function getCookie(cookie_name){
+	 		 var x, y;
+ 			 var val = document.cookie.split(';');
+
+ 			 for (var i = 0; i < val.length; i++) {
+ 		   		x = val[i].substr(0, val[i].indexOf('='));
+ 		   		y = val[i].substr(val[i].indexOf('=') + 1);
+ 		   		x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
+ 		   		if (x == cookie_name) {
+ 		     		return unescape(y); // unescape로 디코딩 후 값 리턴
+ 		   		}
+ 		 	}
+    	}
+
+    	/* 쿠키 삭제 */
+    	function deleteCookie(name) {
+		 	document.cookie = name + '=';
+		}
+    	/* deleteCookie('search'); */ 
+    	
+    	$('#searchForm').submit(function(e){
+    		var value = $('.input').val();
+    		setCookie('search', value , 1);
+    		console.log(getCookie('search'));
+    	})
+    	
+    	/* 검색창 조작 자바스크립트 */
+    	$('.search_modal').hide(); 
+    	$('.input').focus(function(e){
+    		e.stopPropagation();
+        	if($('.search_modal')[0].style.display=='none'){
+        		$('.search_modal').show();
+        	} else{
+        		$('.search_modal').hide();
+        	}
+    	})
+    	
+    	 $('.grZaTa').click(function(){
+        	$('.search_modal').hide();
+        })
+        
+        var record = getCookie('search');
+        /* 최근 검색어 div */
+        function recentSearch(record){
+    		if(record=='' || record == null){
+    			$('#recent_section').remove();
+    		}
+    		else{
+    			$('#recent_search').html();
+    			var records = record.split('/');
+    			for(var i in records){
+    				var $button = $('<button class="sc-gwVKww bjXqly sc-VigVT jechLO" width="100%" height="40px" font-size="12px" font-weight="500"></button>').text(records[records.length - i-1]); 
+    				$('#recent_search').append($button);
+    			}
+    		}
+    	}
+        recentSearch(record);
+        
+        $('#recent_delete').click(function(){
+        	deleteCookie('search');
+        	var record = getCookie('search');
+        	recentSearch(record);
+        })
+    </script>
     <script>
     	/* 모달창 조작 자바스크립트 */
     	
