@@ -1,10 +1,24 @@
-package com.kh.bubblebee.board;
+package com.kh.bubblebee.board.controller;
 
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.kh.bubblebee.board.model.exception.BoardException;
+import com.kh.bubblebee.board.model.vo.Board;
+import com.kh.bubblebee.board.service.BoardService;
+import com.kh.bubblebee.common.PageInfo;
+import com.kh.bubblebee.common.Pagination;
 
 @Controller
 public class BoardController {
+	
+	@Autowired
+	private BoardService bService;
 	
 	@RequestMapping("tplist.bo")
 	public String tpmoimList() {
@@ -12,8 +26,29 @@ public class BoardController {
 	}
 	
 	@RequestMapping("tpallList.bo")
-	public String tpallList() {
-		return "listView_talkparty_all";
+	public ModelAndView tpallList(@RequestParam(value="page", required=false) Integer page, ModelAndView mv) {
+		
+		int currentPage = 1;
+		if(page!=null) {
+			currentPage = page;
+		}
+		
+		int listCount = bService.getListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Board> list = bService.selectList(pi);
+		
+		if(list != null) {
+			mv.addObject("list", list);
+			mv.addObject("pi", pi);
+			mv.setViewName("listView_talkparty_all");
+			
+		} else {
+			throw new BoardException("게시글 전체 조회에 실패했습니다.");
+		}
+		
+		return mv;
 	}
 	
 	@RequestMapping("tslist.bo")
