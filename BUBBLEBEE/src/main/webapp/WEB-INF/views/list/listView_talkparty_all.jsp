@@ -589,6 +589,46 @@
          </div>
       </div>
       
+      <!-- 페이징 처리 -->
+      
+      <div id="paging" style="margin-left:50%; font-size:20px;">
+	      <!-- [이전] -->
+			<c:if test="${ pi.currentPage <= 1 }">
+				< &nbsp;
+			</c:if>
+			<c:if test="${ pi.currentPage > 1 }">
+				<c:url var="before" value="tpallList.bo">
+					<c:param name="page" value="${ pi.currentPage - 1 }"/>
+				</c:url>
+				<a href="${ before }"> < </a> &nbsp;
+			</c:if>
+			
+			<!-- 페이지 -->
+			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+				<c:if test="${ p eq pi.currentPage }">
+					<font color="gold" size="4"><b>[${ p }]</b></font>
+				</c:if>
+				
+				<c:if test="${ p ne pi.currentPage }">
+					<c:url var="pagination" value="tpallList.bo">
+						<c:param name="page" value="${ p }"/>
+					</c:url>
+					<a href="${ pagination }">${ p }</a> &nbsp;
+				</c:if>
+			</c:forEach>
+			
+			<!-- [다음] -->
+			<c:if test="${ pi.currentPage >= pi.maxPage }">
+				>
+			</c:if>
+			<c:if test="${ pi.currentPage < pi.maxPage }">
+				<c:url var="after" value="tpallList.bo">
+					<c:param name="page" value="${ pi.currentPage + 1 }"/>
+				</c:url> 
+				<a href="${ after }"> > </a>
+			</c:if>
+		
+		</div>
       	
       	
       </div> <!-- main div끝 -->
