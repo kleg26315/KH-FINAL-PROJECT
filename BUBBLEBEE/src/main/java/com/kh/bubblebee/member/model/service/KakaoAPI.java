@@ -9,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonElement;
@@ -107,7 +108,15 @@ public class KakaoAPI {
 	        JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
 	        
 	        String nickname = properties.getAsJsonObject().get("nickname").getAsString();
-	        String profile = properties.getAsJsonObject().get("profile_image").getAsString();
+	        
+	        JsonObject jsonobject = properties.getAsJsonObject();
+	        System.out.println("jsonobject : " + jsonobject.size());
+	        String profile = "";
+	        if(jsonobject.size() != 1) {
+	        	profile = properties.getAsJsonObject().get("profile_image").getAsString();
+	        }else {
+	        	profile = null;
+	        }
 	        String id = element.getAsJsonObject().get("id").getAsString();
 	        
 	        userInfo.put("nickname", nickname);

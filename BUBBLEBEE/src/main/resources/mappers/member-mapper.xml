@@ -58,6 +58,13 @@
 	
 	<insert id="insertkakaoMember">
 		insert into member
-		values(#{id}, null, #{nickname}, '꿀벌', null, default, default, #{profile}, null)
+		values(#{id}, null, null, #{nickname} , null, default, default, 
+		<if test="profile != null">
+			#{profile},
+		</if> 
+		<if test="profile == null">
+			'https://ssl.pstatic.net/static/pwe/address/img_profile.png',
+		</if>
+		null)
 	</insert>
 </mapper>
