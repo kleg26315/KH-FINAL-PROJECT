@@ -35,20 +35,20 @@
 	<section style="padding-top: 115px; padding-left: 20%; width: 78%; text-align: center;">
 		<h3 style="font-weight: bold;">로그인</h3>
 		<br>
-		<form class="" action="login.me" method="post">
-		<div class="">
+		<form action="login.me" method="post" id="loginFormFF">
 			<div class="">
-				<input class="inputBox" type="email" placeholder="이메일 입력" size="46" value="" name="id">
+				<div class="">
+					<input class="inputBox" type="email" placeholder="이메일 입력" size="46" value="" name="id">
+				</div>
+				<br>
+				<div class="">
+					<input class="inputBox" type="password" placeholder="비밀번호 입력" size="46" value="" name="pwd">
+				</div>
 			</div>
-			<br>
-			<div class="">
-				<input class="inputBox" type="password" placeholder="비밀번호 입력" size="46" value="" name="pwd">
-			</div>
-		</div>
-		<br><br>
-		<button class="loginBtn" type="submit">로그인</button>
+			<br><br>
+			<button class="loginBtn" type="submit">로그인</button>
 		</form>
-		<br>
+		<br><br>
 		<div>
 			<a href="findPwdView.me">
 				<label style="color:black; cursor: pointer; font-size: 12px;">비밀번호를 잊어버리셨나요?</label>

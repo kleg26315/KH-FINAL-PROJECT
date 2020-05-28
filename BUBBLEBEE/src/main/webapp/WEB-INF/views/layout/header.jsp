@@ -60,7 +60,7 @@
                         </li>
                         <li role="presentation"><a href="wklist.bo">작품</a></li>
                     </ul>
-                 <form action="#" id="searchForm">
+<!--                  <form action="#" id="searchForm"> -->
                     <c:if test="${ empty sessionScope.loginUser}">
                     	<p class="navbar-text navbar-right actions" style="padding-right: 29px; padding-top: 3px;">
                     </c:if>
@@ -73,7 +73,7 @@
                     
 				    <!-- 검색창 -->
 				    <img class="" style="width: 24px; height: 24px; position: absolute; right: 786px; z-index: 10; top: 26px;" src="${ pageContext.servletContext.contextPath }/resources/img/search.png" alt="검색아이콘">
-                    <input type="text" class="input" placeholder="">
+                    <input type="text" class="input" placeholder=""> 
                     
                     <!-- 비로그인 시 -->
                     <c:if test="${ empty sessionScope.loginUser }">
@@ -113,7 +113,7 @@
 							<c:if test="${ fn:contains(sessionScope.loginUser.profile, 'http')}">
 								<img id="login" class="profile_img" style="width: 30px; height: 30px; border-radius: 50px; cursor: pointer;" src="${sessionScope.loginUser.profile}" />
 							</c:if>
-		        </form>
+		        <!-- </form> -->
 					        <!-- 알림 모달창 -->
 					        <div class="message_modal_cover has_bubble nav-modal-cover">
 								<div class="message-modal">
@@ -349,13 +349,22 @@
     	function deleteCookie(name) {
 		 	document.cookie = name + '=';
 		}
-    	/* deleteCookie('search'); */ 
     	
-    	$('#searchForm').submit(function(e){
+    	/* form 태그 두개있을때 뒤에 나오는 form태그는 보이지 않는 에러가 나서 위 form태그를 없앰 */
+    	/* $('#searchForm').submit(function(e){
     		var value = $('.input').val();
     		setCookie('search', value , 1);
     		console.log(getCookie('search'));
-    	})
+    	}) */
+    	
+    	$('.input').keyup(function(key){
+    		if(key.keyCode == 13){
+    			var value = $('.input').val();
+        		setCookie('search', value , 7);
+				location.href = "test.do?search=" + value;
+        		//location.href = "#";
+    		}
+    	});
     	
     	/* 검색창 조작 자바스크립트 */
     	$('.search_modal').hide(); 
