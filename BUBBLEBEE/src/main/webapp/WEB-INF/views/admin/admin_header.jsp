@@ -79,12 +79,9 @@
             <input type="file" id="fileUpload" style="display:none" onchange="$('#fileNm').val(this.value)"/>
          </div>
             <div id="info_wrap">
-               <div id="name_d">전희은</div>
-               <div id="m_btn">설정</div>
+               <div id="name_d">관리자</div>
                <br>
-               <div id="interest">#관심사</div>
                <br>
-               <div id="login_means">카카오 연동 계정</div>
             </div>
             <div id="point_wrap">
                <div id="point_con">
@@ -95,6 +92,17 @@
             </div>
        </div>
     </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <script type="text/javascript">      
       function fnUpload(){
       
@@ -102,6 +110,5 @@
       
       }
    </script>
-    
 </body>
 </html>

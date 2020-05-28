@@ -106,6 +106,7 @@ input.loginFBtn {
 		  }
 		</script>
 		
+		<br>
 		<div>
 			<a href="signUpView.me">
 				<label style="color:black; cursor: pointer;">회원가입</label>
