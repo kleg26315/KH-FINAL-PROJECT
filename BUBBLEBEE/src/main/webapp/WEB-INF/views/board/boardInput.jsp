@@ -22,8 +22,8 @@
 	<div id="bmain">
 		<main><h2>등록</h2></main>
 		<hr>
-		
-		<form action="#" onsubmit="return validate();" enctype="Multipart/form-data">
+		<!-- 첨부파일 등록을 위해 Multipart/form-data encType 지정 -->
+		<form action="binsert.bo" onsubmit="return validate();" enctype="Multipart/form-data">
 			<table>
 				<tr>
 					<th colspan="2" >카테고리 설정</th>
@@ -41,9 +41,9 @@
 						<span>
 							<select id="category" name="category">
 								<option value="no">카테고리를 설정해주세요</option>
-								<option value="somoim">모임</option>
-								<option value="clas">클래스</option>
-								<option value="sell">작품</option>
+								<option value="1">모임</option>
+								<option value="2">클래스</option>
+								<option value="3">작품</option>
 							</select>
 						</span>
 						
@@ -64,11 +64,11 @@
 				</tr>
 				
 				<tr>
-					<th colspan="2">작품소개</th>
+					<th colspan="2">소개1</th>
 					<td rowspan="3">
 						<div class="B_n" >
-							- 프립 목록에서 대원들에게 어필할 수 있는 포인트입니다.<br>
-							- 공간, 요일, 액티비티를 프립명에 넣어주셔도 좋아요.
+							- 목록에서 대원들에게 어필할 수 있는 포인트입니다.<br>
+							- 공간, 요일, 액티비티를 Title에 넣어주셔도 좋아요.
 						</div>
 					</td>
 				</tr>
