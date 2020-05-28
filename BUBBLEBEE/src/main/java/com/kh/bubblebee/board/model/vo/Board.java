@@ -2,24 +2,24 @@ package com.kh.bubblebee.board.model.vo;
 
 public class Board {
 	
-	private int fno;
-	private int ftype;
-	private int price;
-	private String small_title;
-	private String ftitle;
-	private String category;
-	private String location;
-	private int lat;
-	private int lon;
-	private String fcontain;
-	private String fncontain;
-	private String fcalendar;
-	private String fmaterials;
-	private String fminfo;
-	private String fprecaution;
-	private String user_id;
-	private int heart;
-	private String f_status;
+	private int fno; //번호
+	private int ftype; //게시판 타입
+	private int price; //가격
+	private String small_title; //소제목
+	private String ftitle; //제목
+	private String category; //카테고리
+	private String location; //장소
+	private int lat; //위도
+	private int lon; //경도
+	private String fcontain; //포함사항
+	private String fncontain; //불포함사항
+	private String fcalendar; //세부일정
+	private String fmaterials; //준비물
+	private String fminfo; //추가정보
+	private String fprecaution; //유의사항
+	private String user_id; //주최자
+	private int heart; //좋아요
+	private String f_status; //상태
 	
 	public Board() {}
 
