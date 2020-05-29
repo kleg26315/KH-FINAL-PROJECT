@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+div.main{
+   width : 58%;
+   margin-left : 20%;
+   height : 600px;
+   padding-top:30px;      
+}
+
+#noticeLabel{padding-bottom: 20px;}
+
+.ntitle{
+	padding:15px;
+	box-shadow: 
+    0 1px 0 0 gray, 
+    0 1px 0 0 gray inset; 
+	}
+	
+.ncontent{padding:10px; background-color:gold; margin-top:15px;}
+
+.titlendate{font-size:17px;}
+
+header{
+   position: fixed;
+   width : 100%;
+}
+
+#updB{font-size:14px; margin-left:680px;display:inline-block; background-color:lightgray; border-radius: 5px; width:50px; hieght:20px; padding:3px; text-align:center;}
+#delB{font-size:14px; display:inline-block; background-color:lightgray; border-radius: 5px; width:50px; hieght:20px; padding:3px; text-align:center;}
