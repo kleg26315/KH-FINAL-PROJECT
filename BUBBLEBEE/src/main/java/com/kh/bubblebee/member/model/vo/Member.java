@@ -10,11 +10,13 @@ public class Member {
 	private String mStatus;
 	private String profile;
 	private String email;
+	private String interest;
 	
 	public Member() {}
 
+
 	public Member(String id, String pwd, String userName, String nickName, String phone, String host_yn, String mStatus,
-			String profile, String email) {
+			String profile, String email, String interest) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -25,7 +27,19 @@ public class Member {
 		this.mStatus = mStatus;
 		this.profile = profile;
 		this.email = email;
+		this.interest = interest;
 	}
+
+
+	public String getInterest() {
+		return interest;
+	}
+
+
+	public void setInterest(String interest) {
+		this.interest = interest;
+	}
+
 
 	public Member(String id, String nickName, String profile, String email) {
 		super();
@@ -107,11 +121,13 @@ public class Member {
 		this.email = email;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Member [id=" + id + ", pwd=" + pwd + ", userName=" + userName + ", nickName=" + nickName + ", phone="
 				+ phone + ", host_yn=" + host_yn + ", mStatus=" + mStatus + ", profile=" + profile + ", email=" + email
-				+ "]";
+				+ ", interest=" + interest + "]";
 	}
+
 
 }
