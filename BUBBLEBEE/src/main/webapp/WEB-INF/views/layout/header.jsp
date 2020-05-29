@@ -268,7 +268,7 @@
 						        <a href="logout.me" class="link">로그아웃</a>
 						      </span>
 						      <span class="right_content">
-						        <a href="/faq" class="link">고객센터</a>
+						        <a href="list.no" class="link">고객센터</a>
 						      </span>
 						    </div>
 						  </div></div>
