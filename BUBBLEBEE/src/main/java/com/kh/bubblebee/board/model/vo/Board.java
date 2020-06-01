@@ -20,12 +20,15 @@ public class Board {
 	private String user_id; //주최자
 	private int heart; //좋아요
 	private String f_status; //상태
+	private String originalFileName; 
+	private String renameFileName;
 	
 	public Board() {}
 
 	public Board(int fno, int ftype, int price, String small_title, String ftitle, String category, String location,
 			int lat, int lon, String fcontain, String fncontain, String fcalendar, String fmaterials, String fminfo,
-			String fprecaution, String user_id, int heart, String f_status) {
+			String fprecaution, String user_id, int heart, String f_status, String originalFileName,
+			String renameFileName) {
 		super();
 		this.fno = fno;
 		this.ftype = ftype;
@@ -45,6 +48,8 @@ public class Board {
 		this.user_id = user_id;
 		this.heart = heart;
 		this.f_status = f_status;
+		this.originalFileName = originalFileName;
+		this.renameFileName = renameFileName;
 	}
 
 	public int getFno() {
@@ -190,6 +195,23 @@ public class Board {
 	public void setF_status(String f_status) {
 		this.f_status = f_status;
 	}
+	
+	
+	public String getOriginalFileName() {
+		return originalFileName;
+	}
+
+	public void setOriginalFileName(String originalFileName) {
+		this.originalFileName = originalFileName;
+	}
+
+	public String getRenameFileName() {
+		return renameFileName;
+	}
+
+	public void setRenameFileName(String renameFileName) {
+		this.renameFileName = renameFileName;
+	}
 
 	@Override
 	public String toString() {
@@ -197,13 +219,8 @@ public class Board {
 				+ ", ftitle=" + ftitle + ", category=" + category + ", location=" + location + ", lat=" + lat + ", lon="
 				+ lon + ", fcontain=" + fcontain + ", fncontain=" + fncontain + ", fcalendar=" + fcalendar
 				+ ", fmaterials=" + fmaterials + ", fminfo=" + fminfo + ", fprecaution=" + fprecaution + ", user_id="
-				+ user_id + ", heart=" + heart + ", f_status=" + f_status + "]";
+				+ user_id + ", heart=" + heart + ", f_status=" + f_status + ", originalFileName=" + originalFileName
+				+ ", renameFileName=" + renameFileName + "]";
 	}
-
-	
-	
-	
-	
-	
 
 }

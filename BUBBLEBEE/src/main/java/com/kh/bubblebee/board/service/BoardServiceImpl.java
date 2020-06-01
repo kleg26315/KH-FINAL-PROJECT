@@ -29,4 +29,10 @@ public class BoardServiceImpl implements BoardService {
 		return bDAO.selectList(sqlSession, pi);
 	}
 
+	@Override
+	public int insertBoard(Board b) {
+		// TODO Auto-generated method stub
+		return bDAO.insertBoard(sqlSession, b);
+	}
+
 }

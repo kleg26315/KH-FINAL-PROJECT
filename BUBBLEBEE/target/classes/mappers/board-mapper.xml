@@ -15,4 +15,8 @@
 		order by fno desc
 	</select>
 	
+<!-- 	<insert id="insertBoard"> -->
+<!-- 		insert into board -->
+<!-- 		value="seq_bid.nextval, #{FTYPE}, #{}, #{}, #{}, #{}, #{}, #{}, #{}, -->
+<!-- 	</insert> -->
 </mapper>
