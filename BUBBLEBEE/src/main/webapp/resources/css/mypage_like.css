@@ -1,0 +1,240 @@
+@charset "UTF-8";
+/* #m_hr{ */
+/* 	border:1px solid lightgray; */
+/* 	width: 100%; */
+/* 	margin: 50px 0; */
+/* } */
+section hr{
+	margin-top: 40px;
+    margin-bottom: 40px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+#l_like a{
+	color: gold;
+	font-weight: bolder;
+}
+#content{
+	display: flex;
+	align-items: flex-start;
+}
+section>nav{
+	-webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 18%;
+    max-width: 130px;
+}
+#c_body{
+	flex-grow: 2;
+	margin-left: 30px;
+	width: 900px;
+}
+.c_list{
+	display: inline;
+	margin-right: 50px;
+	font-size: 20px;
+}
+.c_list a{color: black;}
+.c_list a:hover{
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
+}
+/* 좋아요 없을때 css */
+#no_like{
+	display: flex;
+	height:300px;
+	text-align: center;
+	flex-direction:column;
+	justify-content: center;
+}
+#img_wrap{
+	margin-bottom: 15px;
+}
+#smile{
+	width: 80px;
+	height: 80px;
+}
+
+
+/* 모임,클래스 css */
+.like_all{
+	margin-top: 30px;
+}
+.like{
+	display: flex;
+    min-height: 1px;
+}
+.like > *{
+	margin-right: 10px;
+    width: calc(25% - 7.5px);
+    margin-bottom: 31px;
+}
+.like_total{
+	display: flex;
+    background-color: white;
+    min-height: 1px;
+    flex-flow: column nowrap;
+}
+.like_each{
+	overflow: hidden;
+}
+.like_post{
+}
+.like_location{
+}
+.like_l_location{
+	height: 10px;
+    color: white;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 10px;
+    text-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px;
+    margin: 2px 0px 0px 2px;
+}
+.like_heart{
+	width: 24px;
+    height: 24px;
+    line-height: normal;
+    background-color: transparent;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0px;
+    border-radius: 5px;
+}
+.like_small_title{
+	margin-top: 14px;
+    font-size: 12px;
+    height: 14px;
+    text-overflow: ellipsis;
+    line-height: 14px;
+    color: rgb(155, 155, 155);
+    overflow: hidden;
+}
+.like_title{
+	margin-top: 10px;
+    height: auto;
+    max-height: 40px;
+    line-height: 20px;
+    font-size: 14px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.like_price{
+	margin-top: 14px;
+    line-height: 14px;
+    height: 14px;
+}
+.like_score{
+	margin-top: 14px;
+	font-size: 11px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(187, 187, 187);
+}
+.like_img{
+	position: relative;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    min-height: 1px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 5px;
+    width: 100%
+}
+.heart_div{
+	position: absolute;
+    right: 0px;
+    display: flex;
+     -webkit-box-pack: justify;
+    justify-content: space-between;
+    z-index: 1;
+    padding: 10px;
+}
+.heart_button{
+	width: 24px;
+    height: 24px;
+    line-height: normal;
+    background-color: transparent;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0px;
+    border: none;
+}
+/* 호스트 */
+.host_all{
+	margin-top: 30px;
+}
+.host_list{
+	display: flex;
+	flex-wrap:wrap;
+/* 	flex-basis: 1000px; */
+}
+.per_host{
+	-webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 290px;
+	padding: 20px 0;
+	margin-right:20px;
+	margin-bottom: 10px;
+	border-bottom:1px solid lightgray;
+}
+.host_info{
+	-webkit-box-flex: 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+}
+.h_div{
+	display:inline-flex;
+	align-items:center;
+}
+.h_div div{
+	display: inline-block;
+}
+.h_name{
+	font-size: 20px;
+}
+.h_img{
+	border-radius: 5px;
+}
+.h_pro{
+	align-self: flex-start;
+	width: 50px;
+	height: 50px;
+	border-radius: 100px;
+}
+.host_info{
+	color: black;
+}
+.host_info:hover {
+	text-decoration:none;
+	color: black;
+	cursor: pointer;
+}
+.info_wrap{
+	margin-left: 10px; 
+	flex-grow: 2;
+ 	margin-right: 30px;
+}
+
+.bbbbtn{
+	background: none;
+	border: none;
+}
+.paging{
+	margin: 20px 0;
+	text-align: center;
+}
