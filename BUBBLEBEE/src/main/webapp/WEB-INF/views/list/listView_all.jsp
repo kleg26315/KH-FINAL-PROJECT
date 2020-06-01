@@ -28,27 +28,55 @@
 </header> 
 
 <br clear="all">  
-     <div id = "category">
-     	<div id = "categoryD">
+<!--      <div id = "category"> -->
+<!--      	<div id = "categoryD"> -->
      		
-     				<label id="cmoim">모임</label>
-     				<hr id="chline" align="left">
-     			<table id="categoryT" >	
-     			<tr>
-     				<td>토크/파티</td>
-     				<td>취향</td>
-     				<td>스터디</td>
-     				<td>이벤트/공간</td>
-     			</tr>
-     		</table>
+<!--      				<label id="cmoim">모임</label> -->
+<!--      				<hr id="chline" align="left"> -->
+<!--      			<table id="categoryT" >	 -->
+<!--      			<tr> -->
+<!--      				<td>토크/파티</td> -->
+<!--      				<td>취향</td> -->
+<!--      				<td>스터디</td> -->
+<!--      				<td>이벤트/공간</td> -->
+<!--      			</tr> -->
+<!--      		</table> -->
      		
-     	</div>
-     </div>
+<!--      	</div> -->
+<!--      </div> -->
      
       <div class = "main">
        	
-      	<div id="allLabel">
-      		토크/파티 모임 전체
+      	<div id="allLabel" style="margin-top:80px;">
+      		<c:if test="${ cate eq '토크/파티'}" >	     
+         		토크/파티 모임 전체
+         	</c:if>
+         	<c:if test="${ cate == '취향'}" >	     
+         		취향 모임 전체
+         	</c:if>	
+         	<c:if test="${ cate == '스터디'}" >	     
+         		스터디 모임 전체
+         	</c:if>	
+         	<c:if test="${ cate == '이벤트/공간'}" >	     
+         		이벤트/공간 모임 전체
+         	</c:if>	
+         	
+         	<c:if test="${ cate == '공예/DIY'}" >	     
+         		공예/DIY 클래스 전체
+         	</c:if>
+         	<c:if test="${ cate == '요리'}" >	     
+         		요리 클래스 전체
+         	</c:if>
+         	<c:if test="${ cate == '스포츠'}" >	     
+         		스포츠 클래스 전체
+         	</c:if>
+         	<c:if test="${ cate == '어학/취업'}" >	     
+         		어학/취업 클래스 전체
+         	</c:if>
+         	
+         	<c:if test="${ cate == '작품'}" >	     
+         		작품  전체
+         	</c:if>
       	</div>
       	
       	<!-- 어디서버튼 -->
@@ -194,7 +222,7 @@
 		<div id="hotmoim">
          <div class="moim">
          
-         <c:forEach var="b" items="${ list }">
+         <c:forEach var="b" items="${ list }" varStatus="status">
             <div class="moim_total">
                <a>
                   <div class="moim_each">
@@ -213,7 +241,14 @@
                      </div>
                      <div class="moim_score">
                         <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E %3Cpath fill='%233397FF' fill-rule='nonzero' d='M8 12.16l-3.852 1.894a.5.5 0 0 1-.715-.52l.61-4.248-2.991-3.079a.5.5 0 0 1 .273-.84l4.23-.733L7.558.838a.5.5 0 0 1 .884 0l2.003 3.796 4.23.732a.5.5 0 0 1 .273.841l-2.992 3.079.611 4.248a.5.5 0 0 1-.715.52L8 12.16z'/%3E %3C/svg%3E" alt="별점 icon">
-                        <span>4.90</span>
+                        <span>
+                        	<c:if test="${b.rcount ne 0}">
+                        	${ b.rsum / b.rcount }
+                        	</c:if>
+                        	<c:if test="${b.rcount eq 0}">
+                        	0.00
+                        	</c:if>
+                        </span>
                      </div>
                   </div>
                </a>
@@ -270,6 +305,12 @@
    <footer id="footer" style="padding-top: 115px;">
 		<c:import url="../layout/footer.jsp"/>
 	</footer>
+	
+		<!-- 가격필터 -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
       
 

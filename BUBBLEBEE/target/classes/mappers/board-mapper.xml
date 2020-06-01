@@ -10,9 +10,31 @@
 	
 	<select id="selectList" resultType="Board">
 		select *
-		from board
-		where f_status = 'Y'
-		order by fno desc
+		from blist
+		where category=#{cate}
 	</select>
 	
+	<select id="selectLtList" resultType="Board">
+		select *
+		from bltlist
+		where category=#{cate}
+	</select>
+	
+	<select id="selectHtList" resultType="Board">
+		select *
+		from bhtlist
+		where category=#{cate}
+	</select>
+	
+
+	<select id="getReviewGrade" resultType="Review">
+		select *
+		from review
+		where q_status='N'
+	</select>
+	
+<!-- 	<insert id="insertBoard"> -->
+<!-- 		insert into board -->
+<!-- 		value="seq_bid.nextval, #{FTYPE}, #{}, #{}, #{}, #{}, #{}, #{}, #{}, -->
+<!-- 	</insert> -->
 </mapper>

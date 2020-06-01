@@ -182,7 +182,7 @@ public class MemberController {
 			session.setAttribute("userId", userInfo.get("id"));
 			session.setAttribute("access_Token", access_Token);
 		}
-		return "../home";
+		return "redirect:home.do";
 	}
 	
 	@RequestMapping("kakaologout.me")

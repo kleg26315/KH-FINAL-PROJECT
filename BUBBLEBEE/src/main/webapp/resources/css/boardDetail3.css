@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+* {
+   font-family: 'Noto Sans KR', sans-serif;
+}
+.detailMainForm{
+   display: inline-table;
+}
+#detailMainForm1{
+   margin-left: 20%;
+   padding-right: 20px;
+   border-right: 1px solid #c7caca;
+   width :  40%;
+} 
+
+#detailMainForm2{
+   position: fixed; /* Stay in place */
+   left: 60%;
+   top: 120px;
+   overflow: auto; /* Enable scroll if needed */
+}
+
+.home__slider {
+   display: inline-block;
+   width: 700px;
+}
+
+.bx-wrapper{
+   max-width: 700px !important;
+}
+.bx-viewport{
+   height: 400px !important;
+   width: 700px !important;
+}
+   
+.detailImages div{
+   width: 700px !important;   
+}
+
+.bx-pager{
+   text-align: center !important;
+   width: 100% !important;
+}
+
+#optionSelect{
+   width: 300px;
+   height: 40px;
+}
