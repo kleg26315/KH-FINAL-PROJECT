@@ -1,7 +1,10 @@
 package com.kh.bubblebee.board.model.vo;
 
+import java.sql.Date;
+
 public class Board {
 	
+	private int rnum; //ROWNUM
 	private int fno; //번호
 	private int ftype; //게시판 타입
 	private int price; //가격
@@ -19,14 +22,16 @@ public class Board {
 	private String fprecaution; //유의사항
 	private String user_id; //주최자
 	private int heart; //좋아요
+	private Date f_create_date; //작성날짜
 	private String f_status; //상태
 	
 	public Board() {}
 
-	public Board(int fno, int ftype, int price, String small_title, String ftitle, String category, String location,
-			int lat, int lon, String fcontain, String fncontain, String fcalendar, String fmaterials, String fminfo,
-			String fprecaution, String user_id, int heart, String f_status) {
+	public Board(int rnum, int fno, int ftype, int price, String small_title, String ftitle, String category,
+			String location, int lat, int lon, String fcontain, String fncontain, String fcalendar, String fmaterials,
+			String fminfo, String fprecaution, String user_id, int heart, Date f_create_date, String f_status) {
 		super();
+		this.rnum = rnum;
 		this.fno = fno;
 		this.ftype = ftype;
 		this.price = price;
@@ -44,7 +49,16 @@ public class Board {
 		this.fprecaution = fprecaution;
 		this.user_id = user_id;
 		this.heart = heart;
+		this.f_create_date = f_create_date;
 		this.f_status = f_status;
+	}
+
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
 	}
 
 	public int getFno() {
@@ -183,6 +197,14 @@ public class Board {
 		this.heart = heart;
 	}
 
+	public Date getF_create_date() {
+		return f_create_date;
+	}
+
+	public void setF_create_date(Date f_create_date) {
+		this.f_create_date = f_create_date;
+	}
+
 	public String getF_status() {
 		return f_status;
 	}
@@ -193,16 +215,14 @@ public class Board {
 
 	@Override
 	public String toString() {
-		return "Board [fno=" + fno + ", ftype=" + ftype + ", price=" + price + ", small_title=" + small_title
-				+ ", ftitle=" + ftitle + ", category=" + category + ", location=" + location + ", lat=" + lat + ", lon="
-				+ lon + ", fcontain=" + fcontain + ", fncontain=" + fncontain + ", fcalendar=" + fcalendar
-				+ ", fmaterials=" + fmaterials + ", fminfo=" + fminfo + ", fprecaution=" + fprecaution + ", user_id="
-				+ user_id + ", heart=" + heart + ", f_status=" + f_status + "]";
+		return "Board [rnum=" + rnum + ", fno=" + fno + ", ftype=" + ftype + ", price=" + price + ", small_title="
+				+ small_title + ", ftitle=" + ftitle + ", category=" + category + ", location=" + location + ", lat="
+				+ lat + ", lon=" + lon + ", fcontain=" + fcontain + ", fncontain=" + fncontain + ", fcalendar="
+				+ fcalendar + ", fmaterials=" + fmaterials + ", fminfo=" + fminfo + ", fprecaution=" + fprecaution
+				+ ", user_id=" + user_id + ", heart=" + heart + ", f_create_date=" + f_create_date + ", f_status="
+				+ f_status + "]";
 	}
 
-	
-	
-	
 	
 	
 
