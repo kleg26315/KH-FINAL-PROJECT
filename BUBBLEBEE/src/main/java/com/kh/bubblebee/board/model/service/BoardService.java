@@ -17,5 +17,6 @@ public interface BoardService {
 	ArrayList<Board> selectHtList(String cate);
 	
 	int insertBoard(Board b);
+	
 
 }
