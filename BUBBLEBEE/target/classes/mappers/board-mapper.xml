@@ -26,4 +26,15 @@
 		where category=#{cate}
 	</select>
 	
+
+	<select id="getReviewGrade" resultType="Review">
+		select *
+		from review
+		where q_status='N'
+	</select>
+	
+<!-- 	<insert id="insertBoard"> -->
+<!-- 		insert into board -->
+<!-- 		value="seq_bid.nextval, #{FTYPE}, #{}, #{}, #{}, #{}, #{}, #{}, #{}, -->
+<!-- 	</insert> -->
 </mapper>

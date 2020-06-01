@@ -39,7 +39,7 @@
 				<tr>
 					<td colspan="2">
 						<span>
-							<select id="category" name="category">
+							<select id="category" name="ftype">
 								<option value="no">카테고리를 설정해주세요</option>
 								<option value="1">모임</option>
 								<option value="2">클래스</option>
@@ -48,7 +48,7 @@
 						</span>
 						
 						<span>
-							<select id="category2" name="category2">
+							<select id="category2" name="category">
 								<option value="no">주제를 설정해주세요</option>
 								<option value="activity">액티비티</option>
 								<option value="learn">배움</option>
@@ -105,7 +105,9 @@
 					</tr>
 					
 					<tr>
-						<td colspan="2"><input type="file" id="thumb_file" name="thumb_file" required></td>
+						<td><input type="file" id="thumb_file" name="uploadFile" required></td>
+						<td><input type="file" id="thumb_file" name="uploadFile"></td>
+						<td><input type="file" id="thumb_file" name="uploadFile" ></td>
 					</tr>
 					
 					<tr>
@@ -403,11 +405,18 @@
 			<script>
 				ClassicEditor
 				.create( document.querySelector( '#editor' ),{
-		             removePlugins: [ 'ImageUpload' ,'Link']
-				})   
+		             removePlugins: [ 'ImageUpload' ,'Link'],
+		             enterMode:'2',
+		             height:'200'
+				});  
 				.catch( error => {
 		            console.error( error );
 		        } );
+				
+				if(CKEDITOR.imstances.content.getDate()==""){
+					window.alert("내용을 입력해주세요");
+					return false
+				}
 			</script>
 			
 			<script>

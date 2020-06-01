@@ -39,4 +39,12 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<Board> selectHtList(String cate) {
 		return bDAO.selectHtList(sqlSession, cate);
 	}
+
+	@Override
+	public int insertBoard(Board b) {
+		// TODO Auto-generated method stub
+		return bDAO.insertBoard(sqlSession, b);
+	}
+
+
 }

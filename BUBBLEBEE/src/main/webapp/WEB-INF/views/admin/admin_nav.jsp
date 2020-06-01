@@ -63,13 +63,9 @@
 	             	<li id="l_like" class="nav_sub_li"><a>클래스 신고</a></li>
 	             	<li id="l_like" class="nav_sub_li"><a>판매 신고</a></li>
              	</ul>
-             <li id="l_class" class="nav_li"><a>정산 관리</a></li>
-             <li id="l_slist" class="nav_li"><a>클래스 승인</a></li>
-             <li id="l_point" class="nav_li"><a>공지글 관리</a></li>
-             	<ul id="ul_ul_list">
-	             	<li id="l_like" class="nav_sub_li"><a>공지글 작성</a></li>
-	             	<li id="l_like" class="nav_sub_li"><a>FAQ 작성</a></li>
-             	</ul>
+             <li id="l_class" class="nav_li"><a href="account.ad">정산 관리</a></li>
+             <li id="l_slist" class="nav_li"><a href="class.ad">클래스 승인</a></li>
+             <li id="l_point" class="nav_li"><a href="noticeInsertView.ad">공지글 관리</a></li>
     </ul>
 </body>
 </html>
