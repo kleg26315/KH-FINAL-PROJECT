@@ -37,4 +37,5 @@
 <!-- 		insert into board -->
 <!-- 		value="seq_bid.nextval, #{FTYPE}, #{}, #{}, #{}, #{}, #{}, #{}, #{}, -->
 <!-- 	</insert> -->
+
 </mapper>

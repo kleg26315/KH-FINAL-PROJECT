@@ -20,7 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
-import com.kh.bubblebee.board.service.BoardService;
+import com.kh.bubblebee.board.model.service.BoardService;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.common.Pagination;
 
