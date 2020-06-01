@@ -79,29 +79,13 @@
             <input type="file" id="fileUpload" style="display:none" onchange="$('#fileNm').val(this.value)"/>
          </div>
             <div id="info_wrap">
+            	<br>
                <div id="name_d">관리자</div>
                <br>
-               <br>
             </div>
-            <div id="point_wrap">
-               <div id="point_con">
-                  <div id="point_1">마일리지 <img src="<%=request.getContextPath()%>/resources/img/next.png" id="next"/></div>
-                  <br>
-                  <div>2000</div>
-               </div>
-            </div>
+            
        </div>
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     <script type="text/javascript">      
       function fnUpload(){
