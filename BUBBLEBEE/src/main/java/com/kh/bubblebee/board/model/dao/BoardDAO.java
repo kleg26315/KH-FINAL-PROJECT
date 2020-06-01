@@ -35,5 +35,9 @@ public class BoardDAO {
 	public ArrayList<Board> selectHtList(SqlSessionTemplate sqlSession, String cate) {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectHtList", cate);
 	}
+
+	public int insertBoard(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.insert("boardMapper.insertBoard", b);
+	}
 	
 }

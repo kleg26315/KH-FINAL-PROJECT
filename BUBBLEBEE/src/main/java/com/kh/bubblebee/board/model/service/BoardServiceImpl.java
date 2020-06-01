@@ -45,4 +45,10 @@ public class BoardServiceImpl implements BoardService {
 		return bDAO.selectHtList(sqlSession, cate);
 	}
 
+	@Override
+	public int insertBoard(Board b) {
+		// TODO Auto-generated method stub
+		return bDAO.insertBoard(sqlSession, b);
+	}
+
 }
