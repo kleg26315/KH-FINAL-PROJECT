@@ -26,10 +26,4 @@
 		where category=#{cate}
 	</select>
 	
-	<select id="getReviewGrade" resultType="Review">
-		select *
-		from review
-		where q_status='N'
-	</select>
-	
 </mapper>
