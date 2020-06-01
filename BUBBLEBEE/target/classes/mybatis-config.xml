@@ -8,6 +8,7 @@
 	<typeAliases>
 		<typeAlias type="com.kh.bubblebee.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.bubblebee.board.model.vo.Board" alias="Board"/>
+		<typeAlias type="com.kh.bubblebee.board.model.vo.Review" alias="Review"/>
 	</typeAliases>
 	
 	<mappers>

@@ -1,4 +1,4 @@
-package com.kh.bubblebee.board.service;
+package com.kh.bubblebee.board.model.service;
 
 import java.util.ArrayList;
 
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.bubblebee.board.model.dao.BoardDAO;
 import com.kh.bubblebee.board.model.vo.Board;
+import com.kh.bubblebee.board.model.vo.Review;
 import com.kh.bubblebee.common.PageInfo;
 
 @Service("bService")
@@ -25,8 +26,23 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public ArrayList<Board> selectList(PageInfo pi) {
-		return bDAO.selectList(sqlSession, pi);
+	public ArrayList<Board> selectList(PageInfo pi, String cate) {
+		return bDAO.selectList(sqlSession, pi, cate);
+	}
+
+	@Override
+	public ArrayList<Review> getReviewGrade() {
+		return bDAO.getReviewGrade(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Board> selectLtList(String cate) {
+		return bDAO.selectLtList(sqlSession, cate);
+	}
+
+	@Override
+	public ArrayList<Board> selectHtList(String cate) {
+		return bDAO.selectHtList(sqlSession, cate);
 	}
 
 }

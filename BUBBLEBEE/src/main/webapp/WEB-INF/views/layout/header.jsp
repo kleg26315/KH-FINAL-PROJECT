@@ -44,21 +44,55 @@
                     <ul class="nav navbar-nav">
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">모임 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li role="presentation"><a href="tplist.bo">토크/파티</a></li>
-                                <li role="presentation"><a href="tslist.bo">취향</a></li>
-                                <li role="presentation"><a href="stlist.bo">스터디</a></li>
-                                <li role="presentation"><a href="evlist.bo">이벤트/공간</a></li>
+                            	<c:url var="tp" value="list.bo">
+									<c:param name="cate" value="토크/파티"/>
+								</c:url>
+                                <li role="presentation"><a href="${ tp }">토크/파티</a></li>
+                                
+                                <c:url var="ts" value="list.bo">
+									<c:param name="cate" value="취향"/>
+								</c:url>
+                                <li role="presentation"><a href="${ ts }">취향</a></li>
+                                
+                                <c:url var="st" value="list.bo">
+									<c:param name="cate" value="스터디"/>
+								</c:url>
+                                <li role="presentation"><a href="${ st }">스터디</a></li>
+                                
+                                <c:url var="ev" value="list.bo">
+									<c:param name="cate" value="이벤트/공간"/>
+								</c:url>
+                                <li role="presentation"><a href="${ ev }">이벤트/공간</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">클래스 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li role="presentation"><a href="diylist.bo">공예/DIY</a></li>
-                                <li role="presentation"><a href="cklist.bo">요리</a></li>
-                                <li role="presentation"><a href="splist.bo">스포츠</a></li>
-                                <li role="presentation"><a href="lalist.bo">어학/취업</a></li>
+                            	<c:url var="di" value="list.bo">
+									<c:param name="cate" value="공예/DIY"/>
+								</c:url>
+                                <li role="presentation"><a href="${ di }">공예/DIY</a></li>
+                                
+                                <c:url var="ck" value="list.bo">
+									<c:param name="cate" value="요리"/>
+								</c:url>
+                                <li role="presentation"><a href="${ ck }">요리</a></li>
+                                
+                                <c:url var="sp" value="list.bo">
+									<c:param name="cate" value="스포츠"/>
+								</c:url>
+                                <li role="presentation"><a href="${ sp }">스포츠</a></li>
+                                
+                                <c:url var="ln" value="list.bo">
+									<c:param name="cate" value="어학/취업"/>
+								</c:url>
+                                <li role="presentation"><a href="${ ln }">어학/취업</a></li>
                             </ul>
                         </li>
-                        <li role="presentation"><a href="wklist.bo">작품</a></li>
+                        
+                        <c:url var="wk" value="list.bo">
+							<c:param name="cate" value="작품"/>
+						</c:url>
+                        <li role="presentation"><a href="${ wk }">작품</a></li>
                     </ul>
 <!--                  <form action="#" id="searchForm"> -->
                     <c:if test="${ empty sessionScope.loginUser}">

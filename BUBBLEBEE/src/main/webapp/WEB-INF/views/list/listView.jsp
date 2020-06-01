@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel = "stylesheet"  href= "resources/css/listAllViewCss.css" type = "text/css">
+<link rel = "stylesheet"  href= "resources/css/listViewCss.css" type = "text/css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 
 
@@ -28,29 +28,25 @@
 </header> 
 
 <br clear="all">  
-     <div id = "category">
-     	<div id = "categoryD">
+<!--      <div id = "category"> -->
+<!--      	<div id = "categoryD"> -->
      		
-     				<label id="cmoim">모임</label>
-     				<hr id="chline" align="left">
-     			<table id="categoryT" >	
-     			<tr>
-     				<td>토크/파티</td>
-     				<td>취향</td>
-     				<td>스터디</td>
-     				<td>이벤트/공간</td>
-     			</tr>
-     		</table>
+<!--      				<label id="cmoim">모임</label> -->
+<!--      				<hr id="chline" align="left"> -->
+<!--      			<table id="categoryT" >	 -->
+<!--      			<tr> -->
+<!--      				<td>토크/파티</td> -->
+<!--      				<td>취향</td> -->
+<!--      				<td>스터디</td> -->
+<!--      				<td>이벤트/공간</td> -->
+<!--      			</tr> -->
+<!--      		</table> -->
      		
-     	</div>
-     </div>
+<!--      	</div> -->
+<!--      </div> -->
      
-      <div class = "main">
+      <div class = "main" style="margin-top:80px;">
        	
-      	<div id="allLabel">
-      		토크/파티 모임 전체
-      	</div>
-      	
       	<!-- 어디서버튼 -->
      	<input type="checkbox" id="where">
 		<label for="where">어디서</label>
@@ -188,13 +184,46 @@
       	<!-- 필터버튼끝 -->
       
      	
-     	<!-- 모음 -->
-     	
-     	
-		<div id="hotmoim">
-         <div class="moim">
+     	<!-- 인기 -->
+     	<br>
+     	 <label style="font-weight: bold; font-size: 20px;">
+         	<c:if test="${ cate == '토크/파티'}" >	     
+         		인기 토크/파티
+         	</c:if>
+         	<c:if test="${ cate == '취향'}" >	     
+         		인기 취향
+         	</c:if>	
+         	<c:if test="${ cate == '스터디'}" >	     
+         		인기 스터디
+         	</c:if>	
+         	<c:if test="${ cate == '이벤트/공간'}" >	     
+         		인기 이벤트/공간
+         	</c:if>	
+         	
+         	<c:if test="${ cate == '공예/DIY'}" >	     
+         		인기 공예/DIY
+         	</c:if>
+         	<c:if test="${ cate == '요리'}" >	     
+         		인기 요리
+         	</c:if>
+         	<c:if test="${ cate == '스포츠'}" >	     
+         		인기 스포츠
+         	</c:if>
+         	<c:if test="${ cate == '어학/취업'}" >	     
+         		인기 어학/취업
+         	</c:if>
+         	
+         	<c:if test="${ cate == '작품'}" >	     
+         		인기 작품
+         	</c:if>	
+         </label>
          
-         <c:forEach var="b" items="${ list }">
+         <br><br>
+         
+		<div id="hotmoim">
+         <div class="moim" style="margin-top:-40px;">
+         
+         <c:forEach var="b" items="${ htlist }" varStatus="status">
             <div class="moim_total">
                <a>
                   <div class="moim_each">
@@ -213,7 +242,8 @@
                      </div>
                      <div class="moim_score">
                         <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E %3Cpath fill='%233397FF' fill-rule='nonzero' d='M8 12.16l-3.852 1.894a.5.5 0 0 1-.715-.52l.61-4.248-2.991-3.079a.5.5 0 0 1 .273-.84l4.23-.733L7.558.838a.5.5 0 0 1 .884 0l2.003 3.796 4.23.732a.5.5 0 0 1 .273.841l-2.992 3.079.611 4.248a.5.5 0 0 1-.715.52L8 12.16z'/%3E %3C/svg%3E" alt="별점 icon">
-                        <span>4.90</span>
+                        <span>
+                        </span>
                      </div>
                   </div>
                </a>
@@ -221,48 +251,128 @@
             </c:forEach>
             </div>
             </div>
-                 
- 
-      <!-- 페이징 처리 -->
       
-      <div id="paging" style="margin-left:50%; margin-top:30px; font-size:20px;">
-	      <!-- [이전] -->
-			<c:if test="${ pi.currentPage <= 1 }">
-				< &nbsp;
-			</c:if>
-			<c:if test="${ pi.currentPage > 1 }">
-				<c:url var="before" value="tpallList.bo">
-					<c:param name="page" value="${ pi.currentPage - 1 }"/>
-				</c:url>
-				<a href="${ before }"> <</a> &nbsp;
-			</c:if>
-			
-			<!-- 페이지 -->
-			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-				<c:if test="${ p eq pi.currentPage }">
-					<font color="gold" size="4"><b>[${ p }]</b></font>&nbsp;
-				</c:if>
-				
-				<c:if test="${ p ne pi.currentPage }">
-					<c:url var="pagination" value="tpallList.bo">
-						<c:param name="page" value="${ p }"/>
-					</c:url>
-					<a href="${ pagination }">${ p }</a> &nbsp;
-				</c:if>
-			</c:forEach>
-			
-			<!-- [다음] -->
-			<c:if test="${ pi.currentPage >= pi.maxPage }">
-				>
-			</c:if>
-			<c:if test="${ pi.currentPage < pi.maxPage }">
-				<c:url var="after" value="tpallList.bo">
-					<c:param name="page" value="${ pi.currentPage + 1 }"/>
-				</c:url> 
-				<a href="${ after }"> > </a>
-			</c:if>
+      	<!-- 최신-->
+<!--       	<div id="latestmoim"> -->
+         <label style="font-weight: bold; font-size: 20px;">
+         	<c:if test="${ cate == '토크/파티'}" >	     
+         		최신 토크/파티
+         	</c:if>
+         	<c:if test="${ cate == '취향'}" >	     
+         		최신 취향
+         	</c:if>	
+         	<c:if test="${ cate == '스터디'}" >	     
+         		최신 스터디
+         	</c:if>	
+         	<c:if test="${ cate == '이벤트/공간'}" >	     
+         		최신 이벤트/공간
+         	</c:if>	
+         	
+         	<c:if test="${ cate == '공예/DIY'}" >	     
+         		최신 공예/DIY
+         	</c:if>
+         	<c:if test="${ cate == '요리'}" >	     
+         		최신 요리
+         	</c:if>
+         	<c:if test="${ cate == '스포츠'}" >	     
+         		최신 스포츠
+         	</c:if>
+         	<c:if test="${ cate == '어학/취업'}" >	     
+         		최신 어학/취업
+         	</c:if>
+         	
+         	<c:if test="${ cate == '작품'}" >	     
+         		최신 작품
+         	</c:if>	
+         </label>
+         
+         <br><br>
+         
+         <div id="hotmoim">
+         <div class="moim" style="margin-top:-40px;">
+         
+         <c:forEach var="b" items="${ ltlist }" varStatus="status">
+            <div class="moim_total">
+               <a>
+                  <div class="moim_each">
+                  <div class="moim_img">
+                     <div class="heart_div">
+                        <button class="heart_button" width="24px" height="24px">
+                        <img width='16' height='18' src="${contextPath }/resources/img/빈하트.png" alt="찜하기">
+                        </button>
+                     </div>
+                     <img id="" width="100%" height="200" class="" src="${contextPath }/resources/img/main.png" />
+                  </div>
+                     <div class="moim_small_title">${ b.small_title }</div>
+                     <div class="moim_title">${ b.ftitle }</div>
+                     <div class="moim_price">
+                        <span>${ b.price }원</span>
+                     </div>
+                     <div class="moim_score">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E %3Cpath fill='%233397FF' fill-rule='nonzero' d='M8 12.16l-3.852 1.894a.5.5 0 0 1-.715-.52l.61-4.248-2.991-3.079a.5.5 0 0 1 .273-.84l4.23-.733L7.558.838a.5.5 0 0 1 .884 0l2.003 3.796 4.23.732a.5.5 0 0 1 .273.841l-2.992 3.079.611 4.248a.5.5 0 0 1-.715.52L8 12.16z'/%3E %3C/svg%3E" alt="별점 icon">
+                        <span>
+                        </span>
+                     </div>
+                  </div>
+               </a>
+            </div>
+            </c:forEach>
+            </div>
+            </div>
+         
+
+      	<!-- 전체보기 -->
+      	<div id="allView">
+      	<c:if test="${ cate == '모임/파티'}">
+	      	<c:url var="all" value="allList.bo">
+				<c:param name="cate" value="모임/파티"/>
+			</c:url>
+		</c:if>
+		<c:if test="${ cate == '취향'}">
+	      	<c:url var="all" value="allList.bo">
+				<c:param name="cate" value="취향"/>
+			</c:url>
+		</c:if>
+		<c:if test="${ cate == '스터디'}">
+	      	<c:url var="all" value="allList.bo">
+				<c:param name="cate" value="스터디"/>
+			</c:url>
+		</c:if>
+		<c:if test="${ cate == '이벤트/공간'}">
+	      	<c:url var="all" value="allList.bo">
+				<c:param name="cate" value="이벤트/공간"/>
+			</c:url>
+		</c:if>
 		
-		</div>
+		<c:if test="${ cate == '공예/DIY'}">
+	      	<c:url var="all" value="allList.bo">
+				<c:param name="cate" value="공예/DIY"/>
+			</c:url>
+		</c:if>
+		<c:if test="${ cate == '요리'}">
+	      	<c:url var="all" value="allList.bo">
+				<c:param name="cate" value="요리"/>
+			</c:url>
+		</c:if>
+		<c:if test="${ cate == '스포츠'}">
+	      	<c:url var="all" value="allList.bo">
+				<c:param name="cate" value="스포츠"/>
+			</c:url>
+		</c:if>
+		<c:if test="${ cate == '어학/취업'}">
+	      	<c:url var="all" value="allList.bo">
+				<c:param name="cate" value="어학/취업"/>
+			</c:url>
+		</c:if>
+		
+		<c:if test="${ cate == '작품'}">
+	      	<c:url var="all" value="allList.bo">
+				<c:param name="cate" value="작품"/>
+			</c:url>
+		</c:if>
+		
+      		<a href="${ all }">전체보기</a>
+      	</div>
       	
       	
       </div> <!-- main div끝 -->
@@ -271,6 +381,12 @@
 		<c:import url="../layout/footer.jsp"/>
 	</footer>
 	
+	<!-- 가격필터 -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      
       
 
 </body>
