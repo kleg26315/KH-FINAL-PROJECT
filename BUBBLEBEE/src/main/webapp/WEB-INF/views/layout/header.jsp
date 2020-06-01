@@ -238,11 +238,11 @@
 						        <div class="left_content">
 						          <div class="thumbnail" style="padding: 0px;">
 						            <img src="${sessionScope.loginUser.profile}" alt="profile_img">
-						            <a href="/settings/account">설정</a>
+						            <a href="#">설정</a>
 						          </div>
 						        </div>
 						        <div class="right_content">
-						          <a href="/dashboard"><span class="name">${sessionScope.loginUser.nickName}</span></a>
+						          <a href="updateInfoForm.mg"><span class="name">${sessionScope.loginUser.nickName}</span></a>
 						          <div class="policy">회원</div>
 						        </div>
 						      </div>
