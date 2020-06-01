@@ -1,0 +1,390 @@
+@charset "UTF-8";
+
+* {
+   font-family: 'Noto Sans KR', sans-serif;
+}
+.detailMainForm{
+   display: inline-table;
+}
+#detailMainForm1{
+   margin-left: 20%;
+   padding-right: 20px;
+   border-right: 1px solid #c7caca;
+   width :  40%;
+} 
+
+#detailMainForm2{
+   position: fixed; /* Stay in place */
+   left: 60%;
+   top: 120px;
+   overflow: auto; /* Enable scroll if needed */
+}
+
+.home__slider {
+   display: inline-block;
+   width: 700px;
+}
+
+.bx-wrapper{
+   max-width: 700px !important;
+}
+.bx-viewport{
+   height: 400px !important;
+   width: 700px !important;
+}
+   
+.detailImages div{
+   width: 700px !important;   
+}
+
+.bx-pager{
+   text-align: center !important;
+   width: 100% !important;
+}
+
+#optionSelect{
+   width: 300px;
+   height: 40px;
+}
+
+div.hashTagTag{
+   font-size : 12pt;
+   font-weight : 400;s
+}
+
+div.hashTagTitle{
+   font-size : 18pt;
+   font-weight : 600;
+   
+}
+
+div.hashTagPrice{
+   font-size : 12pt;
+   font-weight : 600;
+}
+
+div.hashTagHostTitle{
+   font-size : 16pt;
+   font-weight : 800;
+}
+
+div.hashTagHostImage{
+   background-color : beige;
+   width : 10%;
+   height : 80px;
+   float : left;
+   margin-top : 8px;
+}
+
+div.hashTagHostImage2{
+   background-color : beige;
+   width : 10%;
+   height : 60px;
+   float : left;
+   margin-top : 8px;
+}
+
+div.hashTagHostName{
+   float : left;
+   width : 70%;
+   height : 20px;
+   margin-left : 2%;
+   margin-top : 10px;
+   font-weight : 600;
+}
+
+
+div.hashTagHostLike{
+   float : left;
+   width : 70%;
+   height : 20px;
+   margin-left : 2%;
+   margin-top : 10px;
+   font-weight : 600;
+}
+
+div.hashTagHostInfo{
+   float : left;
+   width : 100%;
+   margin-top : 20px;
+   font-weight : 600;
+   height : 40px;
+}
+
+div.hashTagHostInfoIn{
+   float : left;
+   width : 100%;
+   height : 60px;
+   margin-top : 20px;
+}
+
+div.hashTagHostReview{
+   margin-top : 20px;
+   float : left;
+   width : 100%;
+   font-size : 16pt;
+   font-weight : 600;
+}
+
+div.hashTagHostReviewComment{
+   float : left;   
+   width : 100%;
+   height : 40px;
+   font-size : 11pt;
+   font-weight : 600;
+}
+
+div.hashTagHostReviewTitle{
+   float : left;
+   width : 50%;
+   height : 50px;
+   
+}
+
+div.hashTagHostReviewLike{
+   float : left;
+   width : 50%;
+   height : 50px;
+   
+}
+
+div.hashTagHostReviewLikeIn{
+   float : right;
+   margin-top : 30px;
+   width : 50%;
+   height : 50px;
+   
+}
+
+div.hashTagHostReviewImage{
+   float : left;
+   width : 30%;
+   height : 120px;
+   background-color : beige;
+   margin-top : 20px;
+}
+
+div.hashTagHostReviewInfo{
+   float : left;
+   width : 100%;
+   height : 60px;
+   margin-top : 20px;
+}
+
+div.hashTagIntoduce{
+   float : left;
+   width : 100%;
+   height : 60px;
+   font-size : 16pt;
+   font-weight : 600;
+   margin-top : 20px;
+}
+
+div.hashTagIntroduceContent{
+   float : left;
+   width : 100%;
+   height : 300px;
+   background-color : beige;
+}
+
+div.hashTagContain{
+   float : left;
+   width : 100%;
+   height : 60px;
+   font-size : 16pt;
+   font-weight : 600;
+   margin-top : 20px;
+}
+
+div.hashTagContainContent{
+   float : left;
+   width : 100%;
+   height : 60px;
+   font-size : 11pt;
+   
+}
+
+div.hashTagDetail{
+   float : left;
+   width : 100%;
+   height : 60px;
+   font-size : 16pt;
+   font-weight : 600;
+   margin-top : 20px;
+}
+
+div.hashTagDetailContent{
+   float : left;
+   width : 100%;
+   height : 40px;
+   font-size : 11pt;
+}
+
+div.hashTagNotice{
+   float : left;
+   width : 100%;
+   height : 60px;
+   font-size : 16pt;
+   font-weight : 600;
+   margin-top : 20px;
+}
+
+div.hashTagNoticeContent{
+   float : left;
+   width : 100%;
+   height : 40px;
+   font-size : 11pt;
+   color : red;
+}
+
+div.hashTagApplyNotice{
+   float : left;
+   width : 100%;
+   height : 60px;
+   font-size : 16pt;
+   font-weight : 600;
+   margin-top : 20px;
+}
+
+div.hashTagLocation{
+   float : left;
+   width : 100%;
+   height : 60px;
+   font-size : 16pt;
+   font-weight : 600;
+   margin-top : 20px;
+}
+
+div.hashTagQuestion{
+   float : left;
+   width : 100%;
+   height : 60px;
+   font-size : 16pt;
+   font-weight : 600;
+   margin-top : 20px;
+}
+
+div.hashTagLocationInfo{
+   float:left;
+   width : 50%;
+   height : 40px;
+   margin-top : 20px;
+}
+
+div.hashTagLocationPaste{
+   float:left;
+   width : 50%;
+   height : 40px;
+   margin-top : 8px;
+}
+
+div.hashTagEnquiry{
+   float : left;
+   width : 100%;
+   height : 60px;
+   font-size : 16pt;
+   font-weight : 600;
+   margin-top : 20px;
+}
+
+div.hashTagRefund{
+   float : left;
+   width : 100%;
+   height : 60px;
+   font-size : 16pt;
+   font-weight : 600;
+   margin-top : 20px;
+}
+
+div.recommendation{
+   margin-top : 40px;
+   width : 70%;
+   height : 300px;
+   margin-left : 20%;
+   margin-top : 22px;
+}
+
+div.recommendationIntroduce{
+   font-size : 14pt;
+   font-weight : 600;
+}
+
+div.recommendationContents{
+   width : 100%;
+   height : 250px;
+   background-color : beige;
+   margin-top : 18px;
+}
+
+div.blank{
+   width : 100%;
+   height : 100px;
+}
+
+div.hashTagEnquiryContents{
+   float : left;
+   width : 100%;
+   height : 210px;
+   font-size : 12pt;
+   font-weight : 600;
+}
+
+div.hashTagRefundContents{
+   float : left;
+   width : 100%;
+   height : 200px;
+   font-size : 12pt;
+   font-weight : 600;
+}   
+
+input.hashTagHostInfoInBtn{
+   float : left;
+   width : 100%;
+   background-color : lightgray;
+   border-radius : 2px;
+   border : none;
+   height : 45px;
+   color : black;
+   outline : none;
+}
+
+input.hashTagLocationPasteBtn{
+   border:none;
+   float : right;
+   width : 100px;
+   height : 40px;
+   color : blue;
+   background-color : white;
+   outline : none;
+}
+
+input.hashTagQuestionBtn{
+   margin-left : 74%; 
+   border : none; 
+   outline : none; 
+   background-color : white;
+   font-weight : 200;
+}
+
+input.hashTagEnquiryBtn{
+   margin-left : 81%; 
+   border : none; 
+   outline : none; 
+   background-color : white;
+   font-size : 22pt;
+   font-weight : 200;
+}
+
+input.hashTagRefundBtn{
+   margin-left : 80%; 
+   border : none; 
+   outline : none; 
+   background-color : white;
+   font-size : 17pt;
+   font-weight : 200;
+}
+
+img.hashTagHostImageContent{
+   width : 100%;
+   height : 100%;
+}
