@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="boardMapper">
+	
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from board
+		where f_status='Y'
+	</select>
+	
+	<select id="selectList" resultType="Board">
+		select *
+		from blist
+		where category=#{cate}
+	</select>
+	
+	<select id="selectLtList" resultType="Board">
+		select *
+		from bltlist
+		where category=#{cate}
+	</select>
+	
+	<select id="selectHtList" resultType="Board">
+		select *
+		from bhtlist
+		where category=#{cate}
+	</select>
+	
+	<select id="getReviewGrade" resultType="Review">
+		select *
+		from review
+		where q_status='N'
+	</select>
+	
+</mapper>

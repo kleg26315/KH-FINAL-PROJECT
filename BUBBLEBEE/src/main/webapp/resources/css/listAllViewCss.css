@@ -1,0 +1,250 @@
+@charset "UTF-8";
+
+*{
+   font-family: 'Noto Sans KR', sans-serif;
+}
+
+div.main{
+   width : 58%;
+   margin-left : 20%;
+   height : 1800px;
+   padding-top:30px;      
+}
+
+#cmoim{font-size:17px; padding-top:10px;}
+
+#category{
+	background-color : gold;
+	height:100px;
+	width:100%;
+	margin-top:58px;
+}
+
+#categoryD{
+	width : 58%;
+	margin-left : 20%;
+}
+
+#categoryT{padding-top:3px; width:300px; font-size:16px;}
+#categoryT2{padding-top:3px; width:350px; font-size:16px;}
+
+#allLabel{font-size:18px; font-weight:bold; margin-bottom:20px;}
+
+#chline{background-color:gray; border:none; height:2px; width:80px; margin-top:5px;}
+
+#allView{
+	margin:70px auto;
+	border:solid 1px black; 
+	width:380px; height:50px; text-align:center;
+	padding-top:10px; font-size:16px;
+	}
+	
+	
+	/* 모달_언제 */
+input[id*="when"] {display:none;} /* 체크박스 */
+input[id*="when"] + label {display:inline-block; text-align:center; padding-top:4px; width:90px; height:33px;background:lightgray; border-radius:5px;}/* 버튼 */
+input[id*="when"] + label + div {position:fixed;top:0;left:0;width:100%;height:100%;z-index:100;}
+input[id*="when"] + label + div > div {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:550px;height:430px;background:white;z-index:2;} /* 모달창 */
+input[id*="when"] + label + div > div > label {font-size:20px; font-weight:bold; position:absolute;top:0%;right:3%;padding:5px;background:white;z-index:3;} /* 닫 기*/
+input[id*="when"] + label + div > label {position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);z-index:1;} /* 모달밖 */
+
+input[id*="when"] + label + div {display:none;}
+input[id*="when"]:checked + label + div {display:block;}
+
+.embedded-daterangepicker .daterangepicker::before,
+.embedded-daterangepicker .daterangepicker::after {
+  display: none;
+}
+.embedded-daterangepicker .daterangepicker {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  float: left;
+  width: 110%;
+  margin-top: 0;
+  margin-left: 15px;
+  background-color:transparent;
+  border:none;
+}
+.embedded-daterangepicker .daterangepicker .drp-calendar {
+  width: 50%;
+  max-width: 50%;
+}
+
+#daterangepicker-result{font-weight:bold; margin-left: 45px; float:left;}
+.row{padding-top:5px;}
+#dateChoose{
+	margin-top:-10px;
+	text-align:center; width:100px; height:30px; padding-top:5px; color:white; font-weight:bold; background:gold; border-radius:5px;}
+
+	/* 모달_어디서 */
+input[id*="where"] {display:none;} /* 체크박스 */
+input[id*="where"] + label {display:inline-block; text-align:center; padding-top:4px; width:90px; height:33px;background:lightgray; border-radius:5px;}/* 버튼 */
+input[id*="where"] + label + div {position:fixed;top:0;left:0;width:100%;height:100%;z-index:100;}
+input[id*="where"] + label + div > div {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:480px;background:white;z-index:2;} /* 모달창 */
+input[id*="where"] + label + div > div > label {font-size:20px; font-weight:bold; position:absolute;top:0%;right:3%;padding:5px;background:white;z-index:3;} /* 닫 기*/
+input[id*="where"] + label + div > label {position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);z-index:1;} /* 모달밖 */
+
+input[id*="where"] + label + div {display:none;}
+input[id*="where"]:checked + label + div {display:block;}	
+
+.tab_content {text-align:left;font-size:0; float:left}
+input[type="radio"] {display:none;} /* input을 안보이게 처리 */
+input[type="radio"] + label {text-align:center; padding-top:8px; display:inline-block; width:100px; height:35px; background:#f5f5f5;color:#999;font-size:14px;cursor:pointer;} /* 버튼 공통 속성 */
+input[type="radio"]:checked + label {background:gold;color:#000;} /* 선택된 버튼속성 */
+
+.conbox {position:absolute; left:105px; top:80px; padding:5px; width:275px; height:380px;background:lightgray;display:none;text-align:left;font-size:12px;padding:20px;box-sizing:border-box;} /* 컨텐츠박스 공통 속성 */
+input[id="tab01"]:checked ~ .con1 {display:block;} /* 인풋에 체크가 해당 요소보이게 설정 */
+input[id="tab02"]:checked ~ .con2 {display:block;}
+input[id="tab03"]:checked ~ .con3 {display:block;}
+input[id="tab04"]:checked ~ .con4 {display:block;}
+input[id="tab05"]:checked ~ .con5 {display:block;}
+input[id="tab06"]:checked ~ .con6 {display:block;}
+input[id="tab07"]:checked ~ .con7 {display:block;}
+input[id="tab08"]:checked ~ .con8 {display:block;}
+input[id="tab09"]:checked ~ .con9 {display:block;}
+input[id="tab10"]:checked ~ .con10 {display:block;}
+input[id="tab11"]:checked ~ .con11 {display:block;}
+input[id="tab12"]:checked ~ .con12 {display:block;}
+input[id="tab13"]:checked ~ .con13 {display:block;}
+input[id="tab14"]:checked ~ .con14 {display:block;}
+input[id="tab15"]:checked ~ .con15 {display:block;}
+
+#pfreset2{position:absolute; top:16px; margin-left:75px; font-size:16px; color:gray;}	
+	
+	/* 모달 _필터 */
+input[id*="popup"] {display:none;} /* 체크박스 */
+input[id*="popup"] + label {display:inline-block; text-align:center; padding-top:4px; width:90px; height:33px;background:lightgray; border-radius:5px;}/* 버튼 */
+input[id*="popup"] + label + div {position:fixed;top:0;left:0;width:100%;height:100%;z-index:100;}
+input[id*="popup"] + label + div > div {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:330px;height:430px;background:white;z-index:2;} /* 모달창 */
+input[id*="popup"] + label + div > div > label {font-size:20px; font-weight:bold; position:absolute;top:0%;right:3%;padding:5px;background:white;z-index:3;} /* 닫 기*/
+input[id*="popup"] + label + div > label {position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);z-index:1;} /* 모달밖 */
+
+input[id*="popup"] + label + div {display:none;}
+input[id*="popup"]:checked + label + div {display:block;}	
+
+#arrayT input[type="radio"] {display:block;}
+#pfilter{position:absolute; top:15px; margin-left:15px; font-weight:bold; font-size:18px;}
+#pfreset{position:absolute; top:16px; margin-left:60px; font-size:16px; color:gray;}
+#pprice{margin-left:25px; font-weight:bold; font-size:16px;}
+#sun{padding:0px 20px 10px 20px;}
+#applyb{margin:20px auto; text-align:center; width:200px; height:35px; padding-top:8px; color:white; font-weight:bold; background:gold; border-radius:5px;}
+#slider{left:25px; top:-20px;}
+#slider .ui-slider-range{background:gold;}
+#amount{border:none; font-size:15px;}
+
+
+/* 지금 뜨는 모임 CSS */
+.moim{
+   display: flex;
+    min-height: 1px;
+}
+.moim > *{
+   margin-right: 10px;
+    width: calc(25% - 7.5px);
+    margin-bottom: 31px;
+}
+.moim_total{
+   display: flex;
+    background-color: white;
+    min-height: 1px;
+    flex-flow: column nowrap;
+}
+.moim_each{
+   overflow: hidden;
+}
+.moim_post{
+}
+.moim_location{
+}
+.moim_l_location{
+   height: 10px;
+    color: white;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 10px;
+    text-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px;
+    margin: 2px 0px 0px 2px;
+}
+.moim_heart{
+   width: 24px;
+    height: 24px;
+    line-height: normal;
+    background-color: transparent;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0px;
+    border-radius: 5px;
+}
+.moim_small_title{
+   margin-top: 14px;
+    font-size: 12px;
+    height: 14px;
+    text-overflow: ellipsis;
+    line-height: 14px;
+    color: rgb(155, 155, 155);
+    overflow: hidden;
+}
+.moim_title{
+   margin-top: 10px;
+    height: auto;
+    max-height: 40px;
+    line-height: 20px;
+    font-size: 14px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.moim_price{
+   margin-top: 14px;
+    line-height: 14px;
+    height: 14px;
+}
+.moim_score{
+   margin-top: 14px;
+   font-size: 11px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(187, 187, 187);
+}
+.moim_img{
+   position: relative;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    min-height: 1px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 5px;
+    width: 100%
+}
+.heart_div{
+   position: absolute;
+    right: 0px;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    z-index: 1;
+    padding: 10px;
+}
+.heart_button{
+   width: 24px;
+    height: 24px;
+    line-height: normal;
+    background-color: transparent;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0px;
+    border: none;
+}
+
+#hotmoim{margin-top:45px;}
+#latestmoim{margin-top:45px;}

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+	<select id="checkMember" resultMap="memberResultSet">
+		select *
+		from member
+		where user_id=#{id} and m_status='Y'
+	</select>
+	
+	<resultMap type="Member" id="memberResultSet">
+		<id property="id" column="USER_ID"/>
+		<result property="pwd" column="USER_PWD"/>
+		<result property="userName" column="USER_NAME"/>
+		<result property="nickName" column="NICKNAME"/>
+		<result property="phone" column="PHONE"/>
+		<result property="host_yn" column="HOST_YN"/>
+		<result property="mStatus" column="M_STATUS"/>
+		<result property="profile" column="PROFILE"/>
+		<result property="email" column="EMAIL"/>
+	</resultMap>
+	
+	<insert id="signupMember">
+		insert into member
+		values(#{id}, 
+		<if test="pwd != null">
+		#{pwd},
+		</if>
+		<if test="pwd == null">
+		null,
+		</if>
+		null, 
+		<if test="nickName != null">
+		#{nickName},
+		</if>
+		<if test="nickName == null">
+		'꿀벌',
+		</if>
+		 null, default, 'Y', #{profile},
+		<if test="email != null">
+		#{email},
+		</if>
+		<if test="email == null">
+		#{id},
+		</if> 
+		null
+		  )
+	</insert>
+	
+	<select id="memberLogin" resultMap="memberResultSet">
+		select *
+		from member
+		where user_id=#{id} and m_status='Y'
+	</select>
+	
+	<insert id="insertMember">
+		insert into member
+		values(#{id}, #{pwd}, null, '꿀벌', null, default, 'Y', 'https://ssl.pstatic.net/static/pwe/address/img_profile.png', #{id}, null)
+	</insert>
+	
+	<insert id="insertkakaoMember">
+		insert into member
+		values(#{id}, null, null, #{nickname} , null, default, default, 
+		<if test="profile != null">
+			#{profile},
+		</if> 
+		<if test="profile == null">
+			'https://ssl.pstatic.net/static/pwe/address/img_profile.png',
+		</if>
+		null)
+	</insert>
+</mapper>

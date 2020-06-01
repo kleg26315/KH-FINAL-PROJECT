@@ -115,7 +115,8 @@ body{
     display: -webkit-flex;
     flex-direction: column;
     -webkit-flex-direction: column;
-    height: 100%;
+    /* 가운데부분에 회색 띄는거 이부분 수정하면됨 */
+    /* height: 500%;*/
 }
 
 .content{
