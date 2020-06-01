@@ -335,9 +335,9 @@
 
       	<!-- 전체보기 -->
       	<div id="allView">
-      	<c:if test="${ cate == '모임/파티'}">
+      	<c:if test="${ cate == '토크/파티'}">
 	      	<c:url var="all" value="allList.bo">
-				<c:param name="cate" value="모임/파티"/>
+				<c:param name="cate" value="토크/파티"/>
 			</c:url>
 		</c:if>
 		<c:if test="${ cate == '취향'}">
