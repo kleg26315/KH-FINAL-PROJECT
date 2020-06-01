@@ -26,6 +26,7 @@
 		where category=#{cate}
 	</select>
 	
+
 	<select id="getReviewGrade" resultType="Review">
 		select *
 		from review
@@ -36,4 +37,5 @@
 <!-- 		insert into board -->
 <!-- 		value="seq_bid.nextval, #{FTYPE}, #{}, #{}, #{}, #{}, #{}, #{}, #{}, -->
 <!-- 	</insert> -->
+
 </mapper>

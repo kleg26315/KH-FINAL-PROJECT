@@ -12,8 +12,6 @@ public interface BoardService {
 
 	ArrayList<Board> selectList(PageInfo pi, String cate);
 
-	ArrayList<Review> getReviewGrade();
-
 	ArrayList<Board> selectLtList(String cate);
 
 	ArrayList<Board> selectHtList(String cate);

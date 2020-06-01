@@ -23,11 +23,7 @@ public class BoardDAO {
 		
 		return (ArrayList)sqlSession.selectList("boardMapper.selectList", cate, rowBounds);
 	}
-
-	public ArrayList<Review> getReviewGrade(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("boardMapper.getReviewGrade");
-	}
-
+	
 	public ArrayList<Board> selectLtList(SqlSessionTemplate sqlSession, String cate) {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectLtList", cate);
 	}

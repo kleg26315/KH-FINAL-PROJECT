@@ -26,6 +26,7 @@
 		where category=#{cate}
 	</select>
 	
+
 	<select id="getReviewGrade" resultType="Review">
 		select *
 		from review

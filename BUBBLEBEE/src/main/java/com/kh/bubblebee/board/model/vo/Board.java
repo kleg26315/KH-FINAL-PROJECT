@@ -22,14 +22,19 @@ public class Board {
 	private String fprecaution; //유의사항
 	private String user_id; //주최자
 	private int heart; //좋아요
+	private int rsum; //해당 리뷰점수합
+	private int rcount; //해당 리뷰갯수
 	private Date f_create_date; //작성날짜
 	private String f_status; //상태
+	private String originalFileName; 
+	private String renameFileName;
 	
 	public Board() {}
 
 	public Board(int rnum, int fno, int ftype, int price, String small_title, String ftitle, String category,
 			String location, int lat, int lon, String fcontain, String fncontain, String fcalendar, String fmaterials,
-			String fminfo, String fprecaution, String user_id, int heart, Date f_create_date, String f_status) {
+			String fminfo, String fprecaution, String user_id, int heart, int rsum, int rcount, Date f_create_date,
+			String f_status, String originalFileName, String renameFileName) {
 		super();
 		this.rnum = rnum;
 		this.fno = fno;
@@ -49,8 +54,12 @@ public class Board {
 		this.fprecaution = fprecaution;
 		this.user_id = user_id;
 		this.heart = heart;
+		this.rsum = rsum;
+		this.rcount = rcount;
 		this.f_create_date = f_create_date;
 		this.f_status = f_status;
+		this.originalFileName = originalFileName;
+		this.renameFileName = renameFileName;
 	}
 
 	public int getRnum() {
@@ -197,6 +206,22 @@ public class Board {
 		this.heart = heart;
 	}
 
+	public int getRsum() {
+		return rsum;
+	}
+
+	public void setRsum(int rsum) {
+		this.rsum = rsum;
+	}
+
+	public int getRcount() {
+		return rcount;
+	}
+
+	public void setRcount(int rcount) {
+		this.rcount = rcount;
+	}
+
 	public Date getF_create_date() {
 		return f_create_date;
 	}
@@ -213,15 +238,35 @@ public class Board {
 		this.f_status = f_status;
 	}
 
+	public String getOriginalFileName() {
+		return originalFileName;
+	}
+
+	public void setOriginalFileName(String originalFileName) {
+		this.originalFileName = originalFileName;
+	}
+
+	public String getRenameFileName() {
+		return renameFileName;
+	}
+
+	public void setRenameFileName(String renameFileName) {
+		this.renameFileName = renameFileName;
+	}
+
 	@Override
 	public String toString() {
 		return "Board [rnum=" + rnum + ", fno=" + fno + ", ftype=" + ftype + ", price=" + price + ", small_title="
 				+ small_title + ", ftitle=" + ftitle + ", category=" + category + ", location=" + location + ", lat="
 				+ lat + ", lon=" + lon + ", fcontain=" + fcontain + ", fncontain=" + fncontain + ", fcalendar="
 				+ fcalendar + ", fmaterials=" + fmaterials + ", fminfo=" + fminfo + ", fprecaution=" + fprecaution
-				+ ", user_id=" + user_id + ", heart=" + heart + ", f_create_date=" + f_create_date + ", f_status="
-				+ f_status + "]";
+				+ ", user_id=" + user_id + ", heart=" + heart + ", rsum=" + rsum + ", rcount=" + rcount
+				+ ", f_create_date=" + f_create_date + ", f_status=" + f_status + ", originalFileName="
+				+ originalFileName + ", renameFileName=" + renameFileName + "]";
 	}
+
+	
+	
 
 	
 	
