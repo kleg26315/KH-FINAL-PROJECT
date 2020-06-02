@@ -37,7 +37,7 @@
 	<nav>
 		<div id="enroll" class="menu">
 			<div><img src="${contextPath}/resources/img/enroll.png" width="20px" height="20px"></div>
-				<div class="title"><a href="binsert.bo">등록하기</a></div>
+				<div class="title"><a href="binsertForm.bo">등록하기</a></div>
 			</div>
 		<div>			
 			<div id="moim" class="menu">
@@ -95,7 +95,6 @@
 // 				$('#showLayers').click(function() {
 // 				     $('#showLayers').toggleClass('rotate');
 // 				});
-				$('.')
 			  });
 			</script>
 	   </nav>
