@@ -1,7 +1,10 @@
 package com.kh.bubblebee.member.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -61,18 +64,25 @@ public class MypageController {
 	// 내 정보 수정하기
 	
 	@RequestMapping("updateInfo.mg")
-	public String updateInfo(@ModelAttribute Member m,@RequestParam("interest") String interest) {
-//		m.setInterest(interest);
+	public String updateInfo(@ModelAttribute Member m,@RequestParam(value="interest",required = false) String interest,Model model) {
+		if(interest == null) {
+			interest = "-";
+		}
 		
-//		int result = mgService.updateInfo(m);
-//		
-//		if(result > 0) {
-//			return "";
-//		}else {
-//			throw new MemberException();
-//		}
+		System.out.println(interest);
+		System.out.println();
 		
-		return "";
+		m.setInterest(interest);
+		
+		int result = mgService.updateInfo(m);
+		
+		if(result > 0) {
+			model.addAttribute("loginUser",m);
+			return "updateInfoForm";
+		}else {
+			throw new MemberException();
+		}
+		
 	}
 	
 	
