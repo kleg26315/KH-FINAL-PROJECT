@@ -32,7 +32,17 @@ public class BoardInputController {
 	
 
 	@RequestMapping("binsert.bo")
-	public String boardInsert(@ModelAttribute Board b, @RequestParam("uploadFile") List<MultipartFile> uploadFile, HttpServletRequest request) {
+	public String boardInsert(@ModelAttribute Board b, @RequestParam("uploadFile") List<MultipartFile> uploadFile,
+								HttpServletRequest request, @RequestParam("location") String location, 
+								@RequestParam("address1") String address1, @RequestParam("address2") String address2, 
+								@RequestParam("bTime") String bTime, @RequestParam("bDetail") String bDetail,
+								@RequestParam("b_Qt") String b_Qt, @RequestParam("b_An") String b_An
+								) {
+		
+		b.setLocation(location + "/" + address1 + "/" + address2);
+		b.setFcalendar(bTime + "      " + bDetail);
+		b.setFminfo(b_Qt + "<br>" + b_An);
+		
 		
 		String[] originalFileName = new String[uploadFile.size()];
 		
