@@ -38,7 +38,6 @@ public class BoardInputController {
 		
 		for(int i = 0; i<uploadFile.size(); i++) {
 			originalFileName[i] = uploadFile.get(i).getOriginalFilename();
-			System.out.println("uploadFile : " +  uploadFile.get(i).getOriginalFilename());
 		}
 		
 		if(uploadFile != null && !uploadFile.isEmpty()) {
