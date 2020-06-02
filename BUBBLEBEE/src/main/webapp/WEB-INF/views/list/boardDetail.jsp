@@ -263,6 +263,8 @@
             <option selected>옵션1</option>
             <option>옵션2</option>
          </select>   
+         <br>
+         <input type = "button" value = "참가하기" style = "width : 320px; height : 40px; margin-top : 70%; background-color : gold; border : none; border-radius : 2px 2px;">
       </div>
       <div class = "recommendation">
          <div class = "recommendationIntroduce">
