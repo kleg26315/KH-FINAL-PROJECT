@@ -224,7 +224,11 @@
          
          <c:forEach var="b" items="${ list }" varStatus="status">
             <div class="moim_total">
-               <a>
+            <c:url var="bdetail" value="detail.bo">
+            	<c:param name="fno" value="${ b.fno }"/>
+            	<c:param name="page" value="${ pi.currentPage }"/>
+            </c:url>
+               <a href="${ bdetail }">
                   <div class="moim_each">
                   <div class="moim_img">
                      <div class="heart_div">
