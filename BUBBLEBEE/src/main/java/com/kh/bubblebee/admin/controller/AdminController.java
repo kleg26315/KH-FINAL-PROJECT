@@ -1,7 +1,9 @@
 package com.kh.bubblebee.admin.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AdminController {
@@ -21,8 +23,8 @@ public class AdminController {
 		return "adminPage_class";
 	}
 	
-	@RequestMapping("noticeInsertView.ad")
-	public String noticeInsertView() {
+	@RequestMapping(value="noticeInsertView.ad")
+	public String noticeInsertView(@RequestParam(value="message", required=false) String message, Model model) {
 		return "adminPage_notice_form";
 	}
 	
