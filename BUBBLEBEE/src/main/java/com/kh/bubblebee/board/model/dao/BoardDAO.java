@@ -23,17 +23,17 @@ public class BoardDAO {
 		
 		return (ArrayList)sqlSession.selectList("boardMapper.selectList", cate, rowBounds);
 	}
-
-	public ArrayList<Review> getReviewGrade(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("boardMapper.getReviewGrade");
-	}
-
+	
 	public ArrayList<Board> selectLtList(SqlSessionTemplate sqlSession, String cate) {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectLtList", cate);
 	}
 
 	public ArrayList<Board> selectHtList(SqlSessionTemplate sqlSession, String cate) {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectHtList", cate);
+	}
+
+	public int insertBoard(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.insert("boardMapper.insertBoard", b);
 	}
 	
 }

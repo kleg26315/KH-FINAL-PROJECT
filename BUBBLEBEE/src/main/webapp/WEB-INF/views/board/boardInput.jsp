@@ -39,7 +39,7 @@
 				<tr>
 					<td colspan="2">
 						<span>
-							<select id="category" name="category">
+							<select id="category" name="ftype">
 								<option value="no">카테고리를 설정해주세요</option>
 								<option value="1">모임</option>
 								<option value="2">클래스</option>
@@ -48,7 +48,7 @@
 						</span>
 						
 						<span>
-							<select id="category2" name="category2">
+							<select id="category2" name="category">
 								<option value="no">주제를 설정해주세요</option>
 								<option value="activity">액티비티</option>
 								<option value="learn">배움</option>
@@ -105,7 +105,9 @@
 					</tr>
 					
 					<tr>
-						<td colspan="2"><input type="file" id="thumb_file" name="thumb_file" required></td>
+						<td><input type="file" id="thumb_file" name="uploadFile" required></td>
+						<td><input type="file" id="thumb_file" name="uploadFile"></td>
+						<td><input type="file" id="thumb_file" name="uploadFile" ></td>
 					</tr>
 					
 					<tr>
@@ -124,7 +126,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<input type="text" id="me" name="me" placeholder="최소 1명 이상 최대 20명 이하"  maxlength="2" value="" required >
+							<input type="text" id="maxMember" name="maxMember" placeholder="최소 1명 이상 최대 20명 이하"  maxlength="2" value="" required >
 						</td>
 					</tr>
 					
@@ -147,7 +149,7 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="text" id="op" name="op" placeholder="옵션명"  value="참가비 (1인)" required maxlength="30"> 필수입력
+							<input type="text" id="op" name="op1" placeholder="옵션명"  value="참가비 (1인)" required maxlength="30"> 필수입력
 						</td>
 						<td rowspan="2" > 
 							<button type="button" id="btn_op">옵션 추가하기</button>
@@ -263,7 +265,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" id="bIncluded" class="bText500" maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" id="bIncluded" name="bIncluded" class="bText500" maxlength="500" required></textarea>
 							<span class="btext">0</span>/500
 						</td>
 					</tr>
@@ -272,7 +274,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" id="bNcluded" class="bText500" required></textarea>
+							<textarea rows="5" cols="50" id="bNcluded" name = "bNcluded" class="bText500" required></textarea>
 							<span class="btext">0</span>/500
 						</td>
 					</tr>
@@ -403,11 +405,18 @@
 			<script>
 				ClassicEditor
 				.create( document.querySelector( '#editor' ),{
-		             removePlugins: [ 'ImageUpload' ,'Link']
-				})   
+		             removePlugins: [ 'ImageUpload' ,'Link'],
+		             enterMode:'2',
+		             height:'200'
+				});  
 				.catch( error => {
 		            console.error( error );
 		        } );
+				
+				if(CKEDITOR.imstances.content.getDate()==""){
+					window.alert("내용을 입력해주세요");
+					return false
+				}
 			</script>
 			
 			<script>

@@ -55,15 +55,11 @@ public class BoardController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Board> list = bService.selectList(pi, cate);
-		
-		//평균평점 불러오기
-//		ArrayList<Review> rvlist = bService.getReviewGrade();
-		
+				
 		if(list != null) {
 			mv.addObject("cate", cate);
 			mv.addObject("list", list);
 			mv.addObject("pi", pi);
-//			mv.addObject("rv", rvlist);
 			mv.setViewName("listView_all");
 			
 		} else {

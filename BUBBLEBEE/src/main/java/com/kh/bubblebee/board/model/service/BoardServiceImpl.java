@@ -31,11 +31,6 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public ArrayList<Review> getReviewGrade() {
-		return bDAO.getReviewGrade(sqlSession);
-	}
-
-	@Override
 	public ArrayList<Board> selectLtList(String cate) {
 		return bDAO.selectLtList(sqlSession, cate);
 	}
@@ -44,5 +39,12 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<Board> selectHtList(String cate) {
 		return bDAO.selectHtList(sqlSession, cate);
 	}
+
+	@Override
+	public int insertBoard(Board b) {
+		// TODO Auto-generated method stub
+		return bDAO.insertBoard(sqlSession, b);
+	}
+
 
 }
