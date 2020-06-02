@@ -28,6 +28,7 @@
 				<tr>
 					<th colspan="2" >카테고리 설정</th>
 					<td rowspan="2">
+					<input type="hidden" value="${loginUser.id}" name="user_id">
 						<div class="B_n" >
 							<b>다음과 같은 경우, 오픈이 어렵습니다.</b><br>
 							- 소개팅 / 남녀 만남 주선 프립<br>
@@ -75,7 +76,7 @@
 				<tr>
 					<td colspan="2">
 						<h4>Title</h4>
-						<input type="text" placeholder="제목을 입력해주세요" name="title" id="title" required>
+						<input type="text" placeholder="제목을 입력해주세요" name="ftitle" id="title" required>
 					</td>
 				</tr>
 				<tr>
@@ -83,7 +84,7 @@
 						<h4>캐치프레이즈(제목을 부연 설명하는 문구입니다)</h4>
 						<div id="ca2">
 							<input type="text" placeholder="호스트님만의 특색과 매력을 함축적으로 보일 수 있게 적어주세요." 
-							 id="catch" name="catch" maxlength="20" tabindex="0" required>
+							 id="catch" name="small_title" maxlength="20" tabindex="0" required>
 							<span id="counter">0</span>/20<br>
 						</div>
 					</td>
@@ -126,7 +127,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<input type="text" id="me" name="me" placeholder="최소 1명 이상 최대 20명 이하"  maxlength="2" value="" required >
+							<input type="text" id="maxMember" name="maxMember" placeholder="최소 1명 이상 최대 20명 이하"  maxlength="2" value="" required >
 						</td>
 					</tr>
 					
@@ -149,7 +150,7 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="text" id="op" name="op" placeholder="옵션명"  value="참가비 (1인)" required maxlength="30"> 필수입력
+							<input type="text" id="op" name="op1" placeholder="옵션명"  value="참가비 (1인)" required maxlength="30"> 필수입력
 						</td>
 						<td rowspan="2" > 
 							<button type="button" id="btn_op">옵션 추가하기</button>
@@ -180,7 +181,7 @@
 					</tr>
 					<tr>	
 						<td>
-							<input type="text" name="post" class="postcodify bRequired" value="" size="6" style="width: 300px;" required >
+							<input type="text" name="location" class="postcodify bRequired" value="" size="6" style="width: 300px;" required >
 						</td>
 						<td >
 							<button type="button" id="postcodify_search_button">주소 찾기</button>
@@ -265,7 +266,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" id="bIncluded" class="bText500" maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" id="bIncluded" name="bIncluded" class="bText500" maxlength="500" required></textarea>
 							<span class="btext">0</span>/500
 						</td>
 					</tr>
@@ -274,7 +275,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" id="bNcluded" class="bText500" required></textarea>
+							<textarea rows="5" cols="50" id="bNcluded" name = "bNcluded" class="bText500" required></textarea>
 							<span class="btext">0</span>/500
 						</td>
 					</tr>
@@ -308,7 +309,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" id="bMaterials" class="bText500" required></textarea>
+							<textarea rows="5" cols="50" id="bMaterials" name="bMaterials" class="bText500" required></textarea>
 							<span class="btext">0</span>/500
 						</td>
 					</tr>
@@ -319,7 +320,7 @@
 					<hr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" id="bNot" class="bText500" required></textarea>
+							<textarea rows="5" cols="50" id="bNot" name="bNot" class="bText500" required></textarea>
 							<span class="btext">0</span>/500
 						</td>
 					</tr>
@@ -350,7 +351,7 @@
 					<tr>
 						<td>
 							<span id="Q">Q</span>
-							<input type="text" id="b_Qt" placeholder="질문" required>
+							<input type="text" id="b_Qt" name="b_Qt" placeholder="질문" required>
 						</td>
 						<td rowspan="2"><button type="button">삭제</button></td>
 					</tr>
@@ -358,7 +359,7 @@
 						
 						<td>
 							<span id="A">A</span>
-							<input type="text" id="b_An" placeholder="답변" required>
+							<input type="text" id="b_An" name="b_An" placeholder="답변" required>
 						</td>
 					</tr>
 					

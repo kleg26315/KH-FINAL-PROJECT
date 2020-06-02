@@ -36,4 +36,8 @@ public class BoardDAO {
 		return sqlSession.insert("boardMapper.insertBoard", b);
 	}
 	
+	public int insertBoardOption(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.insert("boardMapper.insertBoardOption", b);
+	}
+	
 }

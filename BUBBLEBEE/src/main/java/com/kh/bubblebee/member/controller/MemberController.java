@@ -174,24 +174,25 @@ public class MemberController {
 		String access_Token = kakao.getAccessToken(code);
 //		System.out.println("controller access_token : " + access_Token); 
 		HashMap<String, String> userInfo = kakao.getUserInfo(access_Token);
-		System.out.println("login Controller : " + userInfo);
+//		System.out.println("login Controller : " + userInfo);
+		String id = userInfo.get("id");
+		Member loginUser = mService.checkMember(id);
+		int result = 0;
 		
-		int result = mService.insertkakaoMember(userInfo);
-		
-		if(userInfo.get("id") != null) {
-			session.setAttribute("userId", userInfo.get("id"));
-			session.setAttribute("access_Token", access_Token);
+		if(loginUser != null) {
+			session.setAttribute("loginUser", loginUser);
+			session.setMaxInactiveInterval(6000);
+			return "redirect:home.do";
+		}else {
+			result = mService.insertkakaoMember(userInfo);
+			loginUser = mService.checkMember(id);
+			if(result > 0) {
+				session.setAttribute("loginUser", loginUser);
+				session.setMaxInactiveInterval(6000);
+				return "redirect:home.do";
+			}else {
+				throw new MemberException("카카오톡 회원가입에 실패하였습니다.");
+			}
 		}
-		return "redirect:home.do";
 	}
-	
-	@RequestMapping("kakaologout.me")
-	public String logout(HttpSession session) {
-		kakao.kakaoLogout((String)session.getAttribute("access_Token"));
-		session.removeAttribute("access_Token");
-		session.removeAttribute("userId");
-		
-		return "index";
-	}
-	
 }

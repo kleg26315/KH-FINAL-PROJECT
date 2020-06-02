@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% String[] checked = new String[8]; %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,6 +56,12 @@ label{border: 1px solid #F39C12;background: none;outline: none; padding: 10px 20
 #submit{background: #F39C12; border:none;outline: none;width:300px;height: 50px;color: white;border-radius: 5px;}
 #updatePwdbtn{background: #F39C12; border:none;outline: none; width: 100px;height: 30px;border-radius: 5px;color: white;}
 button:not(#updatePwdbtn){background: green;border:1px solid #F39C12;outline: none;}
+input[type=checkbox]:checked + label{
+	background:#F39C12;color:white;
+}
+
+.interest_wrap{display: flex;}
+.interestBtn:hover {cursor: pointer;}
 </style>
 <body>
    <header id="header">
@@ -74,12 +81,14 @@ button:not(#updatePwdbtn){background: green;border:1px solid #F39C12;outline: no
 			   <div id="profile" class="c_list"><a>내 프로필</a></div>
 				  <div id="pro_all">
 					   <div class="pro_wrap">
+					   <!-- ID -->
+					   <input type="hidden" name="id" value="${loginUser.id}">
 						   	<div class="title">닉네임</div>
-						   	<div class="p_content"><input type="text" value="희은" id="nickName" name="nickName"></div>
+						   	<div class="p_content"><input type="text" value="${loginUser.nickName }" id="nickName" name="nickName"></div>
 					  </div>
 					  <div class="pro_wrap">
 						   	<div class="title">전화번호</div>
-						   	<div class="p_content"><input type="text" id="phone" value="01090783699" name="phone"></div>
+						   	<div class="p_content"><input type="text" id="phone" value="${loginUser.phone }" name="phone"></div>
 					  </div>
 					  <div class="pro_wrap">
 						   	<div class="title">비밀번호</div>
@@ -89,37 +98,77 @@ button:not(#updatePwdbtn){background: green;border:1px solid #F39C12;outline: no
 						   <div class="title">관심사</div>
 					  </div>
 						  <div class="inter_wrap">
-						<c:forTokens items="${loginUser.interest}" delims=",">
-							<c:if test="f">
+						<c:forTokens items="${loginUser.interest}" delims="," var="f">
+							<c:choose>
+								<c:when test="${f eq '토크/파티'}">
+									<% checked[0] = "checked"; %>
+								</c:when>
+								<c:when test="${f eq '취향'}">
+									<% checked[1] = "checked"; %>
+								</c:when>
+								<c:when test="${f eq '스터디'}">
+									<% checked[2] = "checked"; %>
+								</c:when>
+								<c:when test="${f eq '이벤트/공간'}">
+									<% checked[3] = "checked"; %>
+								</c:when>
+								<c:when test="${f eq '공예/DIY'}">
+									<% checked[4] = "checked"; %>
+								</c:when>
+								<c:when test="${f eq '요리'}">
+									<% checked[5] = "checked"; %>
+								</c:when>
+								<c:when test="${f eq '스포츠'}">
+									<% checked[6] = "checked"; %>
+								</c:when>
+								<c:when test="${f eq '어학/취업'}">
+									<% checked[7] = "checked"; %>
+								</c:when>
 								
-							</c:if>		
+							</c:choose>		
 						</c:forTokens>
+						
 						  		<div class="inter_title">모임</div>  
-						    	<div>
-						    	<input type="checkbox" value="토크/파티" name="X" class="moim" id="talk">
-						    	<label for="talk" class="moim">토크/파티</label>
-						    	<input type="checkbox" value="취향" name="X" class="moim" id="taste">
-						    	<label for="taste" class="moim">취향</label>
-						    	<input type="checkbox" value="스터디" name="X" class="moim" id="study">
-						    	<label for="study" class="moim">스터디</label>
-						    	<input type="checkbox" value="이벤트/공간" name="X" class="moim" id="place">
-						    	<label for="place" class="moim">이벤트/공간</label>
+						    	<div class="interest_wrap">
+							    	<div class="interestBtn">
+							    		<input type="checkbox" value="토크/파티" name="interest" class="moim" <%= checked[0] %>>
+							    		<label for="talk" class="mlabel" id="talk">토크/파티</label>	
+							    	</div>
+							    	<div class="interestBtn">
+							    		<input type="checkbox" value="취향" name="interest" class="moim" <%= checked[1] %>>
+							    		<label for="taste" class="mlabel" id="taste" >취향</label>
+							    	</div>
+							    	<div class="interestBtn">
+							    		<input type="checkbox" value="스터디" name="interest" class="moim"  <%= checked[2] %>>
+							    	<label for="study" class="mlabel" id="study">스터디</label>
+							    	</div>
+							    	<div class="interestBtn">
+							    		<input type="checkbox" value="이벤트/공간" name="interest" class="moim" <%= checked[3] %> >
+							    	<label for="place" class="mlabel" id="place">이벤트/공간</label>
+							    	</div>
 						    	</div>
 						  </div>
 						   <div class="inter_wrap">
 						  		<div class="inter_title">클래스</div>  
-						    	<div>
-						    	<input type="checkbox" value="공예/DIY" name="X" class="moim" id="diy">
-						    	<label for="diy" class="moim">공예/DIY</label>
-						    	<input type="checkbox" value="요리" name="X" class="moim" id="cook">
-						    	<label for="cook" class="moim">요리</label>
-						    	<input type="checkbox" value="스포츠" name="X" class="moim" id="sport">
-						    	<label for="sport" class="moim">스포츠</label>
-						    	<input type="checkbox" value="어학/취업" name="X" class="moim" id="job">
-						    	<label for="job" class="moim">어학/취업</label>
+						    	<div class="interest_wrap">
+							    	<div class="interestBtn">
+							    		<input type="checkbox" value="공예/DIY" name="interest" class="moim" <%= checked[4] %> >
+							    	<label for="diy" class="mlabel" id="diy">공예/DIY</label>
+							    	</div>
+							    	<div class="interestBtn">
+							    		<input type="checkbox" value="요리" name="interest" class="moim" <%= checked[5] %> >
+							    	<label for="cook" class="mlabel" id="cook">요리</label>
+							    	</div>
+							    	<div class="interestBtn">
+							    		<input type="checkbox" value="스포츠" name="interest" class="moim" <%= checked[6] %> >
+							    	<label for="sport" class="mlabel" id="sport">스포츠</label>
+							    	</div>
+							    	<div class="interestBtn">
+							    		<input type="checkbox" value="어학/취업" name="interest" class="moim" <%= checked[7] %> >
+							    	<label for="job" class="mlabel" id="job">어학/취업</label>
+							    	</div>
 						    	</div>
 						  </div>
-						  
 						  <div id="submit_wrap">
 						  	<input type="submit" value="저장하기" id="submit">
 						  </div>
@@ -127,24 +176,33 @@ button:not(#updatePwdbtn){background: green;border:1px solid #F39C12;outline: no
 			  </form>
 			  <script>
 			  	$(function(){
+			  		
 			  		// 비밀번호 변경 폼으로 이동
 			  		$('#updatePwdbtn').click(function(){
 			  			location.href="updatePwdForm.mg";
 			  		});
-			  		// 관심사 선택
-			  		$('.moim').click(function(){
-			  			var n = $('.selected').length;
-			  			if($(this).attr("class") == 'moim'){
-			  				if(n<8){
-			  				$(this).toggleClass("moim selected").css({'background':'#F39C12','color':'white'}).attr('name','interest');
-			  				}else{
-			  					alert('관심사는 4개까지 선택 가능합니다!');
-			  					return false;
-			  				}
+			  		// 관심사 선택(4개까지 선택가능)
+			  		$('.interestBtn').click(function(){
+			  			var check = $(this).children('.moim').is(':checked');
+			  			var checked = $('input:checkbox[name=interest]:checked').length;
+			  			console.log(checked);
+			  			console.log(check);
+			  			if(checked < 4) {
+				  			if(check){
+				  				 $(this).children('.moim').prop('checked',false);
+				  			}else{
+				  				 $(this).children('.moim').prop('checked',true);
+				  			}
 			  			}else{
-			  				$(this).toggleClass("moim selected").css({'background':'none','color':'#F39C12'}).attr('name','X');
+			  				if(check == false){
+			  					alert('관심사는 4개까지 선택가능합니다!');
+				  				return false;	
+			  				} else{
+			  					 $(this).children('.moim').prop('checked',false);
+			  				}
 			  			}
 			  		});
+			  		
 			  	});
 			  </script>
 		</div>

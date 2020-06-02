@@ -15,5 +15,6 @@
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/board-mapper.xml"/>
 		<mapper resource="mappers/notice-mapper.xml"/>
+		<mapper resource="mappers/mypage-mapper.xml"/>
 	</mappers>
 </configuration>

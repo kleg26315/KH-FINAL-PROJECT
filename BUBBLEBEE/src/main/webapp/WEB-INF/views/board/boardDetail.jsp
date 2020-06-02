@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BUBLEBEE</title>
     
-    <link rel = "stylesheet"  href= "<%= request.getContextPath() %>/resources/css/borderDetail1.css" type = "text/css">
+    <link rel = "stylesheet"  href= "<%= request.getContextPath() %>/resources/css/boardDetail1.css" type = "text/css">
     <link rel = "stylesheet"  href= "<%= request.getContextPath() %>/resources/css/boardDetail3.css" type = "text/css">
-   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&displ ay=swap" rel="stylesheet">
    <link rel="stylesheet"
       href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
    
@@ -263,6 +263,8 @@
             <option selected>옵션1</option>
             <option>옵션2</option>
          </select>   
+         <br>
+         <input type = "button" value = "참가하기" style = "width : 320px; height : 40px; margin-top : 70%; background-color : gold; border : none; border-radius : 2px 2px;">
       </div>
       <div class = "recommendation">
          <div class = "recommendationIntroduce">

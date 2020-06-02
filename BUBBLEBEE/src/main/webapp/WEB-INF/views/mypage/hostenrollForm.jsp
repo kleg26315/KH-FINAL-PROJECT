@@ -58,13 +58,14 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 		    <form action="" method="post">
 			   <div id="profile" class="c_list"><a>호스트 등록하기</a></div>
 				  <div id="pro_all">
+				  <input type="hidden" >
 					   <div class="pro_wrap">
 						   	<div class="title">프로필 사진</div>
-						   	<div class="p_content"><input type="text" value="" id="nickname" name="nickname"></div>
+						   	<div class="p_content"><input type="file" value="" id="profile" name="profile"></div>
 					  </div>
 					  <div class="pro_wrap">
 						   	<div class="title">전화번호 *</div>
-						   	<div class="p_content"><input type="text" id="phone" value="01090783699" name="phone"></div>
+						   	<div class="p_content"><input type="text" id="phone" value="${loginUser.phone }" name="phone"></div>
 					  </div>
 					  <div class="pro_wrap">
 						   	<div class="title">이름 *</div>
@@ -72,20 +73,26 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 					  </div>
 					  <div class="pro_wrap">
 						   	<div class="title">닉네임</div>
-						   	<div class="p_content"><input type="text" name="nickname" value="${SessionScope.loginUser.nickname }"></div>
+						   	<div class="p_content"><input type="text" name="nickname" value="${loginUser.nickName }"></div>
 					  </div>
 					  <div class="pro_wrap">
 						   	<div class="title">소개 *</div>
 						   	<div class="p_content">
-						   <textarea rows="5" cols="80"></textarea>
+						   <textarea rows="5" cols="80" style="resize: none;"></textarea>
 						   </div>
 					  </div>
 					  <div class="pro_wrap">
 						   	<div class="title">입금 계좌 *</div>
 						   	<div class="p_content">
 							<select>
-								<option>신한</option>
-								<option>국민</option>
+								<option value="no">은행선택</option>
+								<option value="KB국민">KB국민</option>
+								<option value="NH농협">NH농협</option>
+								<option value="신한">신한</option>
+								<option value="카카오뱅크">카카오뱅크</option>
+								<option value="우리">우리</option>
+								<option value="하나">하나</option>
+								<option value="IBK기업">IBK기업</option>
 							</select>
 							<input type="text" name="ac_name" placeholder="예금주명">
 							<input type="text" name="ac_num" placeholder="-를 빼고 숫자만 입력해주세요">
