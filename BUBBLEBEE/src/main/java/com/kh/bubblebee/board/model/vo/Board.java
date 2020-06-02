@@ -28,13 +28,14 @@ public class Board {
 	private String f_status; //상태
 	private String originalFileName; 
 	private String renameFileName;
+	private int maxMember; // 참여가능인원
 	
 	public Board() {}
 
 	public Board(int rnum, int fno, int ftype, int price, String small_title, String ftitle, String category,
 			String location, int lat, int lon, String fcontain, String fncontain, String fcalendar, String fmaterials,
 			String fminfo, String fprecaution, String user_id, int heart, int rsum, int rcount, Date f_create_date,
-			String f_status, String originalFileName, String renameFileName) {
+			String f_status, String originalFileName, String renameFileName, int maxMember) {
 		super();
 		this.rnum = rnum;
 		this.fno = fno;
@@ -60,6 +61,7 @@ public class Board {
 		this.f_status = f_status;
 		this.originalFileName = originalFileName;
 		this.renameFileName = renameFileName;
+		this.maxMember = maxMember;
 	}
 
 	public int getRnum() {
@@ -253,6 +255,15 @@ public class Board {
 	public void setRenameFileName(String renameFileName) {
 		this.renameFileName = renameFileName;
 	}
+	
+
+	public int getMaxMember() {
+		return maxMember;
+	}
+
+	public void setMaxMember(int maxMember) {
+		this.maxMember = maxMember;
+	}
 
 	@Override
 	public String toString() {
@@ -262,9 +273,10 @@ public class Board {
 				+ fcalendar + ", fmaterials=" + fmaterials + ", fminfo=" + fminfo + ", fprecaution=" + fprecaution
 				+ ", user_id=" + user_id + ", heart=" + heart + ", rsum=" + rsum + ", rcount=" + rcount
 				+ ", f_create_date=" + f_create_date + ", f_status=" + f_status + ", originalFileName="
-				+ originalFileName + ", renameFileName=" + renameFileName + "]";
+				+ originalFileName + ", renameFileName=" + renameFileName + ", maxMember=" + maxMember + "]";
 	}
 
+	
 	
 	
 

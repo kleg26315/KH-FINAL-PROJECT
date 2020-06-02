@@ -126,7 +126,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<input type="text" id="me" name="me" placeholder="최소 1명 이상 최대 20명 이하"  maxlength="2" value="" required >
+							<input type="text" id="maxMember" name="maxMember" placeholder="최소 1명 이상 최대 20명 이하"  maxlength="2" value="" required >
 						</td>
 					</tr>
 					
@@ -149,7 +149,7 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="text" id="op" name="op" placeholder="옵션명"  value="참가비 (1인)" required maxlength="30"> 필수입력
+							<input type="text" id="op" name="op1" placeholder="옵션명"  value="참가비 (1인)" required maxlength="30"> 필수입력
 						</td>
 						<td rowspan="2" > 
 							<button type="button" id="btn_op">옵션 추가하기</button>
@@ -265,7 +265,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" id="bIncluded" class="bText500" maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" id="bIncluded" name="bIncluded" class="bText500" maxlength="500" required></textarea>
 							<span class="btext">0</span>/500
 						</td>
 					</tr>
@@ -274,7 +274,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" id="bNcluded" class="bText500" required></textarea>
+							<textarea rows="5" cols="50" id="bNcluded" name = "bNcluded" class="bText500" required></textarea>
 							<span class="btext">0</span>/500
 						</td>
 					</tr>
