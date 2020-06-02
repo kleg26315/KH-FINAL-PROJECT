@@ -174,11 +174,20 @@
 					  
 					<!-- 슬라이더 -->
 					
-					<div id="applyb">적용하기</div>
+					<div id="applyb" onclick="searchFilter();">적용하기</div>
 					
 				</div>
 				<label for="popup"><!-- 외곽클릭 --></label>
 			</div>
+			
+			<script type="text/javascript">
+				function searchFilter(){
+					var startPrice =  $("#amount").val(ui.values[0]);
+					var endPrice = $("#amount").val(ui.values[1]);
+					
+// 					location.href="search.bo?&startPrice="+startPrice+"&endPrice="+endPrice;
+				}
+			</script>
 
       	
       	<!-- 필터버튼끝 -->
