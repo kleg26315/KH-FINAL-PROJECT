@@ -66,6 +66,6 @@
 		<if test="profile == null">
 			'https://ssl.pstatic.net/static/pwe/address/img_profile.png',
 		</if>
-		null)
+		null, null)
 	</insert>
 </mapper>
