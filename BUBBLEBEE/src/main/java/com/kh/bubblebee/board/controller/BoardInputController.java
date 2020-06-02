@@ -30,7 +30,10 @@ public class BoardInputController {
 	@Autowired
 	private BoardService bService;
 	
-
+	@RequestMapping("binsertForm.bo")
+	public String binsertForm() {
+		return "boardInput";
+	}
 	@RequestMapping("binsert.bo")
 	public String boardInsert(@ModelAttribute Board b, @RequestParam("uploadFile") List<MultipartFile> uploadFile,
 								HttpServletRequest request, @RequestParam("location") String location, 
