@@ -28,14 +28,16 @@ public class Board {
 	private String f_status; //상태
 	private String originalFileName; 
 	private String renameFileName;
+	private String introduce; // 소개
 	private int maxMember; // 참여가능인원
+	private double rank; //인기순 정렬시 기준
 	
 	public Board() {}
 
 	public Board(int rnum, int fno, int ftype, int price, String small_title, String ftitle, String category,
 			String location, int lat, int lon, String fcontain, String fncontain, String fcalendar, String fmaterials,
 			String fminfo, String fprecaution, String user_id, int heart, int rsum, int rcount, Date f_create_date,
-			String f_status, String originalFileName, String renameFileName, int maxMember) {
+			String f_status, String originalFileName, String renameFileName, String introduce, int maxMember, double rank) {
 		super();
 		this.rnum = rnum;
 		this.fno = fno;
@@ -61,7 +63,9 @@ public class Board {
 		this.f_status = f_status;
 		this.originalFileName = originalFileName;
 		this.renameFileName = renameFileName;
+		this.introduce = introduce;
 		this.maxMember = maxMember;
+		this.rank = rank;
 	}
 
 	public int getRnum() {
@@ -256,6 +260,13 @@ public class Board {
 		this.renameFileName = renameFileName;
 	}
 	
+	public String getIntroduce() {
+		return introduce;
+	}
+	
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
+	}
 
 	public int getMaxMember() {
 		return maxMember;
@@ -263,6 +274,14 @@ public class Board {
 
 	public void setMaxMember(int maxMember) {
 		this.maxMember = maxMember;
+	}
+	
+	public double getRank() {
+		return rank;
+	}
+	
+	public void setRank(double rank) {
+		this.rank = rank;
 	}
 
 	@Override
@@ -273,14 +292,8 @@ public class Board {
 				+ fcalendar + ", fmaterials=" + fmaterials + ", fminfo=" + fminfo + ", fprecaution=" + fprecaution
 				+ ", user_id=" + user_id + ", heart=" + heart + ", rsum=" + rsum + ", rcount=" + rcount
 				+ ", f_create_date=" + f_create_date + ", f_status=" + f_status + ", originalFileName="
-				+ originalFileName + ", renameFileName=" + renameFileName + ", maxMember=" + maxMember + "]";
+				+ originalFileName + ", renameFileName=" + renameFileName + ", introduce=" + introduce + ", maxMember="
+				+ maxMember + ", rank=" + rank + "]";
 	}
-
 	
-	
-	
-
-	
-	
-
 }
