@@ -35,7 +35,7 @@
 	
 	<insert id="insertBoard">
 		insert into board
-		values(seq_bid.nextval, #{FTYPE}, #{op2}, #{small_title}, #{ftitle}, #{category}, #{location}, 0, 0, 
+		values(SEQ_BOARD.nextval, #{FTYPE}, #{op2}, #{small_title}, #{ftitle}, #{category}, #{location}, 0, 0, 
 				#{bIncluded}, #{bNcluded}, #{fcalendar}, #{bMaterials}, #{fminfo}, #{bNot}, #{user_id},
 				 default, default, default, sysdate, default, #{originalFileName}, #{renameFileName}, #{editor}, #{maxMember})
 	</insert>
