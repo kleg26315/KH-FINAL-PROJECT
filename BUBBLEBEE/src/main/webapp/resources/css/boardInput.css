@@ -6,22 +6,21 @@ header{
 	}
 
 #bmain{
-		width : 58%;
-	   margin-left : 20%;
-	   height : 1980px;
-	   padding-top :80px;
+		width: 128%;
+	  
 	}	
 	
-/* table,tr,td{border:1px solid red;} */
+table,tr,td{border:1px solid red;}
 
 th{
-	width: 48%;
+	width: 60%;
 	font-size: 28px; 
 	color: gray; 
 	height: 15px;
 	 }
 	 
 .B_n{
+	width: 450px;
 	color: gray;
     font-size: 12px;
     padding : 16px;

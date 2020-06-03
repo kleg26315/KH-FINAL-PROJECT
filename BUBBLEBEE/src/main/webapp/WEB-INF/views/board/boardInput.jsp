@@ -4,27 +4,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>등록</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/boardInput.css">
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>등록Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="resources/css/boardInput.css">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
+<style>
 
+</style>
 <body>
-<header id="header">
-	<c:import url="../layout/header.jsp"/>
-</header>
+   <header id="header">
+     <c:import url="../layout/header.jsp"/>   
+      </header>
 
-	<div id="bmain">
+   <section style="padding-top: 115px; padding-left: 20%; width: 78%;">
+     <div id="bmain">
 		<main><h2>등록</h2></main>
-		<hr>
+		
 		<!-- 첨부파일 등록을 위해 Multipart/form-data encType 지정 -->
-		<form action="binsert.bo" onsubmit="return validate();" enctype="Multipart/form-data">
-			<table>
+		<form action="binsert.bo" onsubmit="return validate();" enctype="Multipart/form-data" style="width:78%">
+			<table> 
 				<tr>
 					<th colspan="2" >카테고리 설정</th>
 					<td rowspan="2">
@@ -96,7 +98,7 @@
 					
 					<tr>
 						<th colspan="2">대표 이미지</th>
-						<td rowspan="2">
+						<td rowspan="4">
 							<div class="B_n">
 								- 초상권, 저작권에 문제가 없는 이미지<br>
 								- 상업적으로 사용 가능한 이미지<br>
@@ -107,7 +109,11 @@
 					
 					<tr>
 						<td><input type="file" id="thumb_file" name="uploadFile" required></td>
+					</tr>
+					<tr>	
 						<td><input type="file" id="thumb_file" name="uploadFile"></td>
+					</tr>
+					<tr>
 						<td><input type="file" id="thumb_file" name="uploadFile" ></td>
 					</tr>
 					
@@ -136,7 +142,10 @@
 					</tr>
 					
 					<tr>
-						<th colspan="2">구매옵션</th>
+						<th >구매옵션</th>
+						<td  > 
+							<button type="button" id="btn_op">옵션 추가하기</button>
+						</td>
 						<td rowspan="3">
 							<div class="B_n">
 								<b>옵션명</b>  
@@ -150,15 +159,13 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="text" id="op" name="op1" placeholder="옵션명"  value="참가비 (1인)" required maxlength="30"> 필수입력
+							<input type="text" id="op" name="op1" placeholder="옵션명"  value="참가비 (1인)" required maxlength="30"> 
 						</td>
-						<td rowspan="2" > 
-							<button type="button" id="btn_op">옵션 추가하기</button>
-						</td>
+						
 					</tr>
 					<tr>	
 						<td>
-							<input type="text" id="op2" name="op2" placeholder="가격(5000원 이상)"  value="5000" required>원
+							<input type="text" id="op2" name="op2" placeholder="가격(5000원 이상)"  value="5000원" required>원
 						</td>
 					</tr>
 
@@ -209,7 +216,10 @@
 					</tr>
 					
 					<tr>
-						<th colspan="2">상세일정</th>
+						<th >상세일정</th>
+						<td>
+							<button type="button" id="btn_DetailSet">세부일정 추가</button>
+						</td>
 						<td rowspan="3">
 							<div class="B_n">
 								<b>소요시간별로 구체적인 일정을 상세히 적어주세요.</b><br>
@@ -227,9 +237,6 @@
 					<tr>
 						<td>
 							<input type="text" name="bTime" id="bTime" value="" placeholder="30분" required>
-						</td>
-						<td rowspan="2">
-							<button type="button" id="btn_DetailSet">세부일정 추가</button>
 						</td>
 					</tr>
 					<tr>
@@ -266,8 +273,8 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" id="bIncluded" name="bIncluded" class="bText500" maxlength="500" required></textarea>
-							<span class="btext">0</span>/500
+							<textarea rows="5" cols="50" id="bIncluded" name="bIncluded"  maxlength="500" required></textarea>
+							<span id="btext1">0</span>/500
 						</td>
 					</tr>
 					<tr>
@@ -275,8 +282,8 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" id="bNcluded" name = "bNcluded" class="bText500" required></textarea>
-							<span class="btext">0</span>/500
+							<textarea rows="5" cols="50" id="bNcluded" name = "bNcluded"  maxlength="500" required></textarea>
+							<span id="btext2">0</span>/500
 						</td>
 					</tr>
 					
@@ -309,8 +316,8 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" id="bMaterials" name="bMaterials" class="bText500" required></textarea>
-							<span class="btext">0</span>/500
+							<textarea rows="5" cols="50" id="bMaterials" name="bMaterials"  maxlength="500" required></textarea>
+							<span id="btext3">0</span>/500
 						</td>
 					</tr>
 					<tr>
@@ -320,8 +327,8 @@
 					<hr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" id="bNot" name="bNot" class="bText500" required></textarea>
-							<span class="btext">0</span>/500
+							<textarea rows="5" cols="50" id="bNot" name="bNot"  maxlength="500" required></textarea>
+							<span id="btext4">0</span>/500
 						</td>
 					</tr>
 					
@@ -368,7 +375,7 @@
 					</tr>
 					
 					<tr>
-						<th colspan="2">소개하기</th>
+						<th colspan="2">소개2</th>
 						<td rowspan="4">
 							<div class="B_n">
 								<b>클래스/모임/판매에 대해 소개해주세요.</b><br>
@@ -398,87 +405,115 @@
 				
 		</form>
 	</div>
-	
-	 <footer id="footer" style="padding-top: 115px;">
-		<c:import url="../layout/footer.jsp"/>
-	</footer>
-	
-			<script>
-				ClassicEditor
-				.create( document.querySelector( '#editor' ),{
-		             removePlugins: [ 'ImageUpload' ,'Link'],
-		             enterMode:'2',
-		             height:'200'
-				});  
-				.catch( error => {
-		            console.error( error );
-		        } );
-				
-				if(CKEDITOR.imstances.content.getDate()==""){
-					window.alert("내용을 입력해주세요");
-					return false
-				}
-			</script>
+   </section>
+   
+   <footer id="footer" >
+     <c:import url="../layout/footer.jsp"/>
+   </footer>
+   
+	<script>
+		function validate(){
+			var value1 = $('#category').val();
+			var value2 = $('#category2').val();
 			
-			<script>
-				function validate(){
-					var value1 = $('#category').val();
-					var value2 = $('#category2').val();
-					
-					if(value1 == 'no' || value2 == 'no') {
-							console.log("what");
-							alert("카테고리 설정을 완료해주세요");
-					}
-				}
-				
-				// 캐치프레이즈 20자 제한
-				$(function(){
-					$('#catch').keyup(function(e){
-						var counter = $(this).val();
-						
-						$('#counter').html(counter.length);
-						if(counter.length >= 20){
-							$('#counter').css('color', 'red');
-						}else if(counter.length < 20){
-							$('#counter').css('color', 'black');
-						}
-					});
-					$('#counter').keyup();
-				});
-				
-				// 인원수 20명 제한
-				$('#me').on('keyup', function() {
-				    if (/\D/.test(this.value)) {
-				        this.value = this.value.replace(/\D/g, '')
-				        alert('숫자만 입력가능합니다.');
-				    }
-				  if (this.value > 20) {
-				      this.value = 20;
-				      alert('20명까지만 가능합니다.');
-				  }
-				});
-				
-				//포함사항, 불포함사항, 준비물, 유의사항 500자 제한
-				$(function(){
-					$('.bText500').keyup(function(e){
-						var counter = $('.bText500').val();
-						
-						$('.btext').html(counter.length);
-						if(counter.length >= 500){
-							$('.btext').css('color', 'red');
-						}
-					});
-					$('.btext').keyup();
-				});
-			</script>
-			
+			if(value1 == 'no' || value2 == 'no') {
+					console.log("what");
+					alert("카테고리 설정을 완료해주세요");
+			}
+		}
 		
-			<script>
-				// 검색 단추를 누르면 팝업 레이어가 열리도록 설정한다.
-				$(function(){
-					$("#postcodify_search_button").postcodifyPopUp();
-				});
-			</script>
+		// 캐치프레이즈 20자 제한
+		$(function(){
+			$('#catch').keyup(function(e){
+				var counter = $(this).val();
+				
+				$('#counter').html(counter.length);
+				if(counter.length >= 20){
+					$('#counter').css('color', 'red');
+				}else if(counter.length < 20){
+					$('#counter').css('color', 'black');
+				}
+			});
+			$('#counter').keyup();
+		});
+		
+		// 인원수 20명 제한
+		$('#me').on('keyup', function() {
+		    if (/\D/.test(this.value)) {
+		        this.value = this.value.replace(/\D/g, '')
+		        alert('숫자만 입력가능합니다.');
+		    }
+		  if (this.value > 20) {
+		      this.value = 20;
+		      alert('20명까지만 가능합니다.');
+		  }
+		});
+		
+		//포함사항, 불포함사항, 준비물, 유의사항 500자 제한
+		$(function(){
+			$('#bIncluded').keyup(function(e){
+				var counter = $('#bIncluded').val();
+				
+				$('#btext1').html(counter.length);
+				if(counter.length >= 500){
+					$('#btext1').css('color', 'red');
+				}else if(counter.length < 500){
+					$('#btext1').css('color', 'black');
+				}
+			});
+			$('#btext1').keyup();
+		});
+		
+		$(function(){
+			$('#bNcluded').keyup(function(e){
+				var counter = $('#bNcluded').val();
+				
+				$('#btext2').html(counter.length);
+				if(counter.length >= 500){
+					$('#btext2').css('color', 'red');
+				}else if(counter.length < 500){
+					$('#btext2').css('color', 'black');
+				}
+			});
+			$('#btext2').keyup();
+		});
+		
+		$(function(){
+			$('#bMaterials').keyup(function(e){
+				var counter = $('#bMaterials').val();
+				
+				$('#btext3').html(counter.length);
+				if(counter.length >= 500){
+					$('#btext3').css('color', 'red');
+				}else if(counter.length < 500){
+					$('#btext3').css('color', 'black');
+				}
+			});
+			$('#btext3').keyup();
+		});
+		
+		$(function(){
+			$('#bNot').keyup(function(e){
+				var counter = $('#bNot').val();
+				
+				$('#btext4').html(counter.length);
+				if(counter.length >= 500){
+					$('#btext4').css('color', 'red');
+				}else if(counter.length < 500){
+					$('#btext4').css('color', 'black');
+				}
+			});
+			$('#btext4').keyup();
+		});
+	</script>
+	
+	
+	<script>
+		// 검색 단추를 누르면 팝업 레이어가 열리도록 설정한다.
+		$(function(){
+			$("#postcodify_search_button").postcodifyPopUp();
+		});
+	</script>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 </body>
 </html>
