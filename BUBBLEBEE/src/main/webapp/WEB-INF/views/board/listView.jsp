@@ -115,6 +115,7 @@
       	<!-- 어디서버튼 끝 -->&nbsp;&nbsp;
       	
       	<!-- 필터버튼 -->
+      	<form action="searchAll.bo">
      	<input type="checkbox" id="popup">
 			<label for="popup">필터</label>
 			<div>
@@ -129,23 +130,23 @@
 						</tr>
 						<tr>
 							<td width=300px>인기순</td>
-							<td><input type="radio" name="farray" value="hot">
+							<td><input type="radio" name="farray" value="popular">
 						</tr>
 						<tr>
 							<td>등록일순</td>
-							<td><input type="radio" name="farray" value="regist">
+							<td><input type="radio" name="farray" value="latest">
 						</tr>
 						<tr>
 							<td>평점순</td>
-							<td><input type="radio" name="farray" value="grade">
+							<td><input type="radio" name="farray" value="rate">
 						</tr>
 						<tr>
 							<td>가격높은순</td>
-							<td><input type="radio" name="farray" value="expensive">
+							<td><input type="radio" name="farray" value="highprice">
 						</tr>
 						<tr>
 							<td>가격낮은순</td>
-							<td><input type="radio" name="farray" value="cheap">
+							<td><input type="radio" name="farray" value="lowprice">
 						</tr>
 						
 						</table>
@@ -153,7 +154,7 @@
 					<hr>
 					
 					<span id="pprice">가격</span>&nbsp;&nbsp;&nbsp; <input type="text" id="amount" readonly><br><br><br>
-					
+					<input type="hidden" id="sprice" value="0"><input type="hidden" id="eprice" value="30">
 					<div id="slider" style="width: 85%;"></div>
 					
 					<!-- 슬라이더 -->
@@ -167,6 +168,8 @@
 							   values: [0, 30],
 							   slide: function(event, ui) {
 								   $("#amount").val(ui.values[0] + " ~ " + ui.values[1] + "만원 이상");
+								   $("#sprice").val(ui.values[0]);
+								   $("#eprice").val(ui.values[1]);
 							   }
 						   });
 						 } );
@@ -174,11 +177,26 @@
 					  
 					<!-- 슬라이더 -->
 					
-					<div id="applyb">적용하기</div>
+					
+					<div id="applyb" onclick="searchBoard();">적용하기</div>
 					
 				</div>
 				<label for="popup"><!-- 외곽클릭 --></label>
 			</div>
+			</form>
+			
+			<!-- 필터값넘기기 -->
+			<script>
+			function searchBoard(){
+				var a = $(':radio[name="farray"]:checked').val();
+				var startPrice = $("#sprice").val();
+				var endPrice = $("#eprice").val();
+				
+				location.href="search.bo?a="+a+"&startPrice="+startPrice+"&endPrice="+endPrice;
+			}
+			
+			
+			</script>
 
       	
       	<!-- 필터버튼끝 -->
