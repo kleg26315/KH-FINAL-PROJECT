@@ -91,9 +91,9 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
              <li id="l_slist" class="nav_li"><a href="class.ad">클래스 승인</a></li>
              <li id="l_point" class="nav_li closee"><a style="color: gold;">공지글 관리</a></li>
              	<ul id="ul_ul_list" style="visibility: visible;">
-	             	<li id="l_like" class="nav_sub_li"><a href="noticeInsertView.ad" style="color: gold;">공지글 작성</a></li>
+	             	<li id="l_like" class="nav_sub_li"><a href="noticeInsertView.ad">공지글 작성</a></li>
 	             	<li id="l_like" class="nav_sub_li"><a href="list.no">공지글 목록</a></li>
-	             	<li id="l_like" class="nav_sub_li"><a href="FAQInsertView.ad">FAQ 작성</a></li>
+	             	<li id="l_like" class="nav_sub_li"><a href="FAQInsertView.ad" style="color: gold;">FAQ 작성</a></li>
 	             	<li id="l_like" class="nav_sub_li"><a href="#">FAQ 목록</a></li>
              	</ul>
 		</ul>
@@ -110,11 +110,20 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 			  })
 			})
 		</script>
-		
        <div id="c_body">
           <div id="content_list">
-          	 <form action="insert.no" id="frm" method="post">
-	             <input type="text" id="title" name="title" placeholder="제목" style="height: 40px;" size="50"><br><br>
+          	 <form action="insertFAQ.no" id="frm" method="post">
+	             <input type="text" id="title" name="title" placeholder="제목" style="height: 40px;" size="50">
+	             <select name="btype" id="btype" style="height: 40px; float: right;">
+				   <option value="0" selected disabled>카테고리 선택</option>
+				   <option value="2">이용안내</option>
+				   <option value="3">회원정보</option>
+				   <option value="4">결제/환불</option>
+				   <option value="5">마일리지</option>
+				   <option value="6">호스트 신청</option>
+				   <option value="7">기타</option>
+				 </select>
+	             <br><br>
 	             <textarea id="smartEditor" name="content" rows="20" cols="" style="width: 100%;"></textarea>
 	             <button class="agreeBtn" type="button">취소</button>
 	             <button class="agreeBtn" id="save" type="button">저장</button>
@@ -153,14 +162,18 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 				alert('제목을 입력해주세요');
 				$('#title').focus();
 				return;
+			} else if($('#btype').val() == null){
+				alert('카테고리를 선택해주세요');
+				$('#btype').focus();
+				return;
 			} else if( smartEditor == ""  || smartEditor == null || smartEditor == '&nbsp;' || smartEditor == '<p>&nbsp;</p>' || smartEditor== '<p><br></p>')  {
 	             alert("내용을 입력하세요.");
 	             oEditors.getById["smartEditor"].exec("FOCUS"); //포커싱
 	             return;
 			} else{
-				var result = confirm('정말로 공지사항 등록하시겠습니까?');
+				var result = confirm('정말로 FAQ를 등록하시겠습니까?');
 				if(result){
-					alert('공지사항 등록 완료');
+					alert('FAQ 등록 완료');
 					$('#frm').submit();			
 				} else{
 					alert('등록을 취소합니다.');
