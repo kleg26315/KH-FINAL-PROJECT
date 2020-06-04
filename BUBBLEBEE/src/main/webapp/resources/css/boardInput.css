@@ -1,5 +1,13 @@
 *{	font-family: 'Noto Sans KR', sans-serif;}
 
+button, input{
+		outline: none;
+		    height: 40px;
+}
+textarea{
+	outline: none;
+	resize: none;
+}
 header{
 	   position: fixed;
 	   width : 100%;
@@ -10,7 +18,7 @@ header{
 	  
 	}	
 	
-table,tr,td{border:1px solid red;}
+/* table,tr,td{border:1px solid red;} */
 
 th{
 	width: 60%;
@@ -23,13 +31,13 @@ th{
 	width: 450px;
 	color: gray;
     font-size: 12px;
-    padding : 16px;
+    padding : 5px;
     height: 100%;
     line-height: 1.83;
     padding-left: 35px;
 }
 
-#catch, #title, #me, #op, #op2, #bTime, #bDetail, #b_Qt, #b_An
+#catch, #title, #me, .op, .op2, .bTime, .bDetail, .b_Qt, .b_An
 {
 	width:417px;
 }
