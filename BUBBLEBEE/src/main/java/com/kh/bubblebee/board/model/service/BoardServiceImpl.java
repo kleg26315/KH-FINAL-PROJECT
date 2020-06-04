@@ -49,8 +49,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int getSearchListCount(SearchCondition sc) {
-		return bDAO.getSearchListCount(sqlSession, sc);
+	public int getSearchListCount(HashMap<String, Object> map) {
+		return bDAO.getSearchListCount(sqlSession, map);
 	}
 
 	@Override

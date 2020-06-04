@@ -42,8 +42,8 @@ public class BoardDAO {
 		return sqlSession.insert("boardMapper.insertBoardOption", b);
 	}
 
-	public int getSearchListCount(SqlSessionTemplate sqlSession, SearchCondition sc) {
-		return sqlSession.selectOne("boardMapper.getSearchListCount", sc);
+	public int getSearchListCount(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		return sqlSession.selectOne("boardMapper.getSearchListCount", map);
 	}
 
 	public ArrayList<Board> selectSearchList(SqlSessionTemplate sqlSession, HashMap<String, Object> map, PageInfo pi) {

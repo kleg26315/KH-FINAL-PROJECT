@@ -20,7 +20,7 @@ public interface BoardService {
 
 	int insertBoard(Board b);
 
-	int getSearchListCount(SearchCondition sc);
+	int getSearchListCount(HashMap<String, Object> map);
 
 	ArrayList<Board> selectSearchList(HashMap<String, Object> map, PageInfo pi);
 	
