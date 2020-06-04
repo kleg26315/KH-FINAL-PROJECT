@@ -10,7 +10,7 @@ public class AdminController {
 	
 	@RequestMapping("adminPageView.ad")
 	public String adminPageView() {
-		return "adminPage";
+		return "adminPage_account";
 	}
 	
 	@RequestMapping("account.ad")
