@@ -45,17 +45,17 @@ public class BoardSearchController {
 			}
 		}
 		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("cate", cate);
+		map.put("sc", sc);
+		
 		int currentPage = 1;
 		if(page!=null) {
 			currentPage = page;
 		}
-		
-		int listCount = bService.getSearchListCount(sc);
+	
+		int listCount = bService.getSearchListCount(map);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-		
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("cate", cate);
-		map.put("sc", sc);
 		
 		ArrayList<Board> list = bService.selectSearchList(map, pi);
 		
