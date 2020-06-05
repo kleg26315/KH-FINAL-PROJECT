@@ -115,7 +115,6 @@
       	<!-- 어디서버튼 끝 -->&nbsp;&nbsp;
       	
       	<!-- 필터버튼 -->
-      	<form action="searchAll.bo">
      	<input type="checkbox" id="popup">
 			<label for="popup">필터</label>
 			<div>
@@ -167,7 +166,7 @@
 							   max: 30,
 							   values: [0, 30],
 							   slide: function(event, ui) {
-								   $("#amount").val(ui.values[0] + " ~ " + ui.values[1] + "만원 이상");
+								   $("#amount").val(ui.values[0] + " ~ " + ui.values[1] + "만원");
 								   $("#sprice").val(ui.values[0]);
 								   $("#eprice").val(ui.values[1]);
 							   }
@@ -183,7 +182,6 @@
 				</div>
 				<label for="popup"><!-- 외곽클릭 --></label>
 			</div>
-			</form>
 			
 			<!-- 필터값넘기기 -->
 			<script>
