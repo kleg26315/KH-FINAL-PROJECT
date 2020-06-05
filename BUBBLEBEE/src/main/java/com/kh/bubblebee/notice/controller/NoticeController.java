@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.kh.bubblebee.board.model.exception.BoardException;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.common.Pagination;
 import com.kh.bubblebee.notice.model.exception.NoticeException;
@@ -42,7 +40,7 @@ public class NoticeController {
 			mv.addObject("pi", pi);
 			mv.setViewName("noticeList");
 		} else {
-			throw new NoticeException("게시글 전체 조회에 실패했습니다.");
+			throw new NoticeException("공지사항 조회에 실패했습니다.");
 		}
 		
 		return mv;

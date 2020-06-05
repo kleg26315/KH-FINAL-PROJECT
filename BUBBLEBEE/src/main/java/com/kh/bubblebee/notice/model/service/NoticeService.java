@@ -14,5 +14,4 @@ public interface NoticeService {
 	int getNoticeListCount();
 
 	ArrayList<Notice> selectNoticeList(PageInfo pi);
-
 }
