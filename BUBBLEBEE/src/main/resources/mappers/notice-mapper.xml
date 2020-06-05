@@ -5,4 +5,17 @@
 		insert into notice
 		values(SEQ_NOTICE.nextval, 1, #{title}, #{content}, 0, sysdate, sysdate, default, 'admin@admin.admin')
 	</insert>
+	
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from notice
+		where b_status='Y'
+	</select>
+	
+	<select id="selectList" resultType="Notice">
+		select *
+		from notice
+		where b_status='Y'
+		order by bno desc
+	</select>
 </mapper>
