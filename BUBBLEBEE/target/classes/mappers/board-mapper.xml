@@ -63,7 +63,7 @@
 		    	heart desc
 		    </if>
 		    <if test='sc.latest != null'>
-		    	heart f_create_date desc
+		    	f_create_date desc
 		    </if>
 		    <if test='sc.rate != null'>
 		    	(rsum/rcount) desc
