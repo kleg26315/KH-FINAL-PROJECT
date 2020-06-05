@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.bubblebee.board.model.exception.BoardException;
-import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.common.Pagination;
 import com.kh.bubblebee.notice.model.exception.NoticeException;
 import com.kh.bubblebee.notice.model.service.NoticeService;
+import com.kh.bubblebee.notice.model.vo.Notice;
 
 @Controller
 public class NoticeController {
@@ -34,7 +33,7 @@ public class NoticeController {
 		int listCount = nService.getListCount();
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		ArrayList<Board> list = nService.selectList(pi);
+		ArrayList<Notice> list = nService.selectList(pi);
 				
 		if(list != null) {
 			mv.addObject("list", list);

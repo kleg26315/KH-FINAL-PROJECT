@@ -2,8 +2,8 @@ package com.kh.bubblebee.notice.model.service;
 
 import java.util.ArrayList;
 
-import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.common.PageInfo;
+import com.kh.bubblebee.notice.model.vo.Notice;
 
 public interface NoticeService {
 
@@ -11,6 +11,6 @@ public interface NoticeService {
 
 	int getListCount();
 
-	ArrayList<Board> selectList(PageInfo pi);
+	ArrayList<Notice> selectList(PageInfo pi);
 
 }

@@ -6,9 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.notice.model.dao.NoticeDAO;
+import com.kh.bubblebee.notice.model.vo.Notice;
 
 @Service("nService")
 public class NoticeServiceImpl implements NoticeService{
@@ -30,7 +30,7 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public ArrayList<Board> selectList(PageInfo pi) {
+	public ArrayList<Notice> selectList(PageInfo pi) {
 		return nDAO.selectNotice(sqlSession, pi);
 	}
 	

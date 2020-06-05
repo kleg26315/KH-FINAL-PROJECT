@@ -3,7 +3,7 @@
 div.main{
    width : 58%;
    margin-left : 20%;
-   height : 600px;
+   height : 1500px;
    padding-top:30px;      
 }
 
@@ -25,5 +25,6 @@ header{
    width : 100%;
 }
 
-#updB{font-size:14px; margin-left:680px;display:inline-block; background-color:lightgray; border-radius: 5px; width:50px; hieght:20px; padding:3px; text-align:center;}
+#con{padding:10px;}
+#updB{font-size:14px; margin-left:940px;display:inline-block; background-color:lightgray; border-radius: 5px; width:50px; hieght:20px; padding:3px; text-align:center;}
 #delB{font-size:14px; display:inline-block; background-color:lightgray; border-radius: 5px; width:50px; hieght:20px; padding:3px; text-align:center;}

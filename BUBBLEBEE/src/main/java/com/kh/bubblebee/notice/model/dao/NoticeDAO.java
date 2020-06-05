@@ -7,8 +7,8 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.common.PageInfo;
+import com.kh.bubblebee.notice.model.vo.Notice;
 
 @Repository("nDAO")
 public class NoticeDAO {
@@ -24,7 +24,7 @@ public class NoticeDAO {
 		return sqlSession.selectOne("noticeMapper.getListCount");
 	}
 
-	public ArrayList<Board> selectNotice(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<Notice> selectNotice(SqlSessionTemplate sqlSession, PageInfo pi) {
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
