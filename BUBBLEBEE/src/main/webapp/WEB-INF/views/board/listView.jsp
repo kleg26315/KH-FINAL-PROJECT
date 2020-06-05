@@ -181,7 +181,7 @@
 					
 				</div>
 				<label for="popup"><!-- 외곽클릭 --></label>
-			</div>
+			</div><br><br>
 			
 			<!-- 필터값넘기기 -->
 			<script>
