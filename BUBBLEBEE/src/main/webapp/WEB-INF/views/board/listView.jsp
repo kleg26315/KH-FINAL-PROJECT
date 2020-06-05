@@ -191,8 +191,7 @@
 				var a = $(':radio[name="farray"]:checked').val();
 				var startPrice = $("#sprice").val();
 				var endPrice = $("#eprice").val();
-				
-				location.href="search.bo?a="+a+"&startPrice="+startPrice+"&endPrice="+endPrice;
+				location.href="search.bo?cate="+'${cate}'+"&a="+a+"&startPrice="+startPrice+"&endPrice="+endPrice;
 			}
 			
 			

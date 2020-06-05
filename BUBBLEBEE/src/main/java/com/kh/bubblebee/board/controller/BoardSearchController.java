@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,6 +16,7 @@ import com.kh.bubblebee.board.model.vo.SearchCondition;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.common.Pagination;
 
+@Controller
 public class BoardSearchController {
 	
 	@Autowired
@@ -25,13 +27,14 @@ public class BoardSearchController {
 		
 		SearchCondition sc = new SearchCondition();
 		
-		if(startPrice == 0) {
+		String sp = startPrice+"0000";
+		String ep = endPrice+"0000";
+		startPrice = Integer.parseInt(sp);
+		endPrice = Integer.parseInt(ep);
+		
+		if(startPrice == 0 && a!= null) {
 			sc.setStartPrice(0);
-		} else if(startPrice != 0) {
-			sc.setStartPrice(startPrice);
-		} else if(endPrice != 0) {
 			sc.setEndPrice(endPrice);
-		} else if(a!=null) {
 			if(a.equals("popular")) {
 				sc.setPopular(a);
 			} else if(a.equals("latest")) {
@@ -43,11 +46,31 @@ public class BoardSearchController {
 			} else if(a.equals("lowprice")) {
 				sc.setLowprice(a);
 			}
-		}
+		} else if(startPrice != 0 && a!= null) {
+			sc.setStartPrice(startPrice);
+			sc.setEndPrice(endPrice);
+			if(a.equals("popular")) {
+				sc.setPopular(a);
+			} else if(a.equals("latest")) {
+				sc.setLatest(a);
+			} else if(a.equals("rate")) {
+				sc.setRate(a);
+			} else if(a.equals("highprice")) {
+				sc.setHighprice(a);
+			} else if(a.equals("lowprice")) {
+				sc.setLowprice(a);
+			}
+		} 
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("cate", cate);
 		map.put("sc", sc);
+				
+		SearchCondition test = (SearchCondition)map.get("sc");
+		String test2 = test.getPopular();
+		
+		System.out.println("컨트롤러1:"+ test );
+		System.out.println("컨트롤러2:"+ test2 );
 		
 		int currentPage = 1;
 		if(page!=null) {
@@ -55,10 +78,10 @@ public class BoardSearchController {
 		}
 	
 		int listCount = bService.getSearchListCount(map);
+		System.out.println(listCount);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Board> list = bService.selectSearchList(map, pi);
-		
 		
 		if(list != null) {
 			mv.addObject("cate", cate);

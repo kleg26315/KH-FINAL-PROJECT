@@ -44,4 +44,37 @@
 		insert into choose
 		values(SEQ_CHOOSE.nextval, #{category}, #{op1}, #{op2}, 0, SEQ_BOARD.currval);
 	</insert>
+	
+	<select id="getSearchListCount" resultType="_int">
+		select count(*)
+		from board
+		where f_status='Y' and category=#{cate} and 
+		<![CDATA[ 
+			price>=#{sc.startPrice} and price<=#{sc.endPrice}
+		 ]]>
+	</select>
+	
+	<select id="selectSearchList" parameterType="map" resultType="Board">
+		select *
+		from blist
+		where f_status='Y' and category=#{cate}
+		  <trim prefix="order by" prefixOverrides="AND|OR">
+			<if test='sc.popular != null'>
+		    	heart desc
+		    </if>
+		    <if test='sc.latest != null'>
+		    	heart f_create_date desc
+		    </if>
+		    <if test='sc.rate != null'>
+		    	(rsum/rcount) desc
+		    </if>
+		    <if test='sc.highprice != null'>
+		    	price desc
+		    </if>
+		    <if test='sc.lowprice != null'>
+		    	price
+		    </if>
+		  </trim>   
+	</select>
+	
 </mapper>
