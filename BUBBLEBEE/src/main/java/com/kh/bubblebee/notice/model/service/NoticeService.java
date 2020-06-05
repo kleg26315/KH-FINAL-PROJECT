@@ -9,8 +9,9 @@ public interface NoticeService {
 
 	int insertNotice(String title, String content);
 
-	int getListCount();
+	int insertFAQ(String title, String content, int btype);
 
-	ArrayList<Notice> selectList(PageInfo pi);
+	int getNoticeListCount();
 
+	ArrayList<Notice> selectNoticeList(PageInfo pi);
 }

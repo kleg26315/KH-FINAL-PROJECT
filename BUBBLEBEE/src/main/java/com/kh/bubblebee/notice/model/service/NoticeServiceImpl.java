@@ -25,13 +25,18 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public int getListCount() {
-		return nDAO.getNoticeCount(sqlSession);
+	public int insertFAQ(String title, String content, int btype) {
+		return nDAO.insertFAQ(sqlSession, title, content, btype);
 	}
 
 	@Override
-	public ArrayList<Notice> selectList(PageInfo pi) {
-		return nDAO.selectNotice(sqlSession, pi);
+	public int getNoticeListCount() {
+		return nDAO.getNoticeListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Notice> selectNoticeList(PageInfo pi) {
+		return nDAO.selectNoticeList(sqlSession, pi);
 	}
 	
 }

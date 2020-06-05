@@ -7,7 +7,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>내 좋아요</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <style>
 section hr{margin-top: 40px;margin-bottom: 40px;border: 0;border-top: 1px solid #eee;}
@@ -107,7 +106,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 		</script>
        <div id="c_body">
           <div id="content_list">
-             <table class="table table-hover" style="table-layout: fixed;">
+             <table id="table1" class="table table-hover" style="table-layout: fixed;">
              	<thead>
              	<tr>
              		<th style="width: 11%">정산 요청일</th>
@@ -176,6 +175,10 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
              	</tr>
              	</tbody>
              </table>
+             <iframe id="txtArea1" style="display:none"></iframe>
+				
+			<input type='button' class='btn btn-inverse' value='excel 다운' style='width:100px;height:36px;font-weight:bold; float:right;' onclick="ReportToExcelConverter()" />
+			<br><br> 
              <div class="text-center">
              	<ul class="pagination">
              		<li><a href="#">&lt;</a></li>
@@ -196,6 +199,19 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
      <c:import url="../layout/footer.jsp"/>
    </footer>
    
-   
+   <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery-1.11.0.js"></script>
+   <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery.table2excel.js"></script>
+   <script> 
+		function ReportToExcelConverter(){
+			$("#table1").table2excel({
+				name: "Excel Document Name",
+				filename: "report",
+				fileext: ".xls",
+				exclude_img: true,
+				exclude_links: true,
+				exclude_inputs: true
+			});
+		};
+	</script>
 </body>
 </html>

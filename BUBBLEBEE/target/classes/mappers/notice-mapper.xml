@@ -6,16 +6,32 @@
 		values(SEQ_NOTICE.nextval, 1, #{title}, #{content}, 0, sysdate, sysdate, default, 'admin@admin.admin')
 	</insert>
 	
-	<select id="getListCount" resultType="_int">
+	<insert id="insertFAQ">
+		insert into notice
+		values(SEQ_NOTICE.nextval, #{btype}, #{title}, #{content}, 0, sysdate, sysdate, default, 'admin@admin.admin')
+	</insert>
+	
+	<select id="getNoticeListCount" resultType="_int">
 		select count(*)
 		from notice
-		where b_status='Y'
+		where b_status = 'Y' and btype = 1
 	</select>
 	
-	<select id="selectList" resultType="Notice">
-		select *
-		from notice
-		where b_status='Y'
+	<select id="selectNoticeList" resultMap="noticeResultSet">
+		select * from notice
+		where b_status = 'Y' and btype = 1
 		order by bno desc
 	</select>
+	
+	<resultMap type="Notice" id="noticeResultSet">
+		<id property="bno" column="BNO"/>
+		<result property="btype" column="BTYPE"/>
+		<result property="btitle" column="BTITLE"/>
+		<result property="bcontent" column="BCONTENT"/>
+		<result property="bcount" column="BCOUNT"/>
+		<result property="b_create_date" column="B_CREATE_DATE"/>
+		<result property="b_modify_date" column="B_MODIFY_DATE"/>
+		<result property="b_status" column="B_STATUS"/>
+		<result property="user_id" column="USER_ID"/>
+	</resultMap>
 </mapper>
