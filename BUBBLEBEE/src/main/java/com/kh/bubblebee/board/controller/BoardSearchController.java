@@ -66,19 +66,13 @@ public class BoardSearchController {
 		map.put("cate", cate);
 		map.put("sc", sc);
 				
-		SearchCondition test = (SearchCondition)map.get("sc");
-		String test2 = test.getPopular();
-		
-		System.out.println("컨트롤러1:"+ test );
-		System.out.println("컨트롤러2:"+ test2 );
-		
 		int currentPage = 1;
 		if(page!=null) {
 			currentPage = page;
 		}
 	
 		int listCount = bService.getSearchListCount(map);
-		System.out.println(listCount);
+//		System.out.println(listCount);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Board> list = bService.selectSearchList(map, pi);

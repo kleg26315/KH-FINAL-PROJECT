@@ -57,10 +57,13 @@
 	<select id="selectSearchList" parameterType="map" resultType="Board">
 		select *
 		from blist
-		where f_status='Y' and category=#{cate}
+		where f_status='Y' and category=#{cate} and 
+		<![CDATA[ 
+			price>=#{sc.startPrice} and price<=#{sc.endPrice}
+		 ]]>
 		  <trim prefix="order by" prefixOverrides="AND|OR">
 			<if test='sc.popular != null'>
-		    	heart desc
+		    	round(rcount / (select max(rcount) from board) * (rsum/rcount),2) desc
 		    </if>
 		    <if test='sc.latest != null'>
 		    	f_create_date desc
