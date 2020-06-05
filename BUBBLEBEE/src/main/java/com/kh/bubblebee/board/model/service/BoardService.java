@@ -10,7 +10,7 @@ import com.kh.bubblebee.common.PageInfo;
 
 public interface BoardService {
 
-	int getListCount();
+	int getListCount(String cate);
 
 	ArrayList<Board> selectList(PageInfo pi, String cate);
 

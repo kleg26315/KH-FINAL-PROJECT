@@ -23,8 +23,8 @@ public class BoardServiceImpl implements BoardService {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public int getListCount() {
-		return bDAO.getListCount(sqlSession);
+	public int getListCount(String cate) {
+		return bDAO.getListCount(sqlSession, cate);
 	}
 
 	@Override

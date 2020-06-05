@@ -15,7 +15,7 @@ import com.kh.bubblebee.common.PageInfo;
 @Repository("bDAO")
 public class BoardDAO {
 
-	public int getListCount(SqlSessionTemplate sqlSession) {
+	public int getListCount(SqlSessionTemplate sqlSession, String cate) {
 		return sqlSession.selectOne("boardMapper.getListCount");
 	}
 

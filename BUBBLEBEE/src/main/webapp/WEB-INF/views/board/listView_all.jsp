@@ -161,23 +161,23 @@
 						</tr>
 						<tr>
 							<td width=300px>인기순</td>
-							<td><input type="radio" name="farray" value="hot">
+							<td><input type="radio" name="farray" value="popular">
 						</tr>
 						<tr>
 							<td>등록일순</td>
-							<td><input type="radio" name="farray" value="regist">
+							<td><input type="radio" name="farray" value="latest">
 						</tr>
 						<tr>
 							<td>평점순</td>
-							<td><input type="radio" name="farray" value="grade">
+							<td><input type="radio" name="farray" value="rate">
 						</tr>
 						<tr>
 							<td>가격높은순</td>
-							<td><input type="radio" name="farray" value="expensive">
+							<td><input type="radio" name="farray" value="highprice">
 						</tr>
 						<tr>
 							<td>가격낮은순</td>
-							<td><input type="radio" name="farray" value="cheap">
+							<td><input type="radio" name="farray" value="lowprice">
 						</tr>
 						
 						</table>

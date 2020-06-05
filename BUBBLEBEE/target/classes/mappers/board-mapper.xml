@@ -5,7 +5,7 @@
 	<select id="getListCount" resultType="_int">
 		select count(*)
 		from board
-		where f_status='Y'
+		where f_status='Y' and category=#{cate}
 	</select>
 	
 	<select id="selectList" resultType="Board">
