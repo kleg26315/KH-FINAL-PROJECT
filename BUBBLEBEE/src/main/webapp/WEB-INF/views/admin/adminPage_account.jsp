@@ -88,7 +88,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 	             	<li id="l_like" class="nav_sub_li"><a href="noticeInsertView.ad">공지글 작성</a></li>
 	             	<li id="l_like" class="nav_sub_li"><a href="list.no">공지글 목록</a></li>
 	             	<li id="l_like" class="nav_sub_li"><a href="FAQInsertView.ad">FAQ 작성</a></li>
-	             	<li id="l_like" class="nav_sub_li"><a href="#">FAQ 목록</a></li>
+	             	<li id="l_like" class="nav_sub_li"><a href="FAQList.no">FAQ 목록</a></li>
              	</ul>
 		</ul>
 		<script>

@@ -38,5 +38,20 @@ public class NoticeServiceImpl implements NoticeService{
 	public ArrayList<Notice> selectNoticeList(PageInfo pi) {
 		return nDAO.selectNoticeList(sqlSession, pi);
 	}
+
+	@Override
+	public int getFAQListCount() {
+		return nDAO.getFAQListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Notice> selectFAQList(PageInfo pi) {
+		return nDAO.selectFAQList(sqlSession, pi);
+	}
+
+	@Override
+	public ArrayList<Notice> selectFAQFilterList(String number) {
+		return nDAO.selectFAQFilterList(sqlSession, number);
+	}
 	
 }

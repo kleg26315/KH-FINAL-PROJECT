@@ -39,4 +39,19 @@ public class NoticeDAO {
 		return (ArrayList)sqlSession.selectList("noticeMapper.selectNoticeList", null, rowBounds);
   }
 
+	public int getFAQListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("noticeMapper.getFAQListCount");
+	}
+
+	public ArrayList<Notice> selectFAQList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage() -1 ) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectFAQList", null, rowBounds);
+	}
+
+	public ArrayList<Notice> selectFAQFilterList(SqlSessionTemplate sqlSession, String number) {
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectFAQFilterList", number);
+	}
+
 }
