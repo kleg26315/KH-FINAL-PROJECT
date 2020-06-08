@@ -80,15 +80,9 @@
       <!-- 상세보기 -->
       <div class = "hashTag">
             <!-- 해시태그 내용들 -->
-            <div class = "hashTagTag">
-               #제압 #특강
-            </div>
-            <div class = "hashTagTitle">
-               상대를 제압하는 법
-            </div>
-            <div class = "hashTagPrice">
-               180,000원
-            </div>
+            <div class = "hashTagTag">${ b.small_title }</div>
+            <div class = "hashTagTitle">${ b.ftitle }</div>
+            <div class = "hashTagPrice">${ b.price }</div>
             <hr>
             <div>
                <div> 좋아요 누른 인원 + 명이 좋아한 모임</div>
@@ -98,15 +92,14 @@
             </div>
             <hr>
             <div>
-               <div class = "hashTagHostTitle">
-                  호스트
-               </div> <!-- 호스트 -->
+            	<!-- 호스트 -->
+               <div class = "hashTagHostTitle">호스트</div>
+               <!-- 호스트 프로필 --> 
                <div class = "hashTagHostImage">
-                  <img class = "hashTagHostImageContent" src = "<%=request.getContextPath()%>/resources/images/4.jpg">
-               </div>   <!-- 호스트 프로필 -->
-               <div class = "hashTagHostName">
-                  창렬이형
-               </div> <!-- 호스트명 -->
+                  <img class = "hashTagHostImageContent" src="${ host.profile }">
+               </div>   
+               <!-- 호스트명 -->
+               <div class = "hashTagHostName">${ host.userName }</div> 
                <div class = "hashTagHostLike">
                   클래스 18 | 좋아요 1818
                </div> <!-- 해당 호스트가 개설한 클래스개수 | 좋아요 수  -->
@@ -123,7 +116,7 @@
                   호스트 후기
                </div>
                <div class = "hashTagHostImage2">
-                  <img class = "hashTagHostImageContent" src = "<%=request.getContextPath()%>/resources/images/석천이형.png">
+                  <img class = "hashTagHostImageContent" src="">
                </div>
                <div class = "hashTagHostName">
                   석쵸니
@@ -140,11 +133,11 @@
                </div>
                <div class = "hashTagHostReviewLike">
                   <div class = "hashTagHostReviewLikeIn">
-                     도움이 됐어요 (thumbsup)
+                     도움이 됐어요 (굿)
                   </div>
                </div>
                <div class = "hashTagHostReviewImage">
-                  <img class = "hashTagHostImageContent" src = "<%=request.getContextPath()%>/resources/images/석천과친구들.png">
+                  <img class = "hashTagHostImageContent" src="<%=request.getContextPath()%>/resources/images/석천과친구들.png">
                </div>   
                <div class ="hashTagHostReviewInfo">
                   <input class = "hashTagHostInfoInBtn" type = "button" value = "1818개 후기 모두 보기">
@@ -156,7 +149,7 @@
                   클래스 소개
                </div>
                <div class = "hashTagIntroduceContent">
-                  클래스 내용
+                  ${ b.introduce }
                </div>
                <div style = "float : left; width : 100%; height : 20px;">
                   <hr style = "border : 0.5px solid lightgray">
@@ -165,8 +158,16 @@
                   포함 사항
                </div>
                <div class = "hashTagContainContent">
-                  야구배트(알루미늄) <br>
-                  합의금
+                  ${ b.fcontain }
+               </div>
+               <div style = "float : left; width : 100%; height : 20px;">
+                  <hr style = "border : 0.5px solid lightgray">
+               </div>
+               <div class = "hashTagContain">
+                  불포함 사항
+               </div>
+               <div class = "hashTagContainContent">
+                  ${ b.fncontain }
                </div>
                <div style = "float : left; width : 100%; height : 20px;">
                   <hr style = "border : 0.5px solid lightgray">
@@ -175,7 +176,7 @@
                   세부 사항
                </div>
                <div class = "hashTagDetailContent">
-                  약 18시간 &nbsp;&nbsp;&nbsp; 제압술 체험   
+                  
                </div>
                <div style = "float : left; width : 100%; height : 20px;">
                   <hr style = "border : 0.5px solid lightgray">

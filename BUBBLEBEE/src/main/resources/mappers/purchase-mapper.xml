@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "purchaseMapper">
+
+	<resultMap type = "Purchase" id = "purchaseResultSet">
+		<id property = "oNo" column = "ONO"/>
+		<result property = "oCategory" column = "OCATEGORY"/>
+		<result property = "oName" column = "ONAME"/>
+		<result property = "oCost" column = "OCOST"/>
+		<result property = "oCount" column = "OCOUNT"/>
+		<result property = "fNo" column = "FNO"/>
+	</resultMap>	
+
+	<insert id = "insertOption">
+		insert into choose
+		values(#{oNo},#{oCategory},#{oName},#{oCost},#{oCount},#{fNo})
+	</insert>
+	
+	<select id = "thisView" resultType = "Board">
+		select * 
+		from board
+		where fno = #{Fno}
+	</select>
+
+
+
+</mapper>

@@ -67,7 +67,7 @@ public class BoardController {
 		}
 		
 		return mv;
-	}
+	}              
 	
 	@RequestMapping("detail.bo")
 	public String detailView(@RequestParam("fno") int fno, @RequestParam("page") int page) {

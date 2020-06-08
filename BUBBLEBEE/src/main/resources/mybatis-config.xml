@@ -9,10 +9,12 @@
 		<typeAlias type="com.kh.bubblebee.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.bubblebee.board.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.kh.bubblebee.board.model.vo.Review" alias="Review"/>
+		<typeAlias type="com.kh.bubblebee.purchase.model.vo.Purchase" alias="Purchase"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/board-mapper.xml"/>
+		<mapper resource="mappers/purchase-mapper.xml"/>
 	</mappers>
 </configuration>
