@@ -368,7 +368,7 @@
         <script>
         $(document).ready(function () {
 			
-        	var fno = #{'#bfno'}.val();
+        	var fno = ${'#bfno'}.val();
             var heartyn; //select해온 값넣기
 
             if(heartyn==null) {
