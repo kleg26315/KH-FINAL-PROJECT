@@ -96,15 +96,15 @@
                <div class = "hashTagHostTitle">호스트</div>
                <!-- 호스트 프로필 --> 
                <div class = "hashTagHostImage">
-                  <img class = "hashTagHostImageContent" src="${ host.profile }">
+                  <img class = "hashTagHostImageContent" src="${ host.member.profile }">
                </div>   
                <!-- 호스트명 -->
-               <div class = "hashTagHostName">${ host.userName }</div> 
+               <div class = "hashTagHostName">${ host.member.userName }</div> 
                <div class = "hashTagHostLike">
                   클래스 18 | 좋아요 1818
                </div> <!-- 해당 호스트가 개설한 클래스개수 | 좋아요 수  -->
                <div class = "hashTagHostInfo">
-                  상대를 제압하는 기술, <br> 간단하지만 효과적이며,...
+                  ${ host.introduction }
                </div> <!-- 호스트 소개 -->
                <div class = "hashTagHostInfoIn">
                   <input class = "hashTagHostInfoInBtn" type = "button" value = "호스트 프로필">

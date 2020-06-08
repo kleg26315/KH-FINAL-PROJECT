@@ -2,6 +2,8 @@ package com.kh.bubblebee.host.model.vo;
 
 import java.sql.Date;
 
+import com.kh.bubblebee.member.model.vo.Member;
+
 public class Host {
 	
 	private String id; // 회원 아이디
@@ -11,14 +13,14 @@ public class Host {
 	private String ac_name; // 예금주
 	private String ac_no; // 계좌번호
 	private String introduction; // 호스트 소개
-	private String hprofile;
+	private Member member;
 	
 	
 	public Host() {}
 
 
 	public Host(String id, int fid, Date enroll_date, String ac_bname, String ac_name, String ac_no,
-			String introduction, String hprofile) {
+			String introduction, Member member) {
 		super();
 		this.id = id;
 		this.fid = fid;
@@ -27,7 +29,7 @@ public class Host {
 		this.ac_name = ac_name;
 		this.ac_no = ac_no;
 		this.introduction = introduction;
-		this.hprofile = hprofile;
+		this.member = member;
 	}
 
 
@@ -100,18 +102,18 @@ public class Host {
 		this.introduction = introduction;
 	}
 	
-	public String gethprofile() {
-		return hprofile;
+	public Member getMember() {
+		return member;
 	}
 	
-	public void sethprofile(String hprofile) {
-		this.hprofile = hprofile;
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 	@Override
 	public String toString() {
 		return "Host [id=" + id + ", fid=" + fid + ", enroll_date=" + enroll_date + ", ac_bname=" + ac_bname
-				+ ", ac_name=" + ac_name + ", ac_no=" + ac_no + ", introduction=" + introduction + ", hprofile" + "]";
+				+ ", ac_name=" + ac_name + ", ac_no=" + ac_no + ", introduction=" + introduction + ", member" + member + "]";
 	}
 
 	
