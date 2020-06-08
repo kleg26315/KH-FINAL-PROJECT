@@ -75,4 +75,9 @@
 		where user_id=#{id}
 	</update>
   
+	<select id="selectHost" resultMap="memberResultSet">
+		select *
+		from member
+		where user_id=#{ hostId } and m_status='Y'
+	</select>
 </mapper>
