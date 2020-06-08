@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.board.model.vo.Review;
 import com.kh.bubblebee.common.PageInfo;
+import com.kh.bubblebee.member.model.vo.Member;
 
 @Repository("bDAO")
 public class BoardDAO {
@@ -38,6 +39,14 @@ public class BoardDAO {
 	
 	public int insertBoardOption(SqlSessionTemplate sqlSession, Board b) {
 		return sqlSession.insert("boardMapper.insertBoardOption", b);
+	}
+
+	public Board selectBoard(SqlSessionTemplate sqlSession, int fno) {
+		return sqlSession.selectOne("boardMapper.selectBoard", fno);
+	}
+
+	public Member selectHost(SqlSessionTemplate sqlSession, String hostId) {
+		return sqlSession.selectOne("memberMapper.selectHost", hostId);
 	}
 	
 }

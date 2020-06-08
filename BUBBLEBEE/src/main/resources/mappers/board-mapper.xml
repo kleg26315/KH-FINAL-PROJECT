@@ -44,4 +44,11 @@
 		insert into choose
 		values(SEQ_CHOOSE.nextval, #{category}, #{op1}, #{op2}, 0, SEQ_BOARD.currval);
 	</insert>
+	
+	<select id="selectBoard" resultType="Board">
+		select *
+		from board
+		where fno=#{fno} and f_status='Y'
+	</select>
+	
 </mapper>
