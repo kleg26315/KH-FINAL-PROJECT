@@ -55,7 +55,7 @@ public class BoardController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Board> list = bService.selectList(pi, cate);
-				
+			
 		if(list != null) {
 			mv.addObject("cate", cate);
 			mv.addObject("list", list);
