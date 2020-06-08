@@ -11,13 +11,14 @@ public class Host {
 	private String ac_name; // 예금주
 	private String ac_no; // 계좌번호
 	private String introduction; // 호스트 소개
+	private String hprofile;
 	
 	
 	public Host() {}
 
 
 	public Host(String id, int fid, Date enroll_date, String ac_bname, String ac_name, String ac_no,
-			String introduction) {
+			String introduction, String hprofile) {
 		super();
 		this.id = id;
 		this.fid = fid;
@@ -26,6 +27,7 @@ public class Host {
 		this.ac_name = ac_name;
 		this.ac_no = ac_no;
 		this.introduction = introduction;
+		this.hprofile = hprofile;
 	}
 
 
@@ -97,12 +99,19 @@ public class Host {
 	public void setIntroduction(String introduction) {
 		this.introduction = introduction;
 	}
-
+	
+	public String gethprofile() {
+		return hprofile;
+	}
+	
+	public void sethprofile(String hprofile) {
+		this.hprofile = hprofile;
+	}
 
 	@Override
 	public String toString() {
 		return "Host [id=" + id + ", fid=" + fid + ", enroll_date=" + enroll_date + ", ac_bname=" + ac_bname
-				+ ", ac_name=" + ac_name + ", ac_no=" + ac_no + ", introduction=" + introduction + "]";
+				+ ", ac_name=" + ac_name + ", ac_no=" + ac_no + ", introduction=" + introduction + ", hprofile" + "]";
 	}
 
 	
