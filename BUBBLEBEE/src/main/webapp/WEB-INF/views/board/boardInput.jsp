@@ -78,7 +78,7 @@
 				<tr>
 					<td colspan="2">
 						<h4>Title</h4>
-						<input type="text" placeholder="제목을 입력해주세요" name="ftitle" id="title" required>
+						<input type="text" placeholder="제목을 입력해주세요" name="ftitle" id="title" required style="height: 50px;">
 					</td>
 				</tr>
 				<tr>
@@ -140,35 +140,73 @@
 					<tr>
 						<td colspan="3"><hr></td>
 					</tr>
-					
-					<tr>
-						<th >구매옵션</th>
-						<td  > 
-							<button type="button" id="btn_op">옵션 추가하기</button>
-						</td>
-						<td rowspan="3">
-							<div class="B_n">
-								<b>옵션명</b>  
-								&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <b>가격(추가금액X, 최종 결제액O)</b><br>
-								예) 참가비 (1인) / 참가비(2인)  &nbsp;&emsp;&emsp;&emsp;&emsp;     예) 1회 이용권 | 30,000원<br>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;기본 옵션 / 선물 포장 &nbsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 10회 이용권 | 280,000원<br>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;헬스장 이용권 / 헬스장 이용+PT 10회
-								<br>
-							</div>
-						</td>
-					</tr>
+					</table>
+					<table>
+						<thead>
+							<tr>
+								<th >구매옵션</th>
+								<td  > 
+									<button type="button" id="btn_op">옵션 추가하기</button>
+								</td>
+								<td rowspan="3">
+									<div class="B_n">
+										<b>옵션명</b>  
+										&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <b>가격(추가금액X, 최종 결제액O)</b><br>
+										예) 참가비 (1인) / 참가비(2인)  &nbsp;&emsp;&emsp;&emsp;&emsp;     예) 1회 이용권 | 30,000원<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;기본 옵션 / 선물 포장 &nbsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 10회 이용권 | 280,000원<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;헬스장 이용권 / 헬스장 이용+PT 10회
+										<br>
+									</div>
+								</td>
+							</tr>
+						</thead>
+					<tbody id="tbody1">
 					<tr>
 						<td>
-							<input type="text" id="op" name="op1" placeholder="옵션명"  value="참가비 (1인)" required maxlength="30"> 
+							<input type="text" id="op" class="op" name="op1" placeholder="옵션명"  value="참가비 (1인)" required maxlength="30"> 
 						</td>
 						
 					</tr>
 					<tr>	
 						<td>
-							<input type="text" id="op2" name="op2" placeholder="가격(5000원 이상)"  value="5000원" required>원
+							<input type="text" id="op2" class="op2" name="op2" placeholder="가격(5000원 이상)"  value="5000" required>원
 						</td>
 					</tr>
-
+					</tbody>
+					</table>
+					<script>
+						$('#btn_op').on('click', function(){
+							var bot = $('#tbody1 tr').length;
+							
+							if(bot < 20){
+								var innerHtml = "";
+								
+								innerHtml += '<tr>';
+								innerHtml += '<td><input type="text" class="op" name="op1" placeholder="옵션명"  maxlength="30"></td>';
+								innerHtml += '<td rowspan="2"><button type="button" class="btnDelete" onclick="delete1(this); ">삭제</button></td>';
+								innerHtml += '</tr>';
+								innerHtml += '<tr>';
+								innerHtml += '<td><input type="text" onkeyup="onlyNumber(this);" class="op2" name="op2" placeholder="가격(5000원 이상)" >원</td>';
+								innerHtml += '</tr>';
+								
+								$('#tbody1').append(innerHtml);
+							}else{
+								alert("최대 10개까지만 가능합니다.");
+								return false;
+							}
+						});
+												
+						function delete1(obj){
+							console.log(obj);
+							$(obj).parent().parent().next().remove();
+							$(obj).parent().parent().remove();
+						}
+						
+						function onlyNumber(a){
+							$(a).val($(a).val().replace(/[^0-9]/g,""));
+						}
+					</script>
+					<table>
 					<tr>
 						<td colspan="3"><hr></td>
 					</tr>
@@ -187,7 +225,7 @@
 						<td colspan="2">우편번호</td>
 					</tr>
 					<tr>	
-						<td>
+						<td style="width: 53%;">
 							<input type="text" name="location" class="postcodify bRequired" value="" size="6" style="width: 300px;" required >
 						</td>
 						<td >
@@ -214,66 +252,99 @@
 					<tr>
 						<td colspan="3"><hr></td>
 					</tr>
+					</table>
+					<table>
+						<thead>
+							<tr>
+								<th style="width: 50%;">상세일정</th>
+								<td style="width: 9%;">
+									<button type="button" id="btn_DetailSet">세부일정 추가</button>
+								</td>
+								<td rowspan="3">
+									<div class="B_n">
+										<b>소요시간별로 구체적인 일정을 상세히 적어주세요.</b><br>
+										<b>상세 일정은 1개 이상 입력해주셔야 합니다.</b><br>
+										<br>
+										시간이 고정일 때    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 시간이 유동적일 때<br>
+										- 14:00   종합 운동장 5번 출구 집결    &emsp;&emsp;&emsp;&emsp; - 20분  오리엔테이션<br>
+										- 14:10   인원 파악 후 출발   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 10분   타이거 포터리의 시연<br>
+										- 15:30   피톤치드길 산책 겸 힐링          &emsp;&emsp;&emsp;&emsp;&emsp;- 20분   색종이 스케치<br>
+										- 16:30   서울로 복귀   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 50분   만들기 시간<br>
+									</div>
+								</td>
+							</tr>
+						</thead>
+						<tbody id="tbody2">
+							<tr>
+								<td >
+									<input type="text" name="bTime" class="bTime"  placeholder="30분" required>
+								</td>
+							</tr>
+							<tr>
+								<td >
+									<input type="text" name="bDetail" class="bDetail"  placeholder="세부일정" required>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 					
-					<tr>
-						<th >상세일정</th>
-						<td>
-							<button type="button" id="btn_DetailSet">세부일정 추가</button>
-						</td>
-						<td rowspan="3">
-							<div class="B_n">
-								<b>소요시간별로 구체적인 일정을 상세히 적어주세요.</b><br>
-								<b>상세 일정은 1개 이상 입력해주셔야 합니다.</b><br>
-								<br>
-								시간이 고정일 때    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 시간이 유동적일 때<br>
-								- 14:00   종합 운동장 5번 출구 집결    &emsp;&emsp;&emsp;&emsp; - 20분  오리엔테이션<br>
-								- 14:10   인원 파악 후 출발   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 10분   타이거 포터리의 시연<br>
-								- 15:30   피톤치드길 산책 겸 힐링          &emsp;&emsp;&emsp;&emsp;&emsp;- 20분   색종이 스케치<br>
-								- 16:30   서울로 복귀   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 50분   만들기 시간<br>
-							
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<input type="text" name="bTime" id="bTime" value="" placeholder="30분" required>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<input type="text" name="bDetail" id="bDetail"  value="" placeholder="세부일정" required>
-						</td>
-					</tr>
-					
-					<tr>
-						<td colspan="3"><hr></td>
-					</tr>
-					
-					<tr>
-						<th colspan="2">포함사항</th>
-						<td rowspan="4">
-							<div class="B_n">
-								<b>상세페이지에 노출시킬 포함/불포함사항을 입력해 주세요.</b><br>
-								<b>대원들이 오해할 수 있는 사항들은 꼭 기재해주시기 바랍니다.</b>	<br>
+					<script>
+					$('#btn_DetailSet').on('click', function(){
+						var bot = $('#tbody2 tr').length;
+						
+						if(bot < 20){
+							var innerHtml = "";
+							innerHtml += '<tr>';
+							innerHtml += '<td><input type="text" name="bTime" class="bTime" placeholder="30분"></td>';
+							innerHtml += '<td rowspan="2"><button type="button" class="btnDelete" onclick="delete2(this); ">삭제</button></td>';
+							innerHtml += '</tr>';
+							innerHtml += '<tr>';
+							innerHtml += '<td><input type="text" name="bDetail" class="bDetail"  placeholder="세부일정"></td>';
+							innerHtml += '</tr>';
 
-								포함 사항 예시    &emsp;&emsp;&emsp; 불포함 사항 예시<br>
-								- 안전 보험료    &emsp;&emsp;&emsp;&emsp; - 주차비<br>
-								- 차량 보험료    &emsp;&emsp;&emsp;&emsp; - 교통비<br>
-								- 입장료           &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 필기도구<br>
-								- 강습비	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 음식/음료<br>
-								- 기사비	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 픽업<br>
-								- 교재비	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 운동복<br>
-								- 재료비	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 가이드비<br>
-								- 앞치마	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 뒤풀이 비용<br>
-								- 탈의실	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 항공권<br>
-								- 샤워실	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 개인 경비<br>
-								- 대관료	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 개별 여행자보험<br>
-							</div>
-						</td>
-					</tr>
+							$('#tbody2').append(innerHtml);
+						}else{
+							alert("최대 10개까지만 가능합니다.");
+							return false;
+						}
+					});
+											
+					function delete2(obj){
+						console.log(obj);
+						$(obj).parent().parent().next().remove();
+						$(obj).parent().parent().remove();
+					}
+					
+					</script>
+					<table>
+						<tr>
+							<td colspan="3"><hr></td>
+						</tr>
+						<tr>
+							<th colspan="2">포함사항</th>
+							<td rowspan="4">
+								<div class="B_n">
+									<b>상세페이지에 노출시킬 포함/불포함사항을 입력해 주세요.</b><br>
+									<b>대원들이 오해할 수 있는 사항들은 꼭 기재해주시기 바랍니다.</b>	<br>
+	
+									포함 사항 예시    &emsp;&emsp;&emsp; 불포함 사항 예시<br>
+									- 안전 보험료    &emsp;&emsp;&emsp;&emsp; - 주차비<br>
+									- 차량 보험료    &emsp;&emsp;&emsp;&emsp; - 교통비<br>
+									- 입장료           &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 필기도구<br>
+									- 강습비	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 음식/음료<br>
+									- 기사비	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 픽업<br>
+									- 교재비	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 운동복<br>
+									- 재료비	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 가이드비<br>
+									- 앞치마	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 뒤풀이 비용<br>
+									- 탈의실	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 항공권<br>
+									- 샤워실	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 개인 경비<br>
+									- 대관료	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 개별 여행자보험<br>
+								</div>
+							</td>
+						</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" id="bIncluded" name="bIncluded"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" name="bIncluded"  maxlength="500" required></textarea>
 							<span id="btext1">0</span>/500
 						</td>
 					</tr>
@@ -282,7 +353,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" id="bNcluded" name = "bNcluded"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" name = "bNcluded"  maxlength="500" required></textarea>
 							<span id="btext2">0</span>/500
 						</td>
 					</tr>
@@ -316,18 +387,16 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" id="bMaterials" name="bMaterials"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" name="bMaterials"  maxlength="500" required></textarea>
 							<span id="btext3">0</span>/500
 						</td>
 					</tr>
 					<tr>
 						<th colspan="2">유의사항</th>
 					</tr>
-					
-					<hr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" id="bNot" name="bNot"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" name="bNot"  maxlength="500" required></textarea>
 							<span id="btext4">0</span>/500
 						</td>
 					</tr>
@@ -335,41 +404,63 @@
 					<tr>
 						<td colspan="3"><hr></td>
 					</tr>
-					
-					<tr>
-						<th >자주 묻는 질문</th>
-						<td>
-							<button type="button" id="btn_Q">질문/답변 추가</button>
-						</td>
-						<td rowspan="3">
-							<div class="B_n">
-								<b>참가자들이 궁금해 할 만한 내용이나</b><br>
-								<b>자주 묻는 질문에 대한 답변을 작성해 주세요</b><br>
-								<br>
-								자주 묻는 질문 예시)<br>
-								Q 체력이 약한데 저도 할 수 있나요?<br>
-								A 누구나 쉽게 할 수 있는 코스입니다.<br><br>
+					</table>
+					<table>
+						<thead>
+							<tr>
+								<th style="width: 50%;">자주 묻는 질문</th>
+								<td>
+									<button type="button" id="btn_Q">질문/답변 추가</button>
+								</td>
+								<td rowspan="1">
+									<div class="B_n">
+										<b>참가자들이 궁금해 할 만한 내용이나</b><br>
+										<b>자주 묻는 질문에 대한 답변을 작성해 주세요</b><br>
+										<br>
+										자주 묻는 질문 예시)<br>
+										Q 체력이 약한데 저도 할 수 있나요?<br>
+										A 누구나 쉽게 할 수 있는 코스입니다.<br><br>
+										
+										Q 등산화가 있어야 할까요?<br>
+										A 길이 깨끗해 러닝화로도 충분히 등반 가능합니다.<br><br>
+									</div>
+								</td>
+							</tr>
+						</thead>
+						<tbody id="tbody3">
+							
+						</tbody>
+					</table>
+					<script>
+						$('#btn_Q').on('click', function(){
+							var bot = $('#tbody3 tr').length;
+							
+							if(bot < 20){
+								var innerHtml = "";
 								
-								Q 등산화가 있어야 할까요?<br>
-								A 길이 깨끗해 러닝화로도 충분히 등반 가능합니다.<br><br>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<span id="Q">Q</span>
-							<input type="text" id="b_Qt" name="b_Qt" placeholder="질문" required>
-						</td>
-						<td rowspan="2"><button type="button">삭제</button></td>
-					</tr>
-					<tr>
+								innerHtml += '<tr>';
+								innerHtml += '<td><span>Q</span><input type="text" class="b_Qt" name="b_Qt" placeholder="질문"></td>';
+								innerHtml += '<td rowspan="2"><button type="button" class="btnDelete" onclick="delete3(this); ">삭제</button></td>';
+								innerHtml += '</tr>';
+								innerHtml += '<tr>';
+								innerHtml += '<td><span>A</span><input type="text" class="b_An" name="b_An" placeholder="답변"></td>';
+								innerHtml += '</tr>';
+								
+								$('#tbody3').append(innerHtml);
+							}else{
+								alert("최대 10개까지만 가능합니다.");
+								return false;
+							}
+						});
+												
+						function delete3(obj){
+							console.log(obj);
+							$(obj).parent().parent().next().remove();
+							$(obj).parent().parent().remove();
+						}
 						
-						<td>
-							<span id="A">A</span>
-							<input type="text" id="b_An" name="b_An" placeholder="답변" required>
-						</td>
-					</tr>
-					
+					</script>
+					<table>
 					<tr>
 						<td colspan="3"><hr></td>
 					</tr>
@@ -451,60 +542,20 @@
 		
 		//포함사항, 불포함사항, 준비물, 유의사항 500자 제한
 		$(function(){
-			$('#bIncluded').keyup(function(e){
-				var counter = $('#bIncluded').val();
+			$('.bIncluded').keyup(function(e){
+				console.log(this);
+				var counter = $(this).val();
 				
-				$('#btext1').html(counter.length);
+				$(this).next().html(counter.length);
 				if(counter.length >= 500){
-					$('#btext1').css('color', 'red');
+					$(this).next().css('color', 'red');
 				}else if(counter.length < 500){
-					$('#btext1').css('color', 'black');
+					$(this).next().css('color', 'black');
 				}
 			});
-			$('#btext1').keyup();
+			$(this).next().keyup();
 		});
 		
-		$(function(){
-			$('#bNcluded').keyup(function(e){
-				var counter = $('#bNcluded').val();
-				
-				$('#btext2').html(counter.length);
-				if(counter.length >= 500){
-					$('#btext2').css('color', 'red');
-				}else if(counter.length < 500){
-					$('#btext2').css('color', 'black');
-				}
-			});
-			$('#btext2').keyup();
-		});
-		
-		$(function(){
-			$('#bMaterials').keyup(function(e){
-				var counter = $('#bMaterials').val();
-				
-				$('#btext3').html(counter.length);
-				if(counter.length >= 500){
-					$('#btext3').css('color', 'red');
-				}else if(counter.length < 500){
-					$('#btext3').css('color', 'black');
-				}
-			});
-			$('#btext3').keyup();
-		});
-		
-		$(function(){
-			$('#bNot').keyup(function(e){
-				var counter = $('#bNot').val();
-				
-				$('#btext4').html(counter.length);
-				if(counter.length >= 500){
-					$('#btext4').css('color', 'red');
-				}else if(counter.length < 500){
-					$('#btext4').css('color', 'black');
-				}
-			});
-			$('#btext4').keyup();
-		});
 	</script>
 	
 	

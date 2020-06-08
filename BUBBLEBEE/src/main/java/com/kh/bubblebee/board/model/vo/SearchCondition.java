@@ -6,15 +6,15 @@ public class SearchCondition {
 	private String popular;
 	private String latest;
 	private String rate;
-	private int highprice;
-	private int lowprice;
+	private String highprice;
+	private String lowprice;
 	private int startPrice;
 	private int endPrice;
 	
 	public SearchCondition() {}
 
-	public SearchCondition(String location, String popular, String latest, String rate, int highprice, int lowprice,
-			int startPrice, int endPrice) {
+	public SearchCondition(String location, String popular, String latest, String rate, String highprice,
+			String lowprice, int startPrice, int endPrice) {
 		super();
 		this.location = location;
 		this.popular = popular;
@@ -58,19 +58,19 @@ public class SearchCondition {
 		this.rate = rate;
 	}
 
-	public int getHighprice() {
+	public String getHighprice() {
 		return highprice;
 	}
 
-	public void setHighprice(int highprice) {
+	public void setHighprice(String highprice) {
 		this.highprice = highprice;
 	}
 
-	public int getLowprice() {
+	public String getLowprice() {
 		return lowprice;
 	}
 
-	public void setLowprice(int lowprice) {
+	public void setLowprice(String lowprice) {
 		this.lowprice = lowprice;
 	}
 
@@ -96,6 +96,10 @@ public class SearchCondition {
 				+ rate + ", highprice=" + highprice + ", lowprice=" + lowprice + ", startPrice=" + startPrice
 				+ ", endPrice=" + endPrice + "]";
 	}
+	
+	
+
+	
 	
 	
 	

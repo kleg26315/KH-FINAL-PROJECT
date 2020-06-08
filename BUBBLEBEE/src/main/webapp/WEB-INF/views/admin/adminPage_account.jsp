@@ -7,7 +7,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>내 좋아요</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <style>
 section hr{margin-top: 40px;margin-bottom: 40px;border: 0;border-top: 1px solid #eee;}
@@ -48,7 +47,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 }
 .nav_sub_li a:hover{
    text-decoration: none;
-   color: black;
+   color: gold;
 }
 .nav_li a{
    cursor:pointer;
@@ -56,7 +55,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 }
 .nav_li a:hover{
    text-decoration: none;
-   color: black;
+   color: gold;
 }
 #l_hostenroll{
     background: gold;
@@ -82,14 +81,32 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
       <hr>
     <div id="content">
 		<ul id="ul_list">
-             <li id="l_like" class="nav_li"><a href="adminPageView.ad">신고 관리</a></li>
              <li id="l_class" class="nav_li"><a href="account.ad" style="color: gold">정산 관리</a></li>
              <li id="l_slist" class="nav_li"><a href="class.ad">클래스 승인</a></li>
-             <li id="l_point" class="nav_li"><a href="noticeInsertView.ad">공지글 관리</a></li>
+             <li id="l_point" class="nav_li more"><a>공지글 관리</a></li>
+             	<ul id="ul_ul_list" style="visibility: hidden;">
+	             	<li id="l_like" class="nav_sub_li"><a href="noticeInsertView.ad">공지글 작성</a></li>
+	             	<li id="l_like" class="nav_sub_li"><a href="list.no">공지글 목록</a></li>
+	             	<li id="l_like" class="nav_sub_li"><a href="FAQInsertView.ad">FAQ 작성</a></li>
+	             	<li id="l_like" class="nav_sub_li"><a href="#">FAQ 목록</a></li>
+             	</ul>
 		</ul>
+		<script>
+			$(document).ready(function(){
+			  $('#l_point').click(function(){
+				if($('.more').hasClass('more')){
+			       $('.more').addClass('closee').removeClass('more');
+			       $('#ul_ul_list').css('visibility', 'visible');
+			    }else if($('.closee').hasClass('closee')){
+			       $('.closee').addClass('more').removeClass('closee');  
+			       $('#ul_ul_list').css('visibility', 'hidden');
+			    }
+			  })
+			})
+		</script>
        <div id="c_body">
           <div id="content_list">
-             <table class="table table-hover" style="table-layout: fixed;">
+             <table id="table1" class="table table-hover" style="table-layout: fixed;">
              	<thead>
              	<tr>
              		<th style="width: 11%">정산 요청일</th>
@@ -158,6 +175,10 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
              	</tr>
              	</tbody>
              </table>
+             <iframe id="txtArea1" style="display:none"></iframe>
+				
+			<input type='button' class='btn btn-inverse' value='excel 다운' style='width:100px;height:36px;font-weight:bold; float:right;' onclick="ReportToExcelConverter()" />
+			<br><br> 
              <div class="text-center">
              	<ul class="pagination">
              		<li><a href="#">&lt;</a></li>
@@ -178,6 +199,19 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
      <c:import url="../layout/footer.jsp"/>
    </footer>
    
-   
+   <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery-1.11.0.js"></script>
+   <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery.table2excel.js"></script>
+   <script> 
+		function ReportToExcelConverter(){
+			$("#table1").table2excel({
+				name: "Excel Document Name",
+				filename: "report",
+				fileext: ".xls",
+				exclude_img: true,
+				exclude_links: true,
+				exclude_inputs: true
+			});
+		};
+	</script>
 </body>
 </html>

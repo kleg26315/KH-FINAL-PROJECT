@@ -51,7 +51,7 @@ public class BoardController {
 			currentPage = page;
 		}
 		
-		int listCount = bService.getListCount();
+		int listCount = bService.getListCount(cate);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Board> list = bService.selectList(pi, cate);

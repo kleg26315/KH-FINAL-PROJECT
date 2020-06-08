@@ -1,6 +1,7 @@
 package com.kh.bubblebee.board.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.kh.bubblebee.board.model.dao.BoardDAO;
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.board.model.vo.Review;
+import com.kh.bubblebee.board.model.vo.SearchCondition;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.member.model.vo.Member;
 
@@ -22,8 +24,8 @@ public class BoardServiceImpl implements BoardService {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public int getListCount() {
-		return bDAO.getListCount(sqlSession);
+	public int getListCount(String cate) {
+		return bDAO.getListCount(sqlSession, cate);
 	}
 
 	@Override
@@ -57,5 +59,14 @@ public class BoardServiceImpl implements BoardService {
 		return bDAO.selectHost(sqlSession, hostId);
 	}
 
+  @Override
+	public int getSearchListCount(HashMap<String, Object> map) {
+		return bDAO.getSearchListCount(sqlSession, map);
+	}
+
+	@Override
+	public ArrayList<Board> selectSearchList(HashMap<String, Object> map, PageInfo pi) {
+		return bDAO.selectSearchList(sqlSession, map, pi);
+	}
 
 }

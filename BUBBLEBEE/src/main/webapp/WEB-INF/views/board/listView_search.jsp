@@ -288,7 +288,7 @@
 				< &nbsp;
 			</c:if>
 			<c:if test="${ pi.currentPage > 1 }">
-				<c:url var="before" value="tpallList.bo">
+				<c:url var="before" value="search.bo">
 					<c:param name="page" value="${ pi.currentPage - 1 }"/>
 				</c:url>
 				<a href="${ before }"> <</a> &nbsp;
@@ -301,7 +301,7 @@
 				</c:if>
 				
 				<c:if test="${ p ne pi.currentPage }">
-					<c:url var="pagination" value="tpallList.bo">
+					<c:url var="pagination" value="search.bo">
 						<c:param name="page" value="${ p }"/>
 					</c:url>
 					<a href="${ pagination }">${ p }</a> &nbsp;
@@ -313,7 +313,7 @@
 				>
 			</c:if>
 			<c:if test="${ pi.currentPage < pi.maxPage }">
-				<c:url var="after" value="tpallList.bo">
+				<c:url var="after" value="search.bo">
 					<c:param name="page" value="${ pi.currentPage + 1 }"/>
 				</c:url> 
 				<a href="${ after }"> > </a>

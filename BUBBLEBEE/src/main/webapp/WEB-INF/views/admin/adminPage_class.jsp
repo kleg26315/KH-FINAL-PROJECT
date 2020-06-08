@@ -48,7 +48,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 }
 .nav_sub_li a:hover{
    text-decoration: none;
-   color: black;
+   color: gold;
 }
 .nav_li a{
    cursor:pointer;
@@ -56,7 +56,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 }
 .nav_li a:hover{
    text-decoration: none;
-   color: black;
+   color: gold;
 }
 #l_hostenroll{
     background: gold;
@@ -82,11 +82,29 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
       <hr>
     <div id="content">
 		<ul id="ul_list">
-             <li id="l_like" class="nav_li"><a href="adminPageView.ad">신고 관리</a></li>
              <li id="l_class" class="nav_li"><a href="account.ad">정산 관리</a></li>
              <li id="l_slist" class="nav_li"><a href="class.ad" style="color: gold">클래스 승인</a></li>
-             <li id="l_point" class="nav_li"><a href="noticeInsertView.ad">공지글 관리</a></li>
+             <li id="l_point" class="nav_li more"><a>공지글 관리</a></li>
+             	<ul id="ul_ul_list" style="visibility: hidden;">
+	             	<li id="l_like" class="nav_sub_li"><a href="noticeInsertView.ad">공지글 작성</a></li>
+	             	<li id="l_like" class="nav_sub_li"><a href="list.no">공지글 목록</a></li>
+	             	<li id="l_like" class="nav_sub_li"><a href="FAQInsertView.ad">FAQ 작성</a></li>
+	             	<li id="l_like" class="nav_sub_li"><a href="#">FAQ 목록</a></li>
+             	</ul>
 		</ul>
+		<script>
+			$(document).ready(function(){
+			  $('#l_point').click(function(){
+				if($('.more').hasClass('more')){
+			       $('.more').addClass('closee').removeClass('more');
+			       $('#ul_ul_list').css('visibility', 'visible');
+			    }else if($('.closee').hasClass('closee')){
+			       $('.closee').addClass('more').removeClass('closee');  
+			       $('#ul_ul_list').css('visibility', 'hidden');
+			    }
+			  })
+			})
+		</script>
        <div id="c_body">
           <div id="content_list">
              <table class="table table-hover" style="table-layout: fixed;">

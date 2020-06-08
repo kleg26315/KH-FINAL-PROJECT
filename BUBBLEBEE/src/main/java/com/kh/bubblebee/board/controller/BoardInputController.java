@@ -1,6 +1,5 @@
 package com.kh.bubblebee.board.controller;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,8 +20,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import com.kh.bubblebee.board.model.service.BoardService;
-import com.kh.bubblebee.common.PageInfo;
-import com.kh.bubblebee.common.Pagination;
+
 
 @Controller
 public class BoardInputController {
@@ -113,4 +111,6 @@ public class BoardInputController {
 		}
 		return renameFileName;
 	}
+	
+	
 	}
