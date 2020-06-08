@@ -16,4 +16,6 @@ public interface MemberService {
 
 	int insertkakaoMember(HashMap<String, String> userInfo);
 
+	int memberPwdUpdate(HashMap<String, String> map);
+
 }

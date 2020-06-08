@@ -14,7 +14,7 @@
 	transition: background-color 0.4s ease 0s;
 }
 .tab{display: none;border-left: 1px solid lightgray;}
-.title{flex-grow: 1; font-size: 18px;font-weight: bolder;margin-left: 10px;}
+.htitle{flex-grow: 1; font-size: 18px;font-weight: bolder;margin-left: 10px;}
 .line{line-height: 30px;font-weight: bold;padding: 5px 10px;font-size: 15px;}
 .line:hover {
 	cursor:pointer;
@@ -37,12 +37,12 @@
 	<nav>
 		<div id="enroll" class="menu">
 			<div><img src="${contextPath}/resources/img/enroll.png" width="20px" height="20px"></div>
-				<div class="title"><a href="binsertForm.bo">등록하기</a></div>
+				<div class="htitle" id="insertBoard">등록하기</div>
 			</div>
 		<div>			
 			<div id="moim" class="menu">
 			<div><img src="${contextPath}/resources/img/moim.png" width="20px" height="20px"></div>
-				<div class="title">모임관리</div>
+				<div class="htitle">모임관리</div>
 				<div><img id="showLayers1" class="showLayers" src="${contextPath }/resources/img/up.png"  width="15" /></div>
 			</div>
 				<div id="mtab" class="tab">
@@ -52,7 +52,7 @@
 		</div>
 			<div id="class" class="menu">
 			<div><img src="${contextPath}/resources/img/class.png" width="20px" height="20px"></div>
-				<div class="title">클래스관리</div>
+				<div class="htitle">클래스관리</div>
 				<div><img id="showLayers2" class="showLayers" src="${contextPath }/resources/img/up.png"  width="15" /></div>
 			</div>
 				<div id="ctab" class="tab">
@@ -62,7 +62,7 @@
 				</div>
 			<div id="account" class="menu">
 			<div><img src="${contextPath}/resources/img/money.png" width="20px" height="20px"></div>
-				<div class="title">
+				<div class="htitle">
 				정산조회
 				</div>
 				<div><img id="showLayers3" class="showLayers" src="${contextPath }/resources/img/up.png"  width="15" /></div>
@@ -72,8 +72,8 @@
 					<div class="line">정산완료 </div>
 				</div>
 			<div id="profile" class="menu">
-			<div><img src="${contextPath}/resources/img/moim.png" width="20px" height="20px"></div>
-			 <div class="title">프로필수정</div>
+			<div><img src="${contextPath}/resources/img/modify.png" width="20px" height="20px"></div>
+			 <div class="htitle">프로필수정</div>
 			</div>
 			<script type="text/javascript">
 			  $( document ).ready(function() {
@@ -91,10 +91,12 @@
 					$('#atab').slideToggle(200);
 					 $('#showLayers3').toggleClass('rotate');
 				});
+
+				$('#insertBoard').click(function(){
+					location.href="binsertForm.bo";
+				})
 				
-// 				$('#showLayers').click(function() {
-// 				     $('#showLayers').toggleClass('rotate');
-// 				});
+				
 			  });
 			</script>
 	   </nav>

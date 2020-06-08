@@ -28,6 +28,8 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 
 .sales_all{display: flex;flex-direction: column;justify-content: center;flex-grow: 1;}
 .sales_wrap{text-align: center;padding:10px 0;display: flex;flex-direction: column;}
+
+#pro_img{border-radius: 100%;}
 </style>
 <body>
    <header id="header">
@@ -41,13 +43,14 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 	    <div class="c_body">
 		   <div class="main_all">
 		   	<div class="main_wrap">
-		   		<div><img id="" width="100px" height="100px" src="${contextPath }/resources/img/users.png" /></div>
+		   		<div><img id="pro_img" width="100px" height="100px" src="${loginUser.profile }" /></div>
 		   		<div id="host_info">
 		   			<div id="info_wrap">
 			   			<div class="text">안녕하세요!</div>
-			   			<div class="text">봉추 호스트님</div>
+			   			<div class="text">${loginUser.nickName } 호스트님</div>
 			   		</div>
 		   		</div>
+		   		<div>회원 정보 수정</div>
 		   	</div>
 		   </div>
 		   <div class="main_all" style="height: 180px;">

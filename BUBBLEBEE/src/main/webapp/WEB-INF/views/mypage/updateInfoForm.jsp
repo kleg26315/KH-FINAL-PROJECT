@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <% String[] checked = new String[8]; %>
 <!DOCTYPE html>
 <html>
@@ -62,6 +63,8 @@ input[type=checkbox]:checked + label{
 
 .interest_wrap{display: flex;}
 .interestBtn:hover {cursor: pointer;}
+
+section input[type=text]{outline-color: #F39C12;padding: 0 15px; height: 30px;}
 </style>
 <body>
    <header id="header">
@@ -77,23 +80,30 @@ input[type=checkbox]:checked + label{
 	   		<c:import url="../layout/mypage_nav.jsp"/> 
 	   </nav>
 	    <div id="c_body">
-		    <form action="updateInfo.mg">
+		    <form action="updateInfo.mg" method="post">
 			   <div id="profile" class="c_list"><a>내 프로필</a></div>
 				  <div id="pro_all">
 					   <div class="pro_wrap">
 					   <!-- ID -->
 					   <input type="hidden" name="id" value="${loginUser.id}">
+					   <!-- 프로필 사진 -->
+					   <input type="hidden" name="profile" value="${loginUser.profile }">
+					   <!-- 호스트 여부 -->
+					   <input type="hidden" name="host_yn" value="${loginUser.host_yn }">
 						   	<div class="title">닉네임</div>
 						   	<div class="p_content"><input type="text" value="${loginUser.nickName }" id="nickName" name="nickName"></div>
 					  </div>
 					  <div class="pro_wrap">
 						   	<div class="title">전화번호</div>
-						   	<div class="p_content"><input type="text" id="phone" value="${loginUser.phone }" name="phone"></div>
+						   	<div class="p_content"><input type="text" id="phone" value="${loginUser.phone }" name="phone" placeholder="전화번호를 입력해주세요"></div>
 					  </div>
+					  <c:out value=""></c:out>
+					  <c:if test="${ fn:length(loginUser.id) > 10 }">
 					  <div class="pro_wrap">
 						   	<div class="title">비밀번호</div>
 						   	<div class="p_content"><button type="button" id="updatePwdbtn">변경하기</button></div>
 					  </div>
+					  </c:if>
 					  <div class="pro_wrap">
 						   <div class="title">관심사</div>
 					  </div>
@@ -124,7 +134,6 @@ input[type=checkbox]:checked + label{
 								<c:when test="${f eq '어학/취업'}">
 									<% checked[7] = "checked"; %>
 								</c:when>
-								
 							</c:choose>		
 						</c:forTokens>
 						

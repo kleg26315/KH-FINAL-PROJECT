@@ -40,7 +40,7 @@ input[type=submit]{width: 300px;height: 50px;}
 	   		<c:import url="../layout/mypage_nav.jsp"/> 
 	   </nav>
 	    <div id="c_body">
-		    <form action="">
+		    <form action="memberPwdupdate.me" method="post">
 		    	<div id="pwd_all">
 		    		<div>
 			    		<div id="pwd_title">비밀번호 수정</div>

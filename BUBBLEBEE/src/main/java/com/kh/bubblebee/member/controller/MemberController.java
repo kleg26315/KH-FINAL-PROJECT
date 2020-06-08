@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.kh.bubblebee.member.model.exception.MemberException;
 import com.kh.bubblebee.member.model.service.KakaoAPI;
@@ -194,5 +195,30 @@ public class MemberController {
 				throw new MemberException("카카오톡 회원가입에 실패하였습니다.");
 			}
 		}
+	}
+	// 비밀번호 수정
+	@RequestMapping(value="memberPwdupdate.me",method=RequestMethod.POST)
+	public String memberPwdupdate(@RequestParam("pwd") String pwd,@RequestParam("newpwd") String newPwd,HttpSession session) {
+		Member m = mService.memberLogin((Member)session.getAttribute("loginUser"));
+		
+		if(bcryptPasswordEncoder.matches(pwd, m.getPwd())) {
+			String encPwd = bcryptPasswordEncoder.encode(newPwd);
+			
+			HashMap<String, String> map = new HashMap<>();
+			map.put("id", m.getId());
+			map.put("newpwd",encPwd);
+			
+			int result = mService.memberPwdUpdate(map);
+			
+			if(result > 0) {
+				return "redirect:updateInfoForm.mg";
+			}else {
+				throw new MemberException("비밀번호 수정 실패");
+			}
+			
+		}else {
+			throw new MemberException("비밀번호 수정 실패");
+		}
+		
 	}
 }

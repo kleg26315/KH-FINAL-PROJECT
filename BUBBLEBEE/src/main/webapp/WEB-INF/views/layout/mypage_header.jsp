@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +62,7 @@
 	line-height:20px;
 	vertical-align: middle;
 }
-#point_con:hover{
+#point_wrap:hover,#inter_btn:hover{
 	cursor: pointer;
 }
 #next{
@@ -76,7 +77,7 @@
     	<div id="profile_wrap">
     		<div id="proimg_wrap">
     			<input type="hidden" id="fileNm"/>
-				<a id="" href="javascript:fnUpload();"><img src="<%=request.getContextPath()%>/resources/img/users.png" alt="찾아보기" id="proimg" /></a>
+				<a id="" href="javascript:fnUpload();"><img src="${loginUser.profile }" alt="찾아보기" id="proimg" style="border-radius: 100%;" /></a>
 				<input type="file" id="fileUpload" style="display:none" onchange="$('#fileNm').val(this.value)"/>
 			</div>
 				<div id="info_wrap">
@@ -84,13 +85,25 @@
 					<div id="m_btn">설정</div>
 					<br>
 					<div id="interest">
-					<c:forTokens items="${loginUser.interest }" delims="," var="i">
+						<c:choose>
+						<c:when test="${loginUser.interest ne '-'}">
+						<c:forTokens items="${loginUser.interest }" delims="," var="i">
 						<span>#${i}</span>
-					</c:forTokens>
+						</c:forTokens>
+						</c:when>
+						<c:otherwise><span id="inter_btn">#관심사 설정하러가기</span></c:otherwise>
+						</c:choose>
 					</div>
 					
 					<br>
-					<div id="login_means">소셜 로그인
+					<div id="login_means">
+					<c:set var="way" value="${loginUser.id}"/>
+						<c:choose>
+							<c:when test="${fn:length(way) > 10}">이메일 계정</c:when>
+							<c:when test="${fn:length(way) == 10}">카카오톡 로그인 계정</c:when>
+							<c:when test="${fn:length(way) == 8}">네이버 로그인 계정</c:when>
+							<c:otherwise>이거 나오면 안됨ㅋㅋ</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 				<div id="point_wrap">
@@ -109,7 +122,7 @@
 		
 		}
 		$(function(){
-			$('#m_btn').click(function(){
+			$('#m_btn,#inter_btn').click(function(){
 				location.href="updateInfoForm.mg";
 			});
 			$('#point_wrap').click(function(){
