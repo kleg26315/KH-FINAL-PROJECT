@@ -11,6 +11,7 @@ import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.board.model.vo.Review;
 import com.kh.bubblebee.board.model.vo.SearchCondition;
 import com.kh.bubblebee.common.PageInfo;
+import com.kh.bubblebee.member.model.vo.Member;
 
 @Repository("bDAO")
 public class BoardDAO {
@@ -42,6 +43,14 @@ public class BoardDAO {
 		return sqlSession.insert("boardMapper.insertBoardOption", b);
 	}
 
+	public Board selectBoard(SqlSessionTemplate sqlSession, int fno) {
+		return sqlSession.selectOne("boardMapper.selectBoard", fno);
+	}
+
+	public Member selectHost(SqlSessionTemplate sqlSession, String hostId) {
+		return sqlSession.selectOne("memberMapper.selectHost", hostId);
+	}
+
 	public int getSearchListCount(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
 		return sqlSession.selectOne("boardMapper.getSearchListCount", map);
 	}
@@ -52,6 +61,5 @@ public class BoardDAO {
 		
 		return (ArrayList)sqlSession.selectList("boardMapper.selectSearchList", map, rowBounds);
 	}
-
 	
 }

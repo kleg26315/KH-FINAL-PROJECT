@@ -68,4 +68,11 @@
 		</if>
 		null, null)
 	</insert>
+	
+	<!-- hostmapper로 가기 -->
+	<!-- <select id="selectHost" resultMap="memberResultSet">
+		select *
+		from member
+		where user_id=#{ hostId } and m_status='Y'
+	</select> -->
 </mapper>

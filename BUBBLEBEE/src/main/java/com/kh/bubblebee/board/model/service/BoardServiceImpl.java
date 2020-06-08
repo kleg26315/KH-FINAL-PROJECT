@@ -12,6 +12,7 @@ import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.board.model.vo.Review;
 import com.kh.bubblebee.board.model.vo.SearchCondition;
 import com.kh.bubblebee.common.PageInfo;
+import com.kh.bubblebee.member.model.vo.Member;
 
 @Service("bService")
 public class BoardServiceImpl implements BoardService {
@@ -49,6 +50,16 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public Board selectBoard(int fno) {
+		return bDAO.selectBoard(sqlSession, fno);
+	}
+
+	@Override
+	public Member selectHost(String hostId) {
+		return bDAO.selectHost(sqlSession, hostId);
+	}
+
+  @Override
 	public int getSearchListCount(HashMap<String, Object> map) {
 		return bDAO.getSearchListCount(sqlSession, map);
 	}
@@ -57,8 +68,5 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<Board> selectSearchList(HashMap<String, Object> map, PageInfo pi) {
 		return bDAO.selectSearchList(sqlSession, map, pi);
 	}
-
-
-
 
 }
