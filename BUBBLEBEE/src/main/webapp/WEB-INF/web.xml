@@ -124,6 +124,22 @@
 		<servlet-name>hostServlet</servlet-name>
 		<url-pattern>*.ho</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 결제 관련 -->
+	<servlet>
+		<servlet-name>purchaseServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/purchase-context.xml</param-value>
+		</init-param>
+		
+		<servlet-mapping>
+			<servlet-name>purchaseServlet</servlet-name>
+			<url-pattern>*.pu</url-pattern>
+		</servlet-mapping>
+		
+	</servlet>
   
 	<!-- 한글깨짐 방지 인코딩 -->
 	<filter>
