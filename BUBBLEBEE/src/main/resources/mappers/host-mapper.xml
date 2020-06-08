@@ -13,4 +13,21 @@
 		values(#{id},null,sysdate,#{ac_bname},#{ac_name},#{ac_no},#{introduction},#{hprofile})
 	</insert>
 	
+	<select id="selectHost" resultMap="hostResultSet">
+		select *
+		from host
+		where user_id=#{ hostId }
+	</select>
+	
+	<resultMap type="Host" id="hostResultSet">
+		<id property="id" column="user_id"/>
+		<result property="fid" column="fid"/>
+		<result property="enroll_date" column="enroll_date"/>
+		<result property="ac_bname" column="ac_bname"/>
+		<result property="ac_name" column="ac_name"/>
+		<result property="ac_no" column="ac_no"/>
+		<result property="introduction" column="introduction"/>
+	
+	</resultMap>
+	
 </mapper>

@@ -13,7 +13,7 @@ import com.kh.bubblebee.board.model.service.BoardService;
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.common.Pagination;
-import com.kh.bubblebee.member.model.vo.Member;
+import com.kh.bubblebee.host.model.vo.Host;
 
 @Controller
 public class BoardController {
@@ -79,7 +79,7 @@ public class BoardController {
 		Board b = bService.selectBoard(fno);
 		System.out.println("detail.bo의 b : " + b);
 		String hostId = b.getUser_id();
-		Member host = bService.selectHost(hostId);
+		Host host = bService.selectHost(hostId);
 		System.out.println("detail.bo의 host : " + host);
 		
 		if(b != null) {
