@@ -17,6 +17,7 @@
 		<result property="mStatus" column="M_STATUS"/>
 		<result property="profile" column="PROFILE"/>
 		<result property="email" column="EMAIL"/>
+		<result property="interest" column="INTEREST"/>
 	</resultMap>
 	
 	<insert id="signupMember">
@@ -42,7 +43,7 @@
 		<if test="email == null">
 		#{id},
 		</if> 
-		null
+		'-'
 		  )
 	</insert>
 	
@@ -54,7 +55,7 @@
 	
 	<insert id="insertMember">
 		insert into member
-		values(#{id}, #{pwd}, null, '꿀벌', null, default, 'Y', 'https://ssl.pstatic.net/static/pwe/address/img_profile.png', #{id}, null)
+		values(#{id}, #{pwd}, null, '꿀벌', null, default, 'Y', 'https://ssl.pstatic.net/static/pwe/address/img_profile.png', #{id}, '-')
 	</insert>
 	
 	<insert id="insertkakaoMember">
@@ -66,6 +67,13 @@
 		<if test="profile == null">
 			'https://ssl.pstatic.net/static/pwe/address/img_profile.png',
 		</if>
-		null, null)
+		null, '-')
 	</insert>
+	
+	<update id="updatePwd">
+		update member
+		set user_pwd = #{newpwd}
+		where user_id=#{id}
+	</update>
+	
 </mapper>

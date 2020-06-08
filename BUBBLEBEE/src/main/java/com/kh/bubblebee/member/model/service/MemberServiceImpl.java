@@ -44,4 +44,9 @@ public class MemberServiceImpl implements MemberService{
 		return mDAO.insertkakaoMember(sqlSession, userInfo);
 	}
 
+	@Override
+	public int memberPwdUpdate(HashMap<String, String> map) {
+		return mDAO.memberUpdatePwd(sqlSession,map);
+	}
+
 }

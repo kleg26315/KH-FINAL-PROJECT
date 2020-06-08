@@ -32,4 +32,8 @@ public class MemberDAO {
 		return sqlSession.insert("memberMapper.insertkakaoMember", userInfo);
 	}
 
+	public int memberUpdatePwd(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.update("memberMapper.updatePwd", map);
+	}
+
 }
