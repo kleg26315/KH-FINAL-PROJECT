@@ -69,15 +69,10 @@
 		null, null)
 	</insert>
 	
-  <update id="updatePwd">
+		<update id="updatePwd">
 		update member
 		set user_pwd = #{newpwd}
 		where user_id=#{id}
 	</update>
-	
-	<select id="selectHost" resultMap="memberResultSet">
-		select *
-		from member
-		where user_id=#{ hostId } and m_status='Y'
-	</select>
+  
 </mapper>
