@@ -17,7 +17,7 @@ import com.kh.bubblebee.member.model.vo.Member;
 public class BoardDAO {
 
 	public int getListCount(SqlSessionTemplate sqlSession, String cate) {
-		return sqlSession.selectOne("boardMapper.getListCount");
+		return sqlSession.selectOne("boardMapper.getListCount", cate);
 	}
 
 	public ArrayList<Board> selectList(SqlSessionTemplate sqlSession, PageInfo pi, String cate) {
