@@ -18,7 +18,7 @@ header{
 	  
 	}	
 	
-/* table,tr,td{border:1px solid red;} */
+table,tr,td{border:1px solid red;}
 
 th{
 	width: 60%;

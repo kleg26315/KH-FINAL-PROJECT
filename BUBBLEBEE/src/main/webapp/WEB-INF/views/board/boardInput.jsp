@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="resources/css/boardInput.css">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	 <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/smartEditor/js/service/HuskyEZCreator2.js" charset="UTF-8"></script>
 </head>
 <style>
 
@@ -25,7 +26,7 @@
 		<main><h2>등록</h2></main>
 		
 		<!-- 첨부파일 등록을 위해 Multipart/form-data encType 지정 -->
-		<form action="binsert.bo" onsubmit="return validate();" enctype="Multipart/form-data" style="width:78%">
+		<form action="binsert.bo" onsubmit="return validate();" enctype="Multipart/form-data" id="form">
 			<table> 
 				<tr>
 					<th colspan="2" >카테고리 설정</th>
@@ -127,7 +128,6 @@
 							<div class="B_n">
 								예) 마카롱 원데이 클래스의 인원을 일정별로<br>
 									최소 1명 ~ 최대 10명으로 설정하여<br>
-									해당 일정에 구매 옵션 상관없이 10명의 신청을 받을 수 있습니다.
 							</div>
 						</td>
 					</tr>
@@ -142,36 +142,34 @@
 					</tr>
 					</table>
 					<table>
-						<thead>
-							<tr>
-								<th >구매옵션</th>
-								<td  > 
-									<button type="button" id="btn_op">옵션 추가하기</button>
-								</td>
-								<td rowspan="3">
-									<div class="B_n">
-										<b>옵션명</b>  
-										&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <b>가격(추가금액X, 최종 결제액O)</b><br>
-										예) 참가비 (1인) / 참가비(2인)  &nbsp;&emsp;&emsp;&emsp;&emsp;     예) 1회 이용권 | 30,000원<br>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;기본 옵션 / 선물 포장 &nbsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 10회 이용권 | 280,000원<br>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;헬스장 이용권 / 헬스장 이용+PT 10회
-										<br>
-									</div>
-								</td>
-							</tr>
-						</thead>
+						<tr>
+							<th style="width: 50%;">구매옵션</th>
+							<td style="padding-left: 5px;"> 
+								<button type="button" id="btn_op">옵션 추가하기</button>
+							</td>
+							<td rowspan="3">
+								<div class="B_n">
+									<b>옵션명</b>  
+									&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <b>가격(추가금액X, 최종 결제액O)</b><br>
+									예) 참가비 (1인) / 참가비(2인)  &nbsp;&emsp;&emsp;&emsp;&emsp;     예) 1회 이용권 | 30,000원<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;기본 옵션 / 선물 포장 &nbsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 10회 이용권 | 280,000원<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;헬스장 이용권 / 헬스장 이용+PT 10회
+									<br>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" id="op" class="op" name="op1" placeholder="옵션명"  value="참가비 (1인)" required maxlength="30"> 
+							</td>
+						</tr>
+						<tr>	
+							<td>
+								<input type="text" id="op2" class="op2" name="op2" placeholder="가격(5000원 이상)"  value="5000" required>원
+							</td>
+						</tr>
 					<tbody id="tbody1">
-					<tr>
-						<td>
-							<input type="text" id="op" class="op" name="op1" placeholder="옵션명"  value="참가비 (1인)" required maxlength="30"> 
-						</td>
-						
-					</tr>
-					<tr>	
-						<td>
-							<input type="text" id="op2" class="op2" name="op2" placeholder="가격(5000원 이상)"  value="5000" required>원
-						</td>
-					</tr>
+					
 					</tbody>
 					</table>
 					<script>
@@ -254,10 +252,10 @@
 					</tr>
 					</table>
 					<table>
-						<thead>
+						
 							<tr>
-								<th style="width: 50%;">상세일정</th>
-								<td style="width: 9%;">
+								<th style="width: 51%;">상세일정</th>
+								<td style="padding-left: 7px;" >
 									<button type="button" id="btn_DetailSet">세부일정 추가</button>
 								</td>
 								<td rowspan="3">
@@ -273,18 +271,22 @@
 									</div>
 								</td>
 							</tr>
-						</thead>
-						<tbody id="tbody2">
 							<tr>
 								<td >
 									<input type="text" name="bTime" class="bTime"  placeholder="30분" required>
 								</td>
+								<td></td>
+								<td></td>
 							</tr>
 							<tr>
 								<td >
 									<input type="text" name="bDetail" class="bDetail"  placeholder="세부일정" required>
 								</td>
+								<td></td>
+								<td></td>
 							</tr>
+						<tbody id="tbody2">
+							
 						</tbody>
 					</table>
 					
@@ -409,7 +411,7 @@
 						<thead>
 							<tr>
 								<th style="width: 50%;">자주 묻는 질문</th>
-								<td>
+								<td style="padding-left: 13px;">
 									<button type="button" id="btn_Q">질문/답변 추가</button>
 								</td>
 								<td rowspan="1">
@@ -486,14 +488,55 @@
 					</tr>
 					<tr>
 						<td><textarea class="form-control" id="editor" name="editor"></textarea></td>
-						<td><button type="button">저장</button></td>
 					</tr>
 			</table>
+			<script type="text/javascript">
+			   var oEditors = [];   
+					nhn.husky.EZCreator.createInIFrame({
+					    oAppRef: oEditors,
+					    elPlaceHolder: "editor",  //textarea ID
+					    sSkinURI: "${ pageContext.servletContext.contextPath }/resources/js/smartEditor/SmartEditor2Skin2.html",  //skin경로
+					    htParams : {
+					      	  // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+					    	  bUseToolbar : true,             
+				              // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+				              bUseVerticalResizer : true,     
+				              // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+				              bUseModeChanger : true,         
+				              fOnBeforeUnload : function(){
+				              }
+				          }, 
+				          fOnAppLoad : function(){
+				              //기존 저장된 내용의 text 내용을 에디터상에 뿌려주고자 할때 사용
+				              //oEditors.getById["smartEditor"].exec("PASTE_HTML", ["기존 DB에 저장된 내용을 에디터에 적용할 문구"]);
+				          },
+					    fCreator: "createSEditor2"
+					});   
+					
+			</script>
 			<div id="btn_area">
 				<button id="complete">완료</button>
 				<button onclick="location.href='history.back()'" id="cancel">취소</button>
 			</div>
-				
+				<script>
+				$('#complete').click(function(){
+			        oEditors.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
+			        var editor = $("#editor").val();
+					 if( editor == ""  || editor == null || editor == '&nbsp;' || editor == '<p>&nbsp;</p>' || editor== '<p><br></p>')  {
+			             alert("내용을 입력하세요.");
+			             oEditors.getById["editor"].exec("FOCUS"); //포커싱
+			             return;
+					} else{
+						var result = confirm('정말로 공지사항 등록하시겠습니까?');
+						if(result){
+							alert('모임/클래스/판매 등록 완료');
+							$('#form').submit();			
+						} else{
+							alert('등록을 취소합니다.');
+						}
+					}
+				});				
+				</script>
 		</form>
 	</div>
    </section>
