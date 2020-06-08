@@ -11,6 +11,7 @@
 		<typeAlias type="com.kh.bubblebee.board.model.vo.Review" alias="Review"/>
 		<typeAlias type="com.kh.bubblebee.host.model.vo.Host" alias="Host"/>
 		<typeAlias type="com.kh.bubblebee.notice.model.vo.Notice" alias="Notice"/>
+		<typeAlias type = "com.kh.bubblebee.purchase.model.vo.Purchase" alias = "Purchase"/>
 	</typeAliases>
 	
 	<mappers>
@@ -19,5 +20,6 @@
 		<mapper resource="mappers/notice-mapper.xml"/>
 		<mapper resource="mappers/mypage-mapper.xml"/>
 		<mapper resource="mappers/host-mapper.xml"/>
+		<mapper resource = "mappers/purchase-mapper.xml"/>
 	</mappers>
 </configuration>

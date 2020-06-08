@@ -7,6 +7,7 @@ import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.board.model.vo.Review;
 import com.kh.bubblebee.board.model.vo.SearchCondition;
 import com.kh.bubblebee.common.PageInfo;
+import com.kh.bubblebee.host.model.vo.Host;
 import com.kh.bubblebee.member.model.vo.Member;
 
 public interface BoardService {
@@ -23,7 +24,7 @@ public interface BoardService {
 
 	Board selectBoard(int fno);
 
-	Member selectHost(String hostId);
+	Host selectHost(String hostId);
   
 	int getSearchListCount(HashMap<String, Object> map);
 
