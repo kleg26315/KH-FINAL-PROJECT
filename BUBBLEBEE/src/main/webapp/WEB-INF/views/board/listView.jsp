@@ -115,7 +115,6 @@
       	<!-- 어디서버튼 끝 -->&nbsp;&nbsp;
       	
       	<!-- 필터버튼 -->
-      	<form action="searchAll.bo">
      	<input type="checkbox" id="popup">
 			<label for="popup">필터</label>
 			<div>
@@ -167,7 +166,7 @@
 							   max: 30,
 							   values: [0, 30],
 							   slide: function(event, ui) {
-								   $("#amount").val(ui.values[0] + " ~ " + ui.values[1] + "만원 이상");
+								   $("#amount").val(ui.values[0] + " ~ " + ui.values[1] + "만원");
 								   $("#sprice").val(ui.values[0]);
 								   $("#eprice").val(ui.values[1]);
 							   }
@@ -182,8 +181,7 @@
 					
 				</div>
 				<label for="popup"><!-- 외곽클릭 --></label>
-			</div>
-			</form>
+			</div><br><br>
 			
 			<!-- 필터값넘기기 -->
 			<script>
@@ -191,8 +189,7 @@
 				var a = $(':radio[name="farray"]:checked').val();
 				var startPrice = $("#sprice").val();
 				var endPrice = $("#eprice").val();
-				
-				location.href="search.bo?a="+a+"&startPrice="+startPrice+"&endPrice="+endPrice;
+				location.href="search.bo?cate="+'${cate}'+"&a="+a+"&startPrice="+startPrice+"&endPrice="+endPrice;
 			}
 			
 			
@@ -323,7 +320,11 @@
          
          <c:forEach var="b" items="${ ltlist }" varStatus="status">
             <div class="moim_total">
-               <a>
+            <c:url var="bdetail" value="detail.bo">
+            	<c:param name="fno" value="${ b.fno }" />
+            	<c:param name="page" value="${ pi.currentPage }" />
+            </c:url>
+               <a href="${ bdetail }">
                   <div class="moim_each">
                   <div class="moim_img">
                      <div class="heart_div">

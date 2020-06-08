@@ -11,9 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.bubblebee.board.model.exception.BoardException;
 import com.kh.bubblebee.board.model.service.BoardService;
 import com.kh.bubblebee.board.model.vo.Board;
-import com.kh.bubblebee.board.model.vo.Review;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.common.Pagination;
+import com.kh.bubblebee.member.model.vo.Member;
 
 @Controller
 public class BoardController {
@@ -51,7 +51,7 @@ public class BoardController {
 			currentPage = page;
 		}
 		
-		int listCount = bService.getListCount();
+		int listCount = bService.getListCount(cate);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Board> list = bService.selectList(pi, cate);
@@ -70,8 +70,26 @@ public class BoardController {
 	}
 	
 	@RequestMapping("detail.bo")
-	public String detailView(@RequestParam("fno") int fno, @RequestParam("page") int page) {
-		return "boardDetail";
+	public ModelAndView detailView(@RequestParam("fno") int fno, @RequestParam(value="page", required=false) Integer page, ModelAndView mv) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		Board b = bService.selectBoard(fno);
+		System.out.println("detail.bo의 b : " + b);
+		String hostId = b.getUser_id();
+		Member host = bService.selectHost(hostId);
+		System.out.println("detail.bo의 host : " + host);
+		
+		if(b != null) {
+			mv.addObject("b", b)
+			  .addObject("host", host)
+			  .setViewName("boardDetail");
+			return mv;
+		}else {
+			throw new BoardException("게시판 상세 조회에 실패하였습니다.");
+		}
 	}
 
 }

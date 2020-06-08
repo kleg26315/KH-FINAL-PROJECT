@@ -7,10 +7,11 @@ import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.board.model.vo.Review;
 import com.kh.bubblebee.board.model.vo.SearchCondition;
 import com.kh.bubblebee.common.PageInfo;
+import com.kh.bubblebee.member.model.vo.Member;
 
 public interface BoardService {
 
-	int getListCount();
+	int getListCount(String cate);
 
 	ArrayList<Board> selectList(PageInfo pi, String cate);
 
@@ -20,6 +21,10 @@ public interface BoardService {
 
 	int insertBoard(Board b);
 
+	Board selectBoard(int fno);
+
+	Member selectHost(String hostId);
+  
 	int getSearchListCount(HashMap<String, Object> map);
 
 	ArrayList<Board> selectSearchList(HashMap<String, Object> map, PageInfo pi);

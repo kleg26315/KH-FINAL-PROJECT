@@ -70,6 +70,7 @@
 		null, '-')
 	</insert>
 	
+
 	<update id="updatePwd">
 		update member
 		set user_pwd = #{newpwd}

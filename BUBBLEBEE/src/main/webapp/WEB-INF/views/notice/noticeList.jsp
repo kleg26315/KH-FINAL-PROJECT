@@ -26,143 +26,74 @@
       <div class = "main2">
 
 	<h2 id="noticeLabel">공지사항</h2>
-
+		<c:forEach var="n" items="${ list }">
 			<div class="ntitle">
-				<table>
+				<table style="width: 100%;">
 					<tr class="titlendate">
-						<td width="700px">코로나 19 관련 프립 환불 및 운영 안내</td>
-						<td>2020-05-19</td>
+						<td>${n.btitle }</td>
+						<td style="text-align: right;">${n.b_modify_date}</td>
 					</tr>
 				</table>
-				<p class="ncontent" style="display:none">내용내용 <br><br>
-				<span id="updB">수정</span>&nbsp;&nbsp;<span id="delB">삭제</span>
-				</p>
+				<div class="ncontent" style="display:none">${n.bcontent } <br><br>
+				<c:if test="${ sessionScope.loginUser.id eq 'admin@admin.admin'}">
+					<span id="delB">삭제</span>&nbsp;&nbsp;<span id="updB">수정</span>
+				</c:if>
+				</div>
 			</div>
-			
-			<div class="ntitle">
-				<table>
-					<tr class="titlendate">
-						<td width="700px">코로나 19 관련 프립 환불 및 운영 안내</td>
-						<td>2020-05-19</td>
-					</tr>
-				</table>
-				<p class="ncontent" style="display:none">내용내용 <br><br>
-				<span id="updB">수정</span>&nbsp;&nbsp;<span id="delB">삭제</span>
-				</p>
-			</div>
-			
-			<div class="ntitle">
-				<table>
-					<tr class="titlendate">
-						<td width="700px">코로나 19 관련 프립 환불 및 운영 안내</td>
-						<td>2020-05-19</td>
-					</tr>
-				</table>
-				<p class="ncontent" style="display:none">내용내용 <br><br>
-				<span id="updB">수정</span>&nbsp;&nbsp;<span id="delB">삭제</span>
-				</p>
-			</div>
-			
-			<div class="ntitle">
-				<table>
-					<tr class="titlendate">
-						<td width="700px">코로나 19 관련 프립 환불 및 운영 안내</td>
-						<td>2020-05-19</td>
-					</tr>
-				</table>
-				<p class="ncontent" style="display:none">내용내용 <br><br>
-				<span id="updB">수정</span>&nbsp;&nbsp;<span id="delB">삭제</span>
-				</p>
-			</div>
-			
-			<div class="ntitle">
-				<table>
-					<tr class="titlendate">
-						<td width="700px">코로나 19 관련 프립 환불 및 운영 안내</td>
-						<td>2020-05-19</td>
-					</tr>
-				</table>
-				<p class="ncontent" style="display:none">내용내용 <br><br>
-				<span id="updB">수정</span>&nbsp;&nbsp;<span id="delB">삭제</span>
-				</p>
-			</div>
-			
-			<div class="ntitle">
-				<table>
-					<tr class="titlendate">
-						<td width="700px">코로나 19 관련 프립 환불 및 운영 안내</td>
-						<td>2020-05-19</td>
-					</tr>
-				</table>
-				<p class="ncontent" style="display:none">내용내용 <br><br>
-				<span id="updB">수정</span>&nbsp;&nbsp;<span id="delB">삭제</span>
-				</p>
-			</div>
-			
-			<div class="ntitle">
-				<table>
-					<tr class="titlendate">
-						<td width="700px">코로나 19 관련 프립 환불 및 운영 안내</td>
-						<td>2020-05-19</td>
-					</tr>
-				</table>
-				<p class="ncontent" style="display:none">내용내용 <br><br>
-				<span id="updB">수정</span>&nbsp;&nbsp;<span id="delB">삭제</span>
-				</p>
-			</div>
-			
-			<div class="ntitle">
-				<table>
-					<tr class="titlendate">
-						<td width="700px">코로나 19 관련 프립 환불 및 운영 안내</td>
-						<td>2020-05-19</td>
-					</tr>
-				</table>
-				<p class="ncontent" style="display:none">내용내용 <br><br>
-				<span id="updB">수정</span>&nbsp;&nbsp;<span id="delB">삭제</span>
-				</p>
-			</div>
-			
-			<div class="ntitle">
-				<table>
-					<tr class="titlendate">
-						<td width="700px">코로나 19 관련 프립 환불 및 운영 안내</td>
-						<td>2020-05-19</td>
-					</tr>
-				</table>
-				<p class="ncontent" style="display:none">내용내용 <br><br>
-				<span id="updB">수정</span>&nbsp;&nbsp;<span id="delB">삭제</span>
-				</p>
-			</div>
-			
-			<div class="ntitle">
-				<table>
-					<tr class="titlendate">
-						<td width="700px">코로나 19 관련 프립 환불 및 운영 안내</td>
-						<td>2020-05-19</td>
-					</tr>
-				</table>
-				<p class="ncontent" style="display:none">내용내용 <br><br>
-				<span id="updB"><a href="http://www.google.co.kr">수정</a></span>&nbsp;&nbsp;<span id="delB">삭제</span>
-				</p>
-			</div>
-			
+		</c:forEach>
 
 		<script>
- 		$(function(){
- 			$('.ntitle').mouseenter(function(){
-				$(this).parent().css({'cursor':'pointer'});
- 			}).mouseout(function(){
- 				$(this).parent().css({'background':'none'});
- 			}).click(function(){
- 				var bid = $(this).parent().children().eq(0).text();
- 				$(this).children('.ncontent').slideToggle(1);
- 			})
- 		});
-
+	 		$(function(){
+	 			$('.ntitle').mouseenter(function(){
+					$(this).parent().css({'cursor':'pointer'});
+	 			}).mouseout(function(){
+	 				$(this).parent().css({'background':'none'});
+	 			}).click(function(){
+	 				var bid = $(this).parent().children().eq(0).text();
+	 				$(this).children('.ncontent').slideToggle(1);
+	 			})
+	 		});
 		</script>
 		
-</div>
+		<br><br>
+		<div class="text-center">
+           	<ul class="pagination">
+           		<c:if test="${ pi.currentPage <= 1 }">
+           			<!-- <li><a class="disable">&lt;</a></li> -->
+           			<li class="disabled"><a>&lt;</a></li>
+           		</c:if>
+           		<c:if test="${ pi.currentPage > 1 }">
+					<c:url var="before" value="list.no">
+						<c:param name="page" value="${ pi.currentPage - 1 }"/>
+					</c:url>
+					<li><a href="${ before }">&lt;</a></li>
+				</c:if>
+				
+				<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+					<c:if test="${ p eq pi.currentPage }">
+						<li class="active"><a>${ p }</a></li>
+					</c:if>
+					
+					<c:if test="${ p ne pi.currentPage }">
+						<c:url var="pagination" value="list.no">
+							<c:param name="page" value="${ p }"/>
+						</c:url>
+						<li><a href="${ pagination }">${ p }</a> &nbsp;</li>
+					</c:if>
+				</c:forEach>
+				
+           		<c:if test="${ pi.currentPage >= pi.maxPage }">
+					<li class="disabled"><a>&gt;</a></li>
+				</c:if>
+				<c:if test="${ pi.currentPage < pi.maxPage }">
+					<c:url var="after" value="list.no">
+						<c:param name="page" value="${ pi.currentPage + 1 }"/>
+					</c:url> 
+					<li><a href="${ after }">&gt;</a></li>
+				</c:if>
+           	</ul>
+         </div>
+	</div>
    </section>
    
    <footer id="footer" style="padding-top: 115px;">
