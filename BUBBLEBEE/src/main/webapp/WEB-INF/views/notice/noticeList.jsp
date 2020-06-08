@@ -25,10 +25,10 @@
    <section style="padding-top: 115px; padding-left: 20%; width: 78%;">
       <div class = "main2">
 
-	<h2 id="noticeLabel">공지사항</h2>
+	<h1 id="noticeLabel" style="font-weight: bold;">공지사항</h1>
 		<c:forEach var="n" items="${ list }">
 			<div class="ntitle">
-				<table style="width: 100%;">
+				<table style="width: 100%; cursor: pointer;" class="titleDate">
 					<tr class="titlendate">
 						<td>${n.btitle }</td>
 						<td style="text-align: right;">${n.b_modify_date}</td>
@@ -44,13 +44,10 @@
 
 		<script>
 	 		$(function(){
-	 			$('.ntitle').mouseenter(function(){
-					$(this).parent().css({'cursor':'pointer'});
+	 			$('.titleDate').mouseenter(function(){
 	 			}).mouseout(function(){
-	 				$(this).parent().css({'background':'none'});
 	 			}).click(function(){
-	 				var bid = $(this).parent().children().eq(0).text();
-	 				$(this).children('.ncontent').slideToggle(1);
+	 				$(this).parent().children('.ncontent').slideToggle(1);
 	 			})
 	 		});
 		</script>

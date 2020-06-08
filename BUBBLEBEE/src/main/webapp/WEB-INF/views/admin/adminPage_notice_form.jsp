@@ -94,7 +94,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 	             	<li id="l_like" class="nav_sub_li"><a href="noticeInsertView.ad" style="color: gold;">공지글 작성</a></li>
 	             	<li id="l_like" class="nav_sub_li"><a href="list.no">공지글 목록</a></li>
 	             	<li id="l_like" class="nav_sub_li"><a href="FAQInsertView.ad">FAQ 작성</a></li>
-	             	<li id="l_like" class="nav_sub_li"><a href="#">FAQ 목록</a></li>
+	             	<li id="l_like" class="nav_sub_li"><a href="FAQList.no">FAQ 목록</a></li>
              	</ul>
 		</ul>
 		<script>
@@ -114,6 +114,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
        <div id="c_body">
           <div id="content_list">
           	 <form action="insert.no" id="frm" method="post">
+          	 	 <input type="text" hidden size="0">
 	             <input type="text" id="title" name="title" placeholder="제목" style="height: 40px;" size="50"><br><br>
 	             <textarea id="smartEditor" name="content" rows="20" cols="" style="width: 100%;"></textarea>
 	             <button class="agreeBtn" type="button">취소</button>
