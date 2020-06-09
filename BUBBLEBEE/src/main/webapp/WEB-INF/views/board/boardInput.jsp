@@ -53,11 +53,17 @@
 						
 						<span>
 							<select id="category2" name="category">
-								<option value="no">주제를 설정해주세요</option>
-								<option value="activity">액티비티</option>
-								<option value="learn">배움</option>
-								<option value="health">건강/뷰티</option>
-								<option value="travel">여행</option>
+								<option value="">==모임==</option>
+								<option value="party">토크/파티</option>
+								<option value="like">취향</option>
+								<option value="study">스터디</option>
+								<option value="event">이벤트/공간</option>
+								<option value="">==클래스==</option>
+								<option value="diy">공예/DIY</option>
+								<option value="cook">요리</option>
+								<option value="sport">스포츠</option>
+								<option value="learn">어학/취업</option>
+								<option value="sell">==작품==</option>
 							</select>
 						</span>
 					</td>
