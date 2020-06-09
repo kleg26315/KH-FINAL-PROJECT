@@ -2,6 +2,8 @@ package com.kh.bubblebee.board.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -91,5 +93,12 @@ public class BoardController {
 			throw new BoardException("게시판 상세 조회에 실패하였습니다.");
 		}
 	}
+	
+//	@RequestMapping("list.bo")
+//	public void replyList(@RequestParam("bId") int bId, HttpServletResponse response) {
+//		response.setContentType("application/json; charset=UTF-8");
+//		
+//	}
+	
 
 }

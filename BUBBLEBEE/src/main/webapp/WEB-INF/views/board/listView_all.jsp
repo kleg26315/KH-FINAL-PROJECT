@@ -48,33 +48,33 @@
       <div class = "main">
        	
       	<div id="allLabel" style="margin-top:80px;">
-      		<c:if test="${ cate eq '토크/파티'}" >	     
+      		<c:if test="${ cate eq 'party'}" >	     
          		토크/파티 모임 전체
          	</c:if>
-         	<c:if test="${ cate == '취향'}" >	     
+         	<c:if test="${ cate == 'like'}" >	     
          		취향 모임 전체
          	</c:if>	
-         	<c:if test="${ cate == '스터디'}" >	     
+         	<c:if test="${ cate == 'study'}" >	     
          		스터디 모임 전체
          	</c:if>	
-         	<c:if test="${ cate == '이벤트/공간'}" >	     
+         	<c:if test="${ cate == 'event'}" >	     
          		이벤트/공간 모임 전체
          	</c:if>	
          	
-         	<c:if test="${ cate == '공예/DIY'}" >	     
+         	<c:if test="${ cate == 'diy'}" >	     
          		공예/DIY 클래스 전체
          	</c:if>
-         	<c:if test="${ cate == '요리'}" >	     
+         	<c:if test="${ cate == 'cook'}" >	     
          		요리 클래스 전체
          	</c:if>
-         	<c:if test="${ cate == '스포츠'}" >	     
+         	<c:if test="${ cate == 'sport'}" >	     
          		스포츠 클래스 전체
          	</c:if>
-         	<c:if test="${ cate == '어학/취업'}" >	     
+         	<c:if test="${ cate == 'learn'}" >	     
          		어학/취업 클래스 전체
          	</c:if>
          	
-         	<c:if test="${ cate == '작품'}" >	     
+         	<c:if test="${ cate == 'sell'}" >	     
          		작품  전체
          	</c:if>
       	</div>

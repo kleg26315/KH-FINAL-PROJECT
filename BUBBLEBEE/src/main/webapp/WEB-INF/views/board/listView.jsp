@@ -202,33 +202,33 @@
      	<!-- 인기 -->
      	<br>
      	 <label style="font-weight: bold; font-size: 20px;">
-         	<c:if test="${ cate == '토크/파티'}" >	     
+         	<c:if test="${ cate == 'party'}" >	     
          		인기 토크/파티
          	</c:if>
-         	<c:if test="${ cate == '취향'}" >	     
+         	<c:if test="${ cate == 'like'}" >	     
          		인기 취향
          	</c:if>	
-         	<c:if test="${ cate == '스터디'}" >	     
+         	<c:if test="${ cate == 'study'}" >	     
          		인기 스터디
          	</c:if>	
-         	<c:if test="${ cate == '이벤트/공간'}" >	     
+         	<c:if test="${ cate == 'event'}" >	     
          		인기 이벤트/공간
          	</c:if>	
          	
-         	<c:if test="${ cate == '공예/DIY'}" >	     
+         	<c:if test="${ cate == 'diy'}" >	     
          		인기 공예/DIY
          	</c:if>
-         	<c:if test="${ cate == '요리'}" >	     
+         	<c:if test="${ cate == 'cook'}" >	     
          		인기 요리
          	</c:if>
-         	<c:if test="${ cate == '스포츠'}" >	     
+         	<c:if test="${ cate == 'sport'}" >	     
          		인기 스포츠
          	</c:if>
-         	<c:if test="${ cate == '어학/취업'}" >	     
+         	<c:if test="${ cate == 'learn'}" >	     
          		인기 어학/취업
          	</c:if>
          	
-         	<c:if test="${ cate == '작품'}" >	     
+         	<c:if test="${ cate == 'sell'}" >	     
          		인기 작품
          	</c:if>	
          </label>
@@ -282,33 +282,33 @@
       	<!-- 최신-->
 <!--       	<div id="latestmoim"> -->
          <label style="font-weight: bold; font-size: 20px;">
-         	<c:if test="${ cate == '토크/파티'}" >	     
+         	<c:if test="${ cate == 'party'}" >	     
          		최신 토크/파티
          	</c:if>
-         	<c:if test="${ cate == '취향'}" >	     
+         	<c:if test="${ cate == 'like'}" >	     
          		최신 취향
          	</c:if>	
-         	<c:if test="${ cate == '스터디'}" >	     
+         	<c:if test="${ cate == 'study'}" >	     
          		최신 스터디
          	</c:if>	
-         	<c:if test="${ cate == '이벤트/공간'}" >	     
+         	<c:if test="${ cate == 'event'}" >	     
          		최신 이벤트/공간
          	</c:if>	
          	
-         	<c:if test="${ cate == '공예/DIY'}" >	     
+         	<c:if test="${ cate == 'diy'}" >	     
          		최신 공예/DIY
          	</c:if>
-         	<c:if test="${ cate == '요리'}" >	     
+         	<c:if test="${ cate == 'cook'}" >	     
          		최신 요리
          	</c:if>
-         	<c:if test="${ cate == '스포츠'}" >	     
+         	<c:if test="${ cate == 'sport'}" >	     
          		최신 스포츠
          	</c:if>
-         	<c:if test="${ cate == '어학/취업'}" >	     
+         	<c:if test="${ cate == 'learn'}" >	     
          		최신 어학/취업
          	</c:if>
          	
-         	<c:if test="${ cate == '작품'}" >	     
+         	<c:if test="${ cate == 'sell'}" >	     
          		최신 작품
          	</c:if>	
          </label>
@@ -405,49 +405,49 @@
       	<div id="allView">
       	<c:if test="${ cate == '토크/파티'}">
 	      	<c:url var="all" value="allList.bo">
-				<c:param name="cate" value="토크/파티"/>
+				<c:param name="cate" value="party"/>
 			</c:url>
 		</c:if>
 		<c:if test="${ cate == '취향'}">
 	      	<c:url var="all" value="allList.bo">
-				<c:param name="cate" value="취향"/>
+				<c:param name="cate" value="like"/>
 			</c:url>
 		</c:if>
 		<c:if test="${ cate == '스터디'}">
 	      	<c:url var="all" value="allList.bo">
-				<c:param name="cate" value="스터디"/>
+				<c:param name="cate" value="study"/>
 			</c:url>
 		</c:if>
 		<c:if test="${ cate == '이벤트/공간'}">
 	      	<c:url var="all" value="allList.bo">
-				<c:param name="cate" value="이벤트/공간"/>
+				<c:param name="cate" value="event"/>
 			</c:url>
 		</c:if>
 		
 		<c:if test="${ cate == '공예/DIY'}">
 	      	<c:url var="all" value="allList.bo">
-				<c:param name="cate" value="공예/DIY"/>
+				<c:param name="cate" value="diy"/>
 			</c:url>
 		</c:if>
 		<c:if test="${ cate == '요리'}">
 	      	<c:url var="all" value="allList.bo">
-				<c:param name="cate" value="요리"/>
+				<c:param name="cate" value="cook"/>
 			</c:url>
 		</c:if>
 		<c:if test="${ cate == '스포츠'}">
 	      	<c:url var="all" value="allList.bo">
-				<c:param name="cate" value="스포츠"/>
+				<c:param name="cate" value="sport"/>
 			</c:url>
 		</c:if>
 		<c:if test="${ cate == '어학/취업'}">
 	      	<c:url var="all" value="allList.bo">
-				<c:param name="cate" value="어학/취업"/>
+				<c:param name="cate" value="learn"/>
 			</c:url>
 		</c:if>
 		
 		<c:if test="${ cate == '작품'}">
 	      	<c:url var="all" value="allList.bo">
-				<c:param name="cate" value="작품"/>
+				<c:param name="cate" value="sell"/>
 			</c:url>
 		</c:if>
 		
