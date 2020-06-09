@@ -224,7 +224,7 @@
 					</tr>
 					<tr>	
 						<td style="width: 53%;">
-							<input type="text" name="post" class="postcodify bRequired" value="" size="6" style="width: 300px;" >
+							<input type="text" name="post" class="postcodify_postcode5"  size="6" style="width: 300px;" >
 						</td>
 						<td >
 							<button type="button" id="postcodify_search_button">주소 찾기</button>

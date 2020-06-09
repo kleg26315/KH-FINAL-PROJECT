@@ -38,13 +38,14 @@ public class BoardInputController {
 								HttpServletRequest request, @RequestParam("post") String post, 
 								@RequestParam("address1") String address1, @RequestParam("address2") String address2, 
 								@RequestParam("bTime") String bTime, @RequestParam("bDetail") String bDetail,
-								@RequestParam("b_Qt") String b_Qt, @RequestParam("b_An") String b_An
-								) {
+								@RequestParam("b_Qt") String b_Qt, @RequestParam("b_An") String b_An) {
+		
 		
 		b.setLocation(post + "/" + address1 + "/" + address2);
-		b.setFcalendar(bTime + "      " + bDetail);
+		b.setFcalendar(bTime + "/" + bDetail);
 		b.setFminfo(b_Qt + "<br>" + b_An);
 		
+		System.out.println(b);
 		
 		String[] originalFileName = new String[uploadFile.size()];
 		
