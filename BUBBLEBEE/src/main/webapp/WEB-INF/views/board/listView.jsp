@@ -403,49 +403,49 @@
 
       	<!-- 전체보기 -->
       	<div id="allView">
-      	<c:if test="${ cate == '토크/파티'}">
+      	<c:if test="${ cate == 'party'}">
 	      	<c:url var="all" value="allList.bo">
 				<c:param name="cate" value="party"/>
 			</c:url>
 		</c:if>
-		<c:if test="${ cate == '취향'}">
+		<c:if test="${ cate == 'like'}">
 	      	<c:url var="all" value="allList.bo">
 				<c:param name="cate" value="like"/>
 			</c:url>
 		</c:if>
-		<c:if test="${ cate == '스터디'}">
+		<c:if test="${ cate == 'study'}">
 	      	<c:url var="all" value="allList.bo">
 				<c:param name="cate" value="study"/>
 			</c:url>
 		</c:if>
-		<c:if test="${ cate == '이벤트/공간'}">
+		<c:if test="${ cate == 'event'}">
 	      	<c:url var="all" value="allList.bo">
 				<c:param name="cate" value="event"/>
 			</c:url>
 		</c:if>
 		
-		<c:if test="${ cate == '공예/DIY'}">
+		<c:if test="${ cate == 'diy'}">
 	      	<c:url var="all" value="allList.bo">
 				<c:param name="cate" value="diy"/>
 			</c:url>
 		</c:if>
-		<c:if test="${ cate == '요리'}">
+		<c:if test="${ cate == 'cook'}">
 	      	<c:url var="all" value="allList.bo">
 				<c:param name="cate" value="cook"/>
 			</c:url>
 		</c:if>
-		<c:if test="${ cate == '스포츠'}">
+		<c:if test="${ cate == 'sport'}">
 	      	<c:url var="all" value="allList.bo">
 				<c:param name="cate" value="sport"/>
 			</c:url>
 		</c:if>
-		<c:if test="${ cate == '어학/취업'}">
+		<c:if test="${ cate == 'learn'}">
 	      	<c:url var="all" value="allList.bo">
 				<c:param name="cate" value="learn"/>
 			</c:url>
 		</c:if>
 		
-		<c:if test="${ cate == '작품'}">
+		<c:if test="${ cate == 'sell'}">
 	      	<c:url var="all" value="allList.bo">
 				<c:param name="cate" value="sell"/>
 			</c:url>
