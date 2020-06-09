@@ -93,16 +93,18 @@ img {
 .ncontent p{font-family:'Noto Sans KR', sans-serif;
 font-size: 15px; }
 
-#updB{
+.updB{
 	font-size:14px; display:inline-block; background-color:lightgray; 
 	border-radius: 5px; width:75px; hieght:20px; padding:3px; text-align:center;
 	float:right;
 	margin-right: 15px;
+	cursor: pointer;
 }
-#delB{
+.delB{
 	font-size:14px; display:inline-block; background-color:lightgray;
 	border-radius: 5px; width:75px; hieght:20px; padding:3px; text-align:center;
 	float: right;
+	cursor: pointer;
 }
 
 .zeroBox {
@@ -117,7 +119,7 @@ font-size: 15px; }
 }
 
 .zeroText {
-    font-size: 11px;
+    font-size: 16px;
     font-weight: 300;
     line-height: 18px;
     text-align: center;

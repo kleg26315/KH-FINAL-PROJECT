@@ -2,7 +2,9 @@ package com.kh.bubblebee.notice.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,22 +77,22 @@ public class NoticeController {
 		if(result > 0) {
 			return "redirect:FAQList.no";
 		} else {
-			throw new NoticeException("공지사항 등록에 실패하였습니다.");
+			throw new NoticeException("FAQ 등록에 실패하였습니다.");
 		}
 	}
 	
 	@RequestMapping("FAQList.no")
-	public ModelAndView FAQList(@RequestParam(value="page", required=false) Integer page, ModelAndView mv) {
+	public ModelAndView FAQList(@RequestParam(value="page", required=false) Integer page, @RequestParam(value="number", required=false) String number, ModelAndView mv) {
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
 		}
 		
-		int listCount = nService.getFAQListCount();
+		int listCount = nService.getFAQListCount(number);
 		
 		PageInfo pi = Pagination2.getPageInfo(currentPage, listCount);
 		
-		ArrayList<Notice> list = nService.selectFAQList(pi);
+		ArrayList<Notice> list = nService.selectFAQList(pi, number);
 		
 		if(list != null) {
 			// list, pi, view
@@ -105,14 +107,30 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("faqFilter.no")
-	public void faq2List(@RequestParam("number") String number, HttpServletResponse response) {
+	public void faq2List(@RequestParam(value="page", required=false) Integer page, @RequestParam(value="number", required=false) String number, HttpServletResponse response) {
 
 		response.setContentType("application/json; charset=UTF-8");
-		ArrayList<Notice> list = nService.selectFAQFilterList(number);
-
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int listCount = nService.getFAQFilterListCount(number);
+		
+		PageInfo pi = Pagination2.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Notice> list = nService.selectFAQFilterList(pi, number);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("pi", pi);
+		map.put("list", list);
+		map.put("number", number);
+		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		try {
-			gson.toJson(list, response.getWriter());
+			gson.toJson(map, response.getWriter());
 		} catch (JsonIOException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -120,4 +138,48 @@ public class NoticeController {
 		}
 	}
 	
+	@RequestMapping("deleteFAQ.no")
+	public String deleteFAQ(@RequestParam("bno") String bno) {
+		
+		int result = nService.deleteFAQ(bno);
+		
+		if(result > 0) {
+			return "redirect:FAQList.no";
+		} else {
+			throw new NoticeException("FAQ 삭제에 실패하였습니다.");
+		}
+	}
+	
+	@RequestMapping("updateFAQForm.no")
+	public ModelAndView updateFAQForm(@RequestParam("bno") String bno, @RequestParam("page") int page,  ModelAndView mv) {
+		
+		Notice notice = nService.selectupdateFAQ(bno);
+		
+		if(notice != null) {
+			mv.addObject("notice", notice);
+			mv.addObject("page", page);
+			mv.setViewName("updateFAQForm");
+		} else {
+			throw new NoticeException("FAQ 조회에 실패하였습니다.");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="updateFAQ.no", method = RequestMethod.POST) 
+	public ModelAndView updateFAQ(@RequestParam("title") String title, @RequestParam("content") String content,
+						@RequestParam("btype") int btype, @RequestParam("bno") String bno, @RequestParam("page") Integer page, HttpServletRequest request, ModelAndView mv) {
+		
+		int result = nService.updateFAQ(title, content, btype, bno);
+		
+		if(result > 0) {
+			mv.addObject("page", page);
+			mv.addObject("number", btype);
+			mv.setViewName("redirect:FAQList.no");
+		} else {
+			throw new NoticeException("FAQ 수정에 실패하였습니다.");
+		}
+		
+		return mv;
+	}
 }

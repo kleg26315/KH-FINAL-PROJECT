@@ -25,7 +25,7 @@
 				<span class="rest faqAjax" id="2">이용안내</span>
 				<span class="rest faqAjax" id="3">회원정보</span>
 				<span class="rest faqAjax" id="4">결제/환불</span>
-				<span class="rest faqAjax" id="5">쿠폰/에너지</span>
+				<span class="rest faqAjax" id="5">마일리지</span>
 				<span class="rest faqAjax" id="6">호스트신청</span>
 				<span class="rest faqAjax" id="7">기타</span>
 			</div>
@@ -38,8 +38,9 @@
 						url : 'faqFilter.no',
 						data : {number: number},
 						success: function(data){
-							if(data.length == 0){
-								console.log("없음");
+							$faqCategory = $('.faqCategory');
+							
+							if(data.list.length == 0){
 								$faq_list = $('.faq_list');
 								$faq_list.html('');
 								
@@ -56,17 +57,27 @@
 								
 								$faq_list.append($zeroBox);
 							} else{
+								var sessionUId = "${ sessionScope.loginUser.id}";
+
 								$faq_list = $('.faq_list');
 								$faq_list.html('');
-								
 								var $faq_ul = $("<ul class='faq_ul'>");
-								for(var i in data){
-									console.log(data[i].btitle);
+								for(var i in data.list){
 									var $li = $('<li>');
 									var $ntitle = $('<div class="ntitle">');
-									var $titleBox = $("<div class='titleBox'>").text(data[i].btitle);
-									var $ncontent = $("<div class='ncontent' style='display:none'>").html(data[i].bcontent);
+									var $bno = $("<input name='bno' hidden>").val(data.list[i].bno);
+									var $titleBox = $("<div class='titleBox'>").text(data.list[i].btitle);
+									var $ncontent = $("<div class='ncontent' style='display:none'>").html(data.list[i].bcontent);
 									
+									if(sessionUId == 'admin@admin.admin'){
+										$ncontent.append('<br><br>');
+										var $delB = $("<span class='delB'>").text('삭제');
+										$ncontent.append($delB);
+										$ncontent.append('&nbsp;&nbsp;');
+										var $updB = $("<span class='updB'>").text('수정');
+										$ncontent.append($updB);
+									}
+									$ntitle.append($bno);
 									$ntitle.append($titleBox);
 									$ntitle.append($ncontent);
 									$li.append($ntitle);
@@ -75,12 +86,86 @@
 									
 									$faq_list.append($faq_ul);
 								}
+								
+								var $footPage = $("<footer class='footPage'>");
+								var $textcenter = $("<div class='text-center'>");
+								var $pagination = $("<ul class='pagination'>");
+								
+								if(data.pi.currentPage <= 1){
+									var $disabled = $("<li class='disabled'>");
+									var $lt = $("<a>").text('<');
+									
+									$disabled.append($lt);
+									$pagination.append($disabled);
+								} else if(data.pi.currentPage > 1){
+									var $li = $("<li>");
+									var $before = $("<a>").text('<');
+									$before.attr('href', 'FAQList.no?page='+(data.pi.currentPage-1) + "&number="+data.number);
+									
+									$li.append($before);
+									$pagination.append($li);
+								}
+								
+								for(var i=data.pi.startPage; i<=data.pi.endPage; i++){
+									if(i==data.pi.currentPage){
+										var $active = $("<li class='active'>");
+										var $i = $("<a>").text(i);
+										
+										$active.append($i);
+										$pagination.append($active);
+									} else if(i!=data.pi.currentPage){
+										var $li2 = $("<li>");
+										var $pagination2 = $("<a>").text(i);
+										$pagination2.attr('href', 'FAQList.no?page='+i + "&number="+data.number);
+										
+										$li2.append($pagination2);
+										$pagination.append($li2);
+									}
+								}
+								
+								if(data.pi.currentPage >= data.pi.maxPage){
+									var $disabled2 = $("<li class='disabled'>");
+									var $gt = $("<a>").text('>');
+									
+									$disabled2.append($gt);
+									$pagination.append($disabled2);
+								} else if(data.pi.currentPage < data.pi.maxPage){
+									var $li3 = $("<li>");
+									var $after = $("<a>").text('>');
+									$after.attr('href', 'FAQList.no?page='+(data.pi.currentPage+1) + "&number="+data.number);
+									
+									$li3.append($after);
+									$pagination.append($li3);
+								}
+								
+								$textcenter.append($pagination);
+								$footPage.append($textcenter);
+								
+								$faq_list.append($footPage);
 							}
 					 		$(function(){
 					 			$('.titleBox').click(function(){
 					 				$(this).parent().children('.ncontent').slideToggle(1);
 					 			})
 					 		});
+					 		
+					 		$('.delB').click(function(){
+					 			var bno = $(this).parent().parent().children().eq(0).val();
+					 			console.log(bno);
+					 			var result = confirm('정말로 삭제하시겠습니까?');
+					 			if(result){
+					 				alert('삭제가 완료되었습니다.');
+					 				location.href = 'deleteFAQ.no?bno='+ bno;
+					 			} else{
+					 				alert('삭제를 취소합니다.');
+					 			}
+					 		})
+					 		
+					 		$('.updB').click(function(){
+					 			var bno = $(this).parent().parent().children().eq(0).val();
+					 			var p = ${pi.currentPage};
+				 				location.href = 'updateFAQForm.no?bno='+ bno+"&page="+p;
+				 			})
 						}
 					})
 				})
@@ -101,11 +186,12 @@
 						<c:forEach var="n" items="${ list }">
 							<li>
 								<div class="ntitle">
+									<input name="bno" hidden value="${n.bno }">
 									<div class="titleBox">${n.btitle }</div>
 									<div class="ncontent" style="display:none">${n.bcontent } 
 										<c:if test="${ sessionScope.loginUser.id eq 'admin@admin.admin'}">
 											<br><br>
-											<span id="delB">삭제</span>&nbsp;&nbsp;<span id="updB">수정</span>
+											<span class="delB">삭제</span>&nbsp;&nbsp;<span class="updB">수정</span>
 										</c:if>
 									</div>
 								</div>
@@ -119,13 +205,31 @@
 				 				$(this).parent().children('.ncontent').slideToggle(1);
 				 			})
 				 		});
+				 		
+				 		$('.delB').click(function(){
+				 			var bno = $(this).parent().parent().children().eq(0).val();
+				 			console.log(bno);
+				 			var result = confirm('정말로 삭제하시겠습니까?');
+				 			if(result){
+				 				alert('삭제가 완료되었습니다.');
+				 				location.href = 'deleteFAQ.no?bno='+ bno;
+				 				// 페이지 파라미터를 줄지 말지
+				 			} else{
+				 				alert('삭제를 취소합니다.');
+				 			}
+				 		})
+				 		
+				 		$('.updB').click(function(){
+				 			var bno = $(this).parent().parent().children().eq(0).val();
+				 			var p = ${pi.currentPage};
+			 				location.href = 'updateFAQForm.no?bno='+ bno+"&page="+p;
+				 		})
 					</script>
 					
 					<footer class="footPage">
 						<div class="text-center">
 				           	<ul class="pagination">
 				           		<c:if test="${ pi.currentPage <= 1 }">
-				           			<!-- <li><a class="disable">&lt;</a></li> -->
 				           			<li class="disabled"><a>&lt;</a></li>
 				           		</c:if>
 				           		<c:if test="${ pi.currentPage > 1 }">

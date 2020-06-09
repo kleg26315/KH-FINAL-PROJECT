@@ -32,9 +32,11 @@ header{
 	border-radius: 5px; width:75px; hieght:20px; padding:3px; text-align:center;
 	float:right;
 	margin-right: 15px;
+	cursor: pointer;
 }
 #delB{
 	font-size:14px; display:inline-block; background-color:lightgray;
 	border-radius: 5px; width:75px; hieght:20px; padding:3px; text-align:center;
 	float: right;
+	cursor: pointer;
 }
