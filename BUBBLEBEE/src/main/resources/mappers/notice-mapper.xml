@@ -38,12 +38,42 @@
 	<select id="getFAQListCount" resultType="_int">
 		select count(*)
 		from notice
-		where b_status = 'Y' and btype > 1
+		where b_status = 'Y' and
+		<if test="number == null">
+			btype > 1
+		</if>
+		<if test="number ==1">
+			btype > 1
+		</if>
+		<if test="number != 1 and number !=null">
+			btype = #{number}
+		</if>
+	</select>
+	
+	<select id="getFAQFilterListCount" resultType="_int">
+		select count(*)
+		from notice
+		where b_status = 'Y' and 
+		<if test="number ==1">
+			btype > 1
+		</if>
+		<if test="number != 1">
+			btype = #{number}
+		</if>
 	</select>
 	
 	<select id="selectFAQList" resultMap="noticeResultSet">
 		select * from notice
-		where b_status = 'Y' and btype > 1
+		where b_status = 'Y' and 
+		<if test="number ==null">
+			btype > 1
+		</if>
+		<if test="number ==1">
+			btype > 1
+		</if>
+		<if test="number != 1 and number !=null">
+			btype = #{number}
+		</if>
 		order by bno desc
 	</select>
 	
@@ -58,4 +88,22 @@
 		</if>
 		order by bno desc
 	</select>
+	
+	<update id="deleteFAQ">
+		update notice
+		set b_status = 'N'
+		where bno = #{bno}
+	</update>
+	
+	<select id="seleteupdateFAQ" resultMap="noticeResultSet">
+		select *
+		from notice
+		where bno= #{bno}
+	</select>
+	
+	<update id="updateFAQ">
+		update notice
+		set btitle = #{title}, bcontent = #{content}, btype=#{btype}, b_modify_date = sysdate
+		where bno = #{bno}
+	</update>
 </mapper>

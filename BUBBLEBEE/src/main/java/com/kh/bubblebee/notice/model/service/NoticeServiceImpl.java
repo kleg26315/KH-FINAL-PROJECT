@@ -40,18 +40,38 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public int getFAQListCount() {
-		return nDAO.getFAQListCount(sqlSession);
+	public int getFAQListCount(String number) {
+		return nDAO.getFAQListCount(sqlSession, number);
 	}
 
 	@Override
-	public ArrayList<Notice> selectFAQList(PageInfo pi) {
-		return nDAO.selectFAQList(sqlSession, pi);
+	public ArrayList<Notice> selectFAQList(PageInfo pi, String number) {
+		return nDAO.selectFAQList(sqlSession, pi, number);
 	}
 
 	@Override
-	public ArrayList<Notice> selectFAQFilterList(String number) {
-		return nDAO.selectFAQFilterList(sqlSession, number);
+	public ArrayList<Notice> selectFAQFilterList(PageInfo pi, String number) {
+		return nDAO.selectFAQFilterList(sqlSession, pi, number);
+	}
+
+	@Override
+	public int getFAQFilterListCount(String number) {
+		return nDAO.getFAQFilterListCount(sqlSession, number);
+	}
+
+	@Override
+	public int deleteFAQ(String bno) {
+		return nDAO.deleteFAQ(sqlSession, bno);
+	}
+
+	@Override
+	public Notice selectupdateFAQ(String bno) {
+		return nDAO.selectupdateFAQ(sqlSession, bno);
+	}
+
+	@Override
+	public int updateFAQ(String title, String content, int btype, String bno) {
+		return nDAO.updateFAQ(sqlSession, title, content, btype, bno);
 	}
 	
 }
