@@ -80,7 +80,7 @@
 				<!-- 해시태그 내용들 -->
 				<div class="hashTagTag">${ b.small_title }</div>
 				<div class="hashTagTitle">${ b.ftitle }</div>
-				<div class="hashTagPrice">${ b.price }</div>
+				<div class="hashTagPrice">${ b.price } 원</div>
 				<hr>
 				<div>
 					<div>좋아요 누른 인원 + 명이 좋아한 모임</div>
@@ -226,16 +226,19 @@
 				</div>
 			</div>
 		</div>
-		<div id="detailMainForm2" class="detailMainForm">
-			<h3>
-				<b>옵션 선택</b>
-			</h3>
-			<br> <select id="optionSelect" style="outline: none;">
-				<option selected>옵션1</option>
-				<option>옵션2</option>
-			</select> <br> <input type="button" value="참가하기"
-				style="width: 320px; height: 40px; margin-top: 70%; background-color: gold; border: none; border-radius: 2px 2px;">
-		</div>
+		<form action = "purchase1First.pu" method = "post">
+			<input type = "text" style = "display : none" value = "${b.fno }" name = "fNo">
+			<div id="detailMainForm2" class="detailMainForm">
+				<h3>
+					<b>옵션 선택</b>
+				</h3>
+				<br> <select id="optionSelect" style="outline: none;" name = "oNo">
+					<option selected>옵션1</option>
+					<option>옵션2</option>
+				</select> <br> <input type="submit" value="참가하기"
+					style="width: 320px; height: 40px; margin-top: 70%; background-color: gold; border: none; border-radius: 2px 2px;">
+			</div>
+		</form>
 		<div class="recommendation">
 			<div class="recommendationIntroduce">이런 클래스는 어때요?</div>
 			<div class="recommendationContents">클래스 추천 목록</div>
