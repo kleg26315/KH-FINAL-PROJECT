@@ -204,7 +204,7 @@
 
 					<div class="hashTagQuestion">자주 묻는 질문 <input class="hashTagQuestionBtn" id="TQB1" type="button" value="V"></div>
 					<div class="hashTagEnquiryContents">
-					<c:forTokens items="${ b.fminfo }" delims=",<br>" var="f" varStatus="fm">
+					<%-- <c:forTokens items="${ b.fminfo }" delims=",<br>" var="f" varStatus="fm">
 						<c:if test="${ fm.index%2 eq 0}">
 							f1: ${ f }<br>
 						</c:if>
@@ -213,7 +213,19 @@
 						<c:if test="${ fm.index%2 eq 1}">
 							f1: ${ f }<br>
 						</c:if>
-					</c:forTokens>					
+					</c:forTokens> --%>
+					<c:set var="splitArr" value="${ b.fminfo.split('<br>') }"/>
+					<c:set var="questionArr" value="${ splitArr[0].split(',') }" />
+					<c:set var="answerArr" value="${ splitArr[1].split(',') }" />
+					
+					<c:forEach var="ques" items="${ questionArr }" varStatus="que">
+						${ ques } <br> 
+						<c:forEach var="anss" items="${ answerArr }" varStatus="anw">
+							<c:if test="${ que.index eq anw.index }">
+								&nbsp;&nbsp;${ anss }<br>
+							</c:if>
+						</c:forEach>
+					</c:forEach>
 					</div>
 
 					<div style="float: left; width: 100%; height: 20px; margin-top: -18px;">
