@@ -126,6 +126,7 @@
 	</servlet-mapping>
 	
 	<!-- 결제 관련 -->
+	<!--  ㅋㅋㅋ servlet-mapping을 <servlet>안에 넣어놓음...ㅠ
 	<servlet>
 		<servlet-name>purchaseServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -138,9 +139,23 @@
 			<servlet-name>purchaseServlet</servlet-name>
 			<url-pattern>*.pu</url-pattern>
 		</servlet-mapping>
-		
 	</servlet>
-  
+    -->  
+    <servlet>
+		<servlet-name>purchaseServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/purchase-context.xml</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>purchaseServlet</servlet-name>
+		<url-pattern>*.pu</url-pattern>
+	</servlet-mapping>
+    
+    
 	<!-- 한글깨짐 방지 인코딩 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
