@@ -34,35 +34,39 @@
 				</div>
 				<div class = "mProfile">
 					<div class = "mProfileT1">
-						<input class = "mProfileT11" name = "rIntro"  value = "${pu.small_title }" readonly>
+						<input class = "mProfileT11" name = "rIntro"  value = "${ pu.small_title }" readonly>
 							
 					</div>
 					<div class = "mProfileT2">
-						<input class = "mProfileT21" name = "rTitle" value = "${pu.ftitle }" readonly>
+						<input class = "mProfileT21" name = "rTitle" value = "${ pu.ftitle }" readonly>
 					</div>
 					<div class = "mProfileT3">
-						<input class = "mProfileT31" name = "rCost" value = "${pu.price }원" readonly>
+						<input class = "mProfileT31" name = "rCost" value = "${ pu.price }원" readonly>
 	
 					</div>
 				</div>
+			</c:forEach>
+			
 				<div style = "float:left; width : 100%;">
 					<hr id = "submitFormSectionMainDH">
 				</div>
 				<div class = "mOption">
-					<div class = "mOptionO">
-						<h3 class = "mOptionO1">선택한 옵션</h3>
-						<input class = "mOptionO2" name = "rTitleDetail" value = "창렬회초리(소)" readonly>
-					</div>
-					<div class = "mOptionP">
-						<h3 class = "mOptionP1">수량</h3>	
-						<input class = "mOptionP2" name = "rCount" value = "2개" readonly>
-					</div>
-					<div class = "mOptionS">
-						<h3 class = "mOptionS1">옵션합계</h3>
-						<h3 class = "mOptionS2" style = "float : right;">
-							<input id = "TC1" name = "rACost" type = "text" value = "22000"readonly>원
-						</h3>
-					</div>
+					<c:forEach var = "pu2" items = "${pslist }" varStatus = "status">
+						<div class = "mOptionO">
+							<h3 class = "mOptionO1">선택한 옵션</h3>
+							<input class = "mOptionO2" name = "rTitleDetail" value = "창렬회초리(소)" readonly>
+						</div>
+						<div class = "mOptionP">
+							<h3 class = "mOptionP1">수량</h3>	
+							<input class = "mOptionP2" name = "rCount" value = "${ pu2.tcount }" readonly>
+						</div>
+						<div class = "mOptionS">
+							<h3 class = "mOptionS1">옵션합계</h3>
+							<h3 class = "mOptionS2" style = "float : right;">
+								<input id = "TC1" name = "rACost" type = "text" value = "22000"readonly>원
+							</h3>
+						</div>
+					</c:forEach>
 				</div>
 				<div style = "float:left; width : 100%;">
 					<hr id = "submitFormSectionMainDH" style = "margin-top : 20px;">
@@ -157,7 +161,7 @@
 					</div>
 				</div>
 			</div>
-		</c:forEach>
+		
 	</form>
 	<script>
 	$('#FBDI1').on('click', function(){

@@ -3,6 +3,7 @@ package com.kh.bubblebee.purchase.model.vo;
 public class PBoard {
 
 	private int fno;
+	private String ftitle;
 	private int ftype;
 	private int price;
 	private String small_title;
@@ -21,11 +22,12 @@ public class PBoard {
 		
 	}
 
-	public PBoard(int fno, int ftype, int price, String small_title, String category, String location, String fcontain,
+	public PBoard(int fno,String ftitle, int ftype, int price, String small_title, String category, String location, String fcontain,
 			String fncontain, String fcalendar, String fmaterials, String fminfo, String fprecaution, String user_id,
 			String like) {
 		super();
 		this.fno = fno;
+		this.ftitle = ftitle;
 		this.ftype = ftype;
 		this.price = price;
 		this.small_title = small_title;
@@ -49,6 +51,14 @@ public class PBoard {
 		this.fno = fno;
 	}
 
+	public String getftitle() {
+		return ftitle;
+	}
+	
+	public void setFtitle(String ftitle) {
+		this.ftitle =  ftitle;
+	}
+	
 	public int getFtype() {
 		return ftype;
 	}

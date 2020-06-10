@@ -14,6 +14,7 @@ import com.kh.bubblebee.member.model.vo.Member;
 import com.kh.bubblebee.purchase.model.exception.PurchaseException;
 import com.kh.bubblebee.purchase.model.service.PurchaseService;
 import com.kh.bubblebee.purchase.model.vo.PBoard;
+import com.kh.bubblebee.purchase.model.vo.PSList;
 
 @Controller
 public class PurchaseController {
@@ -23,14 +24,20 @@ public class PurchaseController {
 	private PurchaseService pService;
 
 	@RequestMapping("purchase1First")
-	public ModelAndView purchase1First(@RequestParam(value = "fNo") int fNo, ModelAndView mv,HttpSession session) {
+	public ModelAndView purchase1First(@RequestParam(value = "fNo") int fno, ModelAndView mv,HttpSession session, @RequestParam(value = "oNo")String ono) {
 		
 		Member loginUser = (Member)session.getAttribute("loginUser");
 
+		System.out.println("ono는?" + ono);
+		
 		if(loginUser != null) {
-			ArrayList<PBoard> plist = pService.selectBList(fNo);
-			if(plist != null) 	 {
-				mv.addObject("fNo", fNo);
+			ArrayList<PBoard> plist = pService.selectBList(fno);
+			ArrayList<PSList> pslist = pService.selectPList(ono);
+			System.out.println("plist는? : " + plist);
+			System.out.println("pslist는??????????? : " + pslist);
+			if(plist != null && pslist != null) 	 {
+				mv.addObject("fno", fno);
+				mv.addObject("pslist", pslist);
 				mv.addObject("plist", plist);
 				mv.setViewName("purchase1First");
 			}else {
@@ -39,11 +46,6 @@ public class PurchaseController {
 		}else {
 			mv.setViewName("redirect:loginView.me");
 		}
-		
-		
-	
-		
-		
 		return mv;
 	}	
 	
