@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.bubblebee.board.model.vo.Board;
+import com.kh.bubblebee.board.model.vo.Option;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.host.model.vo.Host;
 
@@ -37,8 +38,8 @@ public class BoardDAO {
 		return sqlSession.insert("boardMapper.insertBoard", b);
 	}
 	
-	public int insertBoardOption(SqlSessionTemplate sqlSession, Board b) {
-		return sqlSession.insert("boardMapper.insertBoardOption", b);
+	public int insertBoardOption(SqlSessionTemplate sqlSession, Option o) {
+		return sqlSession.insert("boardMapper.insertBoardOption", o);
 	}
 
 	public Board selectBoard(SqlSessionTemplate sqlSession, int fno) {

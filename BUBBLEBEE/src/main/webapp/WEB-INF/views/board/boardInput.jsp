@@ -194,7 +194,7 @@
 								var innerHtml = "";
 								
 								innerHtml += '<tr>';
-								innerHtml += '<td><input type="text" class="op" name="op1" placeholder="옵션명"  maxlength="30"></td>';
+								innerHtml += '<td><input type="text" class="op" name="oname" placeholder="옵션명"  maxlength="30"></td>';
 								innerHtml += '<td rowspan="2"><button type="button" class="btnDelete" onclick="delete1(this); ">삭제</button></td>';
 								innerHtml += '</tr>';
 								innerHtml += '<tr>';
@@ -215,8 +215,9 @@
 						}
 						
 						function delete_file(obj){
-							$(obj).remove();
+							$(obj).parent().remove();
 						}
+						
 						function onlyNumber(a){
 							$(a).val($(a).val().replace(/[^0-9]/g,""));
 						}
@@ -623,32 +624,7 @@
 		});
 		
 		//자동저장
-		$("form[data-use-autosave=true] textarea").on("keyup",function() {
-		    // data-use-autosave=true 로 지정된 폼 안의 input과 textarea요소에서 키보드 입력 이벤트(keyup)가 발생한다면,
-		    var form = $(this).parents("form"); // 해당 입력폼이 포함된 폼 (예제에서는 example)
-		  		  window.localStorage[form.name] = form.serialize(); // 폼 이름을 키값으로 폼 전체 데이터 저장
-		     
-		    // form.serialize() 함수에 의하여, 폼 데이터는 아래와 같은 JSON형태로 저장될 것입니다.
-		    {"Field-A":"사용자입력값","Field-B":"사용자입력값"}
-		});
-		
-		$("form[data-use-autosave=true]").on("submit",function() {
-		    window.localStorage[$(this).attr("name")] = null;
-		});
-		
-		$(document).ready(function() {
-		    $("form[data-use-autosave=true]").each(function() { // 저장기능을 사용중인 폼을 찾습니다.
-		        if (window.localStorage[$(this).attr("name")]) { // 로컬스토리지에 해당 폼 이름을 가진 임시저장글이 있는지 검사
-		            var data = JSON.parse(window.localStorage[$(this).attr("name")]); // 해당 데이터를 해석
-		             
-		            // 입력폼에 데이터를 다시 복원
-		            for (name in data) {
-		                $(this).find("input[name="+name+"], textarea[name="+name+"]").val(data[name]);
-		            }
-		        }
-		    });
-		});
-	</script>
+		</script>
 	
 	
 	
