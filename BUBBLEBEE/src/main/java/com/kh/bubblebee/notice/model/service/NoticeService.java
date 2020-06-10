@@ -29,4 +29,8 @@ public interface NoticeService {
 
 	int updateFAQ(String title, String content, int btype, String bno);
 
+	int getFAQSearchListCount(String faqSearch);
+
+	ArrayList<Notice> selectFAQSearchList(PageInfo pi, String faqSearch);
+
 }

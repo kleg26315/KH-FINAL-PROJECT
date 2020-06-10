@@ -82,22 +82,39 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("FAQList.no")
-	public ModelAndView FAQList(@RequestParam(value="page", required=false) Integer page, @RequestParam(value="number", required=false) String number, ModelAndView mv) {
+	public ModelAndView FAQList(@RequestParam(value="page", required=false) Integer page, 
+								@RequestParam(value="number", required=false) String number,
+								@RequestParam(value="faqSearch", required=false) String faqSearch,
+								ModelAndView mv) {
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
 		}
 		
-		int listCount = nService.getFAQListCount(number);
+		ArrayList<Notice> list = new ArrayList<>();
+		PageInfo pi = new PageInfo();
+		if(faqSearch == null) {
+			int listCount = nService.getFAQListCount(number);
+			
+			pi = Pagination2.getPageInfo(currentPage, listCount);
+			
+			list = nService.selectFAQList(pi, number);
+		} else {
+			int listCount = nService.getFAQSearchListCount(faqSearch);
+			pi = Pagination2.getPageInfo(currentPage, listCount);
+			
+			list = nService.selectFAQSearchList(pi, faqSearch);
+		}
 		
-		PageInfo pi = Pagination2.getPageInfo(currentPage, listCount);
-		
-		ArrayList<Notice> list = nService.selectFAQList(pi, number);
 		
 		if(list != null) {
 			// list, pi, view
 			mv.addObject("list", list);
 			mv.addObject("pi", pi);
+			mv.addObject("number", number);
+			if(faqSearch != null) {
+				mv.addObject("faqSearch", faqSearch);
+			}
 			mv.setViewName("FAQList");
 		} else {
 			throw new NoticeException("FAQ 조회에 실패했습니다.");
@@ -151,13 +168,12 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("updateFAQForm.no")
-	public ModelAndView updateFAQForm(@RequestParam("bno") String bno, @RequestParam("page") int page,  ModelAndView mv) {
+	public ModelAndView updateFAQForm(@RequestParam("bno") String bno,  ModelAndView mv) {
 		
 		Notice notice = nService.selectupdateFAQ(bno);
 		
 		if(notice != null) {
 			mv.addObject("notice", notice);
-			mv.addObject("page", page);
 			mv.setViewName("updateFAQForm");
 		} else {
 			throw new NoticeException("FAQ 조회에 실패하였습니다.");
@@ -168,12 +184,11 @@ public class NoticeController {
 	
 	@RequestMapping(value="updateFAQ.no", method = RequestMethod.POST) 
 	public ModelAndView updateFAQ(@RequestParam("title") String title, @RequestParam("content") String content,
-						@RequestParam("btype") int btype, @RequestParam("bno") String bno, @RequestParam("page") Integer page, HttpServletRequest request, ModelAndView mv) {
+						@RequestParam("btype") int btype, @RequestParam("bno") String bno, HttpServletRequest request, ModelAndView mv) {
 		
 		int result = nService.updateFAQ(title, content, btype, bno);
 		
 		if(result > 0) {
-			mv.addObject("page", page);
 			mv.addObject("number", btype);
 			mv.setViewName("redirect:FAQList.no");
 		} else {
@@ -181,5 +196,33 @@ public class NoticeController {
 		}
 		
 		return mv;
+	}
+	
+	@RequestMapping(value="faqSearch.no")
+	public void faqSerach(@RequestParam("faqSearch") String faqSearch, @RequestParam(value="page", required=false) Integer page, HttpServletResponse response) {
+		response.setContentType("application/json; charset=UTF-8");
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int listCount = nService.getFAQSearchListCount(faqSearch);
+		PageInfo pi = Pagination2.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Notice> list = nService.selectFAQSearchList(pi, faqSearch);
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("pi", pi);
+		map.put("list", list);
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		try {
+			gson.toJson(map, response.getWriter());
+		} catch (JsonIOException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
