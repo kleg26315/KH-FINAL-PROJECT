@@ -30,7 +30,7 @@ public class BoardController {
 		
 		//최신불러오기
 		ArrayList<Board> ltlist = bService.selectLtList(cate);
-		
+	
 		if(ltlist != null && htlist != null) {
 			mv.addObject("cate", cate);
 			mv.addObject("ltlist", ltlist);

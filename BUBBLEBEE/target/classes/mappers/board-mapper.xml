@@ -67,23 +67,24 @@
 		<![CDATA[ 
 			price>=#{sc.startPrice} and price<=#{sc.endPrice}
 		 ]]>
-		  <trim prefix="order by" prefixOverrides="AND|OR">
+		  
 			<if test='sc.popular != null'>
-		    	round(rcount / (select max(rcount) from board) * (rsum/rcount),2) desc
+				and rcount>0
+		    	order by round(rcount / (select max(rcount) from board) * (rsum/rcount),2) desc
 		    </if>
 		    <if test='sc.latest != null'>
-		    	f_create_date desc
+		    	order by f_create_date desc
 		    </if>
 		    <if test='sc.rate != null'>
-		    	(rsum/rcount) desc
+		    	and rcount>0
+		    	order by (rsum/rcount) desc
 		    </if>
 		    <if test='sc.highprice != null'>
-		    	price desc
+		    	order by price desc
 		    </if>
 		    <if test='sc.lowprice != null'>
-		    	price
+		    	order by price
 		    </if>
-		  </trim>   
 	</select>
 	
 </mapper>
