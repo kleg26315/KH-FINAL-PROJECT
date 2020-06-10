@@ -583,5 +583,16 @@
     opacity: 0.8;
 }
 
-
+.center {
+    position: absolute;
+    width: 68px;
+    height: 71px;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px 0 rgba(33,37,41,.24);
+    background-color: #fff;
+    top: 461px;
+    right: -2px;
+    z-index: 10;
+    border: 1px solid #e0e0e0;
+}
 
