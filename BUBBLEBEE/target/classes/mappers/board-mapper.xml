@@ -42,7 +42,7 @@
 	
 	<insert id="insertBoardOption">
 		insert into choose
-		values(SEQ_CHOOSE.nextval, #{category}, #{op1}, #{price}, 0, SEQ_BOARD.currval);
+		values(SEQ_CHOOSE.nextval, #{category}, #{op1}, #{op2}, 0, SEQ_BOARD.currval);
 	</insert>
 	
 	<select id="selectBoard" resultType="Board">
