@@ -248,7 +248,18 @@
                         <img width='16' height='18' src="${contextPath }/resources/img/빈하트.png" alt="찜하기">
                         </button>
                      </div>
-                     <img id="" width="100%" height="200" class="" src="${contextPath }/resources/img/main.png" />
+                     
+                     
+                     <c:set var="rf2" value="${ b.renameFileName }"/>
+                     <% 
+                     	String rf2 = (String)pageContext.getAttribute("rf2");
+            			int idx2 = rf2.indexOf(",");
+            			String str2 = rf2.substring(0, idx2);
+            			pageContext.setAttribute("str2", str2);
+                     %> 
+                     
+                     
+                     <img id="" width="100%" height="200" class="" src="${contextPath }/resources/buploadFiles/${ str2 }" />
                   </div>
                      <div class="moim_small_title">${ b.small_title }</div>
                      <div class="moim_title">${ b.ftitle }</div>
