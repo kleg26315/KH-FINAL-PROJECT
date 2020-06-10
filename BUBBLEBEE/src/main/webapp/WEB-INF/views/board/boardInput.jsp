@@ -174,7 +174,7 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" id="op" class="op" name="op1" placeholder="옵션명"  value="참가비 (1인)" required maxlength="30"> 
+								<input type="text" id="op" class="op" name="oname" placeholder="옵션명"  value="참가비 (1인)" required maxlength="30"> 
 							</td>
 						</tr>
 						<tr>	
