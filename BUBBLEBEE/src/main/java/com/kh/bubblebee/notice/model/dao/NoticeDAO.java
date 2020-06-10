@@ -39,4 +39,43 @@ public class NoticeDAO {
 		return (ArrayList)sqlSession.selectList("noticeMapper.selectNoticeList", null, rowBounds);
   }
 
+	public int getFAQListCount(SqlSessionTemplate sqlSession, String number) {
+		return sqlSession.selectOne("noticeMapper.getFAQListCount", number);
+	}
+
+	public ArrayList<Notice> selectFAQList(SqlSessionTemplate sqlSession, PageInfo pi, String number) {
+		int offset = (pi.getCurrentPage() -1 ) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectFAQList", number, rowBounds);
+	}
+
+	public ArrayList<Notice> selectFAQFilterList(SqlSessionTemplate sqlSession, PageInfo pi, String number) {
+		int offset = (pi.getCurrentPage() -1 ) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectFAQFilterList", number, rowBounds);
+	}
+
+	public int getFAQFilterListCount(SqlSessionTemplate sqlSession, String number) {
+		return sqlSession.selectOne("noticeMapper.getFAQFilterListCount", number);
+	}
+
+	public int deleteFAQ(SqlSessionTemplate sqlSession, String bno) {
+		return sqlSession.update("noticeMapper.deleteFAQ", bno);
+	}
+
+	public Notice selectupdateFAQ(SqlSessionTemplate sqlSession, String bno) {
+		return sqlSession.selectOne("noticeMapper.seleteupdateFAQ", bno);
+	}
+
+	public int updateFAQ(SqlSessionTemplate sqlSession, String title, String content, int btype, String bno) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("title", title);
+		map.put("content", content);
+		map.put("btype", btype+"");
+		map.put("bno", bno);
+		return sqlSession.update("noticeMapper.updateFAQ", map);
+	}
+
 }

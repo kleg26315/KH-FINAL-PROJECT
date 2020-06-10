@@ -8,10 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.bubblebee.board.model.vo.Board;
-import com.kh.bubblebee.board.model.vo.Review;
-import com.kh.bubblebee.board.model.vo.SearchCondition;
 import com.kh.bubblebee.common.PageInfo;
-import com.kh.bubblebee.member.model.vo.Member;
+import com.kh.bubblebee.host.model.vo.Host;
 
 @Repository("bDAO")
 public class BoardDAO {
@@ -47,8 +45,8 @@ public class BoardDAO {
 		return sqlSession.selectOne("boardMapper.selectBoard", fno);
 	}
 
-	public Member selectHost(SqlSessionTemplate sqlSession, String hostId) {
-		return sqlSession.selectOne("memberMapper.selectHost", hostId);
+	public Host selectHost(SqlSessionTemplate sqlSession, String hostId) {
+		return sqlSession.selectOne("hostMapper.selectHost", hostId);
 	}
 
 	public int getSearchListCount(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {

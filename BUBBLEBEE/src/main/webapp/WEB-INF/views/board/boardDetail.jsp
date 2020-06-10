@@ -123,7 +123,7 @@
 						[실전] 창렬이형의 실전 제압 기술 <br> 폭행 체험
 					</div>
 					<div class="hashTagHostReviewLike">
-						<div class="hashTagHostReviewLikeIn">도움이 됐어요 (굿)</div>
+						<div class="hashTagHostReviewLikeIn">도움이 됐어요 (thu)</div>
 					</div>
 					<div class="hashTagHostReviewImage">
 						<img class="hashTagHostImageContent"

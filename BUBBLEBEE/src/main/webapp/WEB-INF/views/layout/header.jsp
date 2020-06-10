@@ -44,22 +44,22 @@
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">모임 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                             	<c:url var="tp" value="list.bo">
-									<c:param name="cate" value="토크/파티"/>
+									<c:param name="cate" value="party"/>
 								</c:url>
                                 <li role="presentation"><a href="${ tp }">토크/파티</a></li>
                                 
                                 <c:url var="ts" value="list.bo">
-									<c:param name="cate" value="취향"/>
+									<c:param name="cate" value="like"/>
 								</c:url>
                                 <li role="presentation"><a href="${ ts }">취향</a></li>
                                 
                                 <c:url var="st" value="list.bo">
-									<c:param name="cate" value="스터디"/>
+									<c:param name="cate" value="study"/>
 								</c:url>
                                 <li role="presentation"><a href="${ st }">스터디</a></li>
                                 
                                 <c:url var="ev" value="list.bo">
-									<c:param name="cate" value="이벤트/공간"/>
+									<c:param name="cate" value="event"/>
 								</c:url>
                                 <li role="presentation"><a href="${ ev }">이벤트/공간</a></li>
                             </ul>
@@ -67,29 +67,29 @@
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">클래스 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                             	<c:url var="di" value="list.bo">
-									<c:param name="cate" value="공예/DIY"/>
+									<c:param name="cate" value="diy"/>
 								</c:url>
                                 <li role="presentation"><a href="${ di }">공예/DIY</a></li>
                                 
                                 <c:url var="ck" value="list.bo">
-									<c:param name="cate" value="요리"/>
+									<c:param name="cate" value="cook"/>
 								</c:url>
                                 <li role="presentation"><a href="${ ck }">요리</a></li>
                                 
                                 <c:url var="sp" value="list.bo">
-									<c:param name="cate" value="스포츠"/>
+									<c:param name="cate" value="sport"/>
 								</c:url>
                                 <li role="presentation"><a href="${ sp }">스포츠</a></li>
                                 
                                 <c:url var="ln" value="list.bo">
-									<c:param name="cate" value="어학/취업"/>
+									<c:param name="cate" value="learn"/>
 								</c:url>
                                 <li role="presentation"><a href="${ ln }">어학/취업</a></li>
                             </ul>
                         </li>
                         
                         <c:url var="wk" value="list.bo">
-							<c:param name="cate" value="작품"/>
+							<c:param name="cate" value="sell"/>
 						</c:url>
                         <li role="presentation"><a href="${ wk }">작품</a></li>
                     </ul>

@@ -14,4 +14,19 @@ public interface NoticeService {
 	int getNoticeListCount();
 
 	ArrayList<Notice> selectNoticeList(PageInfo pi);
+
+	int getFAQListCount(String number);
+
+	ArrayList<Notice> selectFAQList(PageInfo pi, String number);
+
+	ArrayList<Notice> selectFAQFilterList(PageInfo pi, String number);
+
+	int getFAQFilterListCount(String number);
+
+	int deleteFAQ(String bno);
+
+	Notice selectupdateFAQ(String bno);
+
+	int updateFAQ(String title, String content, int btype, String bno);
+
 }

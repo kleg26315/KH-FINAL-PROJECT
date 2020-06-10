@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="resources/css/boardInput.css">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	
 	 <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/smartEditor/js/service/HuskyEZCreator2.js" charset="UTF-8"></script>
 </head>
 <style>
@@ -26,7 +26,7 @@
 		<main><h2>등록</h2></main>
 		
 		<!-- 첨부파일 등록을 위해 Multipart/form-data encType 지정 -->
-		<form action="binsert.bo" onsubmit="return validate();" enctype="Multipart/form-data" id="form">
+		<form action="binsert.bo" onsubmit="return validate();" enctype="Multipart/form-data" id="form" method="POST">
 			<table> 
 				<tr>
 					<th colspan="2" >카테고리 설정</th>
@@ -53,11 +53,17 @@
 						
 						<span>
 							<select id="category2" name="category">
-								<option value="no">주제를 설정해주세요</option>
-								<option value="activity">액티비티</option>
-								<option value="learn">배움</option>
-								<option value="health">건강/뷰티</option>
-								<option value="travel">여행</option>
+								<option value="">==모임==</option>
+								<option value="party">토크/파티</option>
+								<option value="like">취향</option>
+								<option value="study">스터디</option>
+								<option value="event">이벤트/공간</option>
+								<option value="">==클래스==</option>
+								<option value="diy">공예/DIY</option>
+								<option value="cook">요리</option>
+								<option value="sport">스포츠</option>
+								<option value="learn">어학/취업</option>
+								<option value="sell">==작품==</option>
 							</select>
 						</span>
 					</td>
@@ -165,7 +171,7 @@
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" id="op2" class="op2" name="op2" placeholder="가격(5000원 이상)"  value="5000" required>원
+								<input type="text" id="op2" class="op2" name="price" placeholder="가격(5000원 이상)"  value="5000" required>원
 							</td>
 						</tr>
 					<tbody id="tbody1">
@@ -184,7 +190,7 @@
 								innerHtml += '<td rowspan="2"><button type="button" class="btnDelete" onclick="delete1(this); ">삭제</button></td>';
 								innerHtml += '</tr>';
 								innerHtml += '<tr>';
-								innerHtml += '<td><input type="text" onkeyup="onlyNumber(this);" class="op2" name="op2" placeholder="가격(5000원 이상)" >원</td>';
+								innerHtml += '<td><input type="text" onkeyup="onlyNumber(this);" class="op2" name="price" placeholder="가격(5000원 이상)" >원</td>';
 								innerHtml += '</tr>';
 								
 								$('#tbody1').append(innerHtml);
@@ -224,7 +230,7 @@
 					</tr>
 					<tr>	
 						<td style="width: 53%;">
-							<input type="text" name="location" class="postcodify bRequired" value="" size="6" style="width: 300px;" required >
+							<input type="text" name="post" class="postcodify_postcode5"  size="6" style="width: 300px;" >
 						</td>
 						<td >
 							<button type="button" id="postcodify_search_button">주소 찾기</button>
@@ -235,7 +241,7 @@
 					</tr>
 					<tr>	
 						<td colspan="2">
-							<input type="text" name="address1" class="postcodify_address" value="">
+							<input type="text" name="address1" class="postcodify_address" value="" style="width: 300px;">
 						</td>
 					</tr>
 					<tr>
@@ -243,10 +249,16 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<input type="text" name="address2" class="postcodify_extra_info" value="">
+							<input type="text" name="address2" class="postcodify_extra_info" value="" style="width: 300px;">
 						</td>
 					</tr>
-					
+					<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+					<script>
+						// 검색 단추를 누르면 팝업 레이어가 열리도록 설정한다.
+						$(function(){
+							$("#postcodify_search_button").postcodifyPopUp();
+						});
+					</script>
 					<tr>
 						<td colspan="3"><hr></td>
 					</tr>
@@ -346,7 +358,7 @@
 						</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" class="bIncluded" name="bIncluded"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" name="fcontain"  maxlength="500" required></textarea>
 							<span id="btext1">0</span>/500
 						</td>
 					</tr>
@@ -355,7 +367,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" class="bIncluded" name = "bNcluded"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" name = "fncontain"  maxlength="500" required></textarea>
 							<span id="btext2">0</span>/500
 						</td>
 					</tr>
@@ -389,7 +401,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" class="bIncluded" name="bMaterials"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" name="fmaterials"  maxlength="500" required></textarea>
 							<span id="btext3">0</span>/500
 						</td>
 					</tr>
@@ -398,7 +410,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" class="bIncluded" name="bNot"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" name="fprecaution"  maxlength="500" required></textarea>
 							<span id="btext4">0</span>/500
 						</td>
 					</tr>
@@ -487,7 +499,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td><textarea class="form-control" id="editor" name="editor"></textarea></td>
+						<td><textarea class="form-control" id="editor" name="introduce"></textarea></td>
 					</tr>
 			</table>
 			<script type="text/javascript">
@@ -602,12 +614,7 @@
 	</script>
 	
 	
-	<script>
-		// 검색 단추를 누르면 팝업 레이어가 열리도록 설정한다.
-		$(function(){
-			$("#postcodify_search_button").postcodifyPopUp();
-		});
-	</script>
+	
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 </body>
 </html>

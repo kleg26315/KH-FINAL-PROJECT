@@ -32,23 +32,28 @@ public class BoardInputController {
 	public String binsertForm() {
 		return "boardInput";
 	}
+	
 	@RequestMapping("binsert.bo")
 	public String boardInsert(@ModelAttribute Board b, @RequestParam("uploadFile") List<MultipartFile> uploadFile,
-								HttpServletRequest request, @RequestParam("location") String location, 
+								HttpServletRequest request, @RequestParam("post") String post, 
 								@RequestParam("address1") String address1, @RequestParam("address2") String address2, 
 								@RequestParam("bTime") String bTime, @RequestParam("bDetail") String bDetail,
-								@RequestParam("b_Qt") String b_Qt, @RequestParam("b_An") String b_An
-								) {
+								@RequestParam("b_Qt") String b_Qt, @RequestParam("b_An") String b_An,
+								@RequestParam("category") String cate, ModelAndView mv) {
 		
-		b.setLocation(location + "/" + address1 + "/" + address2);
-		b.setFcalendar(bTime + "      " + bDetail);
+		
+		b.setLocation(post + "/" + address1 + "/" + address2);
+		b.setFcalendar(bTime + "/" + bDetail);
 		b.setFminfo(b_Qt + "<br>" + b_An);
-		
+		mv.addObject("cate", cate);
+		System.out.println(b);
+		System.out.println("cate : " + cate);
 		
 		String[] originalFileName = new String[uploadFile.size()];
 		
 		for(int i = 0; i<uploadFile.size(); i++) {
 			originalFileName[i] = uploadFile.get(i).getOriginalFilename();
+			System.out.println("uploadFile : " +  uploadFile.get(i).getOriginalFilename());
 		}
 		
 		if(uploadFile != null && !uploadFile.isEmpty()) {
@@ -69,7 +74,8 @@ public class BoardInputController {
 		int result = bService.insertBoard(b);
 		
 		if(result > 0) {
-			return "redirect:blist.bo";
+			//return "redirect:list.bo?cate=${category}";
+			return "redirect:list.bo?cate="+b.getCategory();
 		}else {
 			throw new BoardException("게시글 등록 실패!");
 		}

@@ -9,10 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.kh.bubblebee.board.model.dao.BoardDAO;
 import com.kh.bubblebee.board.model.vo.Board;
-import com.kh.bubblebee.board.model.vo.Review;
-import com.kh.bubblebee.board.model.vo.SearchCondition;
 import com.kh.bubblebee.common.PageInfo;
-import com.kh.bubblebee.member.model.vo.Member;
+import com.kh.bubblebee.host.model.vo.Host;
 
 @Service("bService")
 public class BoardServiceImpl implements BoardService {
@@ -55,7 +53,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Member selectHost(String hostId) {
+	public Host selectHost(String hostId) {
 		return bDAO.selectHost(sqlSession, hostId);
 	}
 

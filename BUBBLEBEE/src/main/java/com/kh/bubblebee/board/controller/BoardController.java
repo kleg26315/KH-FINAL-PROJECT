@@ -2,6 +2,8 @@ package com.kh.bubblebee.board.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +15,7 @@ import com.kh.bubblebee.board.model.service.BoardService;
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.common.Pagination;
-import com.kh.bubblebee.member.model.vo.Member;
+import com.kh.bubblebee.host.model.vo.Host;
 
 @Controller
 public class BoardController {
@@ -79,7 +81,7 @@ public class BoardController {
 		Board b = bService.selectBoard(fno);
 		System.out.println("detail.bo의 b : " + b);
 		String hostId = b.getUser_id();
-		Member host = bService.selectHost(hostId);
+		Host host = bService.selectHost(hostId);
 		System.out.println("detail.bo의 host : " + host);
 		
 		if(b != null) {
@@ -91,5 +93,12 @@ public class BoardController {
 			throw new BoardException("게시판 상세 조회에 실패하였습니다.");
 		}
 	}
+	
+//	@RequestMapping("list.bo")
+//	public void replyList(@RequestParam("bId") int bId, HttpServletResponse response) {
+//		response.setContentType("application/json; charset=UTF-8");
+//		
+//	}
+	
 
 }
