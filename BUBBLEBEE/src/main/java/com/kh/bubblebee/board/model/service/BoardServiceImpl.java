@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.bubblebee.board.model.dao.BoardDAO;
 import com.kh.bubblebee.board.model.vo.Board;
+import com.kh.bubblebee.board.model.vo.Option;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.host.model.vo.Host;
 
@@ -46,7 +47,13 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return bDAO.insertBoard(sqlSession, b);
 	}
-
+	
+	@Override
+	public int insertBoardOption(Option o) {
+		// TODO Auto-generated method stub
+		return bDAO.insertBoardOption(sqlSession, o);
+	}
+	
 	@Override
 	public Board selectBoard(int fno) {
 		return bDAO.selectBoard(sqlSession, fno);
@@ -66,5 +73,7 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<Board> selectSearchList(HashMap<String, Object> map, PageInfo pi) {
 		return bDAO.selectSearchList(sqlSession, map, pi);
 	}
+
+	
 
 }

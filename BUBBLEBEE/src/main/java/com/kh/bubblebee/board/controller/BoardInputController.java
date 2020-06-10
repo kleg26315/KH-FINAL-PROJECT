@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.bubblebee.board.model.exception.BoardException;
 import com.kh.bubblebee.board.model.vo.Board;
+import com.kh.bubblebee.board.model.vo.Option;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -34,7 +36,7 @@ public class BoardInputController {
 	}
 	
 	@RequestMapping("binsert.bo")
-	public String boardInsert(@ModelAttribute Board b, @RequestParam("uploadFile") List<MultipartFile> uploadFile,
+	public String boardInsert(@ModelAttribute Board b, @ModelAttribute Option o, @RequestParam("uploadFile") List<MultipartFile> uploadFile,
 								HttpServletRequest request, @RequestParam("post") String post, 
 								@RequestParam("address1") String address1, @RequestParam("address2") String address2, 
 								@RequestParam("bTime") String bTime, @RequestParam("bDetail") String bDetail,
@@ -43,7 +45,7 @@ public class BoardInputController {
 		
 		
 		b.setLocation(post + "/" + address1 + "/" + address2);
-		b.setFcalendar(bTime + "/" + bDetail);
+		b.setFcalendar(bTime + " " + bDetail);
 		b.setFminfo(b_Qt + "<br>" + b_An);
 		mv.addObject("cate", cate);
 		System.out.println(b);
@@ -71,11 +73,17 @@ public class BoardInputController {
 					
 		}
 		
-		int result = bService.insertBoard(b);
 		
-		if(result > 0) {
-			//return "redirect:list.bo?cate=${category}";
-			return "redirect:list.bo?cate="+b.getCategory();
+		int result1 = bService.insertBoard(b);
+		
+		int result2 = bService.insertBoardOption(o);
+		
+		if(result1 > 0) {
+			if(result2 > 0) {
+				return "redirect:list.bo?cate="+b.getCategory();
+			}else {
+				throw new BoardException("게시글 등록 실패!");
+			}
 		}else {
 			throw new BoardException("게시글 등록 실패!");
 		}

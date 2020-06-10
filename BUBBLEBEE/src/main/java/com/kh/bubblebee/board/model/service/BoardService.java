@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.kh.bubblebee.board.model.vo.Board;
+import com.kh.bubblebee.board.model.vo.Option;
 import com.kh.bubblebee.board.model.vo.Review;
 import com.kh.bubblebee.board.model.vo.SearchCondition;
 import com.kh.bubblebee.common.PageInfo;
@@ -22,6 +23,8 @@ public interface BoardService {
 
 	int insertBoard(Board b);
 
+	int insertBoardOption(Option o);
+	
 	Board selectBoard(int fno);
 
 	Host selectHost(String hostId);
@@ -29,5 +32,6 @@ public interface BoardService {
 	int getSearchListCount(HashMap<String, Object> map);
 
 	ArrayList<Board> selectSearchList(HashMap<String, Object> map, PageInfo pi);
+
 	
 }
