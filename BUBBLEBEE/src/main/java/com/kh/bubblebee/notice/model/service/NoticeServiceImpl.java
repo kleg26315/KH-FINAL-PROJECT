@@ -73,5 +73,15 @@ public class NoticeServiceImpl implements NoticeService{
 	public int updateFAQ(String title, String content, int btype, String bno) {
 		return nDAO.updateFAQ(sqlSession, title, content, btype, bno);
 	}
+
+	@Override
+	public int getFAQSearchListCount(String faqSearch) {
+		return nDAO.getFAQSearchListCount(sqlSession, faqSearch);
+	}
+
+	@Override
+	public ArrayList<Notice> selectFAQSearchList(PageInfo pi, String faqSearch) {
+		return nDAO.selectFAQSearchList(sqlSession, pi, faqSearch);
+	}
 	
 }

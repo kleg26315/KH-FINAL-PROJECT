@@ -106,4 +106,18 @@
 		set btitle = #{title}, bcontent = #{content}, btype=#{btype}, b_modify_date = sysdate
 		where bno = #{bno}
 	</update>
+	
+	<select id="getFAQSearchListCount" resultType="_int">
+		select count(*)
+		from notice
+		where b_status = 'Y' and btype >= 2
+		and btitle like '%' || #{faqSearch} || '%'
+	</select>
+	
+	<select id="selectFAQSearchList" resultMap="noticeResultSet">
+		select * from notice
+		where b_status = 'Y' and btype >= 2
+		and btitle like '%' || #{faqSearch} || '%'
+		order by bno desc
+	</select>
 </mapper>

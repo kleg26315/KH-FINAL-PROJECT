@@ -78,4 +78,15 @@ public class NoticeDAO {
 		return sqlSession.update("noticeMapper.updateFAQ", map);
 	}
 
+	public int getFAQSearchListCount(SqlSessionTemplate sqlSession, String faqSearch) {
+		return sqlSession.selectOne("noticeMapper.getFAQSearchListCount", faqSearch);
+	}
+	
+	public ArrayList<Notice> selectFAQSearchList(SqlSessionTemplate sqlSession, PageInfo pi, String faqSearch) {
+		int offset = (pi.getCurrentPage() -1 ) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectFAQSearchList", faqSearch, rowBounds);
+	}
+
 }
