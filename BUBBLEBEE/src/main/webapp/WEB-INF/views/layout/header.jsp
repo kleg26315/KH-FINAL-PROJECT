@@ -143,9 +143,15 @@
 					        </span>
 					        
 					         <!-- 프사 이미지 -->
-							<c:if test="${ fn:contains(sessionScope.loginUser.profile, 'http')}">
-								<img id="login" class="profile_img" style="width: 30px; height: 30px; border-radius: 50px; cursor: pointer;" src="${sessionScope.loginUser.profile}" />
-							</c:if>
+					         <c:choose>
+					         	<c:when test="${ fn:contains(sessionScope.loginUser.profile, 'http')}">
+					         		<img id="login" class="profile_img" style="width: 30px; height: 30px; border-radius: 50px; cursor: pointer;" src="${sessionScope.loginUser.profile}" />
+					         	</c:when>
+					         	<c:otherwise>
+					         	<img id="login" class="profile_img" style="width: 30px; height: 30px; border-radius: 50px; cursor: pointer;" src="${contextPath }/resources/proFiles/${sessionScope.loginUser.profile}" />
+					         	</c:otherwise>
+					         </c:choose>
+							
 		        <!-- </form> -->
 					        <!-- 알림 모달창 -->
 					        <div class="message_modal_cover has_bubble nav-modal-cover">
@@ -236,8 +242,15 @@
 						      <div class="user_content">
 						        <div class="left_content">
 						          <div class="thumbnail" style="padding: 0px;">
-						            <img src="${sessionScope.loginUser.profile}" alt="profile_img">
-						            <a href="#">설정</a>
+						           <c:choose>
+						         	<c:when test="${ fn:contains(sessionScope.loginUser.profile, 'http')}">
+						         		<img src="${sessionScope.loginUser.profile}" />
+						         	</c:when>
+						         	<c:otherwise>
+						         		<img src="${contextPath }/resources/proFiles/${sessionScope.loginUser.profile}" />
+						         	</c:otherwise>
+					         	</c:choose>
+						            <a href="updateInfoForm.mg">설정</a>
 						          </div>
 						        </div>
 						        <div class="right_content">

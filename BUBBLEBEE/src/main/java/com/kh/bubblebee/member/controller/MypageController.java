@@ -1,5 +1,15 @@
 package com.kh.bubblebee.member.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.bubblebee.member.model.exception.MemberException;
 import com.kh.bubblebee.member.model.service.MypageService;
@@ -85,22 +96,81 @@ public class MypageController {
 		
 	}
 	
-	
-	
-	// 후기
-	@RequestMapping("myreview.mg")
-	public String myreview() {
-		return "myreview";
+	// 프로필 사진 변경
+	@RequestMapping("uploadprofile.mg")
+	public void uploadprofile(@RequestParam("profile") MultipartFile uploadFile,HttpServletRequest request,HttpSession session,HttpServletResponse response) {
+		System.out.println(uploadFile);
+		String userId = ((Member)session.getAttribute("loginUser")).getId();
+		
+		if(uploadFile != null && !uploadFile.isEmpty()) {
+			String renameFileName = saveFile(uploadFile, request);
+			HashMap<String, String> map = new HashMap<>();
+			map.put("id", userId);
+			map.put("profile",renameFileName);
+			
+			if(renameFileName != null) {
+				int result = mgService.updateprofile(map);
+				if(result > 0) {
+					((Member)session.getAttribute("loginUser")).setProfile(renameFileName);
+					try {
+						response.getWriter().print(result);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}else {
+					throw new MemberException("프로필 변경 실패!");
+				}
+				
+				
+			}
+		}
 	}
-	// 비밀번호 업데이트form
-	@RequestMapping("updatePwdForm.mg")
-	public String updatePwd() {
-		return "updatePwdForm";
-	}
 	
-	// 호스트 등록
-	@RequestMapping("hostenrollForm.mg")
-	public String hostenrollForm() {
-		return "hostenrollForm";
-	}
+		// rename
+	public String saveFile(MultipartFile file,HttpServletRequest request) {
+			
+			String root = request.getSession().getServletContext().getRealPath("resources");  // 작은 resources 위치 받아오기
+			String savePath = root + "\\proFiles";
+			
+			File folder = new File(savePath);
+			
+			if(!folder.exists()) {   //폴더가 존재하지 않으면 폴더를 생성해줘라! 
+				folder.mkdirs();
+			}
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+			String originFileName = file.getOriginalFilename();
+			String renameFileName = sdf.format(new Date(System.currentTimeMillis())) 
+									+ "." 
+									+ originFileName.substring(originFileName.lastIndexOf(".") + 1);    // 확장자 가져오는거
+			String renamePath = folder + "\\" + renameFileName;
+			
+			
+			try {
+				file.transferTo(new File(renamePath));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		
+			return renameFileName;
+		}
+		
+		// 후기
+		@RequestMapping("myreview.mg")
+		public String myreview() {
+			return "myreview";
+		}
+		// 비밀번호 업데이트form
+		@RequestMapping("updatePwdForm.mg")
+		public String updatePwd() {
+			return "updatePwdForm";
+		}
+		
+		// 호스트 등록
+		@RequestMapping("hostenrollForm.mg")
+		public String hostenrollForm() {
+			return "hostenrollForm";
+		}
 }

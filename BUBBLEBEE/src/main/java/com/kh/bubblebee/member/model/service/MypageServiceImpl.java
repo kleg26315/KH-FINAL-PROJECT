@@ -1,5 +1,7 @@
 package com.kh.bubblebee.member.model.service;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,11 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public int updateInfo(Member m) {
 		return mgDAO.updateInfo(sqlSession,m);
+	}
+
+	@Override
+	public int updateprofile(HashMap<String, String> map) {
+		return mgDAO.updateprofile(sqlSession,map);
 	}
 	
 	

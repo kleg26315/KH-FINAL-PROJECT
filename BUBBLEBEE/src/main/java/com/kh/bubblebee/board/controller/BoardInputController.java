@@ -56,7 +56,7 @@ public class BoardInputController {
 		String[] name = oname.split(",");
 		String[] pr = price.split(",");
 		
-		HashMap<String, Option> map = new HashMap<String, Option>();
+		HashMap<String, Option> map = new HashMap<>();
 		for(int i = 0; i < name.length; i++) {
 			map.put("op" + i, new Option(name[i], pr[i]));
 		}
@@ -88,7 +88,7 @@ public class BoardInputController {
 		
 		int result1 = bService.insertBoard(b);
 		
-		int result2 = bService.insertBoardOption(o);
+		int result2 = bService.insertBoardOption(map);
 		
 		if(result1 > 0) {
 			if(result2 > 0) {

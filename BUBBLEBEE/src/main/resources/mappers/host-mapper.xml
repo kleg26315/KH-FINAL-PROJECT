@@ -10,7 +10,7 @@
 	
 	<insert id="enrollHost">
 		insert into Host
-		values(#{id},null,sysdate,#{ac_bname},#{ac_name},#{ac_no},#{introduction},#{hprofile})
+		values(#{id},null,sysdate,#{ac_bname},#{ac_name},#{ac_no},#{introduction})
 	</insert>
 	
 	<select id="selectHost" resultMap="hostResultSet">
