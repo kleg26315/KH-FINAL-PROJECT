@@ -2,10 +2,57 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="purchaseMapper">
 	
-	<select id = "selectProduct" resultType = "Board">
+	<resultMap type = "PBoard" id = "PBoardResultSet">
+		<id property = "fno" column = "fno"/>
+		<result property = "ftype" column = "FTYPE"/>
+		<result property = "price" column = "PRICE"/>
+		<result property = "small_title" column = "SMALL_TITLE"/>
+		<result property = "category" column = "CATEGORY"/>
+		<result property = "location" column = "LOCATION"/>
+		<result property = "fcontain" column = "FCONTAIN"/>
+		<result property = "fncontain" column = "FNCONTAIN"/>
+		<result property = "fcalendar" column = "FCALENDAR"/>
+		<result property = "fmaterials" column = "FMATERIALS"/>
+		<result property = "fminfo" column = "FMINFO"/>
+		<result property = "fprecaution" column = "FPRECAUTION"/>
+		<result property = "user_id" column = "USER_ID"/>
+		<result property = "like" column = "LIKE"/>
+	</resultMap>
+	
+	<resultMap type = "PSList" id = "PSListResultSet">
+		<id property = "tno" column = "TNO"/>
+		<result property = "ono" column = "ono"/>
+		<result property = "user_id" column = "USER_ID"/>
+		<result property = "tcount" column = "TCOUNT"/>
+	</resultMap>
+	
+	<resultMap type = "Purchase" id = "PurchaseResultSet">
+		<id property = "gNo" column ="GNO"/>
+		<result property = "gname" column = "GNAME"/>
+		<result property = "gphone" column = "GPHONE"/>
+		<result property = "address" column = "ADDRESS"/>
+		<result property = "gmsg" column = "GMSG"/>
+	</resultMap>
+	
+	<select id = "selectProduct" resultMap = "PBoardResultSet">
 		select *
 		from board
-		where fno = #{fNo}
+		where fno = #{fno}
 	</select>	
+	
+	<select id = "selectSList" resultMap = "PSListResultSet">
+		select *
+		from choose
+		where ono = 1
+	</select>
+	
+	<insert id = "purchaseThis1">
+		insert into purchase
+		values(SEQ.PURCHASE.nextval, #{gname},
+		#{gphone}, #{gaddress}, #{gmsg}, #{user_id},
+		#{ono}, #{ocount}, #{gpay}
+		)
+	</insert>
+		
 
 </mapper> 	

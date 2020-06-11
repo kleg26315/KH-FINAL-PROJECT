@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +57,6 @@
 }
 </style>
 <body>
-	<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27cfa1d7725d616c3b4f7135fba99e8e"></script> -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27cfa1d7725d616c3b4f7135fba99e8e&libraries=services"></script>
 	<header id="header" style="z-index: 99999">
 		<%@ include file="../layout/header.jsp"%>
@@ -64,15 +64,30 @@
 	
 	<section style="padding-top: 115px; padding-left: 5%; width: 85%;">
 		<div id="detailMainForm1" class="detailMainForm">
-			<h2>소모임 상세보기</h2>
+			<h2>
+			<c:if test="${ b.ftype == 1}">
+				모임
+			</c:if>
+			<c:if test="${ b.ftype == 2 }">
+				클래스
+			</c:if>
+			<c:if test="${ b.ftype == 3 }">
+				클래스
+			</c:if>
+			상세보기</h2>
 			<!-- 사진 슬라이드 보기 -->
 			<div class="home__slider" style="float: left; width: 100%;">
 				<div class="bxslider" id="detailImages">
-					<%for (int i = 1; i < 4; i++) {%>
+				<c:set var="renameFileName" value="${ b.renameFileName }" />
+					renameFileName : ${ renameFileName }
+					<c:set var="renameFileNameArr" value="${ renameFileName.split(',') }"/>
+					${ renameFileNameArr[1] }
+					<c:forEach var="i" begin="0" end="3">
 						<div>
-							<img src="<%=request.getContextPath()%>/resources/images/<%=i%>.jpg" alt="그림<%=i%>" class="hospitalImage">
+							<%-- <img src="<%=request.getContextPath() %>/src/main/webapp/resources\buploadFiles\${ renameFileNameArr[i] }" class="hospitalImage"> --%>
+							<img src="/Users/hansolkim/git/KH-FINAL-PROJECT/BUBBLEBEE/src/main/webapp/resources\buploadFiles\20200610165932(0).jpeg" class="hospitalImage">
 						</div>
-					<%}%>
+					</c:forEach>
 				</div>
 			</div>
 			<!-- 상세보기 -->
@@ -174,14 +189,12 @@
 					</div>
 
 					<div class="hashTagLocation">진행 장소</div>
-					<div class="hashTagIntroduceContent" id="map">
-					
-					</div>
-					
+					<div class="hashTagIntroduceContent" id="map"></div>
 					<div class="hashTagLocationInfo" id="address">${ b.location }</div>
 
 					<div class="hashTagLocationPaste">
-						<input class="hashTagLocationPasteBtn" type="button" value="주소 복사">
+						<input type="hidden" id="ShareUrl">
+						<input class="hashTagLocationPasteBtn" type="button" onclick="copyUrl();" value="주소 복사">
 					</div>
 
 					<div
@@ -189,13 +202,23 @@
 						<hr style="border: 0.5px solid lightgray">
 					</div>
 
-					<div class="hashTagQuestion">
-						자주 묻는 질문 <input class="hashTagQuestionBtn" id="TQB1" type="button" value="V">
+					<div class="hashTagQuestion">자주 묻는 질문 <input class="hashTagQuestionBtn" id="TQB1" type="button" value="V"></div>
+					<div class="hashTagEnquiryContents">
+					<c:set var="splitArr" value="${ b.fminfo.split('<br>') }"/>
+					<c:set var="questionArr" value="${ splitArr[0].split(',') }" />
+					<c:set var="answerArr" value="${ splitArr[1].split(',') }" />
+					
+					<c:forEach var="ques" items="${ questionArr }" varStatus="que">
+						${ ques } <br> 
+						<c:forEach var="anss" items="${ answerArr }" varStatus="anw">
+							<c:if test="${ que.index eq anw.index }">
+								&nbsp;&nbsp;${ anss }<br>
+							</c:if>
+						</c:forEach>
+					</c:forEach>
 					</div>
-					<div class="hashTagEnquiryContents">내용</div>
 
-					<div
-						style="float: left; width: 100%; height: 20px; margin-top: -18px;">
+					<div style="float: left; width: 100%; height: 20px; margin-top: -18px;">
 						<hr style="border: 0.5px solid lightgray">
 					</div>
 
@@ -257,12 +280,8 @@
 			$(".hashTagRefundContents").toggle();
 		});
 		
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-	    mapOption = {
-	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-	        level: 3 // 지도의 확대 레벨
-	    };  
 		</script>
+		
 		<script>
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			mapOption = {
@@ -278,7 +297,8 @@
 			var geocoder = new kakao.maps.services.Geocoder();
 
 			// 주소 따오기
-			var address = document.getElementById('address').innerHTML.trim();
+			var addressArr = document.getElementById('address').innerHTML.trim().split("/");
+			var address = addressArr[1];
 			console.log(address);
 			
 			// 주소로 좌표를 검색합니다
@@ -294,11 +314,6 @@
 							position : coords
 						});
 	
-					/* // 인포윈도우로 장소에 대한 설명을 표시합니다
-						var infowindow = new kakao.maps.InfoWindow(
-							{content : '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'});
-						infowindow.open(map, marker); */
-										
 					// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 						map.setCenter(coords);
 						getInfo();
@@ -315,8 +330,10 @@
 				    console.log(message);
 				}
 			});
-			
 		</script>
-
+		
+		<footer id="footer" style="padding-top: 115px;">
+			<c:import url="../layout/footer.jsp"/>
+		</footer>
 </body>
 </html>

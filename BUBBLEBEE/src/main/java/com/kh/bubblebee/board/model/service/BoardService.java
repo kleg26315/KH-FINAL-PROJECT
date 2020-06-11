@@ -23,7 +23,7 @@ public interface BoardService {
 
 	int insertBoard(Board b);
 
-	int insertBoardOption(Option o);
+	int insertBoardOption(HashMap<String, Option> map);
 	
 	Board selectBoard(int fno);
 

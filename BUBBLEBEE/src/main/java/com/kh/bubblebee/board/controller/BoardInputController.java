@@ -1,6 +1,7 @@
 package com.kh.bubblebee.board.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,17 +40,28 @@ public class BoardInputController {
 	public String boardInsert(@ModelAttribute Board b, @ModelAttribute Option o, @RequestParam("uploadFile") List<MultipartFile> uploadFile,
 								HttpServletRequest request, @RequestParam("post") String post, 
 								@RequestParam("address1") String address1, @RequestParam("address2") String address2, 
-								@RequestParam("bTime") String bTime, @RequestParam("bDetail") String bDetail,
+								@RequestParam("bTime") List<String> bTime, @RequestParam("bDetail") List<String> bDetail,
 								@RequestParam("b_Qt") String b_Qt, @RequestParam("b_An") String b_An,
+								@RequestParam("oname") String oname, @RequestParam("price") String price,
 								@RequestParam("category") String cate, ModelAndView mv) {
 		
-		
 		b.setLocation(post + "/" + address1 + "/" + address2);
-		b.setFcalendar(bTime + " " + bDetail);
 		b.setFminfo(b_Qt + "<br>" + b_An);
-		mv.addObject("cate", cate);
+		b.setFcalendar(bTime + " " + bDetail);
+//		for(int i = 0; i< bDetail.size(); i++) {
+//			System.out.println(bTime.get(i) + " " +bDetail.get(i));
+//		}
+//		System.out.println("fcla : " + b.getFcalendar());
+		
+		String[] name = oname.split(",");
+		String[] pr = price.split(",");
+		
+		HashMap<String, Option> map = new HashMap<>();
+		for(int i = 0; i < name.length; i++) {
+			map.put("op" + i, new Option(name[i], pr[i]));
+		}
+		
 		System.out.println(b);
-		System.out.println("cate : " + cate);
 		
 		String[] originalFileName = new String[uploadFile.size()];
 		
@@ -76,7 +88,7 @@ public class BoardInputController {
 		
 		int result1 = bService.insertBoard(b);
 		
-		int result2 = bService.insertBoardOption(o);
+		int result2 = bService.insertBoardOption(map);
 		
 		if(result1 > 0) {
 			if(result2 > 0) {

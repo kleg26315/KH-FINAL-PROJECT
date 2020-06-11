@@ -66,8 +66,6 @@ input[class=input1]{width:300px; height: 40px;padding: 0 10px;}
 				  <div id="pro_all">
 				  <!-- 아이디 -->
 				  <input type="hidden" value="${loginUser.id }" name="id">
-				  <!-- 프로필 -->
-				  <input type="hidden" value="${loginUser.profile }" name="hprofile">
 					  <div class="pro_wrap">
 						   	<div class="title">이름 <span class="">*</span></div>
 						   	<div class="p_content"><input type="text" name="userName" id="userName" class="input1"></div>

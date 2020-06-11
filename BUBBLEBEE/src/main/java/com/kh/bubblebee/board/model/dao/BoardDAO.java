@@ -38,8 +38,14 @@ public class BoardDAO {
 		return sqlSession.insert("boardMapper.insertBoard", b);
 	}
 	
-	public int insertBoardOption(SqlSessionTemplate sqlSession, Option o) {
-		return sqlSession.insert("boardMapper.insertBoardOption", o);
+	public int insertBoardOption(SqlSessionTemplate sqlSession, HashMap<String, Option> map) {
+		int count = 0;
+		
+		for(int i=0; i < map.size(); i++ ) {
+			 sqlSession.insert("boardMapper.insertBoardOption", map.get("op" + i));
+			 count++;
+		}
+		return count;
 	}
 
 	public Board selectBoard(SqlSessionTemplate sqlSession, int fno) {

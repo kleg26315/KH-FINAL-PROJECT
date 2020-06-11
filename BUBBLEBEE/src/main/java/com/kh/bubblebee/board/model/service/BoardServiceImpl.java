@@ -49,9 +49,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public int insertBoardOption(Option o) {
+	public int insertBoardOption(HashMap<String, Option> map) {
 		// TODO Auto-generated method stub
-		return bDAO.insertBoardOption(sqlSession, o);
+		return bDAO.insertBoardOption(sqlSession, map);
 	}
 	
 	@Override

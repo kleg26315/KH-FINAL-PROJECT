@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.purchase.model.vo.PBoard;
+import com.kh.bubblebee.purchase.model.vo.PSList;
 import com.kh.bubblebee.purchase.model.vo.Purchase;
 
 @Repository("pDAO")
@@ -20,6 +21,14 @@ public class PurchaseDAO {
 		return (ArrayList)sqlSession.selectList("purchaseMapper.selectProduct", fNo);
 	}
 
-	
+	public ArrayList<PSList> selectPSList(SqlSessionTemplate sqlSession, String ono) {
+		return (ArrayList)sqlSession.selectList("purchaseMapper.selectSList", ono);
+	}
+
+	public int purchaseThis1(SqlSessionTemplate sqlSession, Purchase p) {
+		
+		return sqlSession.insert("purchaseMapper.purchaseThis1",p);
+	}
+
 
 }

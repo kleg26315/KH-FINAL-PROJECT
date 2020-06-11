@@ -3,20 +3,28 @@ package com.kh.bubblebee.board.model.vo;
 public class Option {
 
 	private String ono;			//옵션 번호
-	private String ocategory;	//옵션 대분류(모임, 클래스, 판매)
+	private String category;	//옵션 대분류(모임, 클래스, 판매)
 	private String oname;		//옵션 이름
-	private String ocost;		//옵션 가격
+	private String price;		//옵션 가격
 	private int ocount;			//수량
 	private int fno;			//게시판 번호
 	
 	public Option() {}
+	
+	
+	public Option(String oname, String price) {
+		super();
+		this.oname = oname;
+		this.price = price;
+	}
 
-	public Option(String ono, String ocategory, String oname, String ocost, int ocount, int fno) {
+
+	public Option(String ono, String category, String oname, String price, int ocount, int fno) {
 		super();
 		this.ono = ono;
-		this.ocategory = ocategory;
+		this.category = category;
 		this.oname = oname;
-		this.ocost = ocost;
+		this.price = price;
 		this.ocount = ocount;
 		this.fno = fno;
 	}
@@ -29,12 +37,12 @@ public class Option {
 		this.ono = ono;
 	}
 
-	public String getOcategory() {
-		return ocategory;
+	public String getcategory() {
+		return category;
 	}
 
-	public void setOcategory(String ocategory) {
-		this.ocategory = ocategory;
+	public void setcategory(String category) {
+		this.category = category;
 	}
 
 	public String getOname() {
@@ -45,12 +53,12 @@ public class Option {
 		this.oname = oname;
 	}
 
-	public String getOcost() {
-		return ocost;
+	public String getprice() {
+		return price;
 	}
 
-	public void setOcost(String ocost) {
-		this.ocost = ocost;
+	public void setprice(String price) {
+		this.price = price;
 	}
 
 	public int getOcount() {
@@ -71,7 +79,7 @@ public class Option {
 
 	@Override
 	public String toString() {
-		return "Option [ono=" + ono + ", ocategory=" + ocategory + ", oname=" + oname + ", ocost=" + ocost + ", ocount="
+		return "Option [ono=" + ono + ", category=" + category + ", oname=" + oname + ", price=" + price + ", ocount="
 				+ ocount + ", fno=" + fno + "]";
 	}
 	

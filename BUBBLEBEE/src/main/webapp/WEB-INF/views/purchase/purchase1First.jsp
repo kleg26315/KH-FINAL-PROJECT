@@ -20,9 +20,9 @@
 	<header id="header">
 		<%@ include file = "../layout/header.jsp" %> 	
 	</header>
-	<form id = "purchaseForm" name = "doubleTarget" >
-		<c:forEach var = "pu" items = "${plist }" varStatus = "status">	
-			<div class = "main">
+	<form action = "purchaseThis.pu" method = "post" >
+		<div class = "main">
+			<c:forEach var = "pu" items = "${plist }" varStatus = "status">	
 				<div class = "mFont">	
 					결제
 				</div>
@@ -34,45 +34,51 @@
 				</div>
 				<div class = "mProfile">
 					<div class = "mProfileT1">
-						<input class = "mProfileT11" name = "rIntro"  value = "${pu.small_title }" readonly>
+						<input class = "mProfileT11" name = "rIntro"  value = "${ pu.small_title }" readonly>
 							
 					</div>
 					<div class = "mProfileT2">
-						<input class = "mProfileT21" name = "rTitle" value = "${pu.ftitle }" readonly>
+						<input class = "mProfileT21" name = "rTitle" value = "${ pu.ftitle }" readonly >
 					</div>
 					<div class = "mProfileT3">
-						<input class = "mProfileT31" name = "rCost" value = "${pu.price }원" readonly>
-	
+						<input class = "mProfileT31" name = "rCost" value = "${ pu.price }원" readonly >
+						<input style = "display : none" id = "PT21" value = "${pu.price }">
 					</div>
 				</div>
+			</c:forEach>
+			
 				<div style = "float:left; width : 100%;">
 					<hr id = "submitFormSectionMainDH">
 				</div>
 				<div class = "mOption">
-					<div class = "mOptionO">
-						<h3 class = "mOptionO1">선택한 옵션</h3>
-						<input class = "mOptionO2" name = "rTitleDetail" value = "창렬회초리(소)" readonly>
-					</div>
-					<div class = "mOptionP">
-						<h3 class = "mOptionP1">수량</h3>	
-						<input class = "mOptionP2" name = "rCount" value = "2개" readonly>
-					</div>
-					<div class = "mOptionS">
-						<h3 class = "mOptionS1">옵션합계</h3>
-						<h3 class = "mOptionS2" style = "float : right;">
-							<input id = "TC1" name = "rACost" type = "text" value = "22000"readonly>원
-						</h3>
-					</div>
+					<c:forEach var = "pu2" items = "${pslist }" varStatus = "status">
+						<div class = "mOptionO">
+							<h3 class = "mOptionO1">선택한 옵션</h3>
+							<input name = "ono" class = "mOptionO2" name = "rTitleDetail" value = "${ pu2.ono }" readonly>
+						</div>
+						<div class = "mOptionP">
+							<h3 class = "mOptionP1">수량</h3>	
+							<input name = "ocount"class = "mOptionP2" name = "rCount" value = "${ pu2.ocount }" readonly id = "OP2">
+						</div>
+						<div class = "mOptionS">
+							<h3 class = "mOptionS1">옵션합계</h3>
+							<h3 class = "mOptionS2" style = "float : right;">
+								<input id = "TC1" name = "rACost" type = "text" value = "${ pu2.ocost }"readonly>원
+							</h3>
+						</div>
+					</c:forEach>
 				</div>
 				<div style = "float:left; width : 100%;">
 					<hr id = "submitFormSectionMainDH" style = "margin-top : 20px;">
 				</div>
+		
+			
 				<div class = "mInput">
 					<h3 class = "mInputQ">
 						받으실분 성함(필수)
 					</h3>
 					<h3 class = "mInputQ">
-						<input class = "mInputQI" id = "IQI1" type = "text" placeholder = " 수신자를 입력해 주세요" name = "rName"  style = "border : 1px solid gray; font-size : 14pt; border-radius : 2px 2px; margin-top : 4px;">
+						<input name = "gname" class = "mInputQI" id = "IQI1" type = "text" placeholder = " 수신자를 입력해 주세요" name = "rName"  style = "border : 1px solid gray; font-size : 14pt; border-radius : 2px 2px; margin-top : 4px;">
 					</h3>
 				</div>
 				<div class = "mInput">
@@ -80,9 +86,9 @@
 						배송 받을 주소(필수)
 					</h3>
 					<h3 class = "mInputQ">
-						<input class = "postcodify_postcode5 mInputQI" id = "IQI2" type = "text" placeholder = " 배송지를 입력해 주세요" name = "rAddress1" readonly style = "border : 1px solid gray; font-size : 14pt; border-radius : 2px 2px; margin-top : 4px;">
-						<input class = "postcodify_address mInputQI" id = "IQI21" type = "text" placeholder = " 기본주소" name = "rAddress2" style = "border : 1px solid gray; font-size : 14pt; border-radius : 2px 2px; margin-top : 4px;">
-						<input class = "postcodify_details mInputQI" id = "IQI22" type = "text" placeholder = " 상세주소" name = "rAddress3" style = "border : 1px solid gray; font-size : 14pt; border-radius : 2px 2px; margin-top : 4px;">
+						<input name = "gaddress1" class = "postcodify_postcode5 mInputQI" id = "IQI2" type = "text" placeholder = " 배송지를 입력해 주세요" name = "rAddress1" readonly style = "border : 1px solid gray; font-size : 14pt; border-radius : 2px 2px; margin-top : 4px;">
+						<input name = "gaddress2" class = "postcodify_address mInputQI" id = "IQI21" type = "text" placeholder = " 기본주소" name = "rAddress2" style = "border : 1px solid gray; font-size : 14pt; border-radius : 2px 2px; margin-top : 4px;">
+						<input name = "gaddress3" class = "postcodify_details mInputQI" id = "IQI22" type = "text" placeholder = " 상세주소" name = "rAddress3" style = "border : 1px solid gray; font-size : 14pt; border-radius : 2px 2px; margin-top : 4px;">
 					</h3>
 					<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 					<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
@@ -96,7 +102,7 @@
 						연락처(휴대전화)
 					</h3>
 					<h3 class = "mInputQ">
-						<input class = "mInputQI" id = "IQI3" type = "text" placeholder = "발송자 전화번호를 입력해 주세요" name = "rPhone"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" style = "border : 1px solid gray; font-size : 14pt; border-radius : 2px 2px; margin-top : 4px;">
+						<input name = "gphone" class = "mInputQI" id = "IQI3" type = "text" placeholder = "발송자 전화번호를 입력해 주세요" name = "rPhone"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" style = "border : 1px solid gray; font-size : 14pt; border-radius : 2px 2px; margin-top : 4px;">
 					</h3>
 				</div>
 				<div class = "mInput">
@@ -104,16 +110,24 @@
 						배송메세지
 					</h3>
 					<h3 class = "mInputQ">
-						<input class = "mInputQI" id = "IQI4" type = "text" placeholder = "수신자에게 보낼 메세지를 적어주세요" name = "rMessage" style = "border : 1px solid gray; font-size : 14pt; border-radius : 2px 2px; margin-top : 4px;">
+						<input name = "gmsg" class = "mInputQI" id = "IQI4" type = "text" placeholder = "수신자에게 보낼 메세지를 적어주세요" name = "rMessage" style = "border : 1px solid gray; font-size : 14pt; border-radius : 2px 2px; margin-top : 4px;">
 					</h3>
 				</div>
 				<div style = "float:left; width : 100%;">
 					<hr id = "submitFormSectionMainDH" style = "width : 100%; margin-top : 20px;">
 				</div>
+			
 				<div class = "mInfo">
 					<h3 class = "mInfoH">상품 금액</h3>
-					<h3 class = "mInfoH1">22000원</h3>
+					<input style = "float : left" type = "text" id = "PRICE">
 				</div>
+					<script>
+					var pt21 = $("#PT21").val();
+					var op2 = $("#OP2").val();
+					console.log(pt21);
+					console.log(op2);
+					$("#PRICE").val(pt21 * op2);
+				</script>
 				<div style = "float:left; width : 100%;">
 					<hr id = "submitFormSectionMainDH" style = "width : 100%; margin-top : 20px;">
 				</div>
@@ -155,10 +169,13 @@
 						<input id = "FBDI2" style = "display : none;" name = "totalPrice">
 						<input id = "FBDI3" style = "display : none;" name = "discountPrice">
 					</div>
+				
 				</div>
+				
+			
 			</div>
-		</c:forEach>
-	</form>
+			</form>
+		
 	<script>
 	$('#FBDI1').on('click', function(){
 		

@@ -33,7 +33,6 @@
 			<br>
 			<div id="content_list">
           	 <form action="updateFAQ.no" id="frm" method="post">
-          	 	 <input name="page" hidden value="${page }">
           		 <input name="bno" hidden value="${notice.bno }">
           	 	 <input type="text" hidden size="0">
 	             <input type="text" id="title" name="title" placeholder="제목" style="height: 40px;" size="50" value="${notice.btitle }">
