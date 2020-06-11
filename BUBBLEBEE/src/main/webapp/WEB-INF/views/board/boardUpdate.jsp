@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>등록Form</title>
+    <title>수정Form</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="resources/css/boardInput.css">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -23,15 +23,19 @@
 
    <section style="padding-top: 115px; padding-left: 20%; width: 78%;">
      <div id="bmain">
-		<main><h2>등록</h2></main>
+		<main><h2>수정</h2></main>
 		
 		<!-- 첨부파일 등록을 위해 Multipart/form-data encType 지정 -->
-		<form action="bupdate.bo" onsubmit="return validate();" enctype="Multipart/form-data" id="form" method="POST" data-use-autosave="true">
+		<form action="binsert.bo" onsubmit="return validate();" enctype="Multipart/form-data" id="form" method="POST" data-use-autosave="true">
+			<input type="hidden" value="${loginUser.id}" name="user_id">
+			<input type="hidden" value="${board.fno}" name="fno">
+			<input type="hidden" value="${board.ftype}" name="ftype">
+			<input type="hidden" value="${board.renameFileName}" name="renameFileName">
+			
 			<table> 
 				<tr>
 					<th colspan="2" >카테고리 설정</th>
 					<td rowspan="2">
-					<input type="hidden" value="${loginUser.id}" name="user_id">
 						<div class="B_n" >
 							<b>다음과 같은 경우, 오픈이 어렵습니다.</b><br>
 							- 소개팅 / 남녀 만남 주선 프립<br>
@@ -85,15 +89,14 @@
 				<tr>
 					<td colspan="2">
 						<h4>Title</h4>
-						<input type="text" placeholder="제목을 입력해주세요" name="ftitle" id="title" required style="height: 50px;">
+						<input type="text"  name="ftitle" id="title" value="${board.ftitle}" required style="height: 50px;">
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
 						<h4>캐치프레이즈(제목을 부연 설명하는 문구입니다)</h4>
 						<div id="ca2">
-							<input type="text" placeholder="호스트님만의 특색과 매력을 함축적으로 보일 수 있게 적어주세요." 
-							 id="catch" name="small_title" maxlength="20" tabindex="0" required>
+							<input type="text" id="catch" name="small_title" maxlength="20" tabindex="0" value="${board.small_title}" required>
 							<span id="counter">0</span>/20<br>
 						</div>
 					</td>
@@ -120,7 +123,15 @@
 					<tr>
 						<td>
 							<input type="file" class="thumb_file" name="uploadFile" required >
+							<c:if test="${ !empty board.originalFileName }">
+								<br>현재 업로드한 파일 : 
+									<a href="${ contextPath }/resources/buploadFiles/${ board.renameFileName }">
+										${ board.originalFileName }
+									</a>
+									<input type="hidden" name="originalFileName" value="${ board.originalFileName }"/>
+							</c:if>
 						</td>
+						
 					</tr>
 					
 					<tbody id="tbody4">
@@ -163,7 +174,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<input type="text" id="maxMember" name="maxMember" placeholder="최소 1명 이상 최대 20명 이하"  maxlength="2"  required >
+							<input type="text" id="maxMember" name="maxMember" value="${ board.maxMember }" maxlength="2"  required >
 						</td>
 					</tr>
 					
@@ -190,17 +201,17 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" id="op" class="op" name="oname" placeholder="옵션명"  value="참가비 (1인)" required maxlength="30"> 
+								<input type="text" id="op" class="op" name="oname" value="${ board.oname }"  required maxlength="30"> 
 							</td>
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" id="op2" class="op2" name="price" placeholder="가격(5000원 이상)"  value="5000" required>원
+								<input type="text" id="op2" class="op2" name="price" value="${ board.price }" required>원
 							</td>
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" id="op3" class="op3" name="ocount" placeholder="수량(재고)"  value="14명" required>
+								<input type="text" id="op3" class="op3" name="ocount" value="${ board.ocount }" required>
 							</td>
 						</tr>
 					<tbody id="tbody1">
@@ -298,98 +309,103 @@
 					<tr>
 						<td colspan="3"><hr></td>
 					</tr>
-				</table>
-				<table>
-					<tr>
-						<th style="width: 51%;">상세일정</th>
-						<td style="padding-left: 7px;" >
-							<button type="button" id="btn_DetailSet">세부일정 추가</button>
-						</td>
-						<td rowspan="3">
-							<div class="B_n">
-								<b>소요시간별로 구체적인 일정을 상세히 적어주세요.</b><br>
-								<b>상세 일정은 1개 이상 입력해주셔야 합니다.</b><br>
-								<br>
-								시간이 고정일 때    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 시간이 유동적일 때<br>
-								- 14:00   종합 운동장 5번 출구 집결    &emsp;&emsp;&emsp;&emsp; - 20분  오리엔테이션<br>
-								- 14:10   인원 파악 후 출발   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 10분   타이거 포터리의 시연<br>
-								- 15:30   피톤치드길 산책 겸 힐링          &emsp;&emsp;&emsp;&emsp;&emsp;- 20분   색종이 스케치<br>
-								- 16:30   서울로 복귀   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 50분   만들기 시간<br>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td >
-							<input type="text" name="bTime" class="bTime"  placeholder="30분" required>
-						</td>
-					</tr>
-					<tr>
-						<td >
-							<input type="text" name="bDetail" class="bDetail"  placeholder="세부일정" required>
-						</td>
-					</tr>
-					<tbody id="tbody2">
+					</table>
+					<table>
 						
-					</tbody>
-				</table>
+							<tr>
+								<th style="width: 51%;">상세일정</th>
+								<td style="padding-left: 7px;" >
+									<button type="button" id="btn_DetailSet">세부일정 추가</button>
+								</td>
+								<td rowspan="3">
+									<div class="B_n">
+										<b>소요시간별로 구체적인 일정을 상세히 적어주세요.</b><br>
+										<b>상세 일정은 1개 이상 입력해주셔야 합니다.</b><br>
+										<br>
+										시간이 고정일 때    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 시간이 유동적일 때<br>
+										- 14:00   종합 운동장 5번 출구 집결    &emsp;&emsp;&emsp;&emsp; - 20분  오리엔테이션<br>
+										- 14:10   인원 파악 후 출발   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 10분   타이거 포터리의 시연<br>
+										- 15:30   피톤치드길 산책 겸 힐링          &emsp;&emsp;&emsp;&emsp;&emsp;- 20분   색종이 스케치<br>
+										- 16:30   서울로 복귀   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 50분   만들기 시간<br>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td >
+									<input type="text" name="bTime" class="bTime" value="${ board.bTime }" required>
+								</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td >
+									<input type="text" name="bDetail" class="bDetail" value="${ board.bDetail }" required>
+								</td>
+								<td></td>
+								<td></td>
+							</tr>
+						<tbody id="tbody2">
+							
+						</tbody>
+					</table>
 					
-				<script>
-				$('#btn_DetailSet').on('click', function(){
-					var bot = $('#tbody2 tr').length;
-					
-					if(bot < 20){
-						var innerHtml = "";
-						innerHtml += '<tr>';
-						innerHtml += '<td><input type="text" name="bTime" class="bTime" placeholder="30분"></td>';
-						innerHtml += '<td rowspan="2"><button type="button" class="btnDelete" onclick="delete2(this); ">삭제</button></td>';
-						innerHtml += '</tr>';
-						innerHtml += '<tr>';
-						innerHtml += '<td><input type="text" name="bDetail" class="bDetail"  placeholder="세부일정"></td>';
-						innerHtml += '</tr>';
+					<script>
+					$('#btn_DetailSet').on('click', function(){
+						var bot = $('#tbody2 tr').length;
+						
+						if(bot < 20){
+							var innerHtml = "";
+							innerHtml += '<tr>';
+							innerHtml += '<td><input type="text" name="bTime" class="bTime" placeholder="30분"></td>';
+							innerHtml += '<td rowspan="2"><button type="button" class="btnDelete" onclick="delete2(this); ">삭제</button></td>';
+							innerHtml += '</tr>';
+							innerHtml += '<tr>';
+							innerHtml += '<td><input type="text" name="bDetail" class="bDetail"  placeholder="세부일정"></td>';
+							innerHtml += '</tr>';
 
-						$('#tbody2').append(innerHtml);
-					}else{
-						alert("최대 10개까지만 가능합니다.");
-						return false;
+							$('#tbody2').append(innerHtml);
+						}else{
+							alert("최대 10개까지만 가능합니다.");
+							return false;
+						}
+					});
+											
+					function delete2(obj){
+						console.log(obj);
+						$(obj).parent().parent().next().remove();
+						$(obj).parent().parent().remove();
 					}
-				});
-										
-				function delete2(obj){
-					console.log(obj);
-					$(obj).parent().parent().next().remove();
-					$(obj).parent().parent().remove();
-				}
-				
-				</script>
-				<table>
-					<tr>
-						<td colspan="3"><hr></td>
-					</tr>
-					<tr>
-						<th colspan="2">포함사항</th>
-						<td rowspan="4">
-							<div class="B_n">
-								<b>상세페이지에 노출시킬 포함/불포함사항을 입력해 주세요.</b><br>
-								<b>대원들이 오해할 수 있는 사항들은 꼭 기재해주시기 바랍니다.</b>	<br>
+					
+					</script>
+					<table>
+						<tr>
+							<td colspan="3"><hr></td>
+						</tr>
+						<tr>
+							<th colspan="2">포함사항</th>
+							<td rowspan="4">
+								<div class="B_n">
+									<b>상세페이지에 노출시킬 포함/불포함사항을 입력해 주세요.</b><br>
+									<b>대원들이 오해할 수 있는 사항들은 꼭 기재해주시기 바랍니다.</b>	<br>
 	
-								포함 사항 예시    &emsp;&emsp;&emsp; 불포함 사항 예시<br>
-								- 안전 보험료    &emsp;&emsp;&emsp;&emsp; - 주차비<br>
-								- 차량 보험료    &emsp;&emsp;&emsp;&emsp; - 교통비<br>
-								- 입장료           &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 필기도구<br>
-								- 강습비	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 음식/음료<br>
-								- 기사비	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 픽업<br>
-								- 교재비	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 운동복<br>
-								- 재료비	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 가이드비<br>
-								- 앞치마	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 뒤풀이 비용<br>
-								- 탈의실	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 항공권<br>
-								- 샤워실	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 개인 경비<br>
-								- 대관료	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 개별 여행자보험<br>
-							</div>
-						</td>
-					</tr>
+									포함 사항 예시    &emsp;&emsp;&emsp; 불포함 사항 예시<br>
+									- 안전 보험료    &emsp;&emsp;&emsp;&emsp; - 주차비<br>
+									- 차량 보험료    &emsp;&emsp;&emsp;&emsp; - 교통비<br>
+									- 입장료           &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 필기도구<br>
+									- 강습비	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 음식/음료<br>
+									- 기사비	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 픽업<br>
+									- 교재비	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 운동복<br>
+									- 재료비	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 가이드비<br>
+									- 앞치마	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 뒤풀이 비용<br>
+									- 탈의실	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 항공권<br>
+									- 샤워실	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 개인 경비<br>
+									- 대관료	   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; - 개별 여행자보험<br>
+								</div>
+							</td>
+						</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" class="bIncluded" name="fcontain"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" name="fcontain"  maxlength="500" required>${ board.fcontain }</textarea>
 							<span id="btext1">0</span>/500
 						</td>
 					</tr>
@@ -398,7 +414,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" class="bIncluded" name = "fncontain"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" name = "fncontain"  maxlength="500" required>${ board.fncontain }</textarea>
 							<span id="btext2">0</span>/500
 						</td>
 					</tr>
@@ -432,7 +448,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" class="bIncluded" name="fmaterials"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" name="fmaterials"  maxlength="500" required>${ board.fmaterials }</textarea>
 							<span id="btext3">0</span>/500
 						</td>
 					</tr>
@@ -441,7 +457,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" class="bIncluded" name="fprecaution"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" name="fprecaution"  maxlength="500" required>${ board.fprecaution }</textarea>
 							<span id="btext4">0</span>/500
 						</td>
 					</tr>
@@ -449,39 +465,33 @@
 					<tr>
 						<td colspan="3"><hr></td>
 					</tr>
-				</table>
-				<table>
-					<thead>
-						<tr>
-							<th style="width: 50%;">자주 묻는 질문</th>
-							<td style="padding-left: 13px;">
-								<button type="button" id="btn_Q">질문/답변 추가</button>
-							</td>
-							<td rowspan="1">
-								<div class="B_n">
-									<b>참가자들이 궁금해 할 만한 내용이나</b><br>
-									<b>자주 묻는 질문에 대한 답변을 작성해 주세요</b><br>
-									<br>
-									자주 묻는 질문 예시)<br>
-									Q 체력이 약한데 저도 할 수 있나요?<br>
-									A 누구나 쉽게 할 수 있는 코스입니다.<br><br>
-									
-									Q 등산화가 있어야 할까요?<br>
-									A 길이 깨끗해 러닝화로도 충분히 등반 가능합니다.<br><br>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td><span>Q</span><input type="text" class="b_Qt" name="b_Qt" placeholder="질문"></td>
-						</tr>
-						<tr>
-							<td><span>A</span><input type="text" class="b_An" name="b_An" placeholder="답변"></td>
-						</tr>
-					</thead>
-					<tbody id="tbody3">
-						
-					</tbody>
-				</table>
+					</table>
+					<table>
+						<thead>
+							<tr>
+								<th style="width: 50%;">자주 묻는 질문</th>
+								<td style="padding-left: 13px;">
+									<button type="button" id="btn_Q">질문/답변 추가</button>
+								</td>
+								<td rowspan="1">
+									<div class="B_n">
+										<b>참가자들이 궁금해 할 만한 내용이나</b><br>
+										<b>자주 묻는 질문에 대한 답변을 작성해 주세요</b><br>
+										<br>
+										자주 묻는 질문 예시)<br>
+										Q 체력이 약한데 저도 할 수 있나요?<br>
+										A 누구나 쉽게 할 수 있는 코스입니다.<br><br>
+										
+										Q 등산화가 있어야 할까요?<br>
+										A 길이 깨끗해 러닝화로도 충분히 등반 가능합니다.<br><br>
+									</div>
+								</td>
+							</tr>
+						</thead>
+						<tbody id="tbody3">
+							
+						</tbody>
+					</table>
 					<script>
 						$('#btn_Q').on('click', function(){
 							var bot = $('#tbody3 tr').length;
@@ -536,7 +546,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td><textarea class="form-control" id="editor" name="introduce"></textarea></td>
+						<td><textarea class="form-control" id="editor" name="introduce">${ board.introduce }</textarea></td>
 					</tr>
 			</table>
 			<script type="text/javascript">
