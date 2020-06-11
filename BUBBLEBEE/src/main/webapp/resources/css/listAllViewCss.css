@@ -137,10 +137,11 @@ input[id*="popup"]:checked + label + div {display:block;}
 /* 지금 뜨는 모임 CSS */
 .moim{
    display: flex;
+   flex-wrap: wrap;
     min-height: 1px;
 }
 .moim > *{
-   margin-right: 10px;
+   margin-right: 7px;
     width: calc(25% - 7.5px);
     margin-bottom: 31px;
 }
