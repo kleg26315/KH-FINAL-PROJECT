@@ -55,7 +55,7 @@
 	
 	<select id="selectSearchList" parameterType="map" resultType="Board">
 		select *
-		from bhtist
+		from bhtlist
 		where f_status='Y' and category=#{cate} and 
 		<![CDATA[ 
 			price>=#{sc.startPrice} and price<=#{sc.endPrice}
