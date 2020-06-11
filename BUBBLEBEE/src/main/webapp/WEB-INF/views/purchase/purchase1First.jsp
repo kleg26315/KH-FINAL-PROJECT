@@ -41,7 +41,7 @@
 						<input class = "mProfileT21" name = "rTitle" value = "${ pu.ftitle }" readonly >
 					</div>
 					<div class = "mProfileT3">
-						<input class = "mProfileT31" name = "rCost" value = "${ pu.price }원" readonly >
+						<input class = "mProfileT31" name = "rCost" readonly id = "PT31">
 						<input style = "display : none" id = "PT21" value = "${pu.price }">
 					</div>
 				</div>
@@ -119,14 +119,15 @@
 			
 				<div class = "mInfo">
 					<h3 class = "mInfoH">상품 금액</h3>
-					<input style = "float : left" type = "text" id = "PRICE">
+					<input style = "float : right; border : none; font-size : 16pt; margin-right : -14%; margin-top : 13px; " type = "text" id = "PRICE">
 				</div>
-					<script>
+				<script>
 					var pt21 = $("#PT21").val();
 					var op2 = $("#OP2").val();
 					console.log(pt21);
 					console.log(op2);
-					$("#PRICE").val(pt21 * op2);
+					$("#PRICE").val(pt21 * op2 + " 원");
+					$("#PT31").val(pt21 * op2 + " 원");
 				</script>
 				<div style = "float:left; width : 100%;">
 					<hr id = "submitFormSectionMainDH" style = "width : 100%; margin-top : 20px;">
