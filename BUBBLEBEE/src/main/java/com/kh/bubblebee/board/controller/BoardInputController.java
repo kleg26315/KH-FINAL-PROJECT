@@ -42,7 +42,7 @@ public class BoardInputController {
 								@RequestParam("address1") String address1, @RequestParam("address2") String address2, 
 								@RequestParam("bTime") List<String> bTime, @RequestParam("bDetail") List<String> bDetail,
 								@RequestParam("b_Qt") String b_Qt, @RequestParam("b_An") String b_An,
-								@RequestParam("oname") String oname, @RequestParam("price") String price,
+								@RequestParam("oname") String oname, @RequestParam("price") String price, @RequestParam("ocount") String ocount,
 								@RequestParam("category") String cate, ModelAndView mv) {
 		
 		b.setLocation(post + "/" + address1 + "/" + address2);
@@ -55,10 +55,11 @@ public class BoardInputController {
 		
 		String[] name = oname.split(",");
 		String[] pr = price.split(",");
+		String[] count = ocount.split(",");
 		
 		HashMap<String, Option> map = new HashMap<>();
 		for(int i = 0; i < name.length; i++) {
-			map.put("op" + i, new Option(name[i], pr[i]));
+			map.put("op" + i, new Option(name[i], pr[i], count[i]));
 		}
 		
 		System.out.println(b);
