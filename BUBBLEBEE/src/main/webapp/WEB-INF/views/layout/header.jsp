@@ -419,7 +419,7 @@
     		if(key.keyCode == 13){
     			var value = $('.input').val();
         		setCookie('search', value , 7);
-				location.href = "test.do?search=" + value;
+				location.href = "find.bo?search=" + value;
         		//location.href = "#";
     		}
     	});
