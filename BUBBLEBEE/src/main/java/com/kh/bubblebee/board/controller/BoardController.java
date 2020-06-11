@@ -111,10 +111,10 @@ public class BoardController {
 			int heart = bService.getHeartCount(map);
 			if(heart == 0) {
 				heart=0;
-				System.out.println(fno+"번하트"+heart);
+//				System.out.println(fno+"번하트"+heart);
 			} else {
 				heart=1;
-				System.out.println(fno+"번하트"+heart);
+//				System.out.println(fno+"번하트"+heart);
 			}
 			
 			try {

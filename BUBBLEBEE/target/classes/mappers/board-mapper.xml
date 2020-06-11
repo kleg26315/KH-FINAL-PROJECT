@@ -69,15 +69,13 @@
 		 ]]>
 		  
 			<if test='sc.popular != null'>
-				and rcount>0
-		    	order by round(rcount / (select max(rcount) from board) * (rsum/rcount),2) desc
+		    	order by round(rcount / (select decode(max(rcount),0,1,max(rcount)) from board) * (rsum/decode(rcount,0,1,rcount)),2) desc
 		    </if>
 		    <if test='sc.latest != null'>
 		    	order by f_create_date desc
 		    </if>
 		    <if test='sc.rate != null'>
-		    	and rcount>0
-		    	order by (rsum/rcount) desc
+				order by (rsum/decode(rcount,0,1,rcount)) desc
 		    </if>
 		    <if test='sc.highprice != null'>
 		    	order by price desc
