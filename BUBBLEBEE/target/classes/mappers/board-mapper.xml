@@ -17,20 +17,13 @@
 	<select id="selectLtList" resultType="Board">
 		select *
 		from bltlist
-		where category=#{cate}
+		where category=#{cate} and rnum between 1 and 4
 	</select>
 	
 	<select id="selectHtList" resultType="Board">
 		select *
 		from bhtlist
-		where category=#{cate}
-	</select>
-	
-
-	<select id="getReviewGrade" resultType="Review">
-		select *
-		from review
-		where q_status='N'
+		where category=#{cate} and rnum between 1 and 4
 	</select>
 	
 	<insert id="insertBoard">
@@ -48,7 +41,7 @@
 	<select id="selectBoard" resultType="Board">
 		select *
 		from board
-		where fno=#{fno} and f_status='Y'
+		where fno=#{fno} and f_status='Y' and rnum between 1 and 16
 	</select>
 	
 	<select id="getSearchListCount" resultType="_int">
