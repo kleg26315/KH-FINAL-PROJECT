@@ -7,4 +7,9 @@
 		where user_id = #{id}
 	</update>
 
+	<update id="updateprofile">
+		update member 
+		set profile = #{profile}
+		where user_id= #{id}
+	</update>
 </mapper>

@@ -64,7 +64,7 @@ input[type=checkbox]:checked + label{
 .interest_wrap{display: flex;}
 .interestBtn:hover {cursor: pointer;}
 
-section input[type=text]{outline-color: #F39C12;padding: 0 15px; height: 30px;}
+section input[type=text]{outline-color: #F39C12;height: 30px;}
 </style>
 <body>
    <header id="header">

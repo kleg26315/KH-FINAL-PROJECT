@@ -70,15 +70,27 @@
 	height: 8px;
 }
 #interest span{color:#F39C12;}
+
+
 </style>
 </head>
 <body>
 	<div id="main_header">
     	<div id="profile_wrap">
     		<div id="proimg_wrap">
-    			<input type="hidden" id="fileNm"/>
-				<a id="" href="javascript:fnUpload();"><img src="${loginUser.profile }" alt="찾아보기" id="proimg" style="border-radius: 100%;" /></a>
-				<input type="file" id="fileUpload" style="display:none" onchange="$('#fileNm').val(this.value)"/>
+	    		<div id="proimg_con">
+		    		<form id="fileForm" method="post" enctype="multipart/form-data">
+		    			<input type="file" id="fileUpload" name="profile" style="display:none" />
+		    			<c:choose>
+					         	<c:when test="${ fn:contains(sessionScope.loginUser.profile, 'http')}">
+					         		<img id="profile" class="profile_img" style="width: 120px; height: 120px; border-radius: 100%; cursor: pointer;" src="${sessionScope.loginUser.profile}" />
+					         	</c:when>
+								<c:otherwise>
+									<img id="profile" class="profile_img" style="width: 120px; height: 120px; border-radius: 100%; cursor: pointer;" src="${contextPath}/resources/proFiles/${sessionScope.loginUser.profile}" />
+								</c:otherwise>
+					         </c:choose>
+					</form>
+				</div>
 			</div>
 				<div id="info_wrap">
 					<div id="name_d">${loginUser.nickName}</div>
@@ -116,17 +128,43 @@
     	</div>
     </div>
     <script type="text/javascript">		
-		function fnUpload(){
-		
-			$('#fileUpload').click();
-		
-		}
 		$(function(){
+			// 정보수정
 			$('#m_btn,#inter_btn').click(function(){
 				location.href="updateInfoForm.mg";
 			});
+			// 마일리지 이동
 			$('#point_wrap').click(function(){
 				location.href="mypoint.mg";
+			});
+			
+			
+			// 사진 업로드 부분
+			$('#profile').click(function(){
+				$('#fileUpload').click();
+			});
+			
+			$('#fileUpload').change(function(e){
+				console.log('파일첨부됨');
+				
+				var formData = new FormData($('#fileForm')[0]);
+				
+				$.ajax({
+					type:'post',
+					enctype:'multipart/form-data',
+					url:'uploadprofile.mg',
+					data:formData,
+					processData:false,
+					contentType:false,
+					success:function(data){
+						if(data > 0){
+							alert('프로필 변경 성공!');
+							location.reload();
+						}else{
+							console.log('실패');
+						}
+					}
+				});
 			});
 		});
 	</script>
