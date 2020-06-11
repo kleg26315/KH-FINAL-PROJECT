@@ -436,63 +436,7 @@
             </c:forEach>
             </div>
             </div>
-            
-            
-        <!-- 좋아요 -->
-       <script>
-        
-//         $(document).ready(function () {
-        	
-//         	var uid = ${'#uid'}.val();
-//         	var fno = ${'#bfno'}.val();
-        	
-//         	(function(){        		
-//         		$.ajax({
-//                     url: 'hread.bo',
-//     				data: {fno:fno, uid:uid},
-//                     success:
-//                     	function(data){
-//                     	console.log(data);
-//                     	}
-//         	});
-        		
-//         	}());
-        	        	
-//             var heartyn = ${heart}; //select해온 값넣기
-
-//             if(heartyn==null) {
-//                 $("#heart").prop("src", "${contextPath }/resources/img/빈하트.png");
-//             }
-//             else {
-//                 $("#heart").prop("src", "${contextPath }/resources/img/채워진하트.png");
-//             }
-
-//             $("#heart").on("click", function () {
-
-//                 $.ajax({
-//                     url: 'heart.bo',
-//     				data: {fno:fno, uid:uid},
-//                     type :'json',
-//                     complete: function(){
-//                     	if(uid == null) {
-//                     		alert('로그인 후 좋아요가 가능합니다.');
-//                     	}
-//                     },
-//                     success : function(data){
-//                         if(data==1) {
-//                             $('#heart').prop("src","${contextPath }/resources/img/채워진하트.png");
-//                         }
-//                         else{
-//                             $('#heart').prop("src","${contextPath }/resources/img/빈하트.pngg");
-//                         }
-
-
-//                     }
-//                 });
-//             });
-//         });
-         
-
+ 
       	<!-- 전체보기 -->
       	<div id="allView">
       	<c:if test="${ cate == 'party'}">
