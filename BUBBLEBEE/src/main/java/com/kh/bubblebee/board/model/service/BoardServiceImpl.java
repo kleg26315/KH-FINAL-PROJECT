@@ -74,6 +74,11 @@ public class BoardServiceImpl implements BoardService {
 		return bDAO.selectSearchList(sqlSession, map, pi);
 	}
 
+	@Override
+	public int getHeartCount(HashMap<String, Object> map) {
+		return bDAO.getHeartCount(sqlSession, map);
+	}
+
 	
 
 }

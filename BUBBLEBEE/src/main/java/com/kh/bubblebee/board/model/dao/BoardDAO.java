@@ -60,5 +60,9 @@ public class BoardDAO {
 		
 		return (ArrayList)sqlSession.selectList("boardMapper.selectSearchList", map, rowBounds);
 	}
+
+	public int getHeartCount(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		return sqlSession.selectOne("boardMapper.getHeartCount", map);
+	}
 	
 }

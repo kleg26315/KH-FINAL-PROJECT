@@ -87,4 +87,10 @@
 		    </if>
 	</select>
 	
+	<select id="getHeartCount" parameterType="map" resultType="_int">
+		select count(*)
+		from heart
+		where user_id=#{uid} and fno2=#{fno}
+	</select>
+	
 </mapper>

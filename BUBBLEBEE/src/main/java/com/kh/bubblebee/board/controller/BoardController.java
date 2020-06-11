@@ -1,7 +1,10 @@
 package com.kh.bubblebee.board.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.kh.bubblebee.board.model.exception.BoardException;
 import com.kh.bubblebee.board.model.service.BoardService;
 import com.kh.bubblebee.board.model.vo.Board;
@@ -30,7 +36,7 @@ public class BoardController {
 		
 		//최신불러오기
 		ArrayList<Board> ltlist = bService.selectLtList(cate);
-	
+		
 		if(ltlist != null && htlist != null) {
 			mv.addObject("cate", cate);
 			mv.addObject("ltlist", ltlist);
@@ -94,10 +100,40 @@ public class BoardController {
 		}
 	}
 	
-//	@RequestMapping("list.bo")
-//	public void replyList(@RequestParam("bId") int bId, HttpServletResponse response) {
+	@RequestMapping("hread.bo")
+	public void heartRead(@RequestParam("fno") int fno, @RequestParam("uid") String uid, HttpServletResponse response) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("uid", uid);
+		map.put("fno", fno);
+		
+			
+		
+			int heart = bService.getHeartCount(map);
+			if(heart == 0) {
+				heart=0;
+				System.out.println(fno+"번하트"+heart);
+			} else {
+				heart=1;
+				System.out.println(fno+"번하트"+heart);
+			}
+			
+			try {
+				new Gson().toJson(heart, response.getWriter());
+			} catch (JsonIOException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		
+	}
+	
+//	@RequestMapping("heart.bo")
+//	public void heartInsert(@RequestParam("fno") int fno, @RequestParam("uid") String uid, HttpServletResponse response) {
 //		response.setContentType("application/json; charset=UTF-8");
+//
 //		
+//		//좋아요 입력
+//		 
 //	}
 	
 

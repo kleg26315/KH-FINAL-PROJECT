@@ -33,5 +33,7 @@ public interface BoardService {
 
 	ArrayList<Board> selectSearchList(HashMap<String, Object> map, PageInfo pi);
 
+	int getHeartCount(HashMap<String, Object> map);
+
 	
 }
