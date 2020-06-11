@@ -10,7 +10,7 @@
 	
 	<select id="selectList" resultType="Board">
 		select *
-		from blist
+		from bhtist
 		where category=#{cate}
 	</select>
 	
@@ -41,7 +41,7 @@
 	<select id="selectBoard" resultType="Board">
 		select *
 		from board
-		where fno=#{fno} and f_status='Y' and rnum between 1 and 16
+		where fno=#{fno} and f_status='Y'
 	</select>
 	
 	<select id="getSearchListCount" resultType="_int">
@@ -55,7 +55,7 @@
 	
 	<select id="selectSearchList" parameterType="map" resultType="Board">
 		select *
-		from blist
+		from bhtist
 		where f_status='Y' and category=#{cate} and 
 		<![CDATA[ 
 			price>=#{sc.startPrice} and price<=#{sc.endPrice}
