@@ -20,7 +20,7 @@
 	</resultMap>
 	
 	<resultMap type = "PSList" id = "PSListResultSet">
-		<id property = "tNo" column = "TNO"/>
+		<id property = "tno" column = "TNO"/>
 		<result property = "ono" column = "ono"/>
 		<result property = "user_id" column = "USER_ID"/>
 		<result property = "tcount" column = "TCOUNT"/>
@@ -43,7 +43,16 @@
 	<select id = "selectSList" resultMap = "PSListResultSet">
 		select *
 		from choose
-		where ono = #{ono}
+		where ono = 1
 	</select>
+	
+	<insert id = "purchaseThis1">
+		insert into purchase
+		values(SEQ.PURCHASE.nextval, #{gname},
+		#{gphone}, #{gaddress}, #{gmsg}, #{user_id},
+		#{ono}, #{ocount}, #{gpay}
+		)
+	</insert>
+		
 
 </mapper> 	

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,6 +16,7 @@ import com.kh.bubblebee.purchase.model.exception.PurchaseException;
 import com.kh.bubblebee.purchase.model.service.PurchaseService;
 import com.kh.bubblebee.purchase.model.vo.PBoard;
 import com.kh.bubblebee.purchase.model.vo.PSList;
+import com.kh.bubblebee.purchase.model.vo.Purchase;
 
 @Controller
 public class PurchaseController {
@@ -47,6 +49,55 @@ public class PurchaseController {
 			mv.setViewName("redirect:loginView.me");
 		}
 		return mv;
+	
 	}	
 	
+	@RequestMapping("purchaseThis")
+	public String purchaseThis(
+						@ModelAttribute Purchase p, @RequestParam(value = "gname")String gname,
+						@RequestParam(value = "gphone")String gphone, 
+						@RequestParam(value = "gaddress1")String gaddress1, 
+						@RequestParam(value = "gaddress2")String gaddress2,
+						@RequestParam(value = "gaddress3")String gaddress3,
+						@RequestParam(value = "gmsg")String gmsg,
+						@RequestParam(value = "ono")String ono,
+						@RequestParam(value = "ocount")int ocount,
+						@RequestParam(value = "totalPrice")int gpay,
+						HttpSession session
+						){
+			Member loginUser = (Member)session.getAttribute("loginUser");
+			String gaddress = gaddress1 + gaddress2 + gaddress3;
+			String user_id = loginUser.getId();
+			p.setGname(gname);
+			p.setGphone(gphone);
+			p.setAddress(gaddress);
+			p.setGmsg(gmsg);
+			p.setGpay(gpay);
+			p.setOcount(ocount);
+			p.setUser_id(user_id);
+			p.setOno(ono);
+
+			
+
+			
+			int purchaseThis1 = pService.insertPurchase(p);
+			
+			
+			if(purchaseThis1 > 0) {
+				if(gpay > 0) {
+					return "purchaseConfirm";
+				}else {
+					return "kakaoPay";
+				}
+			}else {
+				throw new PurchaseException("결제에 실패하였습니다!");
+			}
+			
+	
+		
+	}
+	
 }
+	
+	
+
