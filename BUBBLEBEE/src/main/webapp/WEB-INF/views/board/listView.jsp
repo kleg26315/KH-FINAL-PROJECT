@@ -235,18 +235,24 @@
          </label>
          
          <br><br>
+         <input type="hidden" value="${ sessionScope.loginUser.id}" id="uid">
          
 		<div id="hotmoim">
          <div class="moim" style="margin-top:-40px;">
          
          <c:forEach var="b" items="${ htlist }" varStatus="status">
             <div class="moim_total">
-               <a>
+            <input name="bfno" id="bfno" type="text" value="${ b.fno }">
+            <c:url var="bdetail" value="detail.bo">
+            	<c:param name="fno" value="${ b.fno }" />
+            	<c:param name="page" value="${ pi.currentPage }" />
+            </c:url>
+               <a href="${ bdetail }">
                   <div class="moim_each">
                   <div class="moim_img">
                      <div class="heart_div">
                         <button class="heart_button" width="24px" height="24px">
-                        <img width='16' height='18' src="${contextPath }/resources/img/빈하트.png" alt="찜하기">
+                        <img id="heart" width='16' height='18' src="${contextPath }/resources/img/빈하트.png" alt="찜하기">
                         </button>
                      </div>
                      
@@ -325,13 +331,15 @@
          </label>
          
          <br><br>
-         
+         ${ ltlist }
          <div id="hotmoim">
          <div class="moim" style="margin-top:-40px;">
          
+         
+         
          <c:forEach var="b" items="${ ltlist }" varStatus="status">
             <div class="moim_total">
-            <input id="bfno" type="hidden" value="${ b.fno }">
+            <input name="bfno" id="bfno" type="text" value="${ b.fno }">
             <c:url var="bdetail" value="detail.bo">
             	<c:param name="fno" value="${ b.fno }" />
             	<c:param name="page" value="${ pi.currentPage }" />
@@ -380,45 +388,110 @@
                   </div>
                </a>
             </div>
+            
+            <!-- 하트표시 -->
+		        <script>
+		        
+		        var uid = $('#uid').val();
+		    	var fno = $('#bfno').val();
+		    	console.log(uid+"/"+fno);
+		    	var lt = '${b}';
+		    	console.log(lt);
+		    	
+		    	for(var i=0; i<lt.length; i++){
+			    	function topList(i){
+				        $.ajax({
+				        	 url: 'hread.bo',
+								data: {fno:fno, uid:uid},
+								async:false,
+				             	success:
+					             	function(data){
+					             	console.log(data);
+					             	
+					             	if(data==0) {
+					                  $("#heart").prop("src", "${contextPath }/resources/img/빈하트.png");
+					              	} else if(data == 1) {
+					                  $("#heart").prop("src", "${contextPath }/resources/img/채워진하트.png");
+					              	}
+					             	
+					             	}
+				        	
+				        });
+			    	};
+		    	
+		    	}
+		    	
+		    	
+			        $(function(){
+						topList();
+						
+// 						setInterval(function(){
+// 							topList();
+// 						}, 5000);
+					
+					});
+			        
+		    	
+		       </script> 
+            
             </c:forEach>
             </div>
             </div>
             
+            
         <!-- 좋아요 -->
-        <script>
-        $(document).ready(function () {
-			
-        	var fno = ${'#bfno'}.val();
-            var heartyn = ${heart}; //select해온 값넣기
+       <script>
+        
+//         $(document).ready(function () {
+        	
+//         	var uid = ${'#uid'}.val();
+//         	var fno = ${'#bfno'}.val();
+        	
+//         	(function(){        		
+//         		$.ajax({
+//                     url: 'hread.bo',
+//     				data: {fno:fno, uid:uid},
+//                     success:
+//                     	function(data){
+//                     	console.log(data);
+//                     	}
+//         	});
+        		
+//         	}());
+        	        	
+//             var heartyn = ${heart}; //select해온 값넣기
 
-            if(heartyn==null) {
-                $("#heart").prop("src", "${contextPath }/resources/img/빈하트.png");
-            }
-            else {
-                $("#heart").prop("src", "${contextPath }/resources/img/채워진하트.png");
-            }
+//             if(heartyn==null) {
+//                 $("#heart").prop("src", "${contextPath }/resources/img/빈하트.png");
+//             }
+//             else {
+//                 $("#heart").prop("src", "${contextPath }/resources/img/채워진하트.png");
+//             }
 
-            $("#heart").on("click", function () {
+//             $("#heart").on("click", function () {
 
-                $.ajax({
-                    url: 'heart.bo',
-    				data: {fno:fno},
-                    type :'json',
-                    success : function(data){
-                    	
-                        if(data==1) {
-                            $('#heart').prop("src","${contextPath }/resources/img/채워진하트.png");
-                        }
-                        else{
-                            $('#heart').prop("src","${contextPath }/resources/img/빈하트.pngg");
-                        }
+//                 $.ajax({
+//                     url: 'heart.bo',
+//     				data: {fno:fno, uid:uid},
+//                     type :'json',
+//                     complete: function(){
+//                     	if(uid == null) {
+//                     		alert('로그인 후 좋아요가 가능합니다.');
+//                     	}
+//                     },
+//                     success : function(data){
+//                         if(data==1) {
+//                             $('#heart').prop("src","${contextPath }/resources/img/채워진하트.png");
+//                         }
+//                         else{
+//                             $('#heart').prop("src","${contextPath }/resources/img/빈하트.pngg");
+//                         }
 
 
-                    }
-                });
-            });
-        });
-        </script>
+//                     }
+//                 });
+//             });
+//         });
          
 
       	<!-- 전체보기 -->
