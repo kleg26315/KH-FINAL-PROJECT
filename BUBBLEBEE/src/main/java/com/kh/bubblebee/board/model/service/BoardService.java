@@ -33,7 +33,11 @@ public interface BoardService {
 
 	ArrayList<Board> selectSearchList(HashMap<String, Object> map, PageInfo pi);
 
-	int getHeartCount(HashMap<String, Object> map);
+	int insertHeart(HashMap<String, Object> map);
+
+	int readHeart(HashMap<String, Object> map);
+
+	int deleteHeart(HashMap<String, Object> map);
 
 	
 }

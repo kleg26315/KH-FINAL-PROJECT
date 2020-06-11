@@ -99,42 +99,47 @@ public class BoardController {
 			throw new BoardException("게시판 상세 조회에 실패하였습니다.");
 		}
 	}
-	
-	@RequestMapping("hread.bo")
-	public void heartRead(@RequestParam("fno") int fno, @RequestParam("uid") String uid, HttpServletResponse response) {
+		
+	@RequestMapping("heart.bo")
+	public void heart(@RequestParam("fno") int fno, @RequestParam("uid") String uid, HttpServletResponse response) {
+		response.setContentType("application/json; charset=UTF-8");
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("uid", uid);
 		map.put("fno", fno);
 		
-			
+		int heartyn = bService.readHeart(map);
 		
-			int heart = bService.getHeartCount(map);
-			if(heart == 0) {
-				heart=0;
-//				System.out.println(fno+"번하트"+heart);
-			} else {
-				heart=1;
-//				System.out.println(fno+"번하트"+heart);
-			}
+		if(heartyn==0) {
+			int heartIn = bService.insertHeart(map);
 			
 			try {
-				new Gson().toJson(heart, response.getWriter());
+				if(heartIn > 0) {
+					new Gson().toJson(heartIn, response.getWriter());
+				}else {
+					throw new BoardException("실패!");
+				}
+				
 			} catch (JsonIOException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			} 
+			
+		} else {
+			bService.deleteHeart(map);
+			int heartIn=0;
+			try {
+				new Gson().toJson(heartIn, response.getWriter());
+			} catch (JsonIOException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} 
+		}
+		
+		
 		
 	}
-	
-//	@RequestMapping("heart.bo")
-//	public void heartInsert(@RequestParam("fno") int fno, @RequestParam("uid") String uid, HttpServletResponse response) {
-//		response.setContentType("application/json; charset=UTF-8");
-//
-//		
-//		//좋아요 입력
-//		 
-//	}
 	
 
 }

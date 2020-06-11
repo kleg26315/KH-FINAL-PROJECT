@@ -230,7 +230,9 @@
      	
      	<!-- 모음 -->
      	
-     	
+     	<input type="hidden" value="${ sessionScope.loginUser.id}" id="uid">
+        <c:set var="uid" value="${ sessionScope.loginUser.id}"/>
+         
 		<div id="hotmoim">
          <div class="moim">
          
@@ -240,12 +242,16 @@
             	<c:param name="fno" value="${ b.fno }"/>
             	<c:param name="page" value="${ pi.currentPage }"/>
             </c:url>
-               <a href="${ bdetail }">
                   <div class="moim_each">
                   <div class="moim_img">
                      <div class="heart_div">
-                        <button class="heart_button" width="24px" height="24px">
-                        <img width='16' height='18' src="${contextPath }/resources/img/빈하트.png" alt="찜하기">
+                        <button class="heart_button" width="24px" height="24px" value="${ b.fno }">
+                        <c:if test="${b.hid ne uid || empty uid}">
+                        	<img class="heart" width='16' height='18' src="${contextPath }/resources/img/빈하트.png" alt="찜하기">
+                        </c:if>
+                         <c:if test='${b.hid eq uid && !empty b.hid}'>
+                        	<img class="heart" width='16' height='18' src="${contextPath }/resources/img/채워진하트.png" alt="찜하기">
+                        </c:if>
                         </button>
                      </div>
                      <c:set var="rf2" value="${ b.renameFileName }"/>
@@ -256,7 +262,7 @@
             			pageContext.setAttribute("str2", str2);
                      %> 
                      
-                     
+                     <a href="${ bdetail }">
                      <img id="" width="100%" height="200" class="" src="${contextPath }/resources/buploadFiles/${ str2 }" />
                   </div>
                      <div class="moim_small_title">${ b.small_title }</div>
@@ -287,7 +293,35 @@
             </c:forEach>
             </div>
             </div>
-                 
+
+	  <!-- 좋아요 -->
+            <script>
+        	var uid = $('#uid').val();
+         	
+             $(".heart_button").click(function(){
+            	 var bid = $(this).val();
+            	 var th = $(this).find('.heart');
+            	 
+            	 if(uid ==''){
+            		 alert('로그인 후 이용해주세요');
+            	 } else{
+            		 $.ajax({
+                		 url :'heart.bo',
+                		 data : {uid:uid, fno:bid},
+       	                 success : function(data){
+       	                    if(data==1) {
+       	                        $(th).prop("src","resources/img/채워진하트.png");
+       	                    }
+       	                    else{
+       	                        $(th).prop("src","resources/img/빈하트.png");
+       	                    }
+       	                } 
+                		 
+                	 }); 
+            	 }
+            	
+             });
+            </script>	                 
  
       <!-- 페이징 처리 -->
       

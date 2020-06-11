@@ -75,9 +75,20 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int getHeartCount(HashMap<String, Object> map) {
-		return bDAO.getHeartCount(sqlSession, map);
+	public int insertHeart(HashMap<String, Object> map) {
+		return bDAO.insertHeart(sqlSession, map);
 	}
+
+	@Override
+	public int readHeart(HashMap<String, Object> map) {
+		return bDAO.readHeart(sqlSession, map);
+	}
+
+	@Override
+	public int deleteHeart(HashMap<String, Object> map) {
+		return bDAO.deleteHeart(sqlSession, map);
+	}
+
 
 	
 
