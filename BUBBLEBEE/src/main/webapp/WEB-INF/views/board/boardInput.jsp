@@ -26,7 +26,7 @@
 		<main><h2>등록</h2></main>
 		
 		<!-- 첨부파일 등록을 위해 Multipart/form-data encType 지정 -->
-		<form action="bupdate.bo" onsubmit="return validate();" enctype="Multipart/form-data" id="form" method="POST" data-use-autosave="true">
+		<form action="binsert.bo" onsubmit="return validate();" enctype="Multipart/form-data" id="form" method="POST" data-use-autosave="true">
 			<table> 
 				<tr>
 					<th colspan="2" >카테고리 설정</th>
