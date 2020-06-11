@@ -1,6 +1,7 @@
 package com.kh.bubblebee.board.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,20 +41,24 @@ public class BoardInputController {
 								HttpServletRequest request, @RequestParam("post") String post, 
 								@RequestParam("address1") String address1, @RequestParam("address2") String address2, 
 								@RequestParam("bTime") List<String> bTime, @RequestParam("bDetail") List<String> bDetail,
-								@RequestParam("b_Qt") List<String> b_Qt, @RequestParam("b_An") List<String> b_An,
-								@RequestParam("oname") List<String> oname, @RequestParam("price") List<String> price,
+								@RequestParam("b_Qt") String b_Qt, @RequestParam("b_An") String b_An,
+								@RequestParam("oname") String oname, @RequestParam("price") String price,
 								@RequestParam("category") String cate, ModelAndView mv) {
 		
 		b.setLocation(post + "/" + address1 + "/" + address2);
-		
-		for(int i = 0; i< bDetail.size(); i++) {
-			System.out.println(bTime.get(i) + " " +bDetail.get(i));
-		}
+		b.setFminfo(b_Qt + "<br>" + b_An);
 		b.setFcalendar(bTime + " " + bDetail);
-		System.out.println("fcla : " + b.getFcalendar());
+//		for(int i = 0; i< bDetail.size(); i++) {
+//			System.out.println(bTime.get(i) + " " +bDetail.get(i));
+//		}
+//		System.out.println("fcla : " + b.getFcalendar());
 		
-		for(int i = 0; i< b_Qt.size(); i++) {
-			b.setFminfo(b_Qt.get(i) + "<br>" + b_An.get(i));
+		String[] name = oname.split(",");
+		String[] pr = price.split(",");
+		
+		HashMap<String, Option> map = new HashMap<String, Option>();
+		for(int i = 0; i < name.length; i++) {
+			map.put("op" + i, new Option(name[i], pr[i]));
 		}
 		
 		System.out.println(b);
