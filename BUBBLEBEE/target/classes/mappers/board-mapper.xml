@@ -10,7 +10,7 @@
 	
 	<select id="selectList" resultType="Board">
 		select *
-		from bhtist
+		from bhtlist
 		where category=#{cate}
 	</select>
 	
