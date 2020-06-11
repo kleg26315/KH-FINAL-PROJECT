@@ -63,7 +63,7 @@ th{
     right: 12px;
 }
 	
-#btn_DetailSet, #btn_Q, #postcodify_search_button, #btn_op, #complete{
+#btn_DetailSet, #btn_Q, #postcodify_search_button, #btn_op, #complete, #sumFile{
 	background:#f1e018;
     border-radius: 3px;
     color: white;
