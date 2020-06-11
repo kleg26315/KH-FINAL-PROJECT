@@ -161,7 +161,7 @@
 							<td style="padding-left: 5px;"> 
 								<button type="button" id="btn_op">옵션 추가하기</button>
 							</td>
-							<td rowspan="3">
+							<td rowspan="4">
 								<div class="B_n">
 									<b>옵션명</b>  
 									&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <b>가격(추가금액X, 최종 결제액O)</b><br>
@@ -182,6 +182,11 @@
 								<input type="text" id="op2" class="op2" name="price" placeholder="가격(5000원 이상)"  value="5000" required>원
 							</td>
 						</tr>
+						<tr>	
+							<td>
+								<input type="text" id="op3" class="op3" name="ocount" placeholder="수량(재고)"  value="14명" required>
+							</td>
+						</tr>
 					<tbody id="tbody1">
 					
 					</tbody>
@@ -199,6 +204,9 @@
 								innerHtml += '</tr>';
 								innerHtml += '<tr>';
 								innerHtml += '<td><input type="text" onkeyup="onlyNumber(this);" class="op2" name="price" placeholder="가격(5000원 이상)" >원</td>';
+								innerHtml += '</tr>';
+								innerHtml += '<tr>';
+								innerHtml += '<td><input type="text" class="op3" name="ocount" placeholder="수량(재고)"></td>';
 								innerHtml += '</tr>';
 								
 								$('#tbody1').append(innerHtml);
