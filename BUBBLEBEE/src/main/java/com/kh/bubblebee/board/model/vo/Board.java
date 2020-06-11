@@ -31,13 +31,15 @@ public class Board {
 	private String introduce; // 소개
 	private int maxMember; // 참여가능인원
 	private double rank; //인기순 정렬시 기준
+	private String hid; //하트누른 아이디
 	
 	public Board() {}
 
 	public Board(int rnum, int fno, int ftype, int price, String small_title, String ftitle, String category,
 			String location, int lat, int lon, String fcontain, String fncontain, String fcalendar, String fmaterials,
 			String fminfo, String fprecaution, String user_id, int heart, int rsum, int rcount, Date f_create_date,
-			String f_status, String originalFileName, String renameFileName, String introduce, int maxMember, double rank) {
+			String f_status, String originalFileName, String renameFileName, String introduce, int maxMember,
+			double rank, String hid) {
 		super();
 		this.rnum = rnum;
 		this.fno = fno;
@@ -66,6 +68,7 @@ public class Board {
 		this.introduce = introduce;
 		this.maxMember = maxMember;
 		this.rank = rank;
+		this.hid = hid;
 	}
 
 	public int getRnum() {
@@ -259,11 +262,11 @@ public class Board {
 	public void setRenameFileName(String renameFileName) {
 		this.renameFileName = renameFileName;
 	}
-	
+
 	public String getIntroduce() {
 		return introduce;
 	}
-	
+
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
 	}
@@ -275,13 +278,21 @@ public class Board {
 	public void setMaxMember(int maxMember) {
 		this.maxMember = maxMember;
 	}
-	
+
 	public double getRank() {
 		return rank;
 	}
-	
+
 	public void setRank(double rank) {
 		this.rank = rank;
+	}
+
+	public String getHid() {
+		return hid;
+	}
+
+	public void setHid(String hid) {
+		this.hid = hid;
 	}
 
 	@Override
@@ -293,7 +304,11 @@ public class Board {
 				+ ", user_id=" + user_id + ", heart=" + heart + ", rsum=" + rsum + ", rcount=" + rcount
 				+ ", f_create_date=" + f_create_date + ", f_status=" + f_status + ", originalFileName="
 				+ originalFileName + ", renameFileName=" + renameFileName + ", introduce=" + introduce + ", maxMember="
-				+ maxMember + ", rank=" + rank + "]";
+				+ maxMember + ", rank=" + rank + ", hid=" + hid + "]";
 	}
+	
+	
+
+	
 	
 }

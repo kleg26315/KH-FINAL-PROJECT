@@ -67,8 +67,16 @@ public class BoardDAO {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectSearchList", map, rowBounds);
 	}
 
-	public int getHeartCount(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
-		return sqlSession.selectOne("boardMapper.getHeartCount", map);
+	public int insertHeart(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		return sqlSession.insert("boardMapper.insertHeart", map);
+	}
+
+	public int readHeart(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		return sqlSession.selectOne("boardMapper.readHeart", map);
+	}
+
+	public int deleteHeart(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		return sqlSession.delete("boardMapper.deleteHeart", map);
 	}
 	
 }
