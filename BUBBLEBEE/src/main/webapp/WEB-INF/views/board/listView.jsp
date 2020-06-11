@@ -331,7 +331,6 @@
          </label>
          
          <br><br>
-         ${ ltlist }
          <div id="hotmoim">
          <div class="moim" style="margin-top:-40px;">
          
