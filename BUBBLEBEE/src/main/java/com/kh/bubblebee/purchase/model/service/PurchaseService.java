@@ -13,6 +13,10 @@ public interface PurchaseService {
 
 	ArrayList<PSList> selectPList(String ono);
 
+	int insertPurchase(Purchase p);
+
+	
+
 	
 
 }

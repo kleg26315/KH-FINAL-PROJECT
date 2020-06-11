@@ -2,23 +2,20 @@ package com.kh.bubblebee.purchase.model.vo;
 
 public class PSList {
 	
-	private int tno;
 	private String ono;
-	private String user_id;
-	private int tcount;
-	
-	public PSList(int tno, String ono, String user_id, int tcount) {
+	private String ocategory;
+	private String oname;
+	private String ocost;
+	private int ocount;
+	private int fno;
+	public PSList(String ono, String ocategory, String oname, String ocost, int ocount, int fno) {
 		super();
-		this.tno = tno;
 		this.ono = ono;
-		this.user_id = user_id;
-		this.tcount = tcount;
-	}
-	public int getTno() {
-		return tno;
-	}
-	public void setTno(int tno) {
-		this.tno = tno;
+		this.ocategory = ocategory;
+		this.oname = oname;
+		this.ocost = ocost;
+		this.ocount = ocount;
+		this.fno = fno;
 	}
 	public String getOno() {
 		return ono;
@@ -26,23 +23,45 @@ public class PSList {
 	public void setOno(String ono) {
 		this.ono = ono;
 	}
-	public String getUser_id() {
-		return user_id;
+	public String getOcategory() {
+		return ocategory;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setOcategory(String ocategory) {
+		this.ocategory = ocategory;
 	}
-	public int getTcount() {
-		return tcount;
+	public String getOname() {
+		return oname;
 	}
-	public void setTcount(int tcount) {
-		this.tcount = tcount;
+	public void setOname(String oname) {
+		this.oname = oname;
 	}
+	public String getOcost() {
+		return ocost;
+	}
+	public void setOcost(String ocost) {
+		this.ocost = ocost;
+	}
+	public int getOcount() {
+		return ocount;
+	}
+	public void setOcount(int ocount) {
+		this.ocount = ocount;
+	}
+	public int getFno() {
+		return fno;
+	}
+	public void setFno(int fno) {
+		this.fno = fno;
+	}
+	
+	
 	@Override
 	public String toString() {
-		return "PSList [tno=" + tno + ", ono=" + ono + ", user_id=" + user_id + ", tcount=" + tcount + "]";
+		return "PSList [ono=" + ono + ", ocategory=" + ocategory + ", oname=" + oname + ", ocost=" + ocost + ", ocount="
+				+ ocount + ", fno=" + fno + "]";
 	}
 	
 	
-
+	
+	
 }

@@ -32,6 +32,13 @@ public class PurchaseServiceImpl implements PurchaseService {
 	public ArrayList<PSList> selectPList(String ono) {
 		return pDAO.selectPSList(sqlSession, ono);
 	}
+
+	@Override
+	public int insertPurchase(Purchase p) {
+	
+		return pDAO.purchaseThis1(sqlSession, p);
+	}
+
 	
 	
 }
