@@ -10,6 +10,14 @@ public class Option {
 	private int fno;			//게시판 번호
 	
 	public Option() {}
+	
+	
+	public Option(String oname, String price) {
+		super();
+		this.oname = oname;
+		this.price = price;
+	}
+
 
 	public Option(String ono, String category, String oname, String price, int ocount, int fno) {
 		super();

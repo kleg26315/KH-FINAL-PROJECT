@@ -190,11 +190,11 @@
 
 					<div class="hashTagLocation">진행 장소</div>
 					<div class="hashTagIntroduceContent" id="map"></div>
-					
 					<div class="hashTagLocationInfo" id="address">${ b.location }</div>
 
 					<div class="hashTagLocationPaste">
-						<input class="hashTagLocationPasteBtn" type="button" value="주소 복사">
+						<input type="hidden" id="ShareUrl">
+						<input class="hashTagLocationPasteBtn" type="button" onclick="copyUrl();" value="주소 복사">
 					</div>
 
 					<div
@@ -204,16 +204,6 @@
 
 					<div class="hashTagQuestion">자주 묻는 질문 <input class="hashTagQuestionBtn" id="TQB1" type="button" value="V"></div>
 					<div class="hashTagEnquiryContents">
-					<%-- <c:forTokens items="${ b.fminfo }" delims=",<br>" var="f" varStatus="fm">
-						<c:if test="${ fm.index%2 eq 0}">
-							f1: ${ f }<br>
-						</c:if>
-					</c:forTokens>
-					<c:forTokens items="${ b.fminfo }" delims=",<br>" var="f" varStatus="fm">
-						<c:if test="${ fm.index%2 eq 1}">
-							f1: ${ f }<br>
-						</c:if>
-					</c:forTokens> --%>
 					<c:set var="splitArr" value="${ b.fminfo.split('<br>') }"/>
 					<c:set var="questionArr" value="${ splitArr[0].split(',') }" />
 					<c:set var="answerArr" value="${ splitArr[1].split(',') }" />
@@ -290,12 +280,8 @@
 			$(".hashTagRefundContents").toggle();
 		});
 		
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-	    mapOption = {
-	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-	        level: 3 // 지도의 확대 레벨
-	    };  
 		</script>
+		
 		<script>
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			mapOption = {
@@ -344,8 +330,10 @@
 				    console.log(message);
 				}
 			});
-			
 		</script>
-
+		
+		<footer id="footer" style="padding-top: 115px;">
+			<c:import url="../layout/footer.jsp"/>
+		</footer>
 </body>
 </html>
