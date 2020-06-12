@@ -341,29 +341,29 @@
         </nav>
     </div>
     <!-- 검색창 클릭시 나오는 div -->
-    <div class="sc-cQFLBn jsQIBQ sc-gzVnrw bGFEwv search_modal" style="opacity: 1; display: block;">
-    	<div class="sc-gojNiO grZaTa"></div>
-    	<div class="sc-hXRMBi gdSctU">
-    		<div class="sc-epnACN dTGVDR sc-elJkPf epzdvI">
-    			<section class="sc-ibxdXY eHHfdL" id="recent_section">
-    				<header class="sc-RefOD dzvleS">
-    					<label class="sc-iQKALj iozWPr">최근 검색어</label>
-    					<button type="button" class="sc-eTuwsz hUAMtM sc-iyvyFf gkEcoP" font-size="12" color="#9b9b9b" id="recent_delete">지우기</button>
+    <div class="search_div search_modal" style="opacity: 1; display: block;">
+    	<div class="secret"></div>
+    	<div class="search_box">
+    		<div class="search_box2">
+    			<section class="search_section" id="recent_section">
+    				<header class="search_header">
+    					<label class="search_word">최근 검색어</label>
+    					<button type="button" class="eraser" font-size="12" color="#9b9b9b" id="recent_delete">지우기</button>
     				</header>
     				<div id="recent_search">
-    					<!-- <button class="sc-gwVKww bjXqly sc-VigVT jechLO" width="100%" height="40px" font-size="12px" font-weight="500">전상면</button> -->
+    					<!-- <button class="search_recent" width="100%" height="40px" font-size="12px" font-weight="500">전상면</button> -->
     				</div>
     			</section>
-    			<section class="sc-ibxdXY eHHfdL">
-    				<header class="sc-RefOD dzvleS">
-    					<label class="sc-iQKALj iozWPr">인기 검색어</label>
+    			<section class="search_section2">
+    				<header class="search_header">
+    					<label class="search_word">인기 검색어</label>
     				</header>
-    				<div class="sc-bwCtUz edfQHX">
-    					<button class="sc-hrWEMg cYhmRL sc-VigVT kSYzHo" height="34px" color="#3397ff" font-size="12px" font-weight="500">와인</button>
-    					<button class="sc-hrWEMg cYhmRL sc-VigVT kSYzHo" height="34px" color="#3397ff" font-size="12px" font-weight="500">서핑</button>
-    					<button class="sc-hrWEMg cYhmRL sc-VigVT kSYzHo" height="34px" color="#3397ff" font-size="12px" font-weight="500">댄스</button>
-    					<button class="sc-hrWEMg cYhmRL sc-VigVT kSYzHo" height="34px" color="#3397ff" font-size="12px" font-weight="500">스터디</button>
-    					<button class="sc-hrWEMg cYhmRL sc-VigVT kSYzHo" height="34px" color="#3397ff" font-size="12px" font-weight="500">공방</button>
+    				<div class="search_hot">
+    					<button class="search_hot2" height="34px" color="#3397ff" font-size="12px" font-weight="500">와인</button>
+    					<button class="search_hot2" height="34px" color="#3397ff" font-size="12px" font-weight="500">서핑</button>
+    					<button class="search_hot2" height="34px" color="#3397ff" font-size="12px" font-weight="500">댄스</button>
+    					<button class="search_hot2" height="34px" color="#3397ff" font-size="12px" font-weight="500">스터디</button>
+    					<button class="search_hot2" height="34px" color="#3397ff" font-size="12px" font-weight="500">공방</button>
     				</div>
     			</section>
     		</div>
@@ -381,10 +381,53 @@
 	    	var prevCookie = getCookie(cookie_name);
 	    	var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
 	    	
+	    	// 중복된 최근 검색이면 기존껀 삭제 후 가장 위로 올림 & 최대 5개 유지
 	    	if(prevCookie == ''){
 	    		document.cookie = cookie_name + '=' + value;
-	    	} else{
-	    		document.cookie = cookie_name + '=' + prevCookie + "/" + value;
+	    	} else {
+	    		if(prevCookie.includes(value)){
+		    		var strArray = prevCookie.split('/');
+		    		var str = '';
+		    		var same = 0;
+		    		for(var i=0; i<strArray.length; i++){
+		    			if(strArray[i] == value){
+		    				strArray[i]='';
+		    				same = i;
+		    			}
+		    		}
+		    		for(var i=0; i<strArray.length; i++){
+		    			if(i != same){
+		    				str += strArray[i] + "/";
+		    			}
+		    		}
+		    		
+		    		var maxArray = (str+value).split('/');
+		    		var max = '';
+		    		for(var i=0; i<maxArray.length; i++){
+		    			if(maxArray.length-5 <= i){
+			    			if(maxArray.length-1 == i){
+		    					max += maxArray[i];	
+		    				} else{
+		    					max += maxArray[i] + "/";
+		    				}
+		    			}
+		    		}
+		    		document.cookie = cookie_name + '='+ max;
+	    		} else{
+	    			var maxArray = (prevCookie+'/'+value).split('/');
+    				var max = '';
+		    		for(var i=0; i<maxArray.length; i++){
+		    			if(maxArray.length-5 <= i){
+		    				if(maxArray.length-1 == i){
+		    					max += maxArray[i];	
+		    				} else{
+		    					max += maxArray[i] + "/";
+		    				}
+		    			}
+		    		}
+		    		document.cookie = cookie_name + '='+ max;
+	    		}
+	    		
 	    	}
     	}
     	
@@ -420,9 +463,21 @@
     			var value = $('.input').val();
         		setCookie('search', value , 7);
 				location.href = "find.bo?search=" + value;
-        		//location.href = "#";
     		}
     	});
+    	
+    	function recent(e){
+    		var text = e.innerText;
+    		setCookie('search', text , 7);
+    		location.href = "find.bo?search=" + text;
+    	}
+    	
+    	$('.search_hot2').click(function(e){
+    		var text = e.currentTarget.innerText;
+    		setCookie('search', text , 7);
+    		location.href = "find.bo?search=" + text;
+    		
+    	})
     	
     	/* 검색창 조작 자바스크립트 */
     	$('.search_modal').hide(); 
@@ -435,7 +490,7 @@
         	}
     	})
     	
-    	 $('.grZaTa').click(function(){
+    	 $('.secret').click(function(){
         	$('.search_modal').hide();
         })
         
@@ -449,7 +504,7 @@
     			$('#recent_search').html();
     			var records = record.split('/');
     			for(var i in records){
-    				var $button = $('<button class="sc-gwVKww bjXqly sc-VigVT jechLO" width="100%" height="40px" font-size="12px" font-weight="500"></button>').text(records[records.length - i-1]); 
+    				var $button = $('<button class="search_recent" width="100%" onclick="recent(this);" height="40px" font-size="12px" font-weight="500"></button>').text(records[records.length - i-1]); 
     				$('#recent_search').append($button);
     			}
     		}
