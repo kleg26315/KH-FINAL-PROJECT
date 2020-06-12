@@ -29,31 +29,13 @@
 	</header> 
 
     <section style="padding-top: 115px; padding-left: 20%; width: 78%;">
-			<h1 style="font-weight: bold; cursor: pointer;" onclick="location.href='FAQList.no'">FAQ</h1>
+			<h1 id="noticeLabel" style="font-weight: bold; cursor: pointer;" onclick="location.href='list.no'">공지사항</h1>
 			<br>
 			<div id="content_list">
-          	 <form action="updateFAQ.no" id="frm" method="post">
+          	 <form action="updateNotice.no" id="frm" method="post">
           		 <input name="bno" hidden value="${notice.bno }">
           	 	 <input type="text" hidden size="0">
 	             <input type="text" id="title" name="title" placeholder="제목" style="height: 40px;" size="50" value="${notice.btitle }">
-	             <select name="btype" id="btype" style="height: 40px; float: right;">
-				   <option value="0" disabled>카테고리 선택</option>
-				   <option value="2">이용안내</option>
-				   <option value="3">회원정보</option>
-				   <option value="4">결제/환불</option>
-				   <option value="5">마일리지</option>
-				   <option value="6">호스트 신청</option>
-				   <option value="7">기타</option>
-				 </select>
-				 <script>
-				 	$(document).ready(function(){
-				 		$('#btype option').each(function(){
-				 			if($(this).val()=="${notice.btype}"){
-				 				$(this).attr("selected","selected");
-				 			}
-				 		})
-				 	})
-				 </script>
 	             <br><br>
 	             <textarea id="smartEditor" name="content" rows="20" cols="" style="width: 100%;">${notice.bcontent }</textarea>
 	             <button class="agreeBtn" type="button" id="cancel">취소</button>
@@ -92,18 +74,14 @@
 							alert('제목을 입력해주세요');
 							$('#title').focus();
 							return;
-						} else if($('#btype').val() == null){
-							alert('카테고리를 선택해주세요');
-							$('#btype').focus();
-							return;
 						} else if( smartEditor == ""  || smartEditor == null || smartEditor == '&nbsp;' || smartEditor == '<p>&nbsp;</p>' || smartEditor== '<p><br></p>')  {
 				             alert("내용을 입력하세요.");
 				             oEditors.getById["smartEditor"].exec("FOCUS"); //포커싱
 				             return;
 						} else{
-							var result = confirm('정말로 FAQ를 수정하시겠습니까?');
+							var result = confirm('정말로 공지사항을 수정하시겠습니까?');
 							if(result){
-								alert('FAQ 수정 완료');
+								alert('공지사항 수정 완료');
 								$('#frm').submit();			
 							} else{
 								alert('수정을 취소합니다.');

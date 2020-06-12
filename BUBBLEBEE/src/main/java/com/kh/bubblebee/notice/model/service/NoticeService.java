@@ -33,4 +33,6 @@ public interface NoticeService {
 
 	ArrayList<Notice> selectFAQSearchList(PageInfo pi, String faqSearch);
 
+	int updateNotice(String title, String content, String bno);
+
 }

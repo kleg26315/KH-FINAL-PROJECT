@@ -225,4 +225,47 @@ public class NoticeController {
 			e.printStackTrace();
 		}
 	}
+	
+	@RequestMapping("deleteNotice.no")
+	public String deleteNotice(@RequestParam("bno") String bno) {
+		
+		int result = nService.deleteFAQ(bno);	// 공지사항도 삭제가능
+		
+		if(result > 0) {
+			return "redirect:list.no";
+		} else {
+			throw new NoticeException("공지사항 삭제에 실패하였습니다.");
+		}
+	}
+	
+	@RequestMapping("updateNoticeForm.no")
+	public ModelAndView updateNoticeForm(@RequestParam("bno") String bno,  ModelAndView mv) {
+		
+		Notice notice = nService.selectupdateFAQ(bno);	// 공지사항도 조회가능
+		
+		if(notice != null) {
+			mv.addObject("notice", notice);
+			mv.setViewName("updateNoticeForm");
+		} else {
+			throw new NoticeException("공지사항 조회에 실패하였습니다.");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="updateNotice.no", method = RequestMethod.POST) 
+	public ModelAndView updateNotice(@RequestParam("title") String title, @RequestParam("content") String content,
+						@RequestParam("bno") String bno, HttpServletRequest request, ModelAndView mv) {
+		
+		int result = nService.updateNotice(title, content, bno);
+		
+		if(result > 0) {
+			/* mv.addObject("number", btype); */
+			mv.setViewName("redirect:list.no");
+		} else {
+			throw new NoticeException("공지사항 수정에 실패하였습니다.");
+		}
+		
+		return mv;
+	}
 }

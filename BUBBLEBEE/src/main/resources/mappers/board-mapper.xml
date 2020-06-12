@@ -94,4 +94,22 @@
 		where user_id=#{uid} and fno2=#{fno}
 	</delete>
 	
+	<select id="selectFindList" resultType="Board">
+		select *
+		from board
+		where user_id like '%' || #{search} || '%'
+		or ftitle like '%' || #{search} || '%'
+		or small_title like '%' || #{search} || '%'
+		or f_status = 'Y'
+	</select>
+	
+	<select id="getFindListCount" resultType="_int">
+		select count(*)
+		from board
+		where user_id like '%' || #{search} || '%'
+		or ftitle like '%' || #{search} || '%'
+		or small_title like '%' || #{search} || '%'
+		or f_status = 'Y'
+	</select>
+	
 </mapper>

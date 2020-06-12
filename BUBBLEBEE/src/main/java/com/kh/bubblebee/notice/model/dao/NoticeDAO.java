@@ -89,4 +89,12 @@ public class NoticeDAO {
 		return (ArrayList)sqlSession.selectList("noticeMapper.selectFAQSearchList", faqSearch, rowBounds);
 	}
 
+	public int updateNotice(SqlSessionTemplate sqlSession, String title, String content, String bno) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("title", title);
+		map.put("content", content);
+		map.put("bno", bno);
+		return sqlSession.update("noticeMapper.updateNotice", map);
+	}
+
 }

@@ -39,5 +39,9 @@ public interface BoardService {
 
 	int deleteHeart(HashMap<String, Object> map);
 
+	ArrayList<Board> selectFindList(String search);
+
+	int getFindListCount(String search);
+
 	
 }
