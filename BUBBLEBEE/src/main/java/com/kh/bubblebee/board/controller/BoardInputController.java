@@ -40,7 +40,7 @@ public class BoardInputController {
 	public String boardInsert(@ModelAttribute Board b, @ModelAttribute Option o, @RequestParam("uploadFile") List<MultipartFile> uploadFile,
 								HttpServletRequest request, @RequestParam("post") String post, 
 								@RequestParam("address1") String address1, @RequestParam("address2") String address2, 
-								@RequestParam("bTime") List<String> bTime, @RequestParam("bDetail") List<String> bDetail,
+								@RequestParam("bTime") String bTime, @RequestParam("bDetail") String bDetail,
 								@RequestParam("b_Qt") String b_Qt, @RequestParam("b_An") String b_An,
 								@RequestParam("oname") String oname, @RequestParam("price") String price, @RequestParam("ocount") String ocount,
 								@RequestParam("category") String cate, ModelAndView mv) {
