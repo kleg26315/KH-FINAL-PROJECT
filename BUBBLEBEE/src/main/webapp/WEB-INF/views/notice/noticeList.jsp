@@ -25,9 +25,10 @@
    <section style="padding-top: 115px; padding-left: 20%; width: 78%;">
       <div class = "main2">
 
-	<h1 id="noticeLabel" style="font-weight: bold;">공지사항</h1>
+	<h1 id="noticeLabel" style="font-weight: bold; cursor: pointer;" onclick="location.href='list.no'">공지사항</h1>
 		<c:forEach var="n" items="${ list }">
 			<div class="ntitle">
+				<input name="bno" hidden value="${n.bno }">
 				<table style="width: 100%; cursor: pointer;" class="titleDate">
 					<tr class="titlendate">
 						<td>${n.btitle }</td>
@@ -44,12 +45,26 @@
 
 		<script>
 	 		$(function(){
-	 			$('.titleDate').mouseenter(function(){
-	 			}).mouseout(function(){
-	 			}).click(function(){
+	 			$('.titleDate').click(function(){
 	 				$(this).parent().children('.ncontent').slideToggle(1);
 	 			})
 	 		});
+	 		
+	 		$('#delB').click(function(){
+	 			var bno = $(this).parent().parent().children().eq(0).val();
+	 			var result = confirm('정말로 삭제하시겠습니까?');
+	 			if(result){
+	 				alert('삭제가 완료되었습니다.');
+	 				location.href = 'deleteNotice.no?bno='+ bno;
+	 			} else{
+	 				alert('삭제를 취소합니다.');
+	 			}
+	 		})
+	 		
+	 		$('#updB').click(function(){
+	 			var bno = $(this).parent().parent().children().eq(0).val();
+ 				location.href = 'updateNoticeForm.no?bno='+ bno;
+	 		})
 		</script>
 		
 		<br><br>

@@ -89,7 +89,14 @@ public class BoardServiceImpl implements BoardService {
 		return bDAO.deleteHeart(sqlSession, map);
 	}
 
+	@Override
+	public ArrayList<Board> selectFindList(String search) {
+		return bDAO.selectFindList(sqlSession, search);
+	}
 
-	
+	@Override
+	public int getFindListCount(String search) {
+		return bDAO.getFindListCount(sqlSession, search);
+	}
 
 }

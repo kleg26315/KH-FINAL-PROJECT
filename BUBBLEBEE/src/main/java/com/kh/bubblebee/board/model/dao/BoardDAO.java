@@ -78,5 +78,13 @@ public class BoardDAO {
 	public int deleteHeart(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
 		return sqlSession.delete("boardMapper.deleteHeart", map);
 	}
+
+	public ArrayList<Board> selectFindList(SqlSessionTemplate sqlSession, String search) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectFindList", search);
+	}
+
+	public int getFindListCount(SqlSessionTemplate sqlSession, String search) {
+		return sqlSession.selectOne("boardMapper.getFindListCount",search);
+	}
 	
 }
