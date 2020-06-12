@@ -259,10 +259,16 @@
                      <c:set var="rf2" value="${ b.renameFileName }"/>
                      <% 
                      	String rf2 = (String)pageContext.getAttribute("rf2");
-            			int idx2 = rf2.indexOf(",");
-            			String str2 = rf2.substring(0, idx2);
+                     	String str2 = null;
+                     	if(!rf2.contains(",")) {
+                     		str2 = rf2;
+                     	} else {
+                     		int idx2 = rf2.indexOf(",");
+                			str2 = rf2.substring(0, idx2);
+                     	}
+            			
             			pageContext.setAttribute("str2", str2);
-                     %> 
+                     %>  
                      
                      <a href="${ bdetail }">
                      <img id="" width="100%" height="200" class="" src="${contextPath }/resources/buploadFiles/${ str2 }" />

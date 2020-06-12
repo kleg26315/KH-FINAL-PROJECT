@@ -263,8 +263,14 @@
                      <c:set var="rf2" value="${ b.renameFileName }"/>
                      <% 
                      	String rf2 = (String)pageContext.getAttribute("rf2");
-            			int idx2 = rf2.indexOf(",");
-            			String str2 = rf2.substring(0, idx2);
+                     	String str2 = null;
+                     	if(!rf2.contains(",")) {
+                     		str2 = rf2;
+                     	} else {
+                     		int idx2 = rf2.indexOf(",");
+                			str2 = rf2.substring(0, idx2);
+                     	}
+            			
             			pageContext.setAttribute("str2", str2);
                      %> 
                      
@@ -360,8 +366,14 @@
                      <c:set var="rf" value="${ b.renameFileName }"/>
                      <% 
                      	String rf = (String)pageContext.getAttribute("rf");
-            			int idx = rf.indexOf(",");
-            			String str = rf.substring(0, idx);
+                     	String str = null;
+                     	if(!rf.contains(",")) {
+                     		str = rf;
+                     	} else {
+                     		int idx2 = rf.indexOf(",");
+                			str = rf.substring(0, idx2);
+                     	}
+            			
             			pageContext.setAttribute("str", str);
                      %>     
                                      
