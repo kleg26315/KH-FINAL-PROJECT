@@ -47,7 +47,7 @@ public class BoardInputController {
 		
 		b.setLocation(post + "/" + address1 + "/" + address2);
 		b.setFminfo(b_Qt + "<br>" + b_An);
-		b.setFcalendar(bTime + " " + bDetail);
+		b.setFcalendar(bTime + "<br>" + bDetail);
 //		for(int i = 0; i< bDetail.size(); i++) {
 //			System.out.println(bTime.get(i) + " " +bDetail.get(i));
 //		}
