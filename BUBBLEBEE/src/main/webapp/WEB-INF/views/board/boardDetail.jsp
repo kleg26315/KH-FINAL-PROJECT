@@ -175,8 +175,21 @@
 					</div>
 
 					<div class="hashTagDetail">세부 사항</div>
-					<div class="hashTagDetailContent">${ b.fcalendar }</div>
-
+					<div class="hashTagDetailContent">
+						<c:set var="calArr" value="${ b.fcalendar.split('<br>') }"/>
+						<c:set var="timeArr" value="${ calArr[0].split(',') }" />
+						<c:set var="detailArr" value="${ calArr[1].split(',') }" />
+						
+						<c:forEach var="time" items="${ timeArr }" varStatus="times">
+							${ time } 
+							<c:forEach var="det" items="${ detailArr }" varStatus="dets">
+								<c:if test="${ times.index eq dets.index }">
+									&nbsp;&nbsp;${ det }<br>
+								</c:if>
+							</c:forEach>
+						</c:forEach>
+					</div>
+					
 					<div style="float: left; width: 100%; height: 20px;">
 						<hr style="border: 0.5px solid lightgray">
 					</div>
