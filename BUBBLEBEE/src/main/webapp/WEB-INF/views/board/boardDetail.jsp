@@ -269,11 +269,10 @@
 					<b>옵션 선택</b>
 				</h3>
 				<br> <select id="optionSelect" style="outline: none;" name = "oNo">
-					<option selected value = "1">옵션1</option>
-					<option value = "2">옵션2</option>
-					<option value = "3">옵션3</option>
-					<option value = "4">옵션4</option>
-					<option value = "5">옵션5</option>
+					<c:forEach var = "pu" items = "${p }" varStatus = "index">
+						<option selected value = "${pu.ono }">${ pu.oname }</option>
+					</c:forEach>
+					
 				</select> <br> 
 				<input type="submit" value = "장바구니에 담기" style = "width : 160px; height: 40px; margin-top : 70%; background-color : lightgray; border:none; border-radius : 2px 2px; ">
 				<input type="submit" value="참가하기"
@@ -286,6 +285,7 @@
 		</div>
 		<div class="blank"></div>
 	</section>
+	
 	<script>
 		$(".hashTagEnquiryContents").hide();
 		$(".hashTagRefundContents").hide();
@@ -348,6 +348,8 @@
 				    console.log(message);
 				}
 			});
+			
+			
 		</script>
 		
 		<footer id="footer" style="padding-top: 115px;">
