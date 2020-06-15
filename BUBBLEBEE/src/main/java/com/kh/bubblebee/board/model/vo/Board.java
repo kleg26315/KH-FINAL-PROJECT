@@ -12,10 +12,10 @@ public class Board {
 	private String ftitle; //제목
 	private String category; //카테고리
 	private String location; //장소
+	private double lat; //위도
+	private double lon; //경도
 	private String ad1; //장소-시도
 	private String ad2; //장소-시군구
-	private int lat; //위도
-	private int lon; //경도
 	private String fcontain; //포함사항
 	private String fncontain; //불포함사항
 	private String fcalendar; //세부일정
@@ -38,7 +38,7 @@ public class Board {
 	public Board() {}
 
 	public Board(int rnum, int fno, int ftype, int price, String small_title, String ftitle, String category,
-			String location, String ad1, String ad2, int lat, int lon, String fcontain, String fncontain,
+			String location, String ad1, String ad2, double lat, double lon, String fcontain, String fncontain,
 			String fcalendar, String fmaterials, String fminfo, String fprecaution, String user_id, int heart, int rsum,
 			int rcount, Date f_create_date, String f_status, String originalFileName, String renameFileName,
 			String introduce, int maxMember, double rank, String hid) {
@@ -155,19 +155,19 @@ public class Board {
 		this.ad2 = ad2;
 	}
 
-	public int getLat() {
+	public double getLat() {
 		return lat;
 	}
 
-	public void setLat(int lat) {
+	public void setLat(double lat) {
 		this.lat = lat;
 	}
 
-	public int getLon() {
+	public double getLon() {
 		return lon;
 	}
 
-	public void setLon(int lon) {
+	public void setLon(double lon) {
 		this.lon = lon;
 	}
 
@@ -327,12 +327,4 @@ public class Board {
 				+ introduce + ", maxMember=" + maxMember + ", rank=" + rank + ", hid=" + hid + "]";
 	}
 
-	
-
-	
-	
-	
-
-	
-	
 }
