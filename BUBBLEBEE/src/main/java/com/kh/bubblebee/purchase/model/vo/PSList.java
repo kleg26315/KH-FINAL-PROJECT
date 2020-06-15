@@ -3,17 +3,15 @@ package com.kh.bubblebee.purchase.model.vo;
 public class PSList {
 	
 	private String ono;
-	private String ocategory;
 	private String oname;
-	private String ocost;
+	private String price;
 	private int ocount;
 	private int fno;
-	public PSList(String ono, String ocategory, String oname, String ocost, int ocount, int fno) {
+	public PSList(String ono, String oname, String price, int ocount, int fno) {
 		super();
 		this.ono = ono;
-		this.ocategory = ocategory;
 		this.oname = oname;
-		this.ocost = ocost;
+		this.price = price;
 		this.ocount = ocount;
 		this.fno = fno;
 	}
@@ -23,23 +21,17 @@ public class PSList {
 	public void setOno(String ono) {
 		this.ono = ono;
 	}
-	public String getOcategory() {
-		return ocategory;
-	}
-	public void setOcategory(String ocategory) {
-		this.ocategory = ocategory;
-	}
 	public String getOname() {
 		return oname;
 	}
 	public void setOname(String oname) {
 		this.oname = oname;
 	}
-	public String getOcost() {
-		return ocost;
+	public String getPrice() {
+		return price;
 	}
-	public void setOcost(String ocost) {
-		this.ocost = ocost;
+	public void setPrice(String price) {
+		this.price = price;
 	}
 	public int getOcount() {
 		return ocount;
@@ -53,13 +45,12 @@ public class PSList {
 	public void setFno(int fno) {
 		this.fno = fno;
 	}
-	
-	
 	@Override
 	public String toString() {
-		return "PSList [ono=" + ono + ", ocategory=" + ocategory + ", oname=" + oname + ", ocost=" + ocost + ", ocount="
-				+ ocount + ", fno=" + fno + "]";
+		return "PSList [ono=" + ono + ", oname=" + oname + ", price=" + price + ", ocount=" + ocount + ", fno=" + fno
+				+ "]";
 	}
+	
 	
 	
 	

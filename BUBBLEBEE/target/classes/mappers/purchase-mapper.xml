@@ -27,11 +27,15 @@
 	</resultMap>
 	
 	<resultMap type = "Purchase" id = "PurchaseResultSet">
-		<id property = "gNo" column ="GNO"/>
+		<id property = "gno" column ="GNO"/>
 		<result property = "gname" column = "GNAME"/>
 		<result property = "gphone" column = "GPHONE"/>
 		<result property = "address" column = "ADDRESS"/>
 		<result property = "gmsg" column = "GMSG"/>
+		<result property = "gpay" column = "GPAY"/>
+		<result property = "ocount" column = "OCOUNT"/>
+		<result property = "user_id" column = "USER_ID"/>
+		<result property = "ono" column = "ONO"/>
 	</resultMap>
 	
 	<select id = "selectProduct" resultMap = "PBoardResultSet">
@@ -43,16 +47,27 @@
 	<select id = "selectSList" resultMap = "PSListResultSet">
 		select *
 		from choose
-		where ono = 1
+		where ono = #{ono}
 	</select>
 	
 	<insert id = "purchaseThis1">
 		insert into purchase
-		values(SEQ.PURCHASE.nextval, #{gname},
+		values(SEQ_PURCHASE.nextval, #{gname},
 		#{gphone}, #{gaddress}, #{gmsg}, #{user_id},
 		#{ono}, #{ocount}, #{gpay}
 		)
 	</insert>
 		
+	<select id = "selectCList" resultMap = "PurchaseResultSet">
+		select * 
+		from purchase
+		where gno = #{gno}
+	</select>
+	
+	<select id = "selectPPList" resultMap = "PurchaseResultSet">
+		select * 
+		from purchase
+		where ono = '2'
+	</select>
 
 </mapper> 	
