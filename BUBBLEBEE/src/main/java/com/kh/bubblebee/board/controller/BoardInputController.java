@@ -1,6 +1,6 @@
 package com.kh.bubblebee.board.controller;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -43,7 +43,7 @@ public class BoardInputController {
 								@RequestParam("bTime") String bTime, @RequestParam("bDetail") String bDetail,
 								@RequestParam("b_Qt") String b_Qt, @RequestParam("b_An") String b_An,
 								@RequestParam("oname") String oname, @RequestParam("price") String price, @RequestParam("ocount") String ocount,
-								@RequestParam("category") String cate, ModelAndView mv) {
+								@RequestParam("odeadline") String odeadline, @RequestParam("category") String cate, ModelAndView mv) {
 		
 		b.setLocation(post + "/" + address1 + "/" + address2);
 		b.setFminfo(b_Qt + "<br>" + b_An);
@@ -52,14 +52,15 @@ public class BoardInputController {
 //			System.out.println(bTime.get(i) + " " +bDetail.get(i));
 //		}
 //		System.out.println("fcla : " + b.getFcalendar());
-		
+		System.out.println("odeadline " + odeadline);
 		String[] name = oname.split(",");
 		String[] pr = price.split(",");
 		String[] count = ocount.split(",");
+		String[] deadline = odeadline.split(",");
 		
 		HashMap<String, Option> map = new HashMap<>();
 		for(int i = 0; i < name.length; i++) {
-			map.put("op" + i, new Option(name[i], pr[i], count[i]));
+			map.put("op" + i, new Option(name[i], pr[i], count[i], deadline[i]));
 		}
 		
 		System.out.println(b);

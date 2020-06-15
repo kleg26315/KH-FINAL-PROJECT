@@ -190,7 +190,7 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" id="op" class="op" name="oname" placeholder="옵션명"  value="참가비 (1인)" required maxlength="30"> 
+								<input type="text" id="op" class="op" name="oname" placeholder="옵션명"  value="참가비 (1인)"  maxlength="30" required> 
 							</td>
 						</tr>
 						<tr>	
@@ -201,6 +201,11 @@
 						<tr>	
 							<td>
 								<input type="text" id="op3" class="op3" name="ocount" placeholder="수량(재고)"  value="14명" required>
+							</td>
+						</tr>
+						<tr>	
+							<td>
+								<input type="date" id="op4" class="op4" name="odeadline" placeholder="마감일" >
 							</td>
 						</tr>
 					<tbody id="tbody1">
@@ -216,13 +221,16 @@
 								
 								innerHtml += '<tr>';
 								innerHtml += '<td><input type="text" class="op" name="oname" placeholder="옵션명"  maxlength="30"></td>';
-								innerHtml += '<td rowspan="2"><button type="button" class="btnDelete" onclick="delete1(this); ">삭제</button></td>';
+								innerHtml += '<td rowspan="4"><button type="button" class="btnDelete" onclick="delete1(this); ">삭제</button></td>';
 								innerHtml += '</tr>';
 								innerHtml += '<tr>';
 								innerHtml += '<td><input type="text" onkeyup="onlyNumber(this);" class="op2" name="price" placeholder="가격(5000원 이상)" >원</td>';
 								innerHtml += '</tr>';
 								innerHtml += '<tr>';
 								innerHtml += '<td><input type="text" class="op3" name="ocount" placeholder="수량(재고)"></td>';
+								innerHtml += '</tr>';
+								innerHtml += '<tr>';
+								innerHtml += '<td><input type="date" class="op4" name="odeadline" placeholder="2020-06-29"></td>';
 								innerHtml += '</tr>';
 								
 								$('#tbody1').append(innerHtml);
@@ -234,8 +242,8 @@
 												
 						function delete1(obj){
 							console.log(obj);
-							$(obj).parent().parent().next().remove();
-							$(obj).parent().parent().remove();
+							$(obj).parent().parent().parent().next().remove();
+							$(obj).parent().parent().parent().remove();
 						}
 						
 						function delete_file(obj){
