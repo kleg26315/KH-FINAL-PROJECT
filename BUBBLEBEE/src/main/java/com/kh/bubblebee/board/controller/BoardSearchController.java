@@ -23,7 +23,7 @@ public class BoardSearchController {
 	private BoardService bService;
 	
 	@RequestMapping("search.bo")
-	public ModelAndView searchAll(@RequestParam(value="page", required=false) Integer page, @RequestParam(value="cate") String cate, @RequestParam(value="a", required=false) String a, @RequestParam(value="startPrice") int startPrice, @RequestParam(value="endPrice") int endPrice, ModelAndView mv) {
+	public ModelAndView searchAll(@RequestParam(value="ad2", required=false) String ad2, @RequestParam(value="page", required=false) Integer page, @RequestParam(value="cate") String cate, @RequestParam(value="a", required=false) String a, @RequestParam(value="startPrice", required=false) int startPrice, @RequestParam(value="endPrice", required=false) int endPrice, ModelAndView mv) {
 		
 		SearchCondition sc = new SearchCondition();
 		
@@ -60,11 +60,21 @@ public class BoardSearchController {
 			} else if(a.equals("lowprice")) {
 				sc.setLowprice(a);
 			}
-		} 
+		} else if(startPrice == 0 && ad2!= null) {
+			sc.setStartPrice(0);
+			sc.setEndPrice(endPrice);
+		} else if(startPrice != 0 && ad2!= null) {
+			sc.setStartPrice(startPrice);
+			sc.setEndPrice(endPrice);
+		}
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("cate", cate);
 		map.put("sc", sc);
+		map.put("ad2", ad2);
+		
+//		System.out.println("ad2"+ad2);
+//		System.out.println("map"+map);
 				
 		int currentPage = 1;
 		if(page!=null) {
@@ -76,6 +86,8 @@ public class BoardSearchController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Board> list = bService.selectSearchList(map, pi);
+		
+//		System.out.println("map"+map+"slist"+list);
 		
 		if(list != null) {
 			mv.addObject("cate", cate);
@@ -92,5 +104,35 @@ public class BoardSearchController {
 		
 		return mv;
 	}
+	
+//	@RequestMapping("wsearch.bo")
+//	public ModelAndView wsearch(@RequestParam(value="page", required=false) Integer page, @RequestParam(value="ad2", required=false) String ad2, @RequestParam(value="cate") String cate, ModelAndView mv)  {
+//		
+//		HashMap<String, String> map = new HashMap<String, String>();
+//		map.put("cate", cate);
+//		map.put("ad2", ad2);
+//		
+//		int currentPage = 1;
+//		if(page!=null) {
+//			currentPage = page;
+//		}
+//	
+//		int listCount = bService.getwSearchListCount(map);
+//		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+//		
+//		ArrayList<Board> list = bService.selectwSearchList(map, pi);
+//		
+//		if(list != null) {
+//			mv.addObject("cate", cate);
+//			mv.addObject("list", list);
+//			mv.addObject("pi", pi);
+//			mv.setViewName("listView_search");
+//			
+//		} else {
+//			throw new BoardException("어디서 조회에 실패했습니다.");
+//		}
+//		
+//		return mv;
+//	}
 
 }

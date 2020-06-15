@@ -86,5 +86,9 @@ public class BoardDAO {
 	public int getFindListCount(SqlSessionTemplate sqlSession, String search) {
 		return sqlSession.selectOne("boardMapper.getFindListCount",search);
 	}
+
+	public ArrayList<Board> selectwList(SqlSessionTemplate sqlSession, String cate) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectwList", cate);
+	}
 	
 }

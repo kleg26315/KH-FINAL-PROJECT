@@ -43,5 +43,7 @@ public interface BoardService {
 
 	int getFindListCount(String search);
 
+	ArrayList<Board> selectwList(String cate);
+
 	
 }

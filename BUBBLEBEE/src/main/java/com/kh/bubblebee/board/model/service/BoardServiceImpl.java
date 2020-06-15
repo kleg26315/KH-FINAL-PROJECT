@@ -99,4 +99,9 @@ public class BoardServiceImpl implements BoardService {
 		return bDAO.getFindListCount(sqlSession, search);
 	}
 
+	@Override
+	public ArrayList<Board> selectwList(String cate) {
+		return bDAO.selectwList(sqlSession, cate);
+	}
+
 }
