@@ -5,7 +5,7 @@ public class Purchase {
 	private int gno;
 	private String gname;
 	private String gphone;
-	private String address;
+	private String gaddress;
 	private String gmsg;
 	private int gpay;
 	private int ocount;
@@ -18,12 +18,13 @@ public class Purchase {
 	}
 
 
-	public Purchase(int gno, String gname, String gphone, String address, String gmsg, int gpay, int ocount, String user_id, String ono) {
+	public Purchase(int gno, String gname, String gphone, String gaddress, String gmsg, int gpay, int ocount,
+			String user_id, String ono) {
 		super();
 		this.gno = gno;
 		this.gname = gname;
 		this.gphone = gphone;
-		this.address = address;
+		this.gaddress = gaddress;
 		this.gmsg = gmsg;
 		this.gpay = gpay;
 		this.ocount = ocount;
@@ -62,13 +63,13 @@ public class Purchase {
 	}
 
 
-	public String getAddress() {
-		return address;
+	public String getGaddress() {
+		return gaddress;
 	}
 
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setGaddress(String gaddress) {
+		this.gaddress = gaddress;
 	}
 
 
@@ -80,19 +81,15 @@ public class Purchase {
 	public void setGmsg(String gmsg) {
 		this.gmsg = gmsg;
 	}
-	
+
+
 	public int getGpay() {
 		return gpay;
 	}
 
+
 	public void setGpay(int gpay) {
 		this.gpay = gpay;
-	}
-
-	@Override
-	public String toString() {
-		return "Purchase [gno=" + gno + ", gname=" + gname + ", gphone=" + gphone + ", address=" + address + ", gmsg="
-				+ gmsg + "]";
 	}
 
 
@@ -125,6 +122,13 @@ public class Purchase {
 		this.ono = ono;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Purchase [gno=" + gno + ", gname=" + gname + ", gphone=" + gphone + ", gaddress=" + gaddress + ", gmsg="
+				+ gmsg + ", gpay=" + gpay + ", ocount=" + ocount + ", user_id=" + user_id + ", ono=" + ono + "]";
+	}
+
 	
-		
+
 }

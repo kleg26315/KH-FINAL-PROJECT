@@ -256,10 +256,15 @@
 					<b>옵션 선택</b>
 				</h3>
 				<br> <select id="optionSelect" style="outline: none;" name = "oNo">
-					<option selected>옵션1</option>
-					<option>옵션2</option>
-				</select> <br> <input type="submit" value="참가하기"
-					style="width: 320px; height: 40px; margin-top: 70%; background-color: gold; border: none; border-radius: 2px 2px;">
+					<option selected value = "1">옵션1</option>
+					<option value = "2">옵션2</option>
+					<option value = "3">옵션3</option>
+					<option value = "4">옵션4</option>
+					<option value = "5">옵션5</option>
+				</select> <br> 
+				<input type="submit" value = "장바구니에 담기" style = "width : 160px; height: 40px; margin-top : 70%; background-color : lightgray; border:none; border-radius : 2px 2px; ">
+				<input type="submit" value="참가하기"
+					style="width: 160px; height: 40px; margin-top: 70%; background-color: gold; border: none; border-radius: 2px 2px; ">
 			</div>
 		</form>
 		<div class="recommendation">

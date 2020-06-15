@@ -20,12 +20,13 @@
 	<header id="header">
 		<%@ include file = "../layout/header.jsp" %> 	
 	</header>
-	<form action = "purchaseThis.pu" method = "post" >
+	<form  id = "purchaseForm" name = "doubleTarget" method = "post">
 		<div class = "main">
-			<c:forEach var = "pu" items = "${plist }" varStatus = "status">	
+			
 				<div class = "mFont">	
 					결제
 				</div>
+				<c:forEach var = "pu" items = "${plist }" varStatus = "status">	
 				<div style = "float:left; width : 100%;">
 					<hr id = "submitFormSectionMainDH" style = "margin-top : 20px;">
 				</div>
@@ -41,37 +42,51 @@
 						<input class = "mProfileT21" name = "rTitle" value = "${ pu.ftitle }" readonly >
 					</div>
 					<div class = "mProfileT3">
-						<input class = "mProfileT31" name = "rCost" readonly id = "PT31">
-						<input style = "display : none" id = "PT21" value = "${pu.price }">
+						<input class = "mProfileT31" id = "PT31" name = "rCost" readonly >
 					</div>
 				</div>
-			</c:forEach>
+			
 			
 				<div style = "float:left; width : 100%;">
 					<hr id = "submitFormSectionMainDH">
 				</div>
 				<div class = "mOption">
 					<c:forEach var = "pu2" items = "${pslist }" varStatus = "status">
+						<!-- input -->
+						<input type = "text" style = "display : none;" id = "P1" value = "${pu2.price }">
+						<script>
+							var p1 = $("#P1").val();
+							$("#PT31").val(p1 + " 원");	
+						</script>
+						<!-- input -->
 						<div class = "mOptionO">
 							<h3 class = "mOptionO1">선택한 옵션</h3>
-							<input name = "ono" class = "mOptionO2" name = "rTitleDetail" value = "${ pu2.ono }" readonly>
+							<input name = "oname" class = "mOptionO2" name = "rTitleDetail" value = "${ pu2.oname }" readonly>
+							<input name = "ono" style = "display : none" value = "${pu2.ono }" >
 						</div>
 						<div class = "mOptionP">
 							<h3 class = "mOptionP1">수량</h3>	
-							<input name = "ocount"class = "mOptionP2" name = "rCount" value = "${ pu2.ocount }" readonly id = "OP2">
+							<input name = "ocount"class = "mOptionP2" name = "rCount" value = "${ pu2.ocount }" readonly id = "OP2">개
 						</div>
 						<div class = "mOptionS">
 							<h3 class = "mOptionS1">옵션합계</h3>
 							<h3 class = "mOptionS2" style = "float : right;">
-								<input id = "TC1" name = "rACost" type = "text" value = "${ pu2.ocost }"readonly>원
+								<input id = "TC1" name = "rACost" type = "text" value = "${ pu2.price * pu2.ocount }"readonly>원
 							</h3>
 						</div>
 					</c:forEach>
 				</div>
+					
+				</c:forEach>
+				
 				<div style = "float:left; width : 100%;">
 					<hr id = "submitFormSectionMainDH" style = "margin-top : 20px;">
 				</div>
-		
+				
+				<c:forEach var = "pu3" items = "${ pplist }" varStatus = "status">
+					<input name = "gno" type = "text" style = "display : none;" value = "${ pu3.gno }">
+				</c:forEach>
+						
 			
 				<div class = "mInput">
 					<h3 class = "mInputQ">
@@ -115,20 +130,11 @@
 				</div>
 				<div style = "float:left; width : 100%;">
 					<hr id = "submitFormSectionMainDH" style = "width : 100%; margin-top : 20px;">
-				</div>
-			
+				</div>		
 				<div class = "mInfo">
 					<h3 class = "mInfoH">상품 금액</h3>
-					<input style = "float : right; border : none; font-size : 16pt; margin-right : -14%; margin-top : 13px; " type = "text" id = "PRICE">
+					<input style = "float : right; font-size : 16pt; margin-right : -14%; margin-top : 13px;  border:none; outline:none;" type = "text" id = "PRICEE" value="0" readonly/>
 				</div>
-				<script>
-					var pt21 = $("#PT21").val();
-					var op2 = $("#OP2").val();
-					console.log(pt21);
-					console.log(op2);
-					$("#PRICE").val(pt21 * op2 + " 원");
-					$("#PT31").val(pt21 * op2 + " 원");
-				</script>
 				<div style = "float:left; width : 100%;">
 					<hr id = "submitFormSectionMainDH" style = "width : 100%; margin-top : 20px;">
 				</div>
@@ -193,11 +199,11 @@
 			$("#IQI2").focus();
 		}else{
 			if(fbdi2 == 0){
-				$('form[name=doubleTarget]').attr('action', 'PurchaseHistory.jsp');
+				$('form[name=doubleTarget]').attr('action', 'purchaseConfirm.pu');
 				$('form[name=doubleTarget]').submit();	
 				
 			}else{
-				$('form[name=doubleTarget]').attr('action', 'KakaoPay2.jsp');
+				$('form[name=doubleTarget]').attr('action', 'kakaoPay.pu');
 				$('form[name=doubleTarget]').submit();
 			}
 		}
@@ -316,7 +322,7 @@
 			costCarculate();
 		});
 		
-		/*
+		
 		$(function(){
 			costCarculate();
 		});
@@ -331,7 +337,16 @@
 		})	
 	})
 	
-	
+		
 	</script>
+	
+	<script>
+					var p1 = $("#P1").val();
+					var op2 = $("#OP2").val();
+					var du = p1 * op2;
+					console.log($("#PRICEE"));
+					$("#PRICEE").val(du + "원");
+					console.log(du);
+				</script>
 </body>
 </html>

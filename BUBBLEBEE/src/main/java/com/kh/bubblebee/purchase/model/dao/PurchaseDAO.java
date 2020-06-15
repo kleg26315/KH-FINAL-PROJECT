@@ -30,5 +30,14 @@ public class PurchaseDAO {
 		return sqlSession.insert("purchaseMapper.purchaseThis1",p);
 	}
 
+	public ArrayList<Purchase> selectCList(SqlSessionTemplate sqlSession, int gno) {
+		
+		return (ArrayList)sqlSession.selectList("purchaseMapper.selectCList", gno); 
+	}
+
+	public ArrayList<Purchase> selectPPList(SqlSessionTemplate sqlSession, String ono) {
+		return (ArrayList)sqlSession.selectList("purchaseMapper.selectPPList", ono);
+	}
+
 
 }
