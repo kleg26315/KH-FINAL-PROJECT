@@ -28,7 +28,7 @@
 	
 	<insert id="insertBoard">
 		insert into board
-		values(SEQ_BOARD.nextval, #{ftype}, #{price}, #{small_title}, #{ftitle}, #{category}, #{location}, 0, 0, 
+		values(SEQ_BOARD.nextval, #{ftype}, #{price}, #{small_title}, #{ftitle}, #{category}, #{location}, #{lat}, #{lon}, 
 				#{fcontain}, #{fncontain}, #{fcalendar}, #{fmaterials}, #{fminfo}, #{fprecaution}, #{user_id},
 				 default, default, default, sysdate, default, #{originalFileName}, #{renameFileName}, #{introduce}, #{maxMember})
 	</insert>

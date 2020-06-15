@@ -27,7 +27,7 @@
 		<main><h2>등록</h2></main>
 		
 		<!-- 첨부파일 등록을 위해 Multipart/form-data encType 지정 -->
-		<form action="binsert.bo" onsubmit="return validate();" enctype="Multipart/form-data" id="form" method="POST" data-use-autosave="true">
+		<form action="binsert.bo" onsubmit="return validate()" enctype="Multipart/form-data" id="form" method="POST" data-use-autosave="true">
 			<table> 
 				<tr>
 					<th colspan="2" >카테고리 설정</th>
@@ -512,7 +512,6 @@
 								$('#tbody3').append(innerHtml);
 							}else{
 								alert("최대 10개까지만 가능합니다.");
-								return false;
 							}
 						});
 												
@@ -580,27 +579,26 @@
 			<input type="hidden" id="lng" name="lon">
 			
 			<div id="btn_area">
-				<button id="complete" onclick="validate()">완료</button>
+				<button id="complete" type="button">완료</button>
 				<button onclick="location.href='history.back()'" id="cancel">취소</button>
 			</div>
 				<script>
-				$('#complete').click(function(){
-			        oEditors.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
-			        var editor = $("#editor").val();
-					 if( editor == ""  || editor == null || editor == '&nbsp;' || editor == '<p>&nbsp;</p>' || editor== '<p><br></p>')  {
-			             alert("내용을 입력하세요.");
-			             oEditors.getById["editor"].exec("FOCUS"); //포커싱
-			             return;
-					} else{
-						var result = confirm('모임/클래스/판매 등록 완료');
-						if(result){
-							
-							$('#form').submit();			
+					$('#complete').on('click', function(){
+				        oEditors.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
+				        var editor = $("#editor").val();
+						 if( editor == ""  || editor == null || editor == '&nbsp;' || editor == '<p>&nbsp;</p>' || editor== '<p><br></p>')  {
+				             alert("내용을 입력하세요.");
+				             oEditors.getById["editor"].exec("FOCUS"); //포커싱
+				             return;
 						} else{
-							alert('등록을 취소합니다.');
+							var result = confirm('모임/클래스/판매 등록 완료');
+							if(result){
+								$('#form').submit();		
+							} else{
+								alert('등록을 취소합니다.');
+							}
 						}
-					}
-				});				
+					});
 				</script>
 		</form>
 	</div>
@@ -614,63 +612,67 @@
 		function validate(){
 			var value1 = $('#category').val();
 			var value2 = $('#category2').val();
-			var address = $('.postcodify_address').val();
-			console.log(address);
-			
-			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-			    mapOption = {
-			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-			        level: 3 // 지도의 확대 레벨
-			};
-			
-			// 지도를 생성합니다    
-			var map = new kakao.maps.Map(mapContainer, mapOption); 
-			
-			// 주소-좌표 변환 객체를 생성합니다
-			var geocoder = new kakao.maps.services.Geocoder();
-			
-			// 주소로 좌표를 검색합니다
-			geocoder.addressSearch(address, function(result, status) {
-			
-				// 정상적으로 검색이 완료됐으면 
-				if (status === kakao.maps.services.Status.OK) {
-					
-					var coords = new kakao.maps.LatLng(result[0].y, result[0].x);	
-		
-					// 결과값으로 받은 위치를 마커로 표시합니다
-						var marker = new kakao.maps.Marker({
-							map : map,
-							position : coords
-						});
-		
-					// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-						map.setCenter(coords);
-						getInfo(coords);
-				}
-			})
-			
-			function getInfo(coords) {
-			
-				// 지도의 현재 중심좌표를 얻어옵니다 
-				var center = map.getCenter(coords); 
-				
-				var lat = center.getLat();
-				var lng = center.getLng();
-				
-				$('#lat').val(lat);
-				$('#lng').val(lng);
-				
-				/* console.log($('#lat').val());
-				console.log(lng); */
-			};
 			
 			if(value1 == 'no' || value2 == 'no') {
 				console.log("what");
 				alert("카테고리 설정을 완료해주세요");
-				return false;
 			}
 		};
 		</script>
+		<script>
+			function addressInfo(){
+				var address = $('.postcodify_address').val();
+				console.log(address);
+				
+				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+				    mapOption = {
+				        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+				        level: 3 // 지도의 확대 레벨
+				};
+				
+				// 지도를 생성합니다    
+				var map = new kakao.maps.Map(mapContainer, mapOption); 
+				
+				// 주소-좌표 변환 객체를 생성합니다
+				var geocoder = new kakao.maps.services.Geocoder();
+				
+				// 주소로 좌표를 검색합니다
+				geocoder.addressSearch(address, function(result, status) {
+				
+					// 정상적으로 검색이 완료됐으면 
+					if (status === kakao.maps.services.Status.OK) {
+						
+						var coords = new kakao.maps.LatLng(result[0].y, result[0].x);	
+			
+						// 결과값으로 받은 위치를 마커로 표시합니다
+							var marker = new kakao.maps.Marker({
+								map : map,
+								position : coords
+							});
+			
+						// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+							map.setCenter(coords);
+							getInfo(coords);
+					}
+				})
+				
+				function getInfo(coords) {
+				
+					// 지도의 현재 중심좌표를 얻어옵니다 
+					var center = map.getCenter(coords); 
+					
+					var lat = center.getLat();
+					var lng = center.getLng();
+					
+					$('input[name=lat]').val(lat);
+					$('input[name=lon]').val(lng); 
+					
+					console.log($('#lat').val());
+					console.log(typeof($('#lat').val()));
+				};
+			};
+		</script>
+		
 		<script>
 		// 캐치프레이즈 20자 제한
 		$(function(){
@@ -702,9 +704,9 @@
 		//포함사항, 불포함사항, 준비물, 유의사항 500자 제한
 		$(function(){
 			$('.bIncluded').keyup(function(e){
-				console.log(this);
+				// console.log(this);
 				var counter = $(this).val();
-				
+				addressInfo();
 				$(this).next().html(counter.length);
 				if(counter.length >= 500){
 					$(this).next().css('color', 'red');
