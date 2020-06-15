@@ -63,10 +63,17 @@ public class BoardController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Board> list = bService.selectList(pi, cate);
+		
+		//어디서
+		ArrayList<Board> wlist = bService.selectwList(cate);
+		for(int i=0; i<wlist.size(); i++) {
+			System.out.println("wlist"+wlist.get(i).getAd1()+"/"+wlist.get(i).getAd2());
+		}
 			
 		if(list != null) {
 			mv.addObject("cate", cate);
 			mv.addObject("list", list);
+			mv.addObject("wlist", wlist);
 			mv.addObject("pi", pi);
 			mv.setViewName("listView_all");
 			

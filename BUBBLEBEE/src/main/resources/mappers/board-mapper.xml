@@ -10,7 +10,7 @@
 	
 	<select id="selectList" resultType="Board">
 		select *
-		from bhtlist
+		from blist
 		where category=#{cate}
 	</select>
 	
@@ -46,21 +46,26 @@
 	
 	<select id="getSearchListCount" resultType="_int">
 		select count(*)
-		from board
+		from blist
 		where f_status='Y' and category=#{cate} and 
 		<![CDATA[ 
 			price>=#{sc.startPrice} and price<=#{sc.endPrice}
 		 ]]>
+		<if test='ad2 != null'>
+			and ad2=#{ad2}
+		</if> 
 	</select>
 	
 	<select id="selectSearchList" parameterType="map" resultType="Board">
 		select *
-		from bhtlist
-		where f_status='Y' and category=#{cate} and 
+		from blist
+		where f_status='Y' and category=#{cate} and
 		<![CDATA[ 
 			price>=#{sc.startPrice} and price<=#{sc.endPrice}
 		 ]]>
-		  
+		<if test='ad2 != null'>
+			and ad2=#{ad2}
+		</if> 
 			<if test='sc.popular != null'>
 		    	order by round(rcount / (select decode(max(rcount),0,1,max(rcount)) from board) * (rsum/decode(rcount,0,1,rcount)),2) desc
 		    </if>
@@ -110,6 +115,12 @@
 		or ftitle like '%' || #{search} || '%'
 		or small_title like '%' || #{search} || '%'
 		or f_status = 'Y'
+	</select>
+	
+	<select id="selectwList" resultType="Board">
+		select DISTINCT AD1, AD2
+		from BLIST
+		where category=#{cate}
 	</select>
 	
 </mapper>

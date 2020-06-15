@@ -109,6 +109,8 @@ input[id="tab12"]:checked ~ .con12 {display:block;}
 input[id="tab13"]:checked ~ .con13 {display:block;}
 input[id="tab14"]:checked ~ .con14 {display:block;}
 input[id="tab15"]:checked ~ .con15 {display:block;}
+input[id="tab16"]:checked ~ .con16 {display:block;}
+input[id="tab17"]:checked ~ .con17 {display:block;}
 
 #pfreset2{position:absolute; top:16px; margin-left:75px; font-size:16px; color:gray;}	
 	
