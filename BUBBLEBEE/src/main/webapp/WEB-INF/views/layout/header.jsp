@@ -380,9 +380,8 @@
 	
 	    	var prevCookie = getCookie(cookie_name);
 	    	var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
-	    	
 	    	// 중복된 최근 검색이면 기존껀 삭제 후 가장 위로 올림 & 최대 5개 유지
-	    	if(prevCookie == ''){
+	    	if(typeof prevCookie == 'undefined' || prevCookie == ''){
 	    		document.cookie = cookie_name + '=' + value;
 	    	} else {
 	    		if(prevCookie.includes(value)){
