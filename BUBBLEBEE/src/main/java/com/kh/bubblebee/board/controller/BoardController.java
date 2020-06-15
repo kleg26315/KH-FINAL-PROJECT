@@ -91,17 +91,13 @@ public class BoardController {
 	}
 	
 	@RequestMapping("detail.bo")
-	public ModelAndView detailView(@RequestParam("fno") int fno, @RequestParam(value="page", required=false) Integer page, ModelAndView mv) {
-		int currentPage = 1;
-		if(page != null) {
-			currentPage = page;
-		}
+	public ModelAndView detailView(@RequestParam("fno") int fno, @RequestParam("page") Integer page, ModelAndView mv) {	
 		
 		Board b = bService.selectBoard(fno);
-		System.out.println("detail.bo의 b : " + b);
+//		System.out.println("detail.bo의 b : " + b);
 		String hostId = b.getUser_id();
 		Host host = bService.selectHost(hostId);
-		System.out.println("detail.bo의 host : " + host);
+//		System.out.println("detail.bo의 host : " + host);
 		
 		ArrayList<Purchase> p = pService.selectOption(fno);
 		
@@ -111,6 +107,7 @@ public class BoardController {
 		if(b != null) {
 			mv.addObject("b", b)
 			  .addObject("host", host)
+			  .addObject("page", page)
 			  .addObject("p", p)
 			  .setViewName("boardDetail");
 			return mv;

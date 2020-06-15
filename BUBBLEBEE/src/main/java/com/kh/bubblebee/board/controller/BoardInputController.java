@@ -38,16 +38,20 @@ public class BoardInputController {
 	
 	@RequestMapping("binsert.bo")
 	public String boardInsert(@ModelAttribute Board b, @ModelAttribute Option o, @RequestParam("uploadFile") List<MultipartFile> uploadFile,
-								HttpServletRequest request, @RequestParam("post") String post, 
+								HttpServletRequest request, @RequestParam("post") String post,
 								@RequestParam("address1") String address1, @RequestParam("address2") String address2, 
 								@RequestParam("bTime") String bTime, @RequestParam("bDetail") String bDetail,
 								@RequestParam("b_Qt") String b_Qt, @RequestParam("b_An") String b_An,
+								@RequestParam("lat") String lat, @RequestParam("lon") String lon,
 								@RequestParam("oname") String oname, @RequestParam("price") String price, @RequestParam("ocount") String ocount,
 								@RequestParam("odeadline") String odeadline, @RequestParam("category") String cate, ModelAndView mv) {
-		
+		b.setLat(Double.parseDouble(lat));
+		b.setLon(Double.parseDouble(lon));
 		b.setLocation(post + "/" + address1 + "/" + address2);
 		b.setFminfo(b_Qt + "<br>" + b_An);
 		b.setFcalendar(bTime + "<br>" + bDetail);
+		
+		System.out.println("boardController : " + b);
 //		for(int i = 0; i< bDetail.size(); i++) {
 //			System.out.println(bTime.get(i) + " " +bDetail.get(i));
 //		}
