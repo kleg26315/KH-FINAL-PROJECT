@@ -21,7 +21,6 @@
 		<%@ include file = "../layout/header.jsp" %> 	
 		
 	</header>
-	<c:forEach var = "pc" items = "${ plist}" varStatus = "status" >
 	
 		<form id = "submitForm" >
 			<section id = "submitFormSection">
@@ -34,62 +33,58 @@
 					</div>
 					<div id = "submitFormSectionMainProduct">
 						<img id = "submitFormSectionMainImg" src = "">
-						<input class = "submitFormSectionMainProductInput" type = "text" readonly value = "">
-						<input class = "submitFormSectionMainProductInput" type = "text" style = "font-weight : 600;" readonly value = "">
-						<input class = "submitFormSectionMainProductInput" type = "text" readonly value = "">
+						<input class = "submitFormSectionMainProductInput" type = "text" readonly value = "${b.small_title }">
+						<input class = "submitFormSectionMainProductInput" type = "text" style = "font-weight : 600;" readonly value = "${b.ftitle }">
+						<input class = "submitFormSectionMainProductInput" type = "text" readonly value = "${c.price }">
 					</div>
 					<div class = "submitFormSectionMainD" style = "margin-top : 20px;">
 						<hr id = "submitFormSectionMainDH">
 					</div>
 					<div class = "submitFormSectionMainD" style = "margin-top : -30px;">
 						<input class = "submitFormSectionMainIntro" type = "text" value = "선택옵션" readonly>
-						<input class = "submitFormSectionMainData" type = "text" value = " " readonly>
+						<input class = "submitFormSectionMainData" type = "text" value = " ${c.oname }" readonly>
 					</div>
 					<div class = "submitFormSectionMainD">
 						<input class = "submitFormSectionMainIntro" type = "text" value = "수량" readonly>
-						<input class = "submitFormSectionMainData" type = "text" value = "${pc.ono } 개" readonly>
+						<input class = "submitFormSectionMainData" type = "text" value = "${p.ocount } 개" readonly>
 					</div>
 					<div class = "submitFormSectionMainD">
 						<input class = "submitFormSectionMainIntro" type = "text" value = "옵션합계" readonly>
-						<input class = "submitFormSectionMainData" type = "text" value = " 원" readonly>
+						<input class = "submitFormSectionMainData" type = "text" value = " ${ p.ocount * c.price }원" readonly>
 					</div>
 					<div class = "submitFormSectionMainD">
 						<input class = "submitFormSectionMainIntro" type = "text" value = "할인금액" readonly>
-						<input class = "submitFormSectionMainData" type = "text" value = " " readonly>
+						<input class = "submitFormSectionMainData" type = "text" value = "${p.discount} 포인트 " readonly>
 					</div>
 					<div class = "submitFormSectionMainD">
 						<input class = "submitFormSectionMainIntro" type = "text" value = "최종금액" readonly>
-						<input class = "submitFormSectionMainData" type = "text" value = "${pc.gpay } 원" readonly>
+						<input class = "submitFormSectionMainData" type = "text" value = "${p.gpay } 원" readonly>
 					</div>
 					<div class = "submitFormSectionMainD" style = "margin-top : 60px;">
 						<hr id = "submitFormSectionMainDH">
 					</div>
 					<div class = "submitFormSectionMainD" style = "margin-top : -20px;">
 						<input class = "submitFormSectionMainIntro" type = "text" value = "수신자명" readonly>
-						<input class = "submitFormSectionMainData" type = "text" value = "${pc.gname }" readonly>
+						<input class = "submitFormSectionMainData" type = "text" value = "${p.gname }" readonly>
 					</div>
 					<div class = "submitFormSectionMainD" style = "margin-top : 40px;" >
 						<input class = "submitFormSectionMainIntro" type = "text" value = "전화번호" readonly>
-						<input class = "submitFormSectionMainData" type = "text" value = "${pc.gphone }" readonly>
+						<input class = "submitFormSectionMainData" type = "text" value = "${p.gphone }" readonly>
 					</div>
 					<div class = "submitFormSectionMainD">
 						<input class = "submitFormSectionMainIntro" type = "text" value = "결제 금액" readonly>
-						<input class = "submitFormSectionMainData" type = "text" value = "${pc.gpay } 원" readonly>
+						<input class = "submitFormSectionMainData" type = "text" value = "${p.gpay } 원" readonly>
 					</div>
 					<div class = "submitFormSectionMainD">
 						<input class = "submitFormSectionMainIntro" type = "text" value = "메세지" readonly>
-						<input class = "submitFormSectionMainData" type = "text" value = "${pc.gmsg }" readonly>
+						<input class = "submitFormSectionMainData" type = "text" value = "${p.gmsg }" readonly>
 					</div>
 					<div class = "submitFormSectionMainD" style = "margin-top : 60px;">
 						<hr id = "submitFormSectionMainDH">
 					</div>
 					<div class = "submitFormSectionMainD" style = "margin-top : -40px;">
-						<input class = "submitFormSectionMainIntro" type = "text" value = "도로명주소"readonly style = "margin-top : 10px;">
-						<input class = "submitFormSectionMainData" type = "text" value = "${pc.gaddress }"readonly style = "width : 90%; margin-top : 10px;">
-						<input class = "submitFormSectionMainIntro" type = "text" value = "기본주소"readonly style = "margin-top : 40px;">
-						<input class = "submitFormSectionMainData" type = "text" value = ""readonly style = "width : 90%; margin-top : 40px;">
-						<input class = "submitFormSectionMainIntro" type = "text" value = "상세주소"readonly style = "margin-top : 40px;">
-						<input class = "submitFormSectionMainData" type = "text" value = ""readonly style = "width : 90%; margin-top : 40px;">
+						<input class = "submitFormSectionMainIntro" type = "text" value = "배송지"readonly style = "margin-top : 10px;">
+						<input class = "submitFormSectionMainData" type = "text" value = "${p.gaddress }"readonly style = "width : 90%; margin-top : 10px;">
 					</div>
 					<div>
 						<input  class = "submitBtn" type = "submit" value = "장바구니로 돌아가기" >
@@ -97,6 +92,5 @@
 				</div>
 			</section>
 		</form>
-	</c:forEach>
 </body>
 </html>

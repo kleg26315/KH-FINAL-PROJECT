@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +24,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
+import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.member.model.exception.MemberException;
 import com.kh.bubblebee.member.model.service.KakaoAPI;
 import com.kh.bubblebee.member.model.service.MemberService;
@@ -107,21 +108,39 @@ public class MemberController {
             System.out.println("email : " + email);
             System.out.println("name : " + nickName);
             System.out.println("profileImage : " +profileImage);
+            int point = 0;
             Member loginUser = mService.checkMember(id);
             if(loginUser != null) {
     			session.setAttribute("loginUser", loginUser);
     			session.setMaxInactiveInterval(6000);
+    			// 포인트 조회
+    			point = mService.getPoint(loginUser.getId());
+    			session.setAttribute("point", point);
+    			// 장바구니 조회
+    			ArrayList<Board> slist = mService.getSlist(loginUser.getId());
+    			session.setAttribute("slist", slist);
+    			// 좋아요 조회
+    			ArrayList<Board> hlist = mService.getHlist(loginUser.getId());
+    			session.setAttribute("hlist", hlist);
+    			
     			mv.setViewName("redirect:home.do");
             } else {
             	Member member = new Member(id, nickName, profileImage, email);
             	
             	int signupResult = mService.signupMember(member);
+            	int setPointResult = mService.setPoint(member.getId());
             	
             	if(signupResult  > 0) {
-            		loginUser = mService.checkMember(id);
-            		session.setAttribute("loginUser", loginUser);
-        			session.setMaxInactiveInterval(6000);
-        			mv.setViewName("redirect:home.do");
+            		if(setPointResult > 0) {
+            			loginUser = mService.checkMember(id);
+            			point = mService.getPoint(member.getId());
+                		session.setAttribute("loginUser", loginUser);
+            			session.setMaxInactiveInterval(6000);
+            			session.setAttribute("point", point);
+            			mv.setViewName("redirect:home.do");
+            		} else {
+                		throw new MemberException("소셜로그인 회원가입 실패하였습니다.");
+                	}
             	} else {
             		throw new MemberException("소셜로그인 회원가입 실패하였습니다.");
             	}
@@ -141,11 +160,14 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="login.me", method=RequestMethod.POST)
-	public String memberLogin(Member m, Model model) {
+	public String memberLogin(Member m, HttpServletRequest request, HttpSession session, Model model) {
 		Member loginUser = mService.memberLogin(m);
+		session = request.getSession();
 		
 		if(bcryptPasswordEncoder.matches(m.getPwd(), loginUser.getPwd())) {
 			model.addAttribute("loginUser", loginUser);
+			int point = mService.getPoint(m.getId());
+			session.setAttribute("point", point);
 			return "redirect:home.do";
 		} else {
 			throw new MemberException("로그인에 실패하였습니다.");
@@ -153,7 +175,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("minsert.me")
-	public String memberInsert(@ModelAttribute Member m) {
+	public String memberInsert(@ModelAttribute Member m, HttpServletRequest request, HttpSession session, Model model) {
 		
 		// bcrypt 암호화 방식
 		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
@@ -161,9 +183,18 @@ public class MemberController {
 		m.setPwd(encPwd);
 		
 		int result = mService.insertMember(m);
+		int setPointResult = mService.setPoint(m.getId());
 		System.out.println(result); 
 		if(result > 0) {
-			return "redirect:home.do";
+			if(setPointResult > 0) {
+				Member loginUser = mService.memberLogin(m);
+				model.addAttribute("loginUser", loginUser);
+				int point = mService.getPoint(m.getId());
+				session.setAttribute("point", point);
+				return "redirect:home.do";
+			} else {
+				throw new MemberException("회원가입에 실패하였습니다.");
+			}
 		} else {
 			throw new MemberException("회원가입에 실패하였습니다.");
 		}
@@ -179,19 +210,28 @@ public class MemberController {
 		String id = userInfo.get("id");
 		Member loginUser = mService.checkMember(id);
 		int result = 0;
-		
+		int point = 0;
 		if(loginUser != null) {
 			session.setAttribute("loginUser", loginUser);
 			session.setMaxInactiveInterval(6000);
+			point = mService.getPoint(loginUser.getId());
+			session.setAttribute("point", point);
 			return "redirect:home.do";
-		}else {
+		} else {
 			result = mService.insertkakaoMember(userInfo);
 			loginUser = mService.checkMember(id);
+			int setPointResult = mService.setPoint(loginUser.getId());
 			if(result > 0) {
-				session.setAttribute("loginUser", loginUser);
-				session.setMaxInactiveInterval(6000);
-				return "redirect:home.do";
-			}else {
+				if(setPointResult > 0) {
+					session.setAttribute("loginUser", loginUser);
+					session.setMaxInactiveInterval(6000);
+					point = mService.getPoint(loginUser.getId());
+					session.setAttribute("point", point);
+					return "redirect:home.do";
+				} else {
+					throw new MemberException("카카오톡 회원가입에 실패하였습니다.");
+				}
+			} else {
 				throw new MemberException("카카오톡 회원가입에 실패하였습니다.");
 			}
 		}

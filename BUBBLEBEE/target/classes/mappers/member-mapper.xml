@@ -69,10 +69,36 @@
 		null, '-')
 	</insert>
 	
-		<update id="updatePwd">
+	<update id="updatePwd">
 		update member
 		set user_pwd = #{newpwd}
 		where user_id=#{id}
 	</update>
   
+	<insert id="setPoint">
+		insert into point
+		values(SEQ_POINT.nextval, 2000, '가입 축하기념', sysdate, null, #{id})
+	</insert>
+	
+	<select id="getPoint" resultType="_int">
+		select NVL(sum(p_money), 0)
+		from point
+		where user_id = #{id} and p_useday is null
+	</select>
+	
+	<select id="getSlist" resultType="Board">
+		select board.ftitle, board.price
+		from slist, choose, board
+		where slist.ono = choose.ono
+		and choose.fno = board.fno
+		and slist.user_id = #{id}
+	</select>
+	
+	<select id="getHlist" resultType="Board">
+		select board.ftitle, board.price
+		from board, member, heart
+		where member.user_id = heart.user_id
+		and heart.fno2 = board.fno
+		and member.user_id = #{id}
+	</select>
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.purchase.model.dao.PurchaseDAO;
 import com.kh.bubblebee.purchase.model.vo.PBoard;
+import com.kh.bubblebee.purchase.model.vo.PChoose;
 import com.kh.bubblebee.purchase.model.vo.PSList;
 import com.kh.bubblebee.purchase.model.vo.Purchase;
 
@@ -39,15 +40,23 @@ public class PurchaseServiceImpl implements PurchaseService {
 		return pDAO.purchaseThis1(sqlSession, p);
 	}
 
+
+	
 	@Override
-	public ArrayList<Purchase> selectCList(int gno) {
-		return pDAO.selectCList(sqlSession, gno);
+	public ArrayList<Purchase> selectOption(int fno) {
+		return pDAO.selectOption(sqlSession, fno);
 	}
 
 	@Override
-	public ArrayList<Purchase> selectPPList(String ono) {
-		return pDAO.selectPPList(sqlSession, ono);
+	public PChoose selectPChoose(String ono) {
+		return pDAO.selectPChoose(sqlSession, ono);
 	}
+
+	@Override
+	public PBoard selectBPBoard(int fno) {
+		return pDAO.selectPBoard(sqlSession, fno);
+	}
+
 
 	
 	

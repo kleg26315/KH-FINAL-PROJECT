@@ -1,5 +1,7 @@
 package com.kh.bubblebee.purchase.model.vo;
 
+import java.sql.Date;
+
 public class PBoard {
 
 	private int fno;
@@ -9,6 +11,8 @@ public class PBoard {
 	private String small_title;
 	private String category;
 	private String location;
+	private int lat;
+	private int lon;
 	private String fcontain;
 	private String fncontain;
 	private String fcalendar;
@@ -16,15 +20,24 @@ public class PBoard {
 	private String fminfo;
 	private String fprecaution;
 	private String user_id;
-	private String like;
+	private String heart;
+	private int rsum;
+	private int rcount;
+	private Date f_create_date;
+	private char f_status;
+	private String originalfilename;
+	private String renamefilename;
+	private String introduce;
+	private int maxmember;
 
 	public PBoard() {
 		
 	}
 
-	public PBoard(int fno,String ftitle, int ftype, int price, String small_title, String category, String location, String fcontain,
-			String fncontain, String fcalendar, String fmaterials, String fminfo, String fprecaution, String user_id,
-			String like) {
+	public PBoard(int fno, String ftitle, int ftype, int price, String small_title, String category, String location,
+			int lat, int lon, String fcontain, String fncontain, String fcalendar, String fmaterials, String fminfo,
+			String fprecaution, String user_id, String heart, int rsum, int rcount, Date f_create_date, char f_status,
+			String originalfilename, String renamefilename, String introduce, int maxmember) {
 		super();
 		this.fno = fno;
 		this.ftitle = ftitle;
@@ -33,6 +46,8 @@ public class PBoard {
 		this.small_title = small_title;
 		this.category = category;
 		this.location = location;
+		this.lat = lat;
+		this.lon = lon;
 		this.fcontain = fcontain;
 		this.fncontain = fncontain;
 		this.fcalendar = fcalendar;
@@ -40,7 +55,15 @@ public class PBoard {
 		this.fminfo = fminfo;
 		this.fprecaution = fprecaution;
 		this.user_id = user_id;
-		this.like = like;
+		this.heart = heart;
+		this.rsum = rsum;
+		this.rcount = rcount;
+		this.f_create_date = f_create_date;
+		this.f_status = f_status;
+		this.originalfilename = originalfilename;
+		this.renamefilename = renamefilename;
+		this.introduce = introduce;
+		this.maxmember = maxmember;
 	}
 
 	public int getFno() {
@@ -51,14 +74,14 @@ public class PBoard {
 		this.fno = fno;
 	}
 
-	public String getftitle() {
+	public String getFtitle() {
 		return ftitle;
 	}
-	
+
 	public void setFtitle(String ftitle) {
-		this.ftitle =  ftitle;
+		this.ftitle = ftitle;
 	}
-	
+
 	public int getFtype() {
 		return ftype;
 	}
@@ -97,6 +120,22 @@ public class PBoard {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public int getLat() {
+		return lat;
+	}
+
+	public void setLat(int lat) {
+		this.lat = lat;
+	}
+
+	public int getLon() {
+		return lon;
+	}
+
+	public void setLon(int lon) {
+		this.lon = lon;
 	}
 
 	public String getFcontain() {
@@ -155,22 +194,88 @@ public class PBoard {
 		this.user_id = user_id;
 	}
 
-	public String getLike() {
-		return like;
+	public String getHeart() {
+		return heart;
 	}
 
-	public void setLike(String like) {
-		this.like = like;
+	public void setHeart(String heart) {
+		this.heart = heart;
+	}
+
+	public int getRsum() {
+		return rsum;
+	}
+
+	public void setRsum(int rsum) {
+		this.rsum = rsum;
+	}
+
+	public int getRcount() {
+		return rcount;
+	}
+
+	public void setRcount(int rcount) {
+		this.rcount = rcount;
+	}
+
+	public Date getF_create_date() {
+		return f_create_date;
+	}
+
+	public void setF_create_date(Date f_create_date) {
+		this.f_create_date = f_create_date;
+	}
+
+	public char getF_status() {
+		return f_status;
+	}
+
+	public void setF_status(char f_status) {
+		this.f_status = f_status;
+	}
+
+	public String getOriginalfilename() {
+		return originalfilename;
+	}
+
+	public void setOriginalfilename(String originalfilename) {
+		this.originalfilename = originalfilename;
+	}
+
+	public String getRenamefilename() {
+		return renamefilename;
+	}
+
+	public void setRenamefilename(String renamefilename) {
+		this.renamefilename = renamefilename;
+	}
+
+	public String getIntroduce() {
+		return introduce;
+	}
+
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
+	}
+
+	public int getMaxmember() {
+		return maxmember;
+	}
+
+	public void setMaxmemter(int maxmember) {
+		this.maxmember = maxmember;
 	}
 
 	@Override
 	public String toString() {
-		return "PBoard [fno=" + fno + ", ftype=" + ftype + ", price=" + price + ", small_title=" + small_title
-				+ ", category=" + category + ", location=" + location + ", fcontain=" + fcontain + ", fncontain="
-				+ fncontain + ", fcalendar=" + fcalendar + ", fmaterials=" + fmaterials + ", fminfo=" + fminfo
-				+ ", fprecaution=" + fprecaution + ", user_id=" + user_id + ", like=" + like + "]";
+		return "PBoard [fno=" + fno + ", ftitle=" + ftitle + ", ftype=" + ftype + ", price=" + price + ", small_title="
+				+ small_title + ", category=" + category + ", location=" + location + ", lat=" + lat + ", lon=" + lon
+				+ ", fcontain=" + fcontain + ", fncontain=" + fncontain + ", fcalendar=" + fcalendar + ", fmaterials="
+				+ fmaterials + ", fminfo=" + fminfo + ", fprecaution=" + fprecaution + ", user_id=" + user_id
+				+ ", heart=" + heart + ", rsum=" + rsum + ", rcount=" + rcount + ", f_create_date=" + f_create_date
+				+ ", f_status=" + f_status + ", originalfilename=" + originalfilename + ", renamefilename="
+				+ renamefilename + ", introduce=" + introduce + ", maxmember=" + maxmember + "]";
 	}
-	
-	
-	
+
+		
 }

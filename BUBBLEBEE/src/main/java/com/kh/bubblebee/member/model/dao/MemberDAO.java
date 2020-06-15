@@ -1,10 +1,12 @@
 package com.kh.bubblebee.member.model.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.member.model.vo.Member;
 
 @Repository("mDAO")
@@ -34,6 +36,22 @@ public class MemberDAO {
 
 	public int memberUpdatePwd(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
 		return sqlSession.update("memberMapper.updatePwd", map);
+	}
+
+	public int setPoint(SqlSessionTemplate sqlSession, String id) {
+		return sqlSession.insert("memberMapper.setPoint", id);
+	}
+
+	public int getPoint(SqlSessionTemplate sqlSession, String id) {
+		return sqlSession.selectOne("memberMapper.getPoint", id);
+	}
+
+	public ArrayList<Board> getSlist(SqlSessionTemplate sqlSession, String id) {
+		return (ArrayList)sqlSession.selectList("memberMapper.getSlist", id);
+	}
+
+	public ArrayList<Board> getHlist(SqlSessionTemplate sqlSession, String id) {
+		return (ArrayList)sqlSession.selectList("memberMapper.getHlist",id);
 	}
 
 }

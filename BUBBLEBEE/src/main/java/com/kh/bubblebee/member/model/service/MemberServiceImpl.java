@@ -1,11 +1,13 @@
 package com.kh.bubblebee.member.model.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.member.model.dao.MemberDAO;
 import com.kh.bubblebee.member.model.vo.Member;
 
@@ -47,6 +49,26 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int memberPwdUpdate(HashMap<String, String> map) {
 		return mDAO.memberUpdatePwd(sqlSession,map);
+	}
+
+	@Override
+	public int setPoint(String id) {
+		return mDAO.setPoint(sqlSession, id);
+	}
+
+	@Override
+	public int getPoint(String id) {
+		return mDAO.getPoint(sqlSession, id);
+	}
+
+	@Override
+	public ArrayList<Board> getSlist(String id) {
+		return mDAO.getSlist(sqlSession, id);
+	}
+
+	@Override
+	public ArrayList<Board> getHlist(String id) {
+		return mDAO.getHlist(sqlSession,id);
 	}
 
 }

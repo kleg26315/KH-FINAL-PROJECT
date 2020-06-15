@@ -9,6 +9,8 @@
 		<result property = "small_title" column = "SMALL_TITLE"/>
 		<result property = "category" column = "CATEGORY"/>
 		<result property = "location" column = "LOCATION"/>
+		<result property = "lat" column = "LAT"/>
+		<result property = "lon" column = "LON"/>
 		<result property = "fcontain" column = "FCONTAIN"/>
 		<result property = "fncontain" column = "FNCONTAIN"/>
 		<result property = "fcalendar" column = "FCALENDAR"/>
@@ -16,7 +18,15 @@
 		<result property = "fminfo" column = "FMINFO"/>
 		<result property = "fprecaution" column = "FPRECAUTION"/>
 		<result property = "user_id" column = "USER_ID"/>
-		<result property = "like" column = "LIKE"/>
+		<result property = "heart" column = "HEART"/>
+		<result property = "rsum" column = "RSUM"/>
+		<result property = "rcount" column = "RCOUNT"/>
+		<result property = "f_create_date" column = "F_CREATE_DATE"/>
+		<result property = "f_status" column = "F_STATUS"/>
+		<result property = "originalfilename" column = "ORIGINALFILENAME"/>
+		<result property = "renamefilename" column = "RENAMEFILENAME"/>
+		<result property = "introduce" column = "INTRODUCE"/>
+		<result property = "maxmember" column = "MAXMEMBER"/>
 	</resultMap>
 	
 	<resultMap type = "PSList" id = "PSListResultSet">
@@ -38,6 +48,15 @@
 		<result property = "ono" column = "ONO"/>
 	</resultMap>
 	
+	<resultMap type = "PChoose" id = "ChooseResultSet">
+		<id property = "ono" column = "ONO"/>
+		<result property = "oname" column = "ONAME"/>
+		<result property = "price" column = "PRICE"/>
+		<result property = "ocount" column = "OCOUNT"/>
+		<result property = "fno" column = "FNO"/>
+	</resultMap>
+	
+	
 	<select id = "selectProduct" resultMap = "PBoardResultSet">
 		select *
 		from board
@@ -51,23 +70,37 @@
 	</select>
 	
 	<insert id = "purchaseThis1">
-		insert into purchase
-		values(SEQ_PURCHASE.nextval, #{gname},
+		insert into buying
+		values(SEQ_BUYING.nextval, #{gname},
 		#{gphone}, #{gaddress}, #{gmsg}, #{user_id},
 		#{ono}, #{ocount}, #{gpay}
 		)
 	</insert>
-		
-	<select id = "selectCList" resultMap = "PurchaseResultSet">
-		select * 
-		from purchase
-		where gno = #{gno}
-	</select>
+
 	
 	<select id = "selectPPList" resultMap = "PurchaseResultSet">
 		select * 
-		from purchase
-		where ono = '2'
+		from buying
+		where ono = #{ono}
+	</select>	
+	
+	<select id = "selectOption" resultMap = "ChooseResultSet">
+		select *
+		from choose
+		where fno = #{fno}
 	</select>
 
+	
+	<select id = "selectPChoose" resultMap = "ChooseResultSet">
+		select *
+		from choose
+		where ono = #{ono}
+	</select>
+	
+	<select id = "selectPBoard" resultMap = "PBoardResultSet">
+		select *
+		from board
+		where fno = #{fno}
+	</select>
+	
 </mapper> 	

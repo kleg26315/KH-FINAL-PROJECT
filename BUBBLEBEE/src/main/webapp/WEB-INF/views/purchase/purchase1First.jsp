@@ -22,7 +22,6 @@
 	</header>
 	<form  id = "purchaseForm" name = "doubleTarget" method = "post">
 		<div class = "main">
-			
 				<div class = "mFont">	
 					결제
 				</div>
@@ -36,7 +35,7 @@
 				<div class = "mProfile">
 					<div class = "mProfileT1">
 						<input class = "mProfileT11" name = "rIntro"  value = "${ pu.small_title }" readonly>
-							
+						<input type = "text" style = "display : none" value = "${ pu.fno }" name = "fno">	
 					</div>
 					<div class = "mProfileT2">
 						<input class = "mProfileT21" name = "rTitle" value = "${ pu.ftitle }" readonly >
@@ -83,9 +82,7 @@
 					<hr id = "submitFormSectionMainDH" style = "margin-top : 20px;">
 				</div>
 				
-				<c:forEach var = "pu3" items = "${ pplist }" varStatus = "status">
-					<input name = "gno" type = "text" style = "display : none;" value = "${ pu3.gno }">
-				</c:forEach>
+				
 						
 			
 				<div class = "mInput">

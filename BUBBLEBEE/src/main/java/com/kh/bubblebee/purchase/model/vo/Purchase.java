@@ -11,7 +11,7 @@ public class Purchase {
 	private int ocount;
 	private String user_id;
 	private String ono;
-	
+	private String discount;
 	
 	public Purchase() {
 		
@@ -19,7 +19,7 @@ public class Purchase {
 
 
 	public Purchase(int gno, String gname, String gphone, String gaddress, String gmsg, int gpay, int ocount,
-			String user_id, String ono) {
+			String user_id, String ono, String discount) {
 		super();
 		this.gno = gno;
 		this.gname = gname;
@@ -30,6 +30,7 @@ public class Purchase {
 		this.ocount = ocount;
 		this.user_id = user_id;
 		this.ono = ono;
+		this.discount = discount;
 	}
 
 
@@ -122,6 +123,14 @@ public class Purchase {
 		this.ono = ono;
 	}
 
+	
+	public String getDiscount(){
+		return discount;
+	}
+	
+	public void setDiscount(String discount) {
+		this.discount = discount;
+	}
 
 	@Override
 	public String toString() {
