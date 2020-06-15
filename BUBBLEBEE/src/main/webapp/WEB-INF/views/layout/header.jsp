@@ -187,41 +187,44 @@
 								  </div>
 								  <div class="bottom_content">
 								    <div class="list_content">
-								      <div class="tab_list">
+								      <div class="tab_list" id="cart_div">
 								      	<!-- 장바구니가 있을 때 추가해줌 -->
-								      	<a class="list_el" href="/course/스프링-데이터-JPA-실전">
-										  <div class="thumb_content"><img src="https://cdn.inflearn.com/public/courses/324474/course_cover/58c8632c-7a6e-4c76-9893-d7fffa32faf2/kyh_JPA_Spring2%20%E1%84%87%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%206.png"></div>
-										  <div class="item_content">
-										    <p class="item_title">실전! 스프링 데이터 JPA</p>
-										    <p class="item_price">₩88,000</p>
-										  </div>
-										</a>
-										<a class="list_el" href="/course/스프링-데이터-JPA-실전">
-										  <div class="thumb_content"><img src="https://cdn.inflearn.com/public/courses/324474/course_cover/58c8632c-7a6e-4c76-9893-d7fffa32faf2/kyh_JPA_Spring2%20%E1%84%87%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%206.png"></div>
-										  <div class="item_content">
-										    <p class="item_title">더 자바, 애플리케이션을 테스트하는 다양한 방법</p>
-										    <p class="item_price">₩88,000</p>
-										  </div>
-										</a>
-										<a class="list_el" href="/course/스프링-데이터-JPA-실전">
-										  <div class="thumb_content"><img src="https://cdn.inflearn.com/public/courses/324474/course_cover/58c8632c-7a6e-4c76-9893-d7fffa32faf2/kyh_JPA_Spring2%20%E1%84%87%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%206.png"></div>
-										  <div class="item_content">
-										    <p class="item_title">실전! 스프링 데이터 JPA</p>
-										    <p class="item_price">₩88,000</p>
-										  </div>
-										</a>
-										<a class="list_el" href="/course/스프링-데이터-JPA-실전">
-										  <div class="thumb_content"><img src="https://cdn.inflearn.com/public/courses/324474/course_cover/58c8632c-7a6e-4c76-9893-d7fffa32faf2/kyh_JPA_Spring2%20%E1%84%87%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%206.png"></div>
-										  <div class="item_content">
-										    <p class="item_title">실전! 스프링 데이터 JPA</p>
-										    <p class="item_price">₩88,000</p>
-										  </div>
-										</a>
-								      <div class="no_result">결과 없음</div></div>
+								      	<c:if test="${empty slist}">
+								      		 <div class="no_result">결과 없음</div></div>
+								      	</c:if>
+								      	<c:if test="${not empty slist}">
+								      		<c:forEach var="s" items="${ slist }">
+								      			<a class="list_el" href="/course/스프링-데이터-JPA-실전">
+												  <div class="thumb_content"><img src="https://cdn.inflearn.com/public/courses/324474/course_cover/58c8632c-7a6e-4c76-9893-d7fffa32faf2/kyh_JPA_Spring2%20%E1%84%87%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%206.png"></div>
+												  <div class="item_content">
+												    <p class="item_title">실전! 스프링 데이터 JPA</p>
+												    <p class="item_price">₩88,000</p>
+												  </div>
+												</a>
+								      		</c:forEach>
+								      	</div>
+								      	</c:if>
+								    <div class="tab_list" id="wish_div">
+								      	<!-- 장바구니가 있을 때 추가해줌 -->
+								      	<c:if test="${empty hlist}">
+								      		 <div class="no_result">결과 없음</div></div>
+								      	</c:if>
+								      	<c:if test="${not empty hlist}">
+								      		<c:forEach var="h" items="${ hlist }">
+								      			<a class="list_el" href="/course/스프링-데이터-JPA-실전">
+												  <div class="thumb_content"><img src="https://cdn.inflearn.com/public/courses/324474/course_cover/58c8632c-7a6e-4c76-9893-d7fffa32faf2/kyh_JPA_Spring2%20%E1%84%87%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%206.png"></div>
+												  <div class="item_content">
+												    <p class="item_title">실전! 스프링 데이터 JPA</p>
+												    <p class="item_price">₩88,000</p>
+												  </div>
+												</a>
+								      		</c:forEach>
+								      	</div>
+								      	</c:if>
 								    </div>
 								    <div class="button_content">
-								      <a id="go_cart" class="button tab_button active fw-bold space-inset-8 cart_link" href="#" data-type="cart">장바구니로 이동</a>
-								      <a id="go_wish" class="button tab_button fw-bold space-inset-8 wish_link" href="#" data-type="wish">위시 리스트로 이동</a>
+								      <a id="go_cart" class="button tab_button active fw-bold space-inset-8 cart_link" href="myslist.mg" data-type="cart">장바구니로 이동</a>
+								      <a id="go_wish" class="button tab_button fw-bold space-inset-8 wish_link" href="mylike.mg" data-type="wish">위시 리스트로 이동</a>
 								    </div>
 								  </div>
 								</div>
@@ -259,9 +262,9 @@
 						        </div>
 						      </div>
 						      <div class="point_content">
-						        <a href="/my-points" class="mileage point_box">
+						        <a href="mypoint.mg" class="mileage point_box">
 						          <span class="title">마일리지</span>
-						          <span class="content_modal"><span class="value">0</span>P</span>
+						          <span class="content_modal"><span class="value">${sessionScope.point }</span>P</span>
 						        </a>          
 						      </div>
 						    </div>
@@ -271,37 +274,37 @@
 						      </div>
 						      <div class="list_content">
 						        <div class="tab_list active" data-id="0">
-								  <a href="#" class="title">
+								  <a href="mylike.mg" class="title">
 							        <div class="list_el">
 							        	<span class="name">좋아요 목록</span>
 							        </div>
 							      </a>
-	   						      <a href="#" class="title">
+	   						      <a href="mypaid.mg" class="title">
 							        <div class="list_el">
 							        	<span class="name">결제 내역</span>
 							        </div>
 							      </a>
-							  	  <a href="#" class="title">
+							  	  <a href="mymeet.mg" class="title">
 							        <div class="list_el">
 							        	<span class="name">신청한 모임관리</span>
 							        </div>
 							      </a>
-							      <a href="#" class="title">
+							      <a href="myreview.mg" class="title">
 							        <div class="list_el">
 							        	<span class="name">후기</span>
 							        </div>
 							      </a>
-							      <a href="#" class="title">
+							      <a href="mypoint.mg" class="title">
 							        <div class="list_el">
 							        	<span class="name">마일리지</span>
 							        </div>
 							      </a>
-							      <a href="#" class="title">
+							      <a href="myslist.mg" class="title">
 							        <div class="list_el">
 							        	<span class="name">장바구니 목록</span>
 							        </div>
 							      </a>
-							      <a href="#" class="title">
+							      <a href="updateInfoForm.mg" class="title">
 							        <div class="list_el">
 							        	<span class="name">정보 수정</span>
 							        </div>
@@ -517,6 +520,7 @@
         })
     </script>
     <script>
+    	$('#wish_div').hide();
     	/* 모달창 조작 자바스크립트 */
     	
     	$('.profile_modal_cover').hide();
@@ -607,7 +611,9 @@
         	$('#cart').addClass('active');
         	$('#go_wish').removeClass('active');
         	$('#go_wish').hide();
+        	$('#wish_div').hide();
         	$('#go_cart').show();
+        	$('#cart_div').show();
         })
         
         $('#wish').click(function(e){
@@ -617,7 +623,9 @@
         	$('#go_cart').removeClass('active');
         	$('#go_wish').addClass('active');
         	$('#go_cart').hide();
+        	$('#cart_div').hide();
         	$('#go_wish').show();
+        	$('#wish_div').show();
         })
         
         $('.center_a').click(function(e){
