@@ -17,6 +17,7 @@
 
 </style>
 <body>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=be0b8d3e154f1e2bf1a278bd7fbf3d2a&libraries=services"></script>
    <header id="header">
      <c:import url="../layout/header.jsp"/>   
       </header>
@@ -295,6 +296,9 @@
 						<td colspan="2">
 							<input type="text" name="address2" class="postcodify_extra_info" value="" style="width: 300px;">
 						</td>
+						<td>
+							<div style="display:none" id="map"></div>
+						</td>
 					</tr>
 					<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 					<script>
@@ -571,8 +575,12 @@
 					});   
 					
 			</script>
+			
+			<input type="hidden" id="lat" name="lat">
+			<input type="hidden" id="lng" name="lon">
+			
 			<div id="btn_area">
-				<button id="complete">완료</button>
+				<button id="complete" onclick="validate()">완료</button>
 				<button onclick="location.href='history.back()'" id="cancel">취소</button>
 			</div>
 				<script>
@@ -606,13 +614,64 @@
 		function validate(){
 			var value1 = $('#category').val();
 			var value2 = $('#category2').val();
+			var address = $('.postcodify_address').val();
+			console.log(address);
+			
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			    mapOption = {
+			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			        level: 3 // 지도의 확대 레벨
+			};
+			
+			// 지도를 생성합니다    
+			var map = new kakao.maps.Map(mapContainer, mapOption); 
+			
+			// 주소-좌표 변환 객체를 생성합니다
+			var geocoder = new kakao.maps.services.Geocoder();
+			
+			// 주소로 좌표를 검색합니다
+			geocoder.addressSearch(address, function(result, status) {
+			
+				// 정상적으로 검색이 완료됐으면 
+				if (status === kakao.maps.services.Status.OK) {
+					
+					var coords = new kakao.maps.LatLng(result[0].y, result[0].x);	
+		
+					// 결과값으로 받은 위치를 마커로 표시합니다
+						var marker = new kakao.maps.Marker({
+							map : map,
+							position : coords
+						});
+		
+					// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+						map.setCenter(coords);
+						getInfo(coords);
+				}
+			})
+			
+			function getInfo(coords) {
+			
+				// 지도의 현재 중심좌표를 얻어옵니다 
+				var center = map.getCenter(coords); 
+				
+				var lat = center.getLat();
+				var lng = center.getLng();
+				
+				$('#lat').val(lat);
+				$('#lng').val(lng);
+				
+				/* console.log($('#lat').val());
+				console.log(lng); */
+			};
 			
 			if(value1 == 'no' || value2 == 'no') {
-					console.log("what");
-					alert("카테고리 설정을 완료해주세요");
+				console.log("what");
+				alert("카테고리 설정을 완료해주세요");
+				return false;
 			}
-		}
-		
+		};
+		</script>
+		<script>
 		// 캐치프레이즈 20자 제한
 		$(function(){
 			$('#catch').keyup(function(e){
