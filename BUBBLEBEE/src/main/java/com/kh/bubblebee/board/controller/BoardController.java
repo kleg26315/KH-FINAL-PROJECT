@@ -22,12 +22,18 @@ import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.common.Pagination;
 import com.kh.bubblebee.host.model.vo.Host;
+import com.kh.bubblebee.purchase.model.service.PurchaseService;
+import com.kh.bubblebee.purchase.model.vo.Purchase;
 
 @Controller
 public class BoardController {
 	
 	@Autowired
 	private BoardService bService;
+	
+	@Autowired
+	private PurchaseService pService;
+	
 	
 	@RequestMapping("list.bo")
 	public ModelAndView moimList(@RequestParam(value="cate") String cate, ModelAndView mv) {
@@ -90,9 +96,15 @@ public class BoardController {
 		Host host = bService.selectHost(hostId);
 		System.out.println("detail.bo의 host : " + host);
 		
+		ArrayList<Purchase> p = pService.selectOption(fno);
+		
+		System.out.println("detail.bo의 fno : " + fno);
+		System.out.println("detail.bo의 p : " + p);
+		
 		if(b != null) {
 			mv.addObject("b", b)
 			  .addObject("host", host)
+			  .addObject("p", p)
 			  .setViewName("boardDetail");
 			return mv;
 		}else {

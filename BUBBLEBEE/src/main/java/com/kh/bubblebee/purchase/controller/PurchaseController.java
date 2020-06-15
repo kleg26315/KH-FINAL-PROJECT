@@ -15,6 +15,7 @@ import com.kh.bubblebee.member.model.vo.Member;
 import com.kh.bubblebee.purchase.model.exception.PurchaseException;
 import com.kh.bubblebee.purchase.model.service.PurchaseService;
 import com.kh.bubblebee.purchase.model.vo.PBoard;
+import com.kh.bubblebee.purchase.model.vo.PChoose;
 import com.kh.bubblebee.purchase.model.vo.PSList;
 import com.kh.bubblebee.purchase.model.vo.Purchase;
 
@@ -35,14 +36,14 @@ public class PurchaseController {
 		if(loginUser != null) {
 			ArrayList<PBoard> plist = pService.selectBList(fno);
 			ArrayList<PSList> pslist = pService.selectPList(ono);
-			ArrayList<Purchase> pplist = pService.selectPPList(ono);
+			
 			System.out.println("plist : " + plist);
 			System.out.println("pslist : " + pslist);
-			System.out.println("pplist : " + pplist);
+			
 			if(plist != null && pslist != null) 	 {
 				mv.addObject("fno", fno);
 				mv.addObject("pslist", pslist);
-				mv.addObject("pplist", pplist);
+				
 				mv.addObject("plist", plist);
 				mv.setViewName("purchase1First");
 			}else {
@@ -66,12 +67,22 @@ public class PurchaseController {
 						@RequestParam(value = "ocount")int ocount,
 						@RequestParam(value = "ono")String ono,
 						@RequestParam(value = "totalPrice")int gpay,
-						@RequestParam(value = "gno")int gno,
+						@RequestParam(value = "discountPrice")String discountPrice,
+						@RequestParam(value = "fno")int fno,
 						HttpSession session,
 						ModelAndView mv
 						){
+		
+		
+			System.out.println("gaddress1 : " + gaddress1);
+			System.out.println("gaddress2 : " + gaddress2);
+			System.out.println("gaddress3 : " + gaddress3);
+			
+			
+			
+			
 			Member loginUser = (Member)session.getAttribute("loginUser");
-			String gaddress = gaddress1 + gaddress2 + gaddress3;
+			String gaddress = gaddress1 + " " + gaddress2 + gaddress3;
 			String user_id = loginUser.getId();
 			p.setGname(gname);
 			p.setGphone(gphone);
@@ -81,22 +92,19 @@ public class PurchaseController {
 			p.setOcount(ocount);
 			p.setUser_id(user_id);
 			p.setOno(ono);
-			p.setGno(gno);
-
-			System.out.println(p);
-			
-			
-
-			System.out.println("gno : " + gno);
+			p.setDiscount(discountPrice);
 			
 			int purchaseThis1 = pService.insertPurchase(p);
+			PChoose c = pService.selectPChoose(ono);
+			PBoard b = pService.selectBPBoard(fno);
 			
-			ArrayList<Purchase> plist = pService.selectCList(gno);
-			
-			System.out.println("plist : " + plist);
+			System.out.println("gaddress : " + gaddress);
+			System.out.println("p : " + purchaseThis1);
 			
 			if(purchaseThis1 > 0) {
-				mv.addObject("plist", plist);
+				mv.addObject("p", p);
+				mv.addObject("c", c);
+				mv.addObject("b",b);
 				mv.setViewName("purchaseConfirm");
 			}else {
 				throw new PurchaseException("결제에 실패하였습니다!");

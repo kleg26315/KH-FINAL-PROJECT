@@ -14,6 +14,7 @@
 		<typeAlias type = "com.kh.bubblebee.purchase.model.vo.Purchase" alias = "Purchase"/>
 		<typeAlias type = "com.kh.bubblebee.purchase.model.vo.PBoard" alias = "PBoard"/>
 		<typeAlias type = "com.kh.bubblebee.purchase.model.vo.PSList" alias = "PSList"/>
+		<typeAlias type="com.kh.bubblebee.purchase.model.vo.PChoose" alias = "PChoose"/>
 	</typeAliases>
 	
 	<mappers>

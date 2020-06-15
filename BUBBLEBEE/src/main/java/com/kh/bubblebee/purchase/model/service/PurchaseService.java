@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.purchase.model.vo.PBoard;
+import com.kh.bubblebee.purchase.model.vo.PChoose;
 import com.kh.bubblebee.purchase.model.vo.PSList;
 import com.kh.bubblebee.purchase.model.vo.Purchase;
 
@@ -15,12 +16,11 @@ public interface PurchaseService {
 
 	int insertPurchase(Purchase p);
 
-	ArrayList<Purchase> selectCList(int gno);
+	ArrayList<Purchase> selectOption(int fno);
 
-	ArrayList<Purchase> selectPPList(String ono);
+	PChoose selectPChoose(String ono);
 
-	
+	PBoard selectBPBoard(int fno);
 
-	
 
 }
