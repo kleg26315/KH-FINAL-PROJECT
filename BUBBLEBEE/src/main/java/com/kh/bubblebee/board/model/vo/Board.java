@@ -14,6 +14,8 @@ public class Board {
 	private String location; //장소
 	private double lat; //위도
 	private double lon; //경도
+	private String ad1; //장소-시도
+	private String ad2; //장소-시군구
 	private String fcontain; //포함사항
 	private String fncontain; //불포함사항
 	private String fcalendar; //세부일정
@@ -36,10 +38,10 @@ public class Board {
 	public Board() {}
 
 	public Board(int rnum, int fno, int ftype, int price, String small_title, String ftitle, String category,
-			String location, double lat, double lon, String fcontain, String fncontain, String fcalendar, String fmaterials,
-			String fminfo, String fprecaution, String user_id, int heart, int rsum, int rcount, Date f_create_date,
-			String f_status, String originalFileName, String renameFileName, String introduce, int maxMember,
-			double rank, String hid) {
+			String location, String ad1, String ad2, double lat, double lon, String fcontain, String fncontain,
+			String fcalendar, String fmaterials, String fminfo, String fprecaution, String user_id, int heart, int rsum,
+			int rcount, Date f_create_date, String f_status, String originalFileName, String renameFileName,
+			String introduce, int maxMember, double rank, String hid) {
 		super();
 		this.rnum = rnum;
 		this.fno = fno;
@@ -49,6 +51,8 @@ public class Board {
 		this.ftitle = ftitle;
 		this.category = category;
 		this.location = location;
+		this.ad1 = ad1;
+		this.ad2 = ad2;
 		this.lat = lat;
 		this.lon = lon;
 		this.fcontain = fcontain;
@@ -133,6 +137,22 @@ public class Board {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public String getAd1() {
+		return ad1;
+	}
+
+	public void setAd1(String ad1) {
+		this.ad1 = ad1;
+	}
+
+	public String getAd2() {
+		return ad2;
+	}
+
+	public void setAd2(String ad2) {
+		this.ad2 = ad2;
 	}
 
 	public double getLat() {
@@ -298,12 +318,13 @@ public class Board {
 	@Override
 	public String toString() {
 		return "Board [rnum=" + rnum + ", fno=" + fno + ", ftype=" + ftype + ", price=" + price + ", small_title="
-				+ small_title + ", ftitle=" + ftitle + ", category=" + category + ", location=" + location + ", lat="
-				+ lat + ", lon=" + lon + ", fcontain=" + fcontain + ", fncontain=" + fncontain + ", fcalendar="
-				+ fcalendar + ", fmaterials=" + fmaterials + ", fminfo=" + fminfo + ", fprecaution=" + fprecaution
-				+ ", user_id=" + user_id + ", heart=" + heart + ", rsum=" + rsum + ", rcount=" + rcount
-				+ ", f_create_date=" + f_create_date + ", f_status=" + f_status + ", originalFileName="
-				+ originalFileName + ", renameFileName=" + renameFileName + ", introduce=" + introduce + ", maxMember="
-				+ maxMember + ", rank=" + rank + ", hid=" + hid + "]";
+				+ small_title + ", ftitle=" + ftitle + ", category=" + category + ", location=" + location + ", ad1="
+				+ ad1 + ", ad2=" + ad2 + ", lat=" + lat + ", lon=" + lon + ", fcontain=" + fcontain + ", fncontain="
+				+ fncontain + ", fcalendar=" + fcalendar + ", fmaterials=" + fmaterials + ", fminfo=" + fminfo
+				+ ", fprecaution=" + fprecaution + ", user_id=" + user_id + ", heart=" + heart + ", rsum=" + rsum
+				+ ", rcount=" + rcount + ", f_create_date=" + f_create_date + ", f_status=" + f_status
+				+ ", originalFileName=" + originalFileName + ", renameFileName=" + renameFileName + ", introduce="
+				+ introduce + ", maxMember=" + maxMember + ", rank=" + rank + ", hid=" + hid + "]";
 	}
+
 }
