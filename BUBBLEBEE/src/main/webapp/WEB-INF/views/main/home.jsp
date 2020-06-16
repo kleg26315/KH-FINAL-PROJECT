@@ -239,7 +239,7 @@
 <body>
 	
 	<header id="header">
-	  <c:import url="layout/header.jsp"/>
+	  <c:import url="../layout/header.jsp"/>
    	</header>
 
 	<section style="padding-top: 115px; padding-left: 20%; width: 78%;" id="section">
@@ -597,7 +597,7 @@
 		
 		</script>
 	<footer id="footer" style="padding-top: 115px;">
-		<%@ include file = "layout/footer.jsp" %>
+		<%@ include file = "../layout/footer.jsp" %>
 	</footer>
    
 </body>
