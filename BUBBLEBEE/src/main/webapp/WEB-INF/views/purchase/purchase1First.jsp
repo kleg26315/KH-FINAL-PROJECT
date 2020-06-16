@@ -139,7 +139,7 @@
 				<div class = "mInfo">
 					<h3 class = "mInfoH">마일리지</h3>
 					<h3 class = "mInfoH" style = "color : gray; margin-left : 20px; font-weight : 200;">보유</h3>
-					<input class = "mInfoHI" id = "IH1" type = "text"  value = "100000" readonly/>
+					<input class = "mInfoHI" id = "IH1" type = "text"  value = "1000000000" readonly/>
 					<h3 class = "mInfoH1" style = "margin-top : 12px;">
 						<input class = "mInfoH1I" id = "IH1I1" type = "text" placeholder = "사용 마일리지 " maxlength = "8" style = "border : 1px solid gray; text-align : right; margin-right : 24px; outline : none; border-radius : 2px 2px;"  onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" >
 						<input class = "mInfoH1B" id = "IH1B1" type = "button" value = "전체 사용" style = "outline : none;">

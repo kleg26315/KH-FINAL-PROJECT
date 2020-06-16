@@ -53,6 +53,7 @@
 	</resultMap>
 	
 	
+	
 	<select id = "selectProduct" resultMap = "PBoardResultSet">
 		select *
 		from board
