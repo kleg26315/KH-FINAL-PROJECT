@@ -12,4 +12,5 @@
 		set profile = #{profile}
 		where user_id= #{id}
 	</update>
+	
 </mapper>

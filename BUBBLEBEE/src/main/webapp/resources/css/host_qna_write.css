@@ -1,0 +1,82 @@
+@charset "UTF-8";
+#all_wrap{margin:20px 100px;}
+#qna_wrap{display: flex;justify-content: space-between;align-items: center;}
+#qna_text{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 22px;
+	font-weight: bolder;}
+#s_text{font-size: 13px;font-weight: normal;}
+textarea{
+width: 100%;
+    height: 100%;
+    margin-top: 30px;
+    min-height: 275px;
+    resize: none;
+    outline: none;
+    border: none;
+}
+textarea::placeholder{
+	color: lightgray;
+}
+#sec_wrap{display: flex;align-items: center;align-content: center;}
+#sec_wrap input{margin: 0;}
+#sec_wrap:hover{cursor: pointer;}
+#enrollBtn_wrap{
+	width: 100%;
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+}
+.notext{
+	width: 290px;
+    height: 50px;
+    line-height: normal;
+    background-color: rgb(221, 221, 221);
+    text-align: center;
+    cursor: not-allowed;
+    color: white;
+    font-size: 13px;
+    padding: 0px 13px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+.notext:hover{
+    cursor: not-allowed;
+}
+.text{
+    width: 290px;
+    height: 50px;
+    line-height: normal;
+    background-color: #F39C12;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    font-size: 13px;
+    padding: 0px 13px;
+    border-radius: 5px;
+}
+.text:hover{
+    cursor: pointer;
+}
+input[id="secret"]{display: none;}
+input[id="secret"] + label{
+	width: 18px;
+	height: 18px;
+	border: 1px solid #F39C12;
+	border-radius:5px;
+	cursor: pointer;
+	margin-bottom: 0;
+	margin-right: 5px;
+}
+input[id="secret"]:checked + label{
+	width: 18px;
+	height: 18px;
+	border: 1px solid #F39C12;
+	background: url("../img/checked.png") center/10px no-repeat;
+	background-color: #F39C12;
+	border-radius:5px;
+	cursor: pointer;
+	margin-bottom: 0;
+	margin-right: 5px;
+}
