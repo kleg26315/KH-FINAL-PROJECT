@@ -27,4 +27,9 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping("home.do")
+	public String homeView() {
+		return "home";
+	}
+	
 }
