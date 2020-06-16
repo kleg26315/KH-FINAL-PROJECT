@@ -39,12 +39,23 @@
 /* 슬라이드css끝 */
 
 /* 인기 있는 카테고리 css */
+.tpopular{
+	margin: 0 auto;
+	text-align: center;
+	/* width: 80%; */
+}
+#tpopular1{
+	width: 80%;
+}
+#tpopular2{
+	width: 100%
+}
 .c_popular {
 	width: 110px;
     height: 110px;
     border-radius: 80px;
-    margin-right: 35px;
-    margin-left: 10px;
+    /* margin-right: 35px;
+    margin-left: 10px; */
 }
 .c_label{
     font-size: 15px;
@@ -226,6 +237,7 @@
 }
 </style>
 <body>
+	
 	<header id="header">
 	  <c:import url="layout/header.jsp"/>
    	</header>
@@ -288,73 +300,41 @@
 	   <div id="popular">
 	   		<p style="font-weight: bold; font-size: 20px;">인기 있는 카테고리</p><br>
 	   		
-	   		<img id="firstCg" class="c_popular" src="${contextPath }/resources/img/cos-banner1.png" />
-	   		<img id="secondCg" class="c_popular" src="${contextPath }/resources/img/cos-banner2.png" />
-	   		<img id="thirdCg" class="c_popular" src="${contextPath }/resources/img/cos-banner3.png" />
-	   		<img id="fourthCg" class="c_popular" src="${contextPath }/resources/img/cos-banner1.png" />
-	   		<img id="fifthCg" class="c_popular"  src="${contextPath }/resources/img/cos-banner2.png" />
-	   		<img id="sixthCg" class="c_popular"  src="${contextPath }/resources/img/cos-banner3.png" />
-	   		<img id="seventhCg" class="c_popular" src="${contextPath }/resources/img/cos-banner1.png" />
-	   		
+	   		<table class="tpopular" id="tpopular1">
+	   			<tr>
+	   				<td><img id="firstCg" class="c_popular" src="${contextPath }/resources/img/토크.jpg"/><br>토크/파티</td>
+	   				<td><img id="secondCg" class="c_popular" src="${contextPath }/resources/img/취미.jpg"/><br>취향</td>
+	   				<td><img id="thirdCg" class="c_popular" src="${contextPath }/resources/img/스터디.jpg" /><br>스터디</td>
+	   				<td><img id="fourthCg" class="c_popular" src="${contextPath }/resources/img/이벤트.jpg" /><br>이벤트/공간</td>
+	   			</tr>
+			</table><br><br>
+			<table class="tpopular" id="tpopular2">	
+				<tr>
+					<td><img id="fifthCg" class="c_popular"  src="${contextPath }/resources/img/공예.jpg" /><br>공예/DIY</td>
+					<td><img id="sixthCg" class="c_popular"  src="${contextPath }/resources/img/요리.jpg" /><br>요리</td>
+					<td><img id="seventhCg" class="c_popular" src="${contextPath }/resources/img/스포츠.jpg" /><br>스포츠</td>
+					<td><img id="eightthCg" class="c_popular" src="${contextPath }/resources/img/취업.jpg" /><br>어학/취업</td>
+					<td><img id="ninthCg" class="c_popular" src="${contextPath }/resources/img/작품.jpg" /><br>작품</td>
+				</tr>
+	   		</table>
 	   		<br>
 	   		<br>
-	   		
-	   		<div>
-		   		<label class="c_label">베이킹</label>
-		   		<label class="c_label">모임</label>
-		   		<label class="c_label">아웃도어</label>
-		   		<label class="c_label">스파</label>
-		   		<label class="c_label">제주도</label>
-		   		<label class="c_label">DIY</label>
-		   		<label class="c_label">요가</label>
-	   		</div>
 	   </div>
 	   <br>
 	   <br>
 	   
-	   <!-- 매거진 -->
-	   <div id="magazine">
-	   		<label style="font-weight: bold; font-size: 20px;">매거진</label>
-	   		<label style="float: right; padding-right: 5px;">전체보기</label>
+	   <!-- 가까운 모임 -->
+	   <div>
+	   		<label style="font-weight: bold; font-size: 20px;">내 주변 모임</label>
 	   		<br><br>
-	   		<div class="m_total">
-		   		<div class="m_middle">
-			   		<a>
-				   		<div class="m_box">
-							<img id="" class="m_post" src="${contextPath }/resources/img/main.png" />
-							<div class="m_title">
-								<div class="m_bigTitle">이제 운동할 때 됐잖아</div>
-								<div>[FripXDIVE] 특별한 스포츠 프립</div>
-							</div>
-						</div>
-			   		</a>
-	   			</div>
-				<div class="m_middle">
-			   		<a>
-				   		<div class="m_box">
-							<img id="" class="m_post" src="${contextPath }/resources/img/cos-banner1.png" />
-							<div class="m_title">
-								<div class="m_bigTitle">가족을 이해하는 가장 좋은 방법방법 방법 방법 방법</div>
-								<div>[FripXDIVE] 특별한 스포츠 프립</div>
-							</div>
-						</div>
-			   		</a>
-	   			</div><div class="m_middleLast">
-			   		<a>
-				   		<div class="m_box">
-							<img id="" class="m_post" src="${contextPath }/resources/img/cos-banner1.png" />
-							<div class="m_title">
-								<div class="m_bigTitle">이제 운동할 때 됐잖아</div>
-								<div>[FripXDIVE] 특별한 스포츠 프립</div>
-							</div>
-						</div>
-			   		</a>
-	   			</div>
-			</div>
+	   		<div id="map" style="width:100%; height: 350px;"></div>
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27cfa1d7725d616c3b4f7135fba99e8e"></script>
 	   </div>
+	   
 	   <br>
 	   <br>
 	   <br>
+	   
 	   <!-- 지금 뜨는 모임 -->
 	   <div>
 	   	<label style="font-weight: bold; font-size: 20px;">지금 뜨는 모임</label>
@@ -566,7 +546,56 @@
 	   </div>
 	   
 	</section>
-	
+	<script>
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			    mapOption = { 
+			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			        level: 7 // 지도의 확대 레벨 
+			    }; 
+			
+			var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+			
+			// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+			if (navigator.geolocation) {
+			    
+			    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+			    navigator.geolocation.getCurrentPosition(function(position) {
+			        
+			        var lat = position.coords.latitude, // 위도
+			            lon = position.coords.longitude; // 경도
+			        
+			        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+			            message = '<div style="padding:5px;">현재 위치</div>'; // 인포윈도우에 표시될 내용입니다
+			        // 마커와 인포윈도우를 표시합니다
+			        displayMarker(locPosition, message);
+			            
+			      });
+			    
+			} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+			    
+			    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
+			        message = 'geolocation을 사용할수 없어요..'
+			    displayMarker(locPosition, message);
+			}
+			
+			// 지도에 마커와 인포윈도우를 표시하는 함수입니다
+			function displayMarker(locPosition, message) {
+			
+			    // 마커를 생성합니다
+			    var marker = new kakao.maps.Marker({  
+			        map: map, 
+			        position: locPosition
+			    }); 
+			    
+			    // 지도 중심좌표를 접속위치로 변경합니다
+			    map.setCenter(locPosition);   
+			}    
+		</script>
+		
+		<script>
+		
+		
+		</script>
 	<footer id="footer" style="padding-top: 115px;">
 		<%@ include file = "layout/footer.jsp" %>
 	</footer>
