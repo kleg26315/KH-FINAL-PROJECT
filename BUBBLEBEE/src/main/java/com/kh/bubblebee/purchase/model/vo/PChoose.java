@@ -7,10 +7,10 @@ public class PChoose {
 	private String ono;
 	private String oname;
 	private String price;
-	private int ocount;
+	private String ocount;
 	private int fno;
 	private Date odeadline;
-	public PChoose(String ono, String oname, String price, int ocount, int fno, Date odeadline) {
+	public PChoose(String ono, String oname, String price, String ocount, int fno, Date odeadline) {
 		super();
 		this.ono = ono;
 		this.oname = oname;
@@ -37,10 +37,10 @@ public class PChoose {
 	public void setPrice(String price) {
 		this.price = price;
 	}
-	public int getOcount() {
+	public String getOcount() {
 		return ocount;
 	}
-	public void setOcount(int ocount) {
+	public void setOcount(String ocount) {
 		this.ocount = ocount;
 	}
 	public int getFno() {
