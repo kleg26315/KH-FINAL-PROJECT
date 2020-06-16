@@ -37,7 +37,7 @@
 					<label for="where">x</label><br><br>
 					<hr>
 					
-					<div class="tab_content" style="overflow-y:scroll; width:400px; height:380px;">
+					<div class="tab_content_find" style="overflow-y:scroll; width:400px; height:380px;">
 
 						<!-- 버튼요소 -->
 						<input type="radio" name="tabmenu" id="tab01">
