@@ -92,7 +92,7 @@ public class PurchaseController {
 			Calendar thisTime = Calendar.getInstance();
 			
 			String format_time = format.format(thisTime.getTime());
-			System.out.println(format_time);
+			
 			
 			String dcode = format_time + "-" + ono + "-" + user_id;
 			
@@ -154,7 +154,6 @@ public class PurchaseController {
 		Calendar thisTime = Calendar.getInstance();
 		
 		String format_time = format.format(thisTime.getTime());
-		System.out.println(format_time);
 		
 		String dcode = format_time + "-" + ono + "-" + user_id;
 		
@@ -179,6 +178,7 @@ public class PurchaseController {
 		
 		int gno = pService.selectGno(dcode);
 		
+		System.out.println("dcode : " + dcode + " gno : " + gno);
 		
 		if(purchaseThis1 != 0 && user_id != null) {
 			mv.addObject("gname", gname);

@@ -191,17 +191,20 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" id="op" class="op" name="oname" placeholder="옵션명"  value="참가비 (1인)"  maxlength="30" required> 
+								<!-- <input type="text" id="op" class="op" name="oname" placeholder="옵션명"  value="참가비 (1인)"  maxlength="30" required> --> 
+								<input type="text" id="op" class="op" name="oname" placeholder="옵션명"  maxlength="30" required>
 							</td>
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" id="op2" class="op2" name="price" placeholder="가격(5000원 이상)"  value="5000" required>원
+								<!--  <input type="text" id="op2" class="op2" name="price" placeholder="가격(5000원 이상)"  value="5000" required>원 -->
+								<input type="text" id="op2" class="op2" name="price" placeholder="가격(5000원 이상)"   required>
 							</td>
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" id="op3" class="op3" name="ocount" placeholder="수량(재고)"  value="14명" required>
+								<!-- <input type="text" id="op3" class="op3" name="ocount" placeholder="수량(재고)"  value="14명" required> -->
+								<input type="text" id="op3" class="op3" name="ocount" placeholder="수량(재고)" required onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 							</td>
 						</tr>
 						<tr>	
