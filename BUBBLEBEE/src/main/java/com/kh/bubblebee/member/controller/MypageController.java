@@ -173,4 +173,7 @@ public class MypageController {
 		public String hostenrollForm() {
 			return "hostenrollForm";
 		}
+		
+	
+		
 }

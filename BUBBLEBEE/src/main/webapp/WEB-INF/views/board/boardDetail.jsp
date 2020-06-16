@@ -119,9 +119,12 @@
 					<!-- 호스트 소개 -->
 					<div class="hashTagHostInfo">${ host.introduction }</div>
 					<!-- 호스트 프로필 보기 버튼 -->
+					<form action="hostProfile.ho" method="post">
 					<div class="hashTagHostInfoIn">
-						<input class="hashTagHostInfoInBtn" type="button" value="호스트 프로필">
+						<input class="hashTagHostInfoInBtn" type="submit" value="호스트 프로필">
+						<input type="hidden" value="${host.member.id }" name="hostId">
 					</div>
+					</form>
 					<div style="float: left; width: 100%; height: 20px;">
 						<hr style="border: 0.5px solid lightgray">
 					</div>
@@ -144,11 +147,13 @@
 						<img class="hashTagHostImageContent"
 							src="<%=request.getContextPath()%>/resources/images/석천과친구들.png">
 					</div>
+					<form action="hostReview.ho" method="post">
 					<div class="hashTagHostReviewInfo">
-						<input class="hashTagHostInfoInBtn" type="button"
+						<input class="hashTagHostInfoInBtn" type="submit"
 							value="1818개 후기 모두 보기">
+							<input type="hidden" value="${host.member.id }" name="hostId">
 					</div>
-
+					</form>
 					<div style="float: left; width: 100%; height: 20px;">
 						<hr style="border: 0.5px solid lightgray">
 					</div>
@@ -234,11 +239,14 @@
 					<div style="float: left; width: 100%; height: 20px; margin-top: -18px;">
 						<hr style="border: 0.5px solid lightgray">
 					</div>
-
+					
+					<form action="hostQnA.ho" method="post">
 					<div class="hashTagEnquiry">
-						문의하기 <input class="hashTagEnquiryBtn" type="button" value=">">
+						문의하기 <input class="hashTagEnquiryBtn" type="submit" value=">">
+						<input type="hidden" name="fno" value="${b.fno }">
 					</div>
-
+					</form>
+					
 					<div
 						style="float: left; width: 100%; height: 20px; margin-top: -10px;">
 						<hr style="border: 0.5px solid lightgray">
@@ -270,7 +278,7 @@
 				</h3>
 				<br> <select id="optionSelect" style="outline: none;" name = "oNo">
 					<c:forEach var = "pu" items = "${p }" varStatus = "index">
-						<option selected value = "${pu.ono }">${ pu.oname }</option>
+						<option selected value = "${pu.ono }">${ pu.oname } ${pu.price}원</option>
 					</c:forEach>
 					
 				</select> <br> 

@@ -2,6 +2,8 @@ package com.kh.bubblebee.board.model.vo;
 
 import java.sql.Date;
 
+import com.kh.bubblebee.member.model.vo.Member;
+
 public class Review {
 	
 	private int qno; //후기번호
@@ -13,11 +15,13 @@ public class Review {
 	private String user_id; //작성자
 	private String secret_yn; //비밀여부
 	private int grade; //평점
+	private int qtype; //게시판 타입 1.후기 2.QnA
+	private Member member;
 	
 	public Review() {}
 
 	public Review(int qno, String qcontent, Date q_create_date, Date q_modify_date, String q_status, int ref_fid,
-			String user_id, String secret_yn, int grade) {
+			String user_id, String secret_yn, int grade,int qtype,Member member) {
 		super();
 		this.qno = qno;
 		this.qcontent = qcontent;
@@ -28,6 +32,8 @@ public class Review {
 		this.user_id = user_id;
 		this.secret_yn = secret_yn;
 		this.grade = grade;
+		this.qtype=qtype;
+		this.member=member;
 	}
 
 	public int getQno() {
@@ -102,15 +108,28 @@ public class Review {
 		this.grade = grade;
 	}
 
+	public int getQtype() {
+		return qtype;
+	}
+
+	public void setQtype(int qtype) {
+		this.qtype = qtype;
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
 	@Override
 	public String toString() {
 		return "Review [qno=" + qno + ", qcontent=" + qcontent + ", q_create_date=" + q_create_date + ", q_modify_date="
 				+ q_modify_date + ", q_status=" + q_status + ", ref_fid=" + ref_fid + ", user_id=" + user_id
-				+ ", secret_yn=" + secret_yn + ", grade=" + grade + "]";
+				+ ", secret_yn=" + secret_yn + ", grade=" + grade + ", qtype=" + qtype + ", member=" + member + "]";
 	}
-	
-	
-	
-	
 
+	
 }

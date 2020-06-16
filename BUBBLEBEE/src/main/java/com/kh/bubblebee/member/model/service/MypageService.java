@@ -12,4 +12,5 @@ public interface MypageService {
 	// 프로필 바꾸기
 	int updateprofile(HashMap<String, String> map);
 	
+	
 }
