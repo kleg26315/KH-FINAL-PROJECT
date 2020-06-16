@@ -28,14 +28,7 @@
 		<result property = "introduce" column = "INTRODUCE"/>
 		<result property = "maxmember" column = "MAXMEMBER"/>
 	</resultMap>
-	
-	<resultMap type = "PSList" id = "PSListResultSet">
-		<id property = "tno" column = "TNO"/>
-		<result property = "ono" column = "ono"/>
-		<result property = "user_id" column = "USER_ID"/>
-		<result property = "tcount" column = "TCOUNT"/>
-	</resultMap>
-	
+		
 	<resultMap type = "Purchase" id = "PurchaseResultSet">
 		<id property = "gno" column ="GNO"/>
 		<result property = "gname" column = "GNAME"/>
@@ -46,6 +39,8 @@
 		<result property = "ocount" column = "OCOUNT"/>
 		<result property = "user_id" column = "USER_ID"/>
 		<result property = "ono" column = "ONO"/>
+		<result property = "discount" column = "DISCOUNT"/>
+		<result property = "dcode" column = "DCODE"/>
 	</resultMap>
 	
 	<resultMap type = "PChoose" id = "ChooseResultSet">
@@ -54,6 +49,7 @@
 		<result property = "price" column = "PRICE"/>
 		<result property = "ocount" column = "OCOUNT"/>
 		<result property = "fno" column = "FNO"/>
+		<result property = "odeadline" column = "ODEADLINE"/>
 	</resultMap>
 	
 	
@@ -63,7 +59,7 @@
 		where fno = #{fno}
 	</select>	
 	
-	<select id = "selectSList" resultMap = "PSListResultSet">
+	<select id = "selectSList" resultMap = "ChooseResultSet">
 		select *
 		from choose
 		where ono = #{ono}
@@ -73,7 +69,7 @@
 		insert into buying
 		values(SEQ_BUYING.nextval, #{gname},
 		#{gphone}, #{gaddress}, #{gmsg}, #{user_id},
-		#{ono}, #{ocount}, #{gpay}
+		#{ono}, #{ocount}, #{gpay}, #{dcode}
 		)
 	</insert>
 
@@ -98,6 +94,38 @@
 	</select>
 	
 	<select id = "selectPBoard" resultMap = "PBoardResultSet">
+		select *
+		from board
+		where fno = #{fno}
+	</select>
+	
+	<insert id = "purchaseThis2">
+		insert into buying
+		values(SEQ_BUYING.nextval, #{gname},
+		#{gphone}, #{gaddress}, #{gmsg}, #{user_id},
+		#{ono}, #{ocount}, #{gpay} , #{dcode}
+		)
+	</insert>
+	
+	<select id = "selectGno" resultType="_int">
+		select gno
+		from buying
+		where dcode = #{dcode}
+	</select>
+	
+	<select id = "selectPurchase2" resultMap = "PurchaseResultSet">
+		select *
+		from buying
+		where gno = #{gno}
+	</select>
+	
+	<select id = "selectPChoose2" resultMap = "ChooseResultSet">
+		select *
+		from choose
+		where ono = #{ono}
+	</select>
+	
+	<select id = "selectBPBoard2" resultMap = "PBoardResultSet">
 		select *
 		from board
 		where fno = #{fno}
