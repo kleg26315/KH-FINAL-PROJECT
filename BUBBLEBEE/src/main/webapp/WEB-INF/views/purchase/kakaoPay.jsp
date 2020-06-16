@@ -1,16 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	String rName = request.getParameter("rName");
-	String rAddress = request.getParameter("rAddress");
-	String rPhone = request.getParameter("rPhone");
-	int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
-	String rMessage = request.getParameter("rMessage");
-	int no = 1;
-	String dId = "kakaopay";
-	/* int no = Integer.parseInt(request.getParameter("no"));
-	String dID = request.getParameter("dID"); */
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +12,15 @@
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
+<form id="kakao" action="kakaoPayConfirm.pu" method = "post">
+	<input type = "text" style = "display : none" name = "gno" value = "${gno}">
+	<input type = "text" style = "display : none" name = "ono" value = "${ono }">
+	<input type = "text" style = "display : none" name = "fno" value = "${fno }">
+</form>
+
 	<script>
+	console.log(${p.gaddress});
+	console.log(${p.gpay});
     $(function(){
         var IMP = window.IMP; // 생략가능
         IMP.init('imp61847064'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -33,13 +31,13 @@
             pay_method : 'card',
             merchant_uid : 'merchant_' + new Date().getTime(),
             name : 'BUBBLEBEE 펀딩 결제 ',
-            amount : <%=totalPrice%>,
-            buyer_address :'<%=rAddress%>',
-            buyer_name : '<%=rName%>',
-            buyer_tel : '<%=rPhone%>',
-            buyer_message : '<%=rMessage%>',
-            buyer_postcode : '123-456',
-            //m_redirect_url : //'http://www.naver.com'
+            amount : ${gpay},
+            buyer_address :'${gaddress}',
+            buyer_name : '${gname}',
+            buyer_tel : '${gphone}',
+            buyer_message : '${gmsg}',
+            buyer_postcode : '123-456'
+            //m_redirect_url : 'http://www.naver.com'
         }, function(rsp) {
             if ( rsp.success ) {
                 //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
@@ -67,7 +65,7 @@
                 });
                 //성공시 이동할 페이지
                 msg = '결제에 성공하였습니다.';
-                location.href='PurchaseHistory.jsp';
+                $('#kakao').submit();
                 
             } else {
                 msg = '결제에 실패하였습니다.';

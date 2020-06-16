@@ -101,6 +101,7 @@
 						<input name = "gaddress1" class = "postcodify_postcode5 mInputQI" id = "IQI2" type = "text" placeholder = " 배송지를 입력해 주세요" name = "rAddress1" readonly style = "border : 1px solid gray; font-size : 14pt; border-radius : 2px 2px; margin-top : 4px;">
 						<input name = "gaddress2" class = "postcodify_address mInputQI" id = "IQI21" type = "text" placeholder = " 기본주소" name = "rAddress2" style = "border : 1px solid gray; font-size : 14pt; border-radius : 2px 2px; margin-top : 4px;">
 						<input name = "gaddress3" class = "postcodify_details mInputQI" id = "IQI22" type = "text" placeholder = " 상세주소" name = "rAddress3" style = "border : 1px solid gray; font-size : 14pt; border-radius : 2px 2px; margin-top : 4px;">
+						<input name = "gaddress" style = "display : none" id = "GADD">
 					</h3>
 					<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 					<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
@@ -181,6 +182,16 @@
 			</form>
 		
 	<script>
+	$(".mInputQ").on("keyup", function(){
+		var iqi2 = $("#IQI2").val();
+		var iqi21 = $("#IQI21").val();
+		var iqi22 = $("#IQI22").val();
+		
+		$("#GADD").val(iqi2 + " " + iqi21 + iqi22);
+		
+		console.log($("#GADD").val());
+	});
+	
 	$('#FBDI1').on('click', function(){
 		
 		var fbdi2 = $("#FBDI2").val();
