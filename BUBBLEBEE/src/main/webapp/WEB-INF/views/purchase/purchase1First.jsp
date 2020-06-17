@@ -25,20 +25,21 @@
 				<div class = "mFont">	
 					결제
 				</div>
-				<c:forEach var = "pu" items = "${plist }" varStatus = "status">	
+				<c:forEach var = "plist" items = "${plist }" varStatus = "status">	
 				<div style = "float:left; width : 100%;">
 					<hr id = "submitFormSectionMainDH" style = "margin-top : 20px;">
 				</div>
 				<div class = "mPhoto">
-					<img class="logoImg" src="../resources/images/4.jpg" name = "rImg">
+					<!-- <img class="logoImg" src="../resources/images/4.jpg" name = "rImg"> -->
+					 <img id="" width="100%" height="200" class="logoImg" src="${contextPath }/resources/buploadFiles/${ plist.renamefilename }" />
 				</div>
 				<div class = "mProfile">
 					<div class = "mProfileT1">
-						<input class = "mProfileT11" name = "rIntro"  value = "${ pu.small_title }" readonly>
-						<input type = "text" style = "display : none" value = "${ pu.fno }" name = "fno">	
+						<input class = "mProfileT11" name = "rIntro"  value = "${ plist.small_title }" readonly>
+						<input type = "text" style = "display : none" value = "${ plist.fno }" name = "fno">	
 					</div>
 					<div class = "mProfileT2">
-						<input class = "mProfileT21" name = "rTitle" value = "${ pu.ftitle }" readonly >
+						<input class = "mProfileT21" name = "rTitle" value = "${ plist.ftitle }" readonly >
 					</div>
 					<div class = "mProfileT3">
 						<input class = "mProfileT31" id = "PT31" name = "rCost" readonly >
@@ -50,9 +51,9 @@
 					<hr id = "submitFormSectionMainDH">
 				</div>
 				<div class = "mOption">
-					<c:forEach var = "pu2" items = "${pslist }" varStatus = "status">
+					<c:forEach var = "pslist" items = "${pslist }" varStatus = "status">
 						<!-- input -->
-						<input type = "text" style = "display : none;" id = "P1" value = "${pu2.price }">
+						<input type = "text" style = "display : none;" id = "P1" value = "${pslist.price }">
 						<script>
 							var p1 = $("#P1").val();
 							$("#PT31").val(p1 + " 원");	
@@ -60,17 +61,17 @@
 						<!-- input -->
 						<div class = "mOptionO">
 							<h3 class = "mOptionO1">선택한 옵션</h3>
-							<input name = "oname" class = "mOptionO2" name = "rTitleDetail" value = "${ pu2.oname }" readonly>
-							<input name = "ono" style = "display : none" value = "${pu2.ono }" >
+							<input name = "oname" class = "mOptionO2" name = "rTitleDetail" value = "${ pslist.oname }" readonly>
+							<input name = "ono" style = "display : none" value = "${pslist.ono }" >
 						</div>
 						<div class = "mOptionP">
 							<h3 class = "mOptionP1">수량</h3>	
-							<input name = "ocount"class = "mOptionP2" name = "rCount" value = "${ pu2.ocount }" readonly id = "OP2">개
+							<input name = "ocount"class = "mOptionP2" name = "rCount" value = "${ ocount }" readonly id = "OP2">개
 						</div>
 						<div class = "mOptionS">
 							<h3 class = "mOptionS1">옵션합계</h3>
 							<h3 class = "mOptionS2" style = "float : right;">
-								<input id = "TC1" name = "rACost" type = "text" value = "${ pu2.price * pu2.ocount }"readonly>원
+								<input id = "TC1" name = "rACost" type = "text" value = "${ pslist.price * ocount }"readonly>원
 							</h3>
 						</div>
 					</c:forEach>
@@ -139,7 +140,7 @@
 				<div class = "mInfo">
 					<h3 class = "mInfoH">마일리지</h3>
 					<h3 class = "mInfoH" style = "color : gray; margin-left : 20px; font-weight : 200;">보유</h3>
-					<input class = "mInfoHI" id = "IH1" type = "text"  value = "1000000000" readonly/>
+					<input class = "mInfoHI" id = "IH1" type = "text"  value = "${ pcost.p_money }" readonly/>
 					<h3 class = "mInfoH1" style = "margin-top : 12px;">
 						<input class = "mInfoH1I" id = "IH1I1" type = "text" placeholder = "사용 마일리지 " maxlength = "8" style = "border : 1px solid gray; text-align : right; margin-right : 24px; outline : none; border-radius : 2px 2px;"  onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" >
 						<input class = "mInfoH1B" id = "IH1B1" type = "button" value = "전체 사용" style = "outline : none;">

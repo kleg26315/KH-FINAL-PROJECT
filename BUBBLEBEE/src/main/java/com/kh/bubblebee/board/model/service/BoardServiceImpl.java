@@ -104,4 +104,9 @@ public class BoardServiceImpl implements BoardService {
 		return bDAO.selectwList(sqlSession, cate);
 	}
 
+	@Override
+	public ArrayList<Board> markLocation() {
+		return bDAO.markLocation(sqlSession);
+	}
+
 }

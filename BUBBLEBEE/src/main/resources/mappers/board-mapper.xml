@@ -123,4 +123,8 @@
 		where category=#{cate}
 	</select>
 	
+	<select id="makrLocation" resultType="Board">
+		select *
+		from board
+	</select>
 </mapper>

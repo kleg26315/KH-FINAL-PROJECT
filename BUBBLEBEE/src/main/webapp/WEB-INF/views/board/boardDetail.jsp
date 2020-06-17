@@ -79,13 +79,14 @@
 			<div class="home__slider" style="float: left; width: 100%;">
 				<div class="bxslider" id="detailImages">
 				<c:set var="renameFileName" value="${ b.renameFileName }" />
-					renameFileName : ${ renameFileName }
+					<!-- renameFileName : ${ renameFileName }  -->
 					<c:set var="renameFileNameArr" value="${ renameFileName.split(',') }"/>
-					${ renameFileNameArr[1] }
-					<c:forEach var="i" begin="0" end="3">
-						<div>
-							<%-- <img src="<%=request.getContextPath() %>/src/main/webapp/resources\buploadFiles\${ renameFileNameArr[i] }" class="hospitalImage"> --%>
-							<img src="/Users/hansolkim/git/KH-FINAL-PROJECT/BUBBLEBEE/src/main/webapp/resources\buploadFiles\20200610165932(0).jpeg" class="hospitalImage">
+					<!-- ${ renameFileNameArr[1] }  -->
+					<c:forEach var="i" begin="0" end="${fn:length(renameFileNameArr)-1}">
+						<div id = "img" >
+							<!-- <img src="<%=request.getContextPath() %>/src/main/webapp/resources\buploadFiles\${ renameFileNameArr[i] }" class="hospitalImage"> -->
+							<!-- <img src="/Users/hansolkim/git/KH-FINAL-PROJECT/BUBBLEBEE/src/main/webapp/resources\buploadFiles\20200610165932(0).jpeg" class="hospitalImage"> -->
+							<img src = "${contextPath }/resources/buploadFiles/${ renameFileNameArr[i] }"/>
 						</div>
 					</c:forEach>
 				</div>
@@ -145,7 +146,7 @@
 					</div>
 					<div class="hashTagHostReviewImage">
 						<img class="hashTagHostImageContent"
-							src="<%=request.getContextPath()%>/resources/images/석천과친구들.png">
+							src="">
 					</div>
 					<form action="hostReview.ho" method="post">
 					<div class="hashTagHostReviewInfo">
@@ -159,7 +160,7 @@
 					</div>
 
 					<div class="hashTagIntoduce">클래스 소개</div>
-					<div class="hashTagIntroduceContent">${ b.introduce }</div>
+					<div class="hashTagIntroduceContent" style = "background-color : white;">${ b.introduce }</div>
 
 					<div style="float: left; width: 100%; height: 20px;">
 						<hr style="border: 0.5px solid lightgray">
@@ -244,6 +245,7 @@
 					<div class="hashTagEnquiry">
 						문의하기 <input class="hashTagEnquiryBtn" type="submit" value=">">
 						<input type="hidden" name="fno" value="${b.fno }">
+						<input type="hidden" value="${host.member.id }" name="hostId">
 					</div>
 					</form>
 					
@@ -273,18 +275,59 @@
 		<form action = "purchase1First.pu" method = "post">
 			<input type = "text" style = "display : none" value = "${b.fno }" name = "fNo">
 			<div id="detailMainForm2" class="detailMainForm">
-				<h3>
-					<b>옵션 선택</b>
+				<h3 style = "font-size : 16pt; font-weight : 600; margin-left : 1%;">
+					옵션 선택
 				</h3>
-				<br> <select id="optionSelect" style="outline: none;" name = "oNo">
-					<c:forEach var = "pu" items = "${p }" varStatus = "index">
-						<option selected value = "${pu.ono }">${ pu.oname } ${pu.price}원</option>
-					</c:forEach>
+				<br> 
+				
+<!-- 				<select id="optionSelect" style="outline: none;" name = "oNo"> -->
+<%-- 					<c:forEach var = "pu" items = "${p }" varStatus = "index"> --%>
+<%-- 						<option selected value = "${pu.ono }">${ pu.oname } ${pu.price}원       재고 : ${pu.ocount }개</option> --%>
+<%-- 					</c:forEach> --%>
 					
-				</select> <br> 
-				<input type="submit" value = "장바구니에 담기" style = "width : 160px; height: 40px; margin-top : 70%; background-color : lightgray; border:none; border-radius : 2px 2px; ">
-				<input type="submit" value="참가하기"
-					style="width: 160px; height: 40px; margin-top: 70%; background-color: gold; border: none; border-radius: 2px 2px; ">
+<!-- 				</select>  -->
+					
+						<hr style = "margin-top : 6px;">
+						<div id = "DIV" style = "background-color : white; height : 80px; width : 100%; margin-top : -20px; cursor : pointer;"  >
+							<input type = "button" value = "    기본 옵션                                                                         ∨" 
+							style = "border : none; background-color : white; outline:none; width : 100%;  height: 40px; font-weight : 600; color : gray; margin-top : 20px;" readonly>
+						</div>
+						<hr style = "margin-top : 0px;">
+						<c:forEach var = "pu" items = "${ p }" varStatus = "index">
+						
+						<div class = "CLK" style = "float : left; width : 100%; background-color : rgb(249, 249, 249); margin-top : -20px; height : 94px; cursor : pointer;" id = "${ pu.ono }" >
+							<div style = "margin-top : 2px;">
+								<div style = "font-weight : 600; margin-left : 4%; margin-top : 16px;">
+									${pu.oname }
+								</div>
+								<div style = "margin-left : 4%; width : 70%; float: left; margin-top : 16px; font-size : 10pt; color : rgb(85, 85, 85);">
+									남은 수량 ${pu.ocount }개
+								</div>
+								<div style = "margin-left : 4%; width : 22%; float: left; margin-top : 16px; font-weight : 900;">
+									${pu.price }원
+								</div>
+								<input id = "ONA" type = "text" style = "display : none" value = "${pu.oname }">
+								<input id = "OCO" type = "text" style = "display : none" value = "${pu.ocount }">
+								<input id = "PRI" type = "text" style = "display : none" value = "${pu.price }">
+								<input id = "ONO" type = "text" style = "display : none" value = "${ pu.ono }" name = "oNo">
+							</div>
+							<div style = "margin-top : 57px;">
+								<hr>
+							</div>
+						</div>					
+					</c:forEach>
+					<div id = "CON" style = " float : left; width : 100%; height : 40px; height : 100px; border-radius : 4px 4px; border : 1px solid rgb(238, 238, 238);">
+						
+					</div>
+				<br> 
+				<div>
+				<input type="submit" value = "장바구니에 담기" 
+				style = "width : 310px;; height: 40px; margin-top : 100%; background-color : rgb(249, 249, 249); border:none; border-radius : 2px 2px; ">
+				</div>
+				<div style = "margin-top : 4px;">
+				<input type="submit" value="참가하기" 
+				style="width : 310px; height: 40px;  background-color: gold; border: none; ">
+				</div>
 			</div>
 		</form>
 		<div class="recommendation">
@@ -356,8 +399,105 @@
 				    console.log(message);
 				}
 			});
+		</script>
+		
+		<script>
+	// 		var CONT = $('<div id = "CONT">');
+			var CONT1 = $("<div>")
+			var CONT2 = $("<div>")
+			var CONT3 = $("<div>")
+			var MID = $('<input type = "text" readonly style = "border:none; outline:none; height : 15px; width : 15px;" id ="MID" value = "1" name = "ocount">');
+			var BTN1 = $('<div style = "width : 20px; height : 20px; border-radius : 10px 10px; border : 1px solid gray; cursor : pointer;" >')
+			var BTN2 = $('<div style = "width : 20px; height : 20px; border-radius : 10px 10px; border : 1px solid gray; cursor : pointer;" >')
+			var BTN1V = $('<div style = "float : left; cursor : pointer;" id = "MIN1">')
+			var BTN2V = $('<div style = "float : left; cursor : pointer;" id = "ADD1">')
 			
+			var ona = $("#ONA").val();
+			var oco = $("#OCO").val()*1;
+			var pri = $("#PRI").val();
+			var ono = $("#ONO").val();
 			
+			$(".CLK").hide();
+			$("#CON").hide();
+			
+			$("#DIV").on("click", function(){
+				$(".CLK").toggle();
+			})
+			
+			$(".CLK").on("click", function(){
+				$(".CLK").hide();
+				$("#CON").show();
+				
+				MID.val(1);
+				
+				CONT1.text(ona);
+				CONT1.css('font-weight', '600');
+				CONT1.css('margin-left' , '4%');
+				CONT1.css('margin-top', '16px');
+				
+				CONT2.text(pri + "원");
+				CONT2.css('margin-left', '4%');
+				CONT2.css('width', '70%');
+				CONT2.css('float', 'left');
+				CONT2.css('margin-top', '16px');
+				CONT2.css('font-size', '14pt');
+				CONT2.css('color', 'gold');
+				CONT2.css('font-weight', '900');
+				
+				BTN1.css("margin-left" , "74%");
+				BTN1.css("float", "left");
+				BTN1.css("margin-top", "-20px");
+				
+				BTN1V.text(" -");
+				BTN1V.css("font-size", "24pt");
+				BTN1V.css("font-weight", "900");
+				BTN1V.css("margin-top", "-15px");
+				BTN1V.css("margin-left", "3.5px");
+				
+				BTN2.css("margin-left" , "90%");
+				BTN2.css("float", "left");
+				BTN2.css("margin-top", "-20px");
+				
+				BTN2V.text(" +");
+				BTN2V.css("font-size", "16pt");
+				BTN2V.css("font-weight", "900");
+				BTN2V.css("margin-top", "-7px");
+				BTN2V.css("margin-left", "3px");
+				
+				MID.css("margin-top" , "23px");
+				MID.css("margin-left", "8.8%");
+				
+				BTN1.append(BTN1V);
+				BTN2.append(BTN2V);
+				
+// 				CONT.append(CONT1, CONT2);
+// 				$("#CON").append(CONT);
+
+				$("#CON").append(CONT1, CONT2, BTN1, MID, BTN2);
+				$("#ADD1").on("click", function(){
+					var MIDVAL = $("#MID").val();
+					console.log(MIDVAL);
+					if($("#MID").val()*1 > 4 ){
+						$("#MID").val(5);
+					}else if( $("#MID").val()*1 >= oco){
+						$("#MID").val(oco);
+					}else{
+						$("#MID").val(MIDVAL*1 + 1);
+						CONT2.text(pri*(MIDVAL*1+1) + "원");
+					}
+				});
+				
+				$("#MIN1").on("click", function(){
+					var MIDVAL = $("#MID").val();
+					if($("#MID").val()*1 <= 1 ){
+						$("#MID").val(1);
+					}else{
+						$("#MID").val(MIDVAL*1 - 1);
+						CONT2.text(pri*(MIDVAL*1-1) + "원");
+					}
+				});
+				
+			})
 		</script>
 		
 		<footer id="footer" style="padding-top: 115px;">

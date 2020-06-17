@@ -36,7 +36,7 @@
 		<result property = "address" column = "ADDRESS"/>
 		<result property = "gmsg" column = "GMSG"/>
 		<result property = "gpay" column = "GPAY"/>
-		<result property = "ocount" column = "OCOUNT"/>
+		<result property = "ocode" column = "OCODE"/>
 		<result property = "user_id" column = "USER_ID"/>
 		<result property = "ono" column = "ONO"/>
 		<result property = "discount" column = "DISCOUNT"/>
@@ -52,7 +52,14 @@
 		<result property = "odeadline" column = "ODEADLINE"/>
 	</resultMap>
 	
-	
+	<resultMap type = "PPoint" id = "PointResultSet">
+		<id property = "pno" column = "PNO"/>
+			<result property = "p_money" column = "P_MONEY"/>
+			<result property = "p_content" column = "P_CONTENT"/>
+			<result property = "p_date" column = "P_DATE"/>
+			<result property = "p_useday" column = "P_USEDAY"/>
+			<result property = "user_id" column = "USER_ID"/>
+	</resultMap>
 	
 	<select id = "selectProduct" resultMap = "PBoardResultSet">
 		select *
@@ -130,6 +137,12 @@
 		select *
 		from board
 		where fno = #{fno}
+	</select>
+	
+	<select id = "selectPcost" resultMap = "PointResultSet">
+		select * 
+		from point
+		where user_id = #{user_id}
 	</select>
 	
 </mapper> 	
