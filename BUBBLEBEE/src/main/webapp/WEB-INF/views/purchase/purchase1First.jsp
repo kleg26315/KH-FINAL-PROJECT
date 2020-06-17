@@ -66,12 +66,12 @@
 						</div>
 						<div class = "mOptionP">
 							<h3 class = "mOptionP1">수량</h3>	
-							<input name = "ocount"class = "mOptionP2" name = "rCount" value = "${ pslist.ocount }" readonly id = "OP2">개
+							<input name = "ocount"class = "mOptionP2" name = "rCount" value = "${ ocount }" readonly id = "OP2">개
 						</div>
 						<div class = "mOptionS">
 							<h3 class = "mOptionS1">옵션합계</h3>
 							<h3 class = "mOptionS2" style = "float : right;">
-								<input id = "TC1" name = "rACost" type = "text" value = "${ pslist.price * pslist.ocount }"readonly>원
+								<input id = "TC1" name = "rACost" type = "text" value = "${ pslist.price * ocount }"readonly>원
 							</h3>
 						</div>
 					</c:forEach>

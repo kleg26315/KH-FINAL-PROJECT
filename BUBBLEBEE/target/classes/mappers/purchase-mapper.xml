@@ -36,7 +36,7 @@
 		<result property = "address" column = "ADDRESS"/>
 		<result property = "gmsg" column = "GMSG"/>
 		<result property = "gpay" column = "GPAY"/>
-		<result property = "ocount" column = "OCOUNT"/>
+		<result property = "ocode" column = "OCODE"/>
 		<result property = "user_id" column = "USER_ID"/>
 		<result property = "ono" column = "ONO"/>
 		<result property = "discount" column = "DISCOUNT"/>
