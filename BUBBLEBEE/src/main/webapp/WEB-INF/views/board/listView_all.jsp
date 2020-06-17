@@ -188,27 +188,202 @@
 								<a href="${ ad2 }">${ w.ad2 }</a><br>
 							</c:if>
 							</c:forEach>
-							
 						</div>
 						<div class="conbox con3">
-							<c:if test="${!fn:contains(str, '대구광역시')}">
-								해당지역이 없습니다.
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '대구광역시' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
 							</c:if>
+							</c:forEach>
 						</div>
-						<div class="conbox con4">인천전체</div>
-						<div class="conbox con5">광주전체</div>
-						<div class="conbox con6">대전전체</div>
-						<div class="conbox con7">울산전체</div>
-						<div class="conbox con8">세종전체</div>
-						<div class="conbox con9">경기전체</div>
-						<div class="conbox con10">강원전체</div>
-						<div class="conbox con11">충북전체</div>
-						<div class="conbox con12">충남전체</div>
-						<div class="conbox con13">전북전체</div>
-						<div class="conbox con14">전남전체</div>
-						<div class="conbox con15">경북전체</div>
-						<div class="conbox con16">경남전체</div>
-						<div class="conbox con17">제주전체</div>
+						<div class="conbox con4">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '인천광역시' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con5">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '광주광역시' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con6">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '대전광역시' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con7">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '울산광역시' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con8">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '세종특별자치시' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con9">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '경기도' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con10">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '강원도' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con11">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '충청북도' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con12">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '세종특별자치시' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con13">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '전라북도' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con14">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '전라남도' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con15">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '경상북도' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con16">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '경상남도' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con17">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '제주특별자치도' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
 						
 					</div>
 						
@@ -316,7 +491,9 @@
                   <div class="moim_each">
                   <div class="moim_img">
                      <div class="heart_div">
-                        <button class="heart_button" width="24px" height="24px" value="${ b.fno }">
+<%--                      <c:forEach var="h" items="${ hlist }" varStatus="status"> --%>
+<%-- 						<c:if test="${b.fno eq h.fno}"> --%>
+					    <button class="heart_button" width="24px" height="24px" value="${ h.fno }">
                         <c:if test="${b.hid ne uid || empty uid}">
                         	<img class="heart" width='16' height='18' src="${contextPath }/resources/img/빈하트.png" alt="찜하기">
                         </c:if>
@@ -324,6 +501,9 @@
                         	<img class="heart" width='16' height='18' src="${contextPath }/resources/img/채워진하트.png" alt="찜하기">
                         </c:if>
                         </button>
+<%--                      	</c:if> --%>
+<%--                      </c:forEach> --%>
+                   
                      </div>
                      <c:set var="rf2" value="${ b.renameFileName }"/>
                      <% 
