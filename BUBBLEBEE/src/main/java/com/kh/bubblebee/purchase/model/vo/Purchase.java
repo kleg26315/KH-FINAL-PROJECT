@@ -8,7 +8,7 @@ public class Purchase {
 	private String gaddress;
 	private String gmsg;
 	private int gpay;
-	private int ocount;
+	private int ocode;
 	private String user_id;
 	private String ono;
 	private String discount;
@@ -19,7 +19,7 @@ public class Purchase {
 	}
 
 
-	public Purchase(int gno, String gname, String gphone, String gaddress, String gmsg, int gpay, int ocount,
+	public Purchase(int gno, String gname, String gphone, String gaddress, String gmsg, int gpay, int ocode,
 			String user_id, String ono, String discount, String dcode) {
 		super();
 		this.gno = gno;
@@ -28,7 +28,7 @@ public class Purchase {
 		this.gaddress = gaddress;
 		this.gmsg = gmsg;
 		this.gpay = gpay;
-		this.ocount = ocount;
+		this.ocode = ocode;
 		this.user_id = user_id;
 		this.ono = ono;
 		this.discount = discount;
@@ -96,13 +96,13 @@ public class Purchase {
 	}
 
 
-	public int getOcount() {
-		return ocount;
+	public int getocode() {
+		return ocode;
 	}
 
 
-	public void setOcount(int ocount) {
-		this.ocount = ocount;
+	public void setocode(int ocode) {
+		this.ocode = ocode;
 	}
 
 
@@ -146,7 +146,7 @@ public class Purchase {
 	@Override
 	public String toString() {
 		return "Purchase [gno=" + gno + ", gname=" + gname + ", gphone=" + gphone + ", gaddress=" + gaddress + ", gmsg="
-				+ gmsg + ", gpay=" + gpay + ", ocount=" + ocount + ", user_id=" + user_id + ", ono=" + ono + "]";
+				+ gmsg + ", gpay=" + gpay + ", ocode=" + ocode + ", user_id=" + user_id + ", ono=" + ono + "]";
 	}
 
 	
