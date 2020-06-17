@@ -45,5 +45,7 @@ public interface BoardService {
 
 	ArrayList<Board> selectwList(String cate);
 
+	ArrayList<Board> markLocation();
+
 	
 }
