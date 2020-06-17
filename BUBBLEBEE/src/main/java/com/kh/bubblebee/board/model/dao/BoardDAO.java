@@ -90,5 +90,9 @@ public class BoardDAO {
 	public ArrayList<Board> selectwList(SqlSessionTemplate sqlSession, String cate) {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectwList", cate);
 	}
+
+	public ArrayList<Board> markLocation(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("boardMapper.makrLocation");
+	}
 	
 }
