@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.bubblebee.board.model.service.BoardService;
 import com.kh.bubblebee.board.model.vo.Board;
@@ -69,4 +70,33 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping("detail.do")
+	public String detailView(@RequestParam(value="party",required=false) String party, @RequestParam(value="like", required=false) String like,
+							 @RequestParam(value="study",required=false) String study, @RequestParam(value="event", required=false) String event,
+							 @RequestParam(value="diy",required=false) String diy, @RequestParam(value="cook", required=false) String cook,
+							 @RequestParam(value="sport",required=false) String sport, @RequestParam(value="learn", required=false) String learn,
+							 @RequestParam(value="sell", required=false) String sell) {
+		
+		String root = "redirect:list.bo?cate=";
+		
+		if(party != null) {
+			return root+party;
+		}else if(like != null) {
+			return root+like;
+		}else if(study != null) {
+			return root+study;
+		}else if(event != null) {
+			return root+event;
+		}else if(diy != null) {
+			return root+diy;
+		}else if(cook != null) {
+			return root+cook;
+		}else if(sport != null) {
+			return root+sport;
+		}else if(learn != null) {
+			return root+learn;
+		}else {
+			return root+sell;
+		}
+	}
 }
