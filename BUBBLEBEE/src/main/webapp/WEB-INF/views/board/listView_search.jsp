@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,55 +90,302 @@
 					<hr>
 					
 					<div class="tab_content" style="overflow-y:scroll; width:400px; height:380px;">
-
+					<c:set var = "str" value = "${ wlist }"/>
+					<c:set var = "stp" value = "${ startPrice }"/>
+					<c:set var = "edp" value = "${ endPrice }"/>
+						
 						<!-- 버튼요소 -->
-						<input type="radio" name="tabmenu" id="tab01">
-						<label for="tab01">서울</label><br>
-						<input type="radio" name="tabmenu" id="tab02">
-						<label for="tab02">경기</label><br>
-						<input type="radio" name="tabmenu" id="tab03">
-						<label for="tab03">강원</label><br>
-						<input type="radio" name="tabmenu" id="tab04">
-						<label for="tab04">인천</label><br>
-						<input type="radio" name="tabmenu" id="tab05">
-						<label for="tab05">부산</label><br>
-						<input type="radio" name="tabmenu" id="tab06">
-						<label for="tab06">대구</label><br>
-						<input type="radio" name="tabmenu" id="tab07">
-						<label for="tab07">제주</label><br>
-						<input type="radio" name="tabmenu" id="tab08">
-						<label for="tab08">대전</label><br>
-						<input type="radio" name="tabmenu" id="tab09">
-						<label for="tab09">울산</label><br>
-						<input type="radio" name="tabmenu" id="tab10">
-						<label for="tab10">경남</label><br>
-						<input type="radio" name="tabmenu" id="tab11">
-						<label for="tab11">충남</label><br>
-						<input type="radio" name="tabmenu" id="tab12">
-						<label for="tab12">충북</label><br>
-						<input type="radio" name="tabmenu" id="tab13">
-						<label for="tab13">전남</label><br>
-						<input type="radio" name="tabmenu" id="tab14">
-						<label for="tab14">경북</label><br>
-						<input type="radio" name="tabmenu" id="tab15">
-						<label for="tab15">광주</label>
-					
+						<c:if test="${fn:contains(str, '서울특별시')}">
+							<input type="radio" name="tabmenu" id="tab01">
+							<label for="tab01">서울</label><br>
+						</c:if>
+						<c:if test="${fn:contains(str, '부산광역시')}">
+							<input type="radio" name="tabmenu" id="tab02">
+							<label for="tab02">부산</label><br>
+						</c:if>
+						<c:if test="${fn:contains(str, '대구광역시')}">
+							<input type="radio" name="tabmenu" id="tab03">
+							<label for="tab03">대구</label><br>
+						</c:if>
+						<c:if test="${fn:contains(str, '인천광역시')}">
+							<input type="radio" name="tabmenu" id="tab04">
+							<label for="tab04">인천</label><br>
+						</c:if>
+						<c:if test="${fn:contains(str, '광주광역시')}">
+							<input type="radio" name="tabmenu" id="tab05">
+							<label for="tab05">광주</label><br>
+						</c:if>
+						<c:if test="${fn:contains(str, '대전광역시')}">	
+							<input type="radio" name="tabmenu" id="tab06">
+							<label for="tab06">대전</label><br>
+						</c:if>
+						<c:if test="${fn:contains(str, '울산광역시')}">
+							<input type="radio" name="tabmenu" id="tab07">
+							<label for="tab07">울산</label><br>
+						</c:if>
+						<c:if test="${fn:contains(str, '세종특별자치시')}">
+							<input type="radio" name="tabmenu" id="tab08">
+							<label for="tab08">세종</label><br>
+						</c:if>
+						<c:if test="${fn:contains(str, '경기도')}">
+							<input type="radio" name="tabmenu" id="tab09">
+							<label for="tab09">경기</label><br>
+						</c:if>
+						<c:if test="${fn:contains(str, '강원도')}">
+							<input type="radio" name="tabmenu" id="tab10">
+							<label for="tab10">강원</label><br>
+						</c:if>
+						<c:if test="${fn:contains(str, '충청북도')}">
+							<input type="radio" name="tabmenu" id="tab11">
+							<label for="tab11">충북</label><br>
+						</c:if>
+						<c:if test="${fn:contains(str, '충청남도')}">
+							<input type="radio" name="tabmenu" id="tab12">
+							<label for="tab12">충남</label><br>
+						</c:if>
+						<c:if test="${fn:contains(str, '전라북도')}">
+							<input type="radio" name="tabmenu" id="tab13">
+							<label for="tab13">전북</label><br>
+						</c:if>
+						<c:if test="${fn:contains(str, '전라남도')}">
+							<input type="radio" name="tabmenu" id="tab14">
+							<label for="tab14">전남</label><br>
+						</c:if>
+						<c:if test="${fn:contains(str, '경상북도')}">
+							<input type="radio" name="tabmenu" id="tab15">
+							<label for="tab15">경북</label><br>
+						</c:if>
+						<c:if test="${fn:contains(str, '경상남도')}">
+							<input type="radio" name="tabmenu" id="tab16">
+							<label for="tab16">경남</label><br>
+						</c:if>
+						<c:if test="${fn:contains(str, '제주특별자치도')}">
+							<input type="radio" name="tabmenu" id="tab17">
+							<label for="tab17">제주</label>
+						</c:if>
+						
 						<!-- 컨텐츠 요소 -->
-						<div class="conbox con1">서울전체</div>
-						<div class="conbox con2">경기전체</div>
-						<div class="conbox con3">강원전체</div>
-						<div class="conbox con4">인천전체</div>
-						<div class="conbox con5">부산전체</div>
-						<div class="conbox con6">대구전체</div>
-						<div class="conbox con7">제주전체</div>
-						<div class="conbox con8">대전전체</div>
-						<div class="conbox con9">울산전체</div>
-						<div class="conbox con10">경남전체</div>
-						<div class="conbox con11">충남전체</div>
-						<div class="conbox con12">충북전체</div>
-						<div class="conbox con13">전남전체</div>
-						<div class="conbox con14">경북전체</div>
-						<div class="conbox con15">광주전체</div>
+						<div class="conbox con1">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '서울특별시' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="${stp}"/>
+									<c:param name="endPrice" value="${edp}"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 } / ${stp}부터${edp} </a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con2">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '부산광역시' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con3">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '대구광역시' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con4">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '인천광역시' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con5">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '광주광역시' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con6">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '대전광역시' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con7">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '울산광역시' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con8">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '세종특별자치시' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con9">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '경기도' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con10">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '강원도' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con11">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '충청북도' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con12">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '세종특별자치시' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con13">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '전라북도' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con14">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '전라남도' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con15">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '경상북도' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con16">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '경상남도' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
+						<div class="conbox con17">
+							<c:forEach var="w" items="${ wlist }" varStatus="status">
+							<c:if test="${!empty w.ad1 && w.ad1 eq '제주특별자치도' }">
+								<c:url var="ad2" value="search.bo">
+									<c:param name="ad2" value="${ w.ad2 }"/>
+									<c:param name="cate" value="${ cate }"/>
+									<c:param name="startPrice" value="0"/>
+									<c:param name="endPrice" value="30"/>
+								</c:url>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
+							</c:if>
+							</c:forEach>
+						</div>
 						
 					</div>
 						
@@ -189,15 +437,33 @@
 					<div id="slider" style="width: 85%;"></div>
 					
 					<!-- 슬라이더 -->
-
+					<c:set var="stp" value="${ startPrice }"/>
+					<% 
+                     	String stp = pageContext.getAttribute("stp").toString();
+						int stp_ = (Integer)pageContext.getAttribute("stp");
+						if(stp_ != 0) {
+							String stp2 = stp.substring(0, stp.length()-4);
+							pageContext.setAttribute("stp2", stp2);
+						} else{
+							int stp2 = 0;
+							pageContext.setAttribute("stp2", stp2);
+						}
+            			
+            			
+                     %> 
 					 <script>
+					 	var stp2 = '${stp2}';
+					 	console.log(stp2);
 						 $( function() {
 						   $( "#slider" ).slider({
 							   range:true,
 							   min: 0,
 							   max: 30,
-							   values: [0, 30],
+							   values: [stp2, 30],
 							   slide: function(event, ui) {
+								   if(stp2 == 4) {
+									   $("#amount").val(stp2 + " ~ " + ui.values[1] + "만원");
+								   }
 								   $("#amount").val(ui.values[0] + " ~ " + ui.values[1] + "만원");
 								   $("#sprice").val(ui.values[0]);
 								   $("#eprice").val(ui.values[1]);
@@ -232,7 +498,7 @@
      	
      	<input type="hidden" value="${ sessionScope.loginUser.id}" id="uid">
         <c:set var="uid" value="${ sessionScope.loginUser.id}"/>
-     	
+         
 		<div id="hotmoim">
          <div class="moim">
          
@@ -246,7 +512,7 @@
                   <div class="moim_img">
                      <div class="heart_div">
                         <button class="heart_button" width="24px" height="24px" value="${ b.fno }">
-                        	<c:if test="${b.hid ne uid || empty uid}">
+                        <c:if test="${b.hid ne uid || empty uid}">
                         	<img class="heart" width='16' height='18' src="${contextPath }/resources/img/빈하트.png" alt="찜하기">
                         </c:if>
                          <c:if test='${b.hid eq uid && !empty b.hid}'>
@@ -254,8 +520,6 @@
                         </c:if>
                         </button>
                      </div>
-                     
-                     
                      <c:set var="rf2" value="${ b.renameFileName }"/>
                      <% 
                      	String rf2 = (String)pageContext.getAttribute("rf2");
@@ -268,7 +532,7 @@
                      	}
             			
             			pageContext.setAttribute("str2", str2);
-                     %>  
+                     %> 
                      
                      <a href="${ bdetail }">
                      <img id="" width="100%" height="200" class="" src="${contextPath }/resources/buploadFiles/${ str2 }" />
@@ -301,8 +565,8 @@
             </c:forEach>
             </div>
             </div>
-            
-      <!-- 좋아요 -->
+
+	  <!-- 좋아요 -->
             <script>
         	var uid = $('#uid').val();
          	
@@ -329,8 +593,7 @@
             	 }
             	
              });
-            </script>      
-                 
+            </script>	                 
  
       <!-- 페이징 처리 -->
       
@@ -340,7 +603,7 @@
 				< &nbsp;
 			</c:if>
 			<c:if test="${ pi.currentPage > 1 }">
-				<c:url var="before" value="search.bo">
+				<c:url var="before" value="allList.bo">
 					<c:param name="page" value="${ pi.currentPage - 1 }"/>
 				</c:url>
 				<a href="${ before }"> <</a> &nbsp;
@@ -353,7 +616,7 @@
 				</c:if>
 				
 				<c:if test="${ p ne pi.currentPage }">
-					<c:url var="pagination" value="search.bo">
+					<c:url var="pagination" value="allList.bo">
 						<c:param name="page" value="${ p }"/>
 					</c:url>
 					<a href="${ pagination }">${ p }</a> &nbsp;
@@ -365,7 +628,7 @@
 				>
 			</c:if>
 			<c:if test="${ pi.currentPage < pi.maxPage }">
-				<c:url var="after" value="search.bo">
+				<c:url var="after" value="allList.bo">
 					<c:param name="page" value="${ pi.currentPage + 1 }"/>
 				</c:url> 
 				<a href="${ after }"> > </a>
