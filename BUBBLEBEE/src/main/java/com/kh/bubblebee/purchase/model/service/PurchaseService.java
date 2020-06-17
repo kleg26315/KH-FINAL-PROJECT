@@ -7,6 +7,7 @@ import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.member.model.vo.Member;
 import com.kh.bubblebee.purchase.model.vo.PBoard;
 import com.kh.bubblebee.purchase.model.vo.PChoose;
+import com.kh.bubblebee.purchase.model.vo.PPoint;
 import com.kh.bubblebee.purchase.model.vo.PSList;
 import com.kh.bubblebee.purchase.model.vo.Purchase;
 
@@ -35,6 +36,8 @@ public interface PurchaseService {
 	PChoose selectPChoose2(String ono);
 
 	PBoard selectBPBoard2(String fno);
+
+	PPoint selectPcost(String user_id);
 
 
 }
