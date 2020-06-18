@@ -41,4 +41,6 @@ public interface NoticeService {
 
 	void insertAlert(String id, String title, String bno);
 
+	int checkAlert(String bno, String id);
+
 }

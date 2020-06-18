@@ -103,5 +103,10 @@ public class NoticeServiceImpl implements NoticeService{
 	public void insertAlert(String id, String title, String bno) {
 		nDAO.insertAlert(sqlSession, id, title, bno);
 	}
+
+	@Override
+	public int checkAlert(String bno, String id) {
+		return nDAO.checkAlert(sqlSession, bno, id);
+	}
 	
 }

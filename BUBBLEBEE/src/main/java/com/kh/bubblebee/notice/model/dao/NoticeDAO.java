@@ -116,4 +116,11 @@ public class NoticeDAO {
 		sqlSession.insert("noticeMapper.insertAlert", map);
 	}
 
+	public int checkAlert(SqlSessionTemplate sqlSession, String bno, String id) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("id", id);
+		map.put("bno", bno);
+		return sqlSession.update("noticeMapper.checkAlert", map);
+	}
+
 }

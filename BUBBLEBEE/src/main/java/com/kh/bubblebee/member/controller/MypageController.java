@@ -3,6 +3,7 @@ package com.kh.bubblebee.member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.bubblebee.alert.model.dao.AlertDAO;
+import com.kh.bubblebee.alert.model.vo.Alert;
 import com.kh.bubblebee.member.model.exception.MemberException;
 import com.kh.bubblebee.member.model.service.MypageService;
 import com.kh.bubblebee.member.model.vo.Member;
@@ -29,6 +34,11 @@ public class MypageController {
 	
 	@Autowired
 	private MypageService mgService;
+	
+	@Autowired
+	private AlertDAO aDAO;
+	@Autowired
+	SqlSessionTemplate sqlSession;
 	
 	//좋아요(모임)
 	@RequestMapping("mylike.mg")
@@ -65,6 +75,19 @@ public class MypageController {
 	@RequestMapping("mypoint.mg")
 	public String mypoint() {
 		return "mypoint";
+	}
+	//모든 알림
+	@RequestMapping("myalert.mg")
+	public ModelAndView myalert(ModelAndView mv, HttpSession session) {
+		String id = ((Member)session.getAttribute("loginUser")).getId();
+		int count = aDAO.count_receive(sqlSession, id);
+		ArrayList<Alert> alist = aDAO.receive_data(sqlSession, id);
+		
+		mv.addObject("count", count);
+		mv.addObject("alist", alist);
+		mv.setViewName("myalert");
+		
+		return mv;
 	}
 	// 내정보 수정페이지로 이동
 	@RequestMapping("updateInfoForm.mg")
