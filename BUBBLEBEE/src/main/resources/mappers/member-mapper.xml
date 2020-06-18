@@ -109,9 +109,9 @@
 	</select>
 	
 	<select id="receivce_data" resultType="Alert">
-		select aid, a_content, a_create_date
+		select aid, a_content, a_create_date, bno, check_yn
 		from alert
-		where user_id = #{id} and check_yn ='N'
+		where user_id = #{id}
 		order by aid desc
 	</select>
 </mapper>

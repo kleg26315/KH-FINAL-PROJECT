@@ -653,7 +653,7 @@
 	    function onMessage(evt) {
 	    	var realData = [];
 	    	realData = evt.data.split('&');
-	    	
+	    	console.log(realData[1]);
 	   		$('.num').text(realData[0]);	
 	   		
 			if(realData[1] != "[]"){
