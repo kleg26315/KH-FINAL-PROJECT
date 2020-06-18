@@ -12,6 +12,7 @@ import com.kh.bubblebee.member.model.vo.Member;
 import com.kh.bubblebee.purchase.model.dao.PurchaseDAO;
 import com.kh.bubblebee.purchase.model.vo.PBoard;
 import com.kh.bubblebee.purchase.model.vo.PChoose;
+import com.kh.bubblebee.purchase.model.vo.PPoint;
 import com.kh.bubblebee.purchase.model.vo.PSList;
 import com.kh.bubblebee.purchase.model.vo.Purchase;
 
@@ -79,6 +80,11 @@ public class PurchaseServiceImpl implements PurchaseService {
 	@Override
 	public PBoard selectBPBoard2(String fno) {
 		return pDAO.selectBPBoard2(sqlSession, fno);
+	}
+
+	@Override
+	public PPoint selectPcost(String user_id) {
+		return pDAO.selectPcost(sqlSession, user_id);
 	}
 
 

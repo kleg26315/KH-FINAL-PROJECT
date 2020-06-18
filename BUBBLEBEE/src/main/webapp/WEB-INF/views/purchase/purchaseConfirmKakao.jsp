@@ -32,10 +32,11 @@
 						<hr id = "submitFormSectionMainDH">
 					</div>
 					<div id = "submitFormSectionMainProduct">
-						<img id = "submitFormSectionMainImg" src = "">
+						<!-- <img id = "submitFormSectionMainImg" src = "">  -->
+						<img id="submitFormSectionMainImg" width="100%" height="200" class="logoImg" src="${contextPath }/resources/buploadFiles/${ b.renamefilename }" />
 						<input class = "submitFormSectionMainProductInput" type = "text" readonly value = "${b.small_title }">
 						<input class = "submitFormSectionMainProductInput" type = "text" style = "font-weight : 600;" readonly value = "${b.ftitle }">
-						<input class = "submitFormSectionMainProductInput" type = "text" readonly value = "${c.price }">
+						<input class = "submitFormSectionMainProductInput" type = "text" readonly value = "${c.price }원">
 					</div>
 					<div class = "submitFormSectionMainD" style = "margin-top : 20px;">
 						<hr id = "submitFormSectionMainDH">

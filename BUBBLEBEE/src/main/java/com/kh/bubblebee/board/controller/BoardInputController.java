@@ -44,7 +44,8 @@ public class BoardInputController {
 								@RequestParam("b_Qt") String b_Qt, @RequestParam("b_An") String b_An,
 								@RequestParam("lat") String lat, @RequestParam("lon") String lon,
 								@RequestParam("oname") String oname, @RequestParam("price") String price, @RequestParam("ocount") String ocount,
-								@RequestParam("odeadline") String odeadline, @RequestParam("category") String cate, ModelAndView mv) {
+								@RequestParam("odeadline") String odeadline, @RequestParam(value="category", required=false) String cate, ModelAndView mv) {
+	
 		b.setLat(Double.parseDouble(lat));
 		b.setLon(Double.parseDouble(lon));
 		b.setLocation(post + "/" + address1 + "/" + address2);

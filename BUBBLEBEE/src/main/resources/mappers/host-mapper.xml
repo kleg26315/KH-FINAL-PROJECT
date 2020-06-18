@@ -40,4 +40,55 @@
 		<result property="profile" column="profile" />
 	</resultMap>
 	
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from board
+		where user_id = #{hostId}
+	</select>
+	
+	<select id="selectBoard" resultType="Board">
+		select *
+		from board
+		where user_id = #{hostId}
+	</select>
+	
+	<insert id="insertHostQnA">
+		insert into review
+		values(SEQ_REVIEW.nextval,#{qcontent},sysdate,sysdate,default,#{ref_fid},#{user_id},
+		<choose>
+			<when test="secret_yn != null">
+				'Y'
+			</when>
+			<otherwise>default</otherwise>
+		</choose>,
+		null,2)
+	</insert>
+	
+	<select id="selectQnACount" resultType="_int">
+	select count(*)
+	from review
+	where ref_fid = #{fno}
+	</select>
+	
+	<select id="selectQnAList" parameterType="_int" resultMap="ReviewResultSet">
+	select * 
+	from review
+	join member using(user_id)
+	where ref_fid = #{fno}
+	</select>
+	
+	<resultMap type="Review" id="ReviewResultSet">
+		<id property="qno" column="QNO"/>
+		<result property="qcontent" column="QCONTENT"/>
+		<result property="q_create_date" column="Q_CREATE_DATE"/>
+		<result property="q_modify_date" column="Q_MODIFY_DATE"/>
+		<result property="q_status" column="Q_STATUS"/>
+		<result property="ref_fid" column="REF_FID"/>
+		<result property="user_id" column="USER_ID"/>
+		<result property="secret_yn" column="SECRET_YN"/>
+		<result property="grade" column="GRADE"/>
+		<result property="qtype" column="QTYPE"/>
+		<collection property="member" resultMap="checkMember"/>
+	</resultMap>
+	
 </mapper>

@@ -10,8 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="resources/css/boardInput.css">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	
-	 <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/smartEditor/js/service/HuskyEZCreator2.js" charset="UTF-8"></script>
+	<script src="resources/js/jquery-ui.js"></script>
+
+	<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/smartEditor/js/service/HuskyEZCreator2.js" charset="UTF-8"></script>
 </head>
 <style>
 
@@ -27,7 +28,7 @@
 		<main><h2>등록</h2></main>
 		
 		<!-- 첨부파일 등록을 위해 Multipart/form-data encType 지정 -->
-		<form action="binsert.bo" onsubmit="return validate()" enctype="Multipart/form-data" id="form" method="POST" data-use-autosave="true">
+		<form name="binsert" action="binsert.bo" onsubmit="return validate()" enctype="Multipart/form-data" id="form" method="POST" data-use-autosave="true">
 			<table> 
 				<tr>
 					<th colspan="2" >카테고리 설정</th>
@@ -42,34 +43,94 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2">
+					<td colspan="1">
 						<span>
-							<select id="category" name="ftype">
+							<select id="category" name="ftype" onchange="itemChange(this.value);">
 								<option value="no">카테고리를 설정해주세요</option>
 								<option value="1">모임</option>
 								<option value="2">클래스</option>
 								<option value="3">작품</option>
 							</select>
 						</span>
-						
+					</td>
+					<td>
 						<span>
-							<select id="category2" name="category">
-								<option value="">==모임==</option>
+							<select id="category2" name="category" class="test"style="display : none">
+								<option value="no" disabled>선택</option>
 								<option value="party">토크/파티</option>
 								<option value="like">취향</option>
 								<option value="study">스터디</option>
 								<option value="event">이벤트/공간</option>
-								<option value="">==클래스==</option>
+							</select> 
+							
+							<select id="category3" name="category" class="test" style="display : none">
+								<option value="no" disabled>선택</option>
 								<option value="diy">공예/DIY</option>
 								<option value="cook">요리</option>
 								<option value="sport">스포츠</option>
 								<option value="learn">어학/취업</option>
-								<option value="sell">==작품==</option>
+							</select>
+							<select id="category4" name="category" class="test" style="display : none">
+								<option value="no" disabled>선택</option>
+								<option value="sell">작품</option>
 							</select>
 						</span>
 					</td>
 				</tr>
+				</table>
+				<script>
+					function itemChange(sVal) {
+						if(sVal == "1"){
+							$('.test').css('display','none')
+				            $('.test').attr("name", null);
+				            $('#category2').css('display','block');
+				            $('#category2').attr("name","category");
+						}else if(sVal == "2"){
+							$('.test').css('display','none')
+				            $('.test').attr("name", null);
+				            $('#category3').css('display','block');
+				            $('#category3').attr("name","category");
+						}else if(sVal == "3"){
+							$('.test').css('display','none')
+				            $('.test').attr("name", null);
+				            $('#category4').css('display','block');
+				            $('#category4').attr("name","category");
+						} else if(sVal == "no"){
+							$('.test').css('display','none')
+				            $('.test').attr("name", null);
+				        	
+						}
+					}
+// 						var f_c = document.binsert;
+// 						var s_c = $('#category2').length;
+						
+// 						if(sVal == ""){
+// 							s_cate = new Array("카테고리를 선택해주세요");
+// 							s_vselbox = new Array("");
+// 						}else if(sVal == "1"){
+// 							s_cate = new Array("토크/파티", "취향", "스터디", "이벤트/공간");
+// 							s_vselbox = new Array(11,12,13,14);
+// 						}else if(sVal == "2"){
+// 							s_cate = new Array("공예/DIY", "요리", "스포츠", "어학/취업");
+// 							s_vselbox = new Array(15,16,17,18);
+// 						}else if(sVal == "3"){
+// 							s_cate = new Array("작품");
+// 							s_vselbox = new Array(19);
+// 						}
+						
+// 						for(var i = 0; i < 10; i++){
+// 							f.second.option[0] = null;
+// 							f.category_code.options[0] = null;
+// 						}
+						
+// 					   for (k = 0; k < s_cate.length; k++) {
+// 				            f.second.options[k] = new Option(s_cate[k], s_vselbox[k]);
+// 				        }
+// 					}
+					
+				</script>
 				
+				<table>
 				<tr>
 					<td colspan="3"><hr></td>
 				</tr>
@@ -191,22 +252,22 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" id="op" class="op" name="oname" placeholder="옵션명"  value="참가비 (1인)"  maxlength="30" required> 
+								<input type="text" id="op" class="op" name="oname" placeholder="옵션명"  maxlength="30" required>
 							</td>
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" id="op2" class="op2" name="price" placeholder="가격(5000원 이상)"  value="5000" required>원
+								<input type="text" id="op2" class="op2" name="price" placeholder="가격(5000원 이상)"   required>
 							</td>
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" id="op3" class="op3" name="ocount" placeholder="수량(재고)"  value="14명" required>
+								<input type="text" id="op3" class="op3" name="ocount" placeholder="수량(재고)" required onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 							</td>
 						</tr>
 						<tr>	
 							<td>
-								<input type="date" id="op4" class="op4" name="odeadline" placeholder="마감일" >
+								<input type="date" id="op4" class="op4" name="odeadline" placeholder="마감일"  >
 							</td>
 						</tr>
 					<tbody id="tbody1">
@@ -214,6 +275,12 @@
 					</tbody>
 					</table>
 					<script>
+					   $(function(){
+	                         $('.op4').prop('min', function(){
+	                             return new Date().toJSON().split('T')[0];
+	                         });
+	                     });
+						
 						$('#btn_op').on('click', function(){
 							var bot = $('#tbody1 tr').length;
 							
@@ -244,8 +311,9 @@
 						function delete1(obj){
 							console.log(obj);
 							$(obj).parent().parent().parent().next().remove();
-							$(obj).parent().parent().parent().remove();
+							$(obj).parent().parent().parent().parent().remove();
 						}
+
 						
 						function delete_file(obj){
 							$(obj).parent().parent().remove();
@@ -401,7 +469,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" class="bIncluded" name="fcontain"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" id="fcontain" name="fcontain"  maxlength="500" required></textarea>
 							<span id="btext1">0</span>/500
 						</td>
 					</tr>
@@ -410,7 +478,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" class="bIncluded" name = "fncontain"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" id="fncontain" name = "fncontain"  maxlength="500" required></textarea>
 							<span id="btext2">0</span>/500
 						</td>
 					</tr>
@@ -444,7 +512,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" class="bIncluded" name="fmaterials"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" id="fmaterials" name="fmaterials"  maxlength="500" required></textarea>
 							<span id="btext3">0</span>/500
 						</td>
 					</tr>
@@ -453,7 +521,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" class="bIncluded" name="fprecaution"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" id="fprecaution" name="fprecaution"  maxlength="500" required></textarea>
 							<span id="btext4">0</span>/500
 						</td>
 					</tr>
@@ -581,6 +649,7 @@
 			<div id="btn_area">
 				<button id="complete" type="button">완료</button>
 				<button onclick="location.href='history.back()'" id="cancel">취소</button>
+				<button type="button" id="im">임시저장</button>
 			</div>
 				<script>
 					$('#complete').on('click', function(){
@@ -599,6 +668,8 @@
 							}
 						}
 					});
+					
+					
 				</script>
 		</form>
 	</div>
@@ -718,8 +789,25 @@
 		});
 		
 		//자동저장
+		$('#im').click(function(){
+			var fcontain = $('#fcontain').val();
+			var fncontain = $('#fncontain').val();
+			var fmaterials = $('#fmaterials').val();
+			var fprecaution = $('#fprecaution').val();
+			
+			if(true){
+				localStorage.setItem('fcontain', fcontain);
+				localStorage.setItem('fncontain', fncontain);
+				localStorage.setItem('fmaterials', fmaterials);
+				localStorage.setItem('fprecaution', fprecaution);
+				
+				document.querySelector('#fcontain').innerHTML = localStorage.getItem("fcontain");
+				$('#form').submit();		
+			}
+		})
 		</script>
-	
+		
+		
 	
 	
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>

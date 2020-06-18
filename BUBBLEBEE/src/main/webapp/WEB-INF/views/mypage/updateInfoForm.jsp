@@ -56,7 +56,7 @@ label{border: 1px solid #F39C12;background: none;outline: none; padding: 10px 20
 }
 #submit{background: #F39C12; border:none;outline: none;width:300px;height: 50px;color: white;border-radius: 5px;}
 #updatePwdbtn{background: #F39C12; border:none;outline: none; width: 100px;height: 30px;border-radius: 5px;color: white;}
-button:not(#updatePwdbtn){background: green;border:1px solid #F39C12;outline: none;}
+#c_body button:not(#updatePwdbtn){border:1px solid #F39C12;outline: none;}
 input[type=checkbox]:checked + label{
 	background:#F39C12;color:white;
 }

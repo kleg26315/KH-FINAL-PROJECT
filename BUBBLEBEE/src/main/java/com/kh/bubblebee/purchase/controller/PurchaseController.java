@@ -22,6 +22,7 @@ import com.kh.bubblebee.purchase.model.exception.PurchaseException;
 import com.kh.bubblebee.purchase.model.service.PurchaseService;
 import com.kh.bubblebee.purchase.model.vo.PBoard;
 import com.kh.bubblebee.purchase.model.vo.PChoose;
+import com.kh.bubblebee.purchase.model.vo.PPoint;
 import com.kh.bubblebee.purchase.model.vo.PSList;
 import com.kh.bubblebee.purchase.model.vo.Purchase;
 
@@ -33,15 +34,22 @@ public class PurchaseController {
 	private PurchaseService pService;
 
 	@RequestMapping("purchase1First")
-	public ModelAndView purchase1First(@RequestParam(value = "fNo") int fno, ModelAndView mv,HttpSession session, @RequestParam(value = "oNo")String ono) {
+	public ModelAndView purchase1First(@RequestParam(value = "fNo") int fno, ModelAndView mv,HttpSession session, @RequestParam(value = "oNo")String ono, @RequestParam(value = "ocount")String ocount) {
 		
 		Member loginUser = (Member)session.getAttribute("loginUser");
-
+		String user_id = loginUser.getId();
+		
 		System.out.println("ono는?" + ono);
+		System.out.println("fno : " + fno);
+		System.out.println("ocount : " + ocount);
 		
 		if(loginUser != null) {
 			ArrayList<PBoard> plist = pService.selectBList(fno);
 			ArrayList<PSList> pslist = pService.selectPList(ono);
+			
+			PPoint pcost = pService.selectPcost(user_id);
+			
+			
 			
 			System.out.println("plist : " + plist);
 			System.out.println("pslist : " + pslist);
@@ -49,8 +57,9 @@ public class PurchaseController {
 			if(plist != null && pslist != null) 	 {
 				mv.addObject("fno", fno);
 				mv.addObject("pslist", pslist);
-				
+				mv.addObject("pcost", pcost);
 				mv.addObject("plist", plist);
+				mv.addObject("ocount", ocount);
 				mv.setViewName("purchase1First");
 			}else {
 				throw new PurchaseException("구매에 실패하였습니다.");
@@ -92,7 +101,7 @@ public class PurchaseController {
 			Calendar thisTime = Calendar.getInstance();
 			
 			String format_time = format.format(thisTime.getTime());
-			System.out.println(format_time);
+			
 			
 			String dcode = format_time + "-" + ono + "-" + user_id;
 			
@@ -154,7 +163,6 @@ public class PurchaseController {
 		Calendar thisTime = Calendar.getInstance();
 		
 		String format_time = format.format(thisTime.getTime());
-		System.out.println(format_time);
 		
 		String dcode = format_time + "-" + ono + "-" + user_id;
 		
@@ -179,6 +187,7 @@ public class PurchaseController {
 		
 		int gno = pService.selectGno(dcode);
 		
+		System.out.println("dcode : " + dcode + " gno : " + gno);
 		
 		if(purchaseThis1 != 0 && user_id != null) {
 			mv.addObject("gname", gname);

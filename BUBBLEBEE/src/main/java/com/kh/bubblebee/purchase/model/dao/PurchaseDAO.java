@@ -11,6 +11,7 @@ import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.member.model.vo.Member;
 import com.kh.bubblebee.purchase.model.vo.PBoard;
 import com.kh.bubblebee.purchase.model.vo.PChoose;
+import com.kh.bubblebee.purchase.model.vo.PPoint;
 import com.kh.bubblebee.purchase.model.vo.PSList;
 import com.kh.bubblebee.purchase.model.vo.Purchase;
 
@@ -67,6 +68,10 @@ public class PurchaseDAO {
 
 	public PBoard selectBPBoard2(SqlSessionTemplate sqlSession, String fno) {
 		return sqlSession.selectOne("purchaseMapper.selectBPBoard2", fno);
+	}
+
+	public PPoint selectPcost(SqlSessionTemplate sqlSession, String user_id) {
+		return sqlSession.selectOne("purchaseMapper.selectPcost", user_id);
 	}
 
 

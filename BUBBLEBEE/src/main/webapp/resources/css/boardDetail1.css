@@ -15,10 +15,11 @@
 
 #detailMainForm2{
    position: fixed; /* Stay in place */
-   left: 60%;
+   margin-left: 49%;
    top: 120px;
    overflow: auto; /* Enable scroll if needed */
 }
+
 
 .home__slider {
    display: inline-block;
@@ -55,9 +56,10 @@ div.hashTagTag{
 div.hashTagTitle{
    font-size : 18pt;
    font-weight : 600;
+   display: flex;
+   justify-content: space-between;
    
 }
-
 div.hashTagPrice{
    font-size : 12pt;
    font-weight : 600;

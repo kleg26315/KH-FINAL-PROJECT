@@ -26,7 +26,7 @@
 		<main><h2>수정</h2></main>
 		
 		<!-- 첨부파일 등록을 위해 Multipart/form-data encType 지정 -->
-		<form action="binsert.bo" onsubmit="return validate();" enctype="Multipart/form-data" id="form" method="POST" data-use-autosave="true">
+		<form action="Update.bo" onsubmit="return validate();" enctype="Multipart/form-data" id="form" method="POST" data-use-autosave="true">
 			<input type="hidden" value="${loginUser.id}" name="user_id">
 			<input type="hidden" value="${board.fno}" name="fno">
 			<input type="hidden" value="${board.ftype}" name="ftype">
@@ -57,12 +57,12 @@
 						
 						<span>
 							<select id="category2" name="category">
-								<option value="">==모임==</option>
+								<option value="no">==모임==</option>
 								<option value="party">토크/파티</option>
 								<option value="like">취향</option>
 								<option value="study">스터디</option>
 								<option value="event">이벤트/공간</option>
-								<option value="">==클래스==</option>
+								<option value="no">==클래스==</option>
 								<option value="diy">공예/DIY</option>
 								<option value="cook">요리</option>
 								<option value="sport">스포츠</option>
@@ -122,7 +122,7 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="file" class="thumb_file" name="uploadFile" required >
+							<input type="file" class="thumb_file" name="uploadFile" class="uploadFile" required >
 							<c:if test="${ !empty board.originalFileName }">
 								<br>현재 업로드한 파일 : 
 									<a href="${ contextPath }/resources/buploadFiles/${ board.renameFileName }">
@@ -157,6 +157,30 @@
 						}
 					});
 					
+					function LoadImg(value, num){
+						if(value.files && value.files[0]){
+							var reader = new FileReader();
+							
+							reader.onload = function(e){								
+								switch(num){
+								case 1: 
+									$("#titleImg").attr("src", e.target.result);
+									break;
+								case 2:
+									$("#contentImg1").attr("src", e.target.result);
+									break;
+								case 3: 
+									$("#contentImg2").attr("src", e.target.result);
+									break;
+								case 4:
+									$("#contentImg3").attr("src", e.target.result);
+									break;
+								}
+							}
+							
+							reader.readAsDataURL(value.files[0]);
+						}
+					}
 				</script>
 				<table>
 					<tr>
@@ -277,7 +301,7 @@
 					</tr>
 					<tr>	
 						<td style="width: 53%;">
-							<input type="text" name="post" class="postcodify_postcode5"  size="6" style="width: 300px;" >
+							<input type="text" name="post" class="postcodify_postcode5" id="post" size="6" style="width: 300px;" >
 						</td>
 						<td >
 							<button type="button" id="postcodify_search_button">주소 찾기</button>
@@ -574,8 +598,9 @@
 					
 			</script>
 			<div id="btn_area">
-				<button id="complete">완료</button>
-				<button onclick="location.href='history.back()'" id="cancel">취소</button>
+				<button id="complete">수정완료</button>
+				<button type="button" onclick="location.href='${ list.bo }'">목록으로</button>
+				<button onclick="location.href='javascript:history.back()'" id="cancel">취소</button>
 			</div>
 				<script>
 				$('#complete').click(function(){
@@ -608,10 +633,44 @@
 		function validate(){
 			var value1 = $('#category').val();
 			var value2 = $('#category2').val();
+			var ftitle = $('#title').val();
+			var uploadFile = $('.uploadFile').val();
+			var maxMember = $('#maxMember').val();
+			var oname = $('.op').val();
+			var price = $('.op2').val();
+			var ocount = $('.op3').val();
+			var post = $('#post').val();
+			var bTime = $('.bTime').val();
+			var bDetail = $('.bDetail').val();
+			var fcontain = $('.bIncluded').val();
+			var b_Qt = $('.b_Qt').val();
+			var b_An = $('.b_An').val();
+			var introduce = $('#editor').val();
 			
 			if(value1 == 'no' || value2 == 'no') {
 					console.log("what");
-					alert("카테고리 설정을 완료해주세요");
+					alert("카테고리 설정을 완료해주세요.");
+			}else if(ftitle == null){
+				alert("제목을 작성해주세요");
+				$('#title').exec("FOCUS");
+			}else if(uploadFile == null){
+				alert("사진을 최소 1장 이상 첨부해주세요.");
+				$('.uploadFile').exec("FOCUS");
+			}else if(maxMember == null){
+				alert("인원 설정을 완료해주세요.(최대 20명)");
+				$('#maxMember').exec("FOCUS");
+			}else if(oname == null || price == null || ocount==null){
+				alert("옵션을 설정해주세요");
+				$('.op'}.exec("FOCUS");
+			}else if(post==null){
+				alert("주소를 설정해주세요");
+				$('#post').exec("FOCUS");
+			}else if(bTime==null || bDetail==null){
+				alert("세부사항을 작성해주세요");
+				${bTime}.exec("FOCUS");
+			}else if(fcontain==null){
+				alert("작성을 완료해주세요.");
+				${.bIncluded}.exec("FOCUS");
 			}
 		}
 		
