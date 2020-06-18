@@ -392,6 +392,7 @@
     margin-bottom: unset;
     display: inline-block;
     margin-right: 10px;
+    width: 240px;
 }
 .message_modal_cover .message-modal .list-content .infd-message-cover .infd-message-el .date {
     font-weight: 400;
@@ -595,3 +596,18 @@
     border: 1px solid #e0e0e0;
 }
 
+.list_content2{
+    overflow-y: auto;
+    min-height: 0px;
+    max-height: 233px;
+}
+
+.list_content2::-webkit-scrollbar {
+    width: 7px;
+  }
+.list_content2::-webkit-scrollbar-thumb {
+    background-color: gray;
+  }
+.list_content2::-webkit-scrollbar-track {
+    background-color: #c0c0c0;
+  }

@@ -126,4 +126,20 @@
 		set btitle = #{title}, bcontent = #{content}, b_modify_date = sysdate
 		where bno = #{bno}
 	</update>
+	
+	<select id="selectBno" resultType="string">
+		select bno
+		from notice
+		where btitle = #{title} and bcontent=#{content}
+	</select>
+	
+	<select id="selectAllId" resultType="string">
+		select user_id
+		from member	
+		where m_status = 'Y'
+	</select>
+	
+	<insert id="insertAlert">
+		insert into alert values(SEQ_ALERT.NEXTVAL, #{id}, DEFAULT, #{title}, SYSDATE, #{bno})
+	</insert>
 </mapper>

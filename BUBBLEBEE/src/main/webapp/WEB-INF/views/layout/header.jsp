@@ -93,7 +93,6 @@
 						</c:url>
                         <li role="presentation"><a href="${ wk }">작품</a></li>
                     </ul>
-<!--                  <form action="#" id="searchForm"> -->
                     <c:if test="${ empty sessionScope.loginUser}">
                     	<p class="navbar-text navbar-right actions" style="padding-right: 29px; padding-top: 3px;">
                     </c:if>
@@ -152,26 +151,19 @@
 					         	</c:otherwise>
 					         </c:choose>
 							
-		        <!-- </form> -->
 					        <!-- 알림 모달창 -->
 					        <div class="message_modal_cover has_bubble nav-modal-cover">
 								<div class="message-modal">
-									<!-- span 사이 2는 나중에 db에서 count로 가져오기 -->
-									<div class="header-content unchecked-cnt">읽지 않은 알림 <span class="num">2</span>개</div>
+									<div class="header-content unchecked-cnt">읽지 않은 알림 <span class="num">0</span>개</div>
 							    <div class="list-content">
-							    	<!-- 공지사항들 -->
-									<div class="infd-message-cover ">
-							  			<a href="#" class="infd-message-el">
-										    <span class="title">[공지사항] [인프런 소식] 카테고리 정리, 할인 관리, 카드 디자인 변경</span>
-										    <span class="date">14일 전</span>
-							  			</a>
-									</div>
-									
-									<div class="infd-message-cover ">  <!-- 여기에 읽으면 addClass('checked') 해주기 -->
-									  <a href="#" class="infd-message-el">
-									    <span class="title">[공지사항] [업데이트 소식] 4월 셋째주 - 알람 기능 오픈 📣</span>
-									    <span class="date">1달 전</span>
-									  </a>
+							    	<div class="list_content2">
+								    	<!-- 공지사항들 -->
+										<!-- <div class="infd-message-cover "> checked 클래스추가하면 본걸로 체크
+								  			<a href="#" class="infd-message-el">
+											    <span class="title">[공지사항] [인프런 소식] 카테고리 정리, 할인 관리, 카드 디자인 변경</span>
+											    <span class="date">14일 전</span>
+								  			</a>
+										</div> -->
 									</div>
 								</div>
 				          		<div class="button-content"><a href="#">더 많은 알람 보기</a></div>
@@ -429,7 +421,6 @@
 		    		}
 		    		document.cookie = cookie_name + '='+ max;
 	    		}
-	    		
 	    	}
     	}
     	
@@ -633,5 +624,73 @@
         })
     </script>
     
+    <!-- 알림 스크립트 -->
+    <script>
+	    var wsUri = "ws://localhost:8780/bubblebee/count";
+	    function send_message(){
+	        websocket = new WebSocket(wsUri);
+	        websocket.onopen = function(evt) {
+	            onOpen(evt);
+	           /* setTimeout(function(){
+	        	send_message();
+		        }, 1000); */
+	        };
+	        websocket.onmessage = function(evt) {
+	            onMessage(evt);
+	            websocket.close();
+	        };
+	        websocket.onerror = function(evt) {
+	            onError(evt);
+	        };
+	        
+	    } 
+	   
+	    function onOpen(evt) 
+	    {
+	       websocket.send("${loginUser.id}");
+	    }
+	
+	    function onMessage(evt) {
+	    	var realData = [];
+	    	realData = evt.data.split('&');
+	    	
+	   		$('.num').text(realData[0]);	
+	   		
+			if(realData[1] != "[]"){
+				console.log("들어옴");
+				var data = realData[1].substr(1, ( realData[1].length)-3 );
+		   		var myArrayData1 =[];
+		   		var myArrayData2 =[];
+		   		myArrayData1 = data.split("/,");
+		   		$listContent = $('.list_content2');
+		   		$listContent.html('');
+		   		for(var i in myArrayData1){
+		   			myArrayData2 = myArrayData1[i].split(",");
+		   			var aid = myArrayData2[0];
+		   			var acontent = myArrayData2[1];
+		   			var acreatedate = myArrayData2[2];
+		   			
+		   			var $messageCover = $('<div class="infd-message-cover">');
+		   			// checked 클래스 추가하면 읽음 표시할수있는데 그럴라면 sql에서 check_yn도 가져와서 if로 비교해줘야함
+		   			var $a = $('<a class="infd-message-el">');
+		   			var $title = $('<span class="title">').text(acontent);
+		   			var $date = $('<span class="date">').text(acreatedate);
+		   			
+		   			$a.append($title);
+		   			$a.append($date);
+		   			$messageCover.append($a);
+		   			
+		   			$listContent.append($messageCover);
+		   		}
+			}
+	    }
+	
+	    function onError(evt) {
+	
+	    }
+	    $(document).ready(function(){
+	    	 send_message();
+	    })
+    </script>
 </body>
 </html>

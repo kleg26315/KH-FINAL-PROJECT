@@ -60,6 +60,12 @@ public class NoticeController {
 	public String insertNotice(@RequestParam("title") String title, @RequestParam("content") String content, Model model) {
 		
 		int result = nService.insertNotice(title, content);
+		String bno = nService.selectBno(title, content);
+		ArrayList<String> ids = nService.selectAllId();
+		
+		for(int i=0; i<ids.size(); i++) {
+			nService.insertAlert(ids.get(i), title, bno);
+		}
 		
 		if(result > 0) {
 			return "redirect:list.no";

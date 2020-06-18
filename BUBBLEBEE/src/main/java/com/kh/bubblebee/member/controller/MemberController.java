@@ -104,10 +104,6 @@ public class MemberController {
             String nickName = (String)((JSONObject)result.get("response")).get("name");
             String profileImage = (String)((JSONObject)result.get("response")).get("profile_image");
             
-            System.out.println("\nid : " +id);
-            System.out.println("email : " + email);
-            System.out.println("name : " + nickName);
-            System.out.println("profileImage : " +profileImage);
             int point = 0;
             Member loginUser = mService.checkMember(id);
             if(loginUser != null) {

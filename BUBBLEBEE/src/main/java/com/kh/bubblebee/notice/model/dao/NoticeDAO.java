@@ -97,4 +97,23 @@ public class NoticeDAO {
 		return sqlSession.update("noticeMapper.updateNotice", map);
 	}
 
+	public String selectBno(SqlSessionTemplate sqlSession, String title, String content) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("title", title);
+		map.put("content", content);
+		return sqlSession.selectOne("noticeMapper.selectBno", map);
+	}
+
+	public ArrayList<String> selectAllId(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectAllId");
+	}
+
+	public void insertAlert(SqlSessionTemplate sqlSession, String id, String title, String bno) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("id", id);
+		map.put("title", title);
+		map.put("bno", bno);
+		sqlSession.insert("noticeMapper.insertAlert", map);
+	}
+
 }

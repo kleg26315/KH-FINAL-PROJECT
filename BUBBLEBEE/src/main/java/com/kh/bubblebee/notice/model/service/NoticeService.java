@@ -35,4 +35,10 @@ public interface NoticeService {
 
 	int updateNotice(String title, String content, String bno);
 
+	String selectBno(String title, String content);
+
+	ArrayList<String> selectAllId();
+
+	void insertAlert(String id, String title, String bno);
+
 }
