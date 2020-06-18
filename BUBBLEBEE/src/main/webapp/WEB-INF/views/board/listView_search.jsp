@@ -605,6 +605,7 @@
 			<c:if test="${ pi.currentPage > 1 }">
 				<c:url var="before" value="allList.bo">
 					<c:param name="page" value="${ pi.currentPage - 1 }"/>
+					<c:param name="cate" value="${ cate }"/>
 				</c:url>
 				<a href="${ before }"> <</a> &nbsp;
 			</c:if>
@@ -618,6 +619,7 @@
 				<c:if test="${ p ne pi.currentPage }">
 					<c:url var="pagination" value="allList.bo">
 						<c:param name="page" value="${ p }"/>
+						<c:param name="cate" value="${ cate }"/>
 					</c:url>
 					<a href="${ pagination }">${ p }</a> &nbsp;
 				</c:if>
@@ -630,6 +632,7 @@
 			<c:if test="${ pi.currentPage < pi.maxPage }">
 				<c:url var="after" value="allList.bo">
 					<c:param name="page" value="${ pi.currentPage + 1 }"/>
+					<c:param name="cate" value="${ cate }"/>
 				</c:url> 
 				<a href="${ after }"> > </a>
 			</c:if>
