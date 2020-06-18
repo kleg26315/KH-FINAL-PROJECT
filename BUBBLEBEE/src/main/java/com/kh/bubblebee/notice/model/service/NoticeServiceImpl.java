@@ -88,5 +88,20 @@ public class NoticeServiceImpl implements NoticeService{
 	public int updateNotice(String title, String content, String bno) {
 		return nDAO.updateNotice(sqlSession, title, content, bno);
 	}
+
+	@Override
+	public String selectBno(String title, String content) {
+		return nDAO.selectBno(sqlSession, title, content);
+	}
+
+	@Override
+	public ArrayList<String> selectAllId() {
+		return nDAO.selectAllId(sqlSession);
+	}
+
+	@Override
+	public void insertAlert(String id, String title, String bno) {
+		nDAO.insertAlert(sqlSession, id, title, bno);
+	}
 	
 }
