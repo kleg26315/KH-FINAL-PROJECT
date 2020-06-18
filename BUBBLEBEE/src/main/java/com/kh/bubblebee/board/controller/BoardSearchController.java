@@ -3,6 +3,9 @@ package com.kh.bubblebee.board.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +18,7 @@ import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.board.model.vo.SearchCondition;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.common.Pagination;
+import com.kh.bubblebee.member.model.vo.Member;
 
 @Controller
 public class BoardSearchController {
@@ -23,7 +27,13 @@ public class BoardSearchController {
 	private BoardService bService;
 	
 	@RequestMapping("search.bo")
-	public ModelAndView searchAll(@RequestParam(value="ad2", required=false) String ad2, @RequestParam(value="page", required=false) Integer page, @RequestParam(value="cate") String cate, @RequestParam(value="a", required=false) String a, @RequestParam(value="startPrice", required=false) int startPrice, @RequestParam(value="endPrice", required=false) int endPrice, ModelAndView mv) {
+	public ModelAndView searchAll(HttpServletRequest request, @RequestParam(value="ad2", required=false) String ad2, @RequestParam(value="page", required=false) Integer page, @RequestParam(value="cate") String cate, @RequestParam(value="a", required=false) String a, @RequestParam(value="startPrice", required=false) int startPrice, @RequestParam(value="endPrice", required=false) int endPrice, ModelAndView mv) {
+		HttpSession session = request.getSession();
+	    Member m = (Member) session.getAttribute("loginUser");
+		String id = null;
+		if(m!=null) {
+			id = m.getId();
+		}
 		
 		SearchCondition sc = new SearchCondition();
 		
@@ -72,6 +82,7 @@ public class BoardSearchController {
 		map.put("cate", cate);
 		map.put("sc", sc);
 		map.put("ad2", ad2);
+		map.put("id", id);
 		
 //		System.out.println("ad2"+ad2);
 //		System.out.println("map"+map);

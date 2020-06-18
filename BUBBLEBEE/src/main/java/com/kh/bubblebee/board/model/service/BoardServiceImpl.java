@@ -28,18 +28,18 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public ArrayList<Board> selectList(PageInfo pi, String cate) {
-		return bDAO.selectList(sqlSession, pi, cate);
+	public ArrayList<Board> selectList(PageInfo pi, HashMap<String, String> map) {
+		return bDAO.selectList(sqlSession, pi, map);
 	}
 
 	@Override
-	public ArrayList<Board> selectLtList(String cate) {
-		return bDAO.selectLtList(sqlSession, cate);
+	public ArrayList<Board> selectLtList(HashMap<String, String> map, PageInfo pi) {
+		return bDAO.selectLtList(sqlSession, map, pi);
 	}
 
 	@Override
-	public ArrayList<Board> selectHtList(String cate) {
-		return bDAO.selectHtList(sqlSession, cate);
+	public ArrayList<Board> selectHtList(HashMap<String, String> map, PageInfo pi) {
+		return bDAO.selectHtList(sqlSession, map, pi);
 	}
 
 	@Override
@@ -108,5 +108,6 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<Board> markLocation() {
 		return bDAO.markLocation(sqlSession);
 	}
+
 
 }
