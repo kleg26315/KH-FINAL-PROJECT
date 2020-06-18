@@ -301,64 +301,19 @@
 	   		<p style="font-weight: bold; font-size: 20px;">인기 있는 카테고리</p><br>
 	   		<table class="tpopular" id="tpopular1">
 	   			<tr>
-		   			<td>
-		   				<c:url var="detail" value="detail.do">
-		   					<c:param name="party" value="party" />
-		   				</c:url>
-		   				<a href="${ detail }"><img id="firstCg" class="c_popular" src="${contextPath }/resources/img/토크.jpg"/><br>토크/파티</a>
-		   			</td>
-	   				<td>
-	   					<c:url var="detail1" value="detail.do">
-	   						<c:param name="like" value="like" />
-	   					</c:url>
-	   					<a href="${ detail1 }"><img id="secondCg" class="c_popular" src="${contextPath }/resources/img/취미.jpg"/><br>취향</a>
-	   				</td>
-	   				<td>
-	   					<c:url var="detail2" value="detail.do">
-	   						<c:param name="study" value="study" />
-	   					</c:url>
-	   					<a href="${ detail2 }"><img id="thirdCg" class="c_popular" src="${contextPath }/resources/img/스터디.jpg" /><br>스터디</a>
-	   				</td>
-	   				<td>
-	   					<c:url var="detail3" value="detail.do">
-	   						<c:param name="event" value="event" />
-	   					</c:url>
-	   					<a href="${ detail3 }"><img id="fourthCg" class="c_popular" src="${contextPath }/resources/img/이벤트.jpg" /><br>이벤트/공간</a>
-	   				</td>
+		   			<td><a href="list.bo?cate=party"><img id="firstCg" class="c_popular" src="${contextPath }/resources/img/토크.jpg"/><br>토크/파티</a></td>
+	   				<td><a href="list.bo?cate=like"><img id="secondCg" class="c_popular" src="${contextPath }/resources/img/취미.jpg"/><br>취향</a></td>
+	   				<td><a href="list.bo?cate=study"><img id="thirdCg" class="c_popular" src="${contextPath }/resources/img/스터디.jpg" /><br>스터디</a></td>
+	   				<td><a href="list.bo?cate=event"><img id="fourthCg" class="c_popular" src="${contextPath }/resources/img/이벤트.jpg" /><br>이벤트/공간</a></td>
 	   			</tr>
 			</table><br><br>
 			<table class="tpopular" id="tpopular2">	
 				<tr>
-					<td>
-						<c:url var="detail4" value="detail.do">
-	   						<c:param name="diy" value="diy" />
-	   					</c:url>
-						<a href="${ detail4 }"><img id="fifthCg" class="c_popular"  src="${contextPath }/resources/img/공예.jpg" /><br>공예/DIY</a>
-					</td>
-					<td>
-						<c:url var="detail5" value="detail.do">
-	   						<c:param name="cook" value="cook" />
-	   					</c:url>
-						<a href="${ detail5 }"><img id="sixthCg" class="c_popular"  src="${contextPath }/resources/img/요리.jpg" /><br>요리</a>
-					</td>
-					<td>
-						<c:url var="detail6" value="detail.do">
-	   						<c:param name="sport" value="sport" />
-	   					</c:url>
-						<a href="${ detail6 }"><img id="seventhCg" class="c_popular" src="${contextPath }/resources/img/스포츠.jpg" /><br>스포츠</a>
-					</td>
-					<td>
-						<c:url var="detail7" value="detail.do">
-	   						<c:param name="learn" value="learn" />
-	   					</c:url>
-						<a href="${ detail7 }"><img id="eightthCg" class="c_popular" src="${contextPath }/resources/img/취업.jpg" /><br>어학/취업</a>
-					</td>
-					<td>
-						<c:url var="detail8" value="detail.do">
-	   						<c:param name="sell" value="sell" />
-	   					</c:url>
-						<a href="${ detail8 }"><img id="ninthCg" class="c_popular" src="${contextPath }/resources/img/작품.jpg" /><br>작품</a>
-					</td>
+					<td><a href="list.bo?cate=diy"><img id="fifthCg" class="c_popular"  src="${contextPath }/resources/img/공예.jpg" /><br>공예/DIY</a></td>
+					<td><a href="list.bo?cate=cook"><img id="sixthCg" class="c_popular"  src="${contextPath }/resources/img/요리.jpg" /><br>요리</a></td>
+					<td><a href="list.bo?cate=sport"><img id="seventhCg" class="c_popular" src="${contextPath }/resources/img/스포츠.jpg" /><br>스포츠</a></td>
+					<td><a href="list.bo?cate=learn"><img id="eightthCg" class="c_popular" src="${contextPath }/resources/img/취업.jpg" /><br>어학/취업</a></td>
+					<td><a href="list.bo?cate=sell"><img id="ninthCg" class="c_popular" src="${contextPath }/resources/img/작품.jpg" /><br>작품</a></td>
 				</tr>
 	   		</table><br><br>
 	   </div>
@@ -644,7 +599,6 @@
 					url: 'location.do',
 					dataType: 'json',
 					success: function(data){
-
 						// 마커를 표시할 위치와 title 객체 배열입니다
 						var positions = [];
 						var loc;
@@ -653,10 +607,10 @@
 						for(var i = 0; i < data.list.length; i++){
 							loc = 
 							{
-								title: data.list[i].cat,
+								title: data.list[i].fno + "/" + data.list[i].cat,
+								fno: data.list[i].fno,
 								latlng: new kakao.maps.LatLng(data.list[i].lat, data.list[i].lon)
 							}
-							
 							positions.push(loc);
 						}
 						
@@ -667,7 +621,9 @@
 						} */
 						// 마커 이미지의 이미지 주소입니다
 						var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-						    
+						
+						var fno;
+						
 						for (var i = 0; i < positions.length; i ++) {
 						    
 						    // 마커 이미지의 이미지 크기 입니다
@@ -676,33 +632,29 @@
 						    // 마커 이미지를 생성합니다    
 						    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
 						    
+						    var str = positions[i].title;
 						    // 마커를 생성합니다
 						    var marker = new kakao.maps.Marker({
 						        map: map, // 마커를 표시할 지도
 						        position: positions[i].latlng, // 마커를 표시할 위치
-						        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+						        title : str.substring(str.lastIndexOf("/")+1), // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 						        image : markerImage // 마커 이미지 
 						    });
+						    
+						    fno = str.substring(0,str.lastIndexOf("/"));
 						}
+						
+						// 마커에 클릭이벤트를 등록합니다
+						kakao.maps.event.addListener(marker, 'click', function() {
+						      // 마커 위에 인포윈도우를 표시합니다
+						    console.log("fno" + fno);
+						    location.href="detail.do?fno="+fno;
+						});
 					}
 				})
 			};
 		</script>
 	   
-	   <script>
-	   		
-	   		var ips = [];
-	   		for(var i = 0; i < 10; i++){
-	   			var v = $('#ip'+i).val();
-	   			ips.push(v);
-	   		}
-	   		console.log(ips[0]);
-	   		
-	   		$('#td0').on('click', function(){
-	   			console.log($('#ip0').val());
-	   		});
-	   		
-	   </script>
 	<footer id="footer" style="padding-top: 115px;">
 		<%@ include file = "../layout/footer.jsp" %>
 	</footer>

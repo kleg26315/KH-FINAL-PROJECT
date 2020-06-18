@@ -91,7 +91,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping("detail.bo")
-	public ModelAndView detailView(@RequestParam("fno") int fno, @RequestParam("page") Integer page, ModelAndView mv) {	
+	public ModelAndView detailView(@RequestParam("fno") int fno, ModelAndView mv) {	
 		
 		Board b = bService.selectBoard(fno);
 //		System.out.println("detail.bo의 b : " + b);
@@ -107,7 +107,6 @@ public class BoardController {
 		if(b != null) {
 			mv.addObject("b", b)
 			  .addObject("host", host)
-			  .addObject("page", page)
 			  .addObject("p", p)
 			  .setViewName("boardDetail");
 			return mv;
