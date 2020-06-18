@@ -512,10 +512,10 @@
                   <div class="moim_img">
                      <div class="heart_div">
                         <button class="heart_button" width="24px" height="24px" value="${ b.fno }">
-                        <c:if test="${b.hid ne uid || empty uid}">
+                        <c:if test='${b.li eq "hn"}'>
                         	<img class="heart" width='16' height='18' src="${contextPath }/resources/img/빈하트.png" alt="찜하기">
                         </c:if>
-                         <c:if test='${b.hid eq uid && !empty b.hid}'>
+                         <c:if test='${b.li eq "hy"}'>
                         	<img class="heart" width='16' height='18' src="${contextPath }/resources/img/채워진하트.png" alt="찜하기">
                         </c:if>
                         </button>

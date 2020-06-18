@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,14 +15,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.kh.bubblebee.board.model.exception.BoardException;
 import com.kh.bubblebee.board.model.service.BoardService;
 import com.kh.bubblebee.board.model.vo.Board;
+import com.kh.bubblebee.board.model.vo.PaginationLi;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.common.Pagination;
 import com.kh.bubblebee.host.model.vo.Host;
+import com.kh.bubblebee.member.model.vo.Member;
 import com.kh.bubblebee.purchase.model.service.PurchaseService;
 import com.kh.bubblebee.purchase.model.vo.Purchase;
 
@@ -36,12 +38,31 @@ public class BoardController {
 	
 	
 	@RequestMapping("list.bo")
-	public ModelAndView moimList(@RequestParam(value="cate") String cate, ModelAndView mv) {
+	public ModelAndView moimList(HttpServletRequest request, @RequestParam(value="cate") String cate, ModelAndView mv) {
+		HttpSession session = request.getSession();
+	    Member m = (Member) session.getAttribute("loginUser");
+		String id = null;
+		if(m!=null) {
+			id = m.getId();
+		}
+		System.out.println("id:"+id);
+		
+		int currentPage = 1;
+		int listCount = bService.getListCount(cate);
+		PageInfo pi = PaginationLi.getPageInfo(currentPage, listCount);
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("cate", cate);
+		
 		//인기불러오기
-		ArrayList<Board> htlist = bService.selectHtList(cate);
+		ArrayList<Board> htlist = bService.selectHtList(map, pi);
 		
 		//최신불러오기
-		ArrayList<Board> ltlist = bService.selectLtList(cate);
+		ArrayList<Board> ltlist = bService.selectLtList(map, pi);
+		for(Board b : ltlist) {
+			System.out.println(b);
+		}
 		
 		if(ltlist != null && htlist != null) {
 			mv.addObject("cate", cate);
@@ -58,7 +79,13 @@ public class BoardController {
 	}
 	
 	@RequestMapping("allList.bo")
-	public ModelAndView allList(@RequestParam(value="page", required=false) Integer page, @RequestParam(value="cate") String cate, ModelAndView mv) {
+	public ModelAndView allList(HttpServletRequest request, @RequestParam(value="page", required=false) Integer page, @RequestParam(value="cate") String cate, ModelAndView mv) {
+		HttpSession session = request.getSession();
+	    Member m = (Member) session.getAttribute("loginUser");
+		String id = null;
+		if(m!=null) {
+			id = m.getId();
+		}
 		
 		int currentPage = 1;
 		if(page!=null) {
@@ -68,13 +95,17 @@ public class BoardController {
 		int listCount = bService.getListCount(cate);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		ArrayList<Board> list = bService.selectList(pi, cate);
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("cate", cate);
+		
+		ArrayList<Board> list = bService.selectList(pi, map);
 		
 		//어디서
 		ArrayList<Board> wlist = bService.selectwList(cate);
-		for(int i=0; i<wlist.size(); i++) {
-			System.out.println("wlist"+wlist.get(i).getAd1()+"/"+wlist.get(i).getAd2());
-		}
+//		for(int i=0; i<wlist.size(); i++) {
+//			System.out.println("wlist"+wlist.get(i).getAd1()+"/"+wlist.get(i).getAd2());
+//		}
 			
 		if(list != null) {
 			mv.addObject("cate", cate);

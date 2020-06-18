@@ -4,26 +4,59 @@
 	
 	<select id="getListCount" resultType="_int">
 		select count(*)
-		from board
+		from blist
 		where f_status='Y' and category=#{cate}
 	</select>
 	
 	<select id="selectList" resultType="Board">
 		select *
-		from blist
-		where category=#{cate}
+		from(select FNO, FTYPE, PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, REGEXP_SUBSTR(LOCATION, '[^ ]+', 1, 1)AD, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, round(rcount / (select max(decode(rcount,0,1,rcount)) from board) * (rsum/decode(rcount,0,1,rcount)),2) as rank, RENAMEFILENAME, 'hy' li
+		     from blist
+		     where fno in (select fno2
+		                   from heart
+		                   where user_id=#{id})   
+		    union
+		    select FNO, FTYPE, PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, REGEXP_SUBSTR(LOCATION, '[^ ]+', 1, 1)AD, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, round(rcount / (select max(decode(rcount,0,1,rcount)) from board) * (rsum/decode(rcount,0,1,rcount)),2) as rank, RENAMEFILENAME, 'hn' li
+		    from blist
+		    where fno not in (select fno2
+		                      from heart
+		                      where user_id=#{id}) )
+		where f_status='Y' and category=#{cate}
+		order by rank desc
 	</select>
 	
-	<select id="selectLtList" resultType="Board">
+	<select id="selectLtList" parameterType="map" resultType="Board">
 		select *
-		from bltlist
-		where category=#{cate} and rnum between 1 and 4
+		from(select FNO, FTYPE, PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, REGEXP_SUBSTR(LOCATION, '[^ ]+', 1, 1)AD, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, round(rcount / (select max(decode(rcount,0,1,rcount)) from board) * (rsum/decode(rcount,0,1,rcount)),2) as rank, RENAMEFILENAME, 'hy' li
+		     from blist
+		     where fno in (select fno2
+		                   from heart
+		                   where user_id=#{id})   
+		    union
+		    select FNO, FTYPE, PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, REGEXP_SUBSTR(LOCATION, '[^ ]+', 1, 1)AD, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, round(rcount / (select max(decode(rcount,0,1,rcount)) from board) * (rsum/decode(rcount,0,1,rcount)),2) as rank, RENAMEFILENAME, 'hn' li
+		    from blist
+		    where fno not in (select fno2
+		                      from heart
+		                      where user_id=#{id}) )
+		where f_status='Y' and category=#{cate}
+		order by f_create_date desc
 	</select>
 	
-	<select id="selectHtList" resultType="Board">
+	<select id="selectHtList" parameterType="map" resultType="Board">
 		select *
-		from bhtlist
-		where category=#{cate} and rnum between 1 and 4
+		from(select FNO, FTYPE, PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, REGEXP_SUBSTR(LOCATION, '[^ ]+', 1, 1)AD, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, round(rcount / (select max(decode(rcount,0,1,rcount)) from board) * (rsum/decode(rcount,0,1,rcount)),2) as rank, RENAMEFILENAME, 'hy' li
+		     from blist
+		     where fno in (select fno2
+		                   from heart
+		                   where user_id=#{id})   
+		    union
+		    select FNO, FTYPE, PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, REGEXP_SUBSTR(LOCATION, '[^ ]+', 1, 1)AD, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, round(rcount / (select max(decode(rcount,0,1,rcount)) from board) * (rsum/decode(rcount,0,1,rcount)),2) as rank, RENAMEFILENAME, 'hn' li
+		    from blist
+		    where fno not in (select fno2
+		                      from heart
+		                      where user_id=#{id}) )
+		where f_status='Y' and category=#{cate}
+		order by rank desc
 	</select>
 	
 	<insert id="insertBoard">
@@ -58,7 +91,17 @@
 	
 	<select id="selectSearchList" parameterType="map" resultType="Board">
 		select *
-		from blist
+		from(select FNO, FTYPE, PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, REGEXP_SUBSTR(LOCATION, '[^ ]+', 1, 1)AD, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, round(rcount / (select max(decode(rcount,0,1,rcount)) from board) * (rsum/decode(rcount,0,1,rcount)),2) as rank, RENAMEFILENAME, 'hy' li
+		     from blist
+		     where fno in (select fno2
+		                   from heart
+		                   where user_id=#{id})   
+		    union
+		    select FNO, FTYPE, PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, REGEXP_SUBSTR(LOCATION, '[^ ]+', 1, 1)AD, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, round(rcount / (select max(decode(rcount,0,1,rcount)) from board) * (rsum/decode(rcount,0,1,rcount)),2) as rank, RENAMEFILENAME, 'hn' li
+		    from blist
+		    where fno not in (select fno2
+		                      from heart
+		                      where user_id=#{id}) )
 		where f_status='Y' and category=#{cate} and
 		<![CDATA[ 
 			price>=#{sc.startPrice} and price<=#{sc.endPrice}
@@ -67,7 +110,7 @@
 			and ad2=#{ad2}
 		</if> 
 			<if test='sc.popular != null'>
-		    	order by round(rcount / (select decode(max(rcount),0,1,max(rcount)) from board) * (rsum/decode(rcount,0,1,rcount)),2) desc
+		    	order by rank desc
 		    </if>
 		    <if test='sc.latest != null'>
 		    	order by f_create_date desc
@@ -127,4 +170,5 @@
 		select *
 		from board
 	</select>
+	
 </mapper>

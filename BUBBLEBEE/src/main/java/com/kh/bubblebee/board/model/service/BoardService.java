@@ -15,11 +15,11 @@ public interface BoardService {
 
 	int getListCount(String cate);
 
-	ArrayList<Board> selectList(PageInfo pi, String cate);
+	ArrayList<Board> selectList(PageInfo pi, HashMap<String, String> map);
 
-	ArrayList<Board> selectLtList(String cate);
+	ArrayList<Board> selectLtList(HashMap<String, String> map, PageInfo pi);
 
-	ArrayList<Board> selectHtList(String cate);
+	ArrayList<Board> selectHtList(HashMap<String, String> map, PageInfo pi);
 
 	int insertBoard(Board b);
 

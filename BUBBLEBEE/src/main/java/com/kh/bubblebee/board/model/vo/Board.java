@@ -34,14 +34,15 @@ public class Board {
 	private int maxMember; // 참여가능인원
 	private double rank; //인기순 정렬시 기준
 	private String hid; //하트누른 아이디
+	private String li; //하트누른 여부
 	
 	public Board() {}
 
 	public Board(int rnum, int fno, int ftype, int price, String small_title, String ftitle, String category,
-			String location, String ad1, String ad2, double lat, double lon, String fcontain, String fncontain,
+			String location, double lat, double lon, String ad1, String ad2, String fcontain, String fncontain,
 			String fcalendar, String fmaterials, String fminfo, String fprecaution, String user_id, int heart, int rsum,
 			int rcount, Date f_create_date, String f_status, String originalFileName, String renameFileName,
-			String introduce, int maxMember, double rank, String hid) {
+			String introduce, int maxMember, double rank, String hid, String li) {
 		super();
 		this.rnum = rnum;
 		this.fno = fno;
@@ -51,10 +52,10 @@ public class Board {
 		this.ftitle = ftitle;
 		this.category = category;
 		this.location = location;
-		this.ad1 = ad1;
-		this.ad2 = ad2;
 		this.lat = lat;
 		this.lon = lon;
+		this.ad1 = ad1;
+		this.ad2 = ad2;
 		this.fcontain = fcontain;
 		this.fncontain = fncontain;
 		this.fcalendar = fcalendar;
@@ -73,6 +74,7 @@ public class Board {
 		this.maxMember = maxMember;
 		this.rank = rank;
 		this.hid = hid;
+		this.li = li;
 	}
 
 	public int getRnum() {
@@ -139,22 +141,6 @@ public class Board {
 		this.location = location;
 	}
 
-	public String getAd1() {
-		return ad1;
-	}
-
-	public void setAd1(String ad1) {
-		this.ad1 = ad1;
-	}
-
-	public String getAd2() {
-		return ad2;
-	}
-
-	public void setAd2(String ad2) {
-		this.ad2 = ad2;
-	}
-
 	public double getLat() {
 		return lat;
 	}
@@ -169,6 +155,22 @@ public class Board {
 
 	public void setLon(double lon) {
 		this.lon = lon;
+	}
+
+	public String getAd1() {
+		return ad1;
+	}
+
+	public void setAd1(String ad1) {
+		this.ad1 = ad1;
+	}
+
+	public String getAd2() {
+		return ad2;
+	}
+
+	public void setAd2(String ad2) {
+		this.ad2 = ad2;
 	}
 
 	public String getFcontain() {
@@ -315,16 +317,25 @@ public class Board {
 		this.hid = hid;
 	}
 
+	public String getLi() {
+		return li;
+	}
+
+	public void setLi(String li) {
+		this.li = li;
+	}
+
 	@Override
 	public String toString() {
 		return "Board [rnum=" + rnum + ", fno=" + fno + ", ftype=" + ftype + ", price=" + price + ", small_title="
-				+ small_title + ", ftitle=" + ftitle + ", category=" + category + ", location=" + location + ", ad1="
-				+ ad1 + ", ad2=" + ad2 + ", lat=" + lat + ", lon=" + lon + ", fcontain=" + fcontain + ", fncontain="
+				+ small_title + ", ftitle=" + ftitle + ", category=" + category + ", location=" + location + ", lat="
+				+ lat + ", lon=" + lon + ", ad1=" + ad1 + ", ad2=" + ad2 + ", fcontain=" + fcontain + ", fncontain="
 				+ fncontain + ", fcalendar=" + fcalendar + ", fmaterials=" + fmaterials + ", fminfo=" + fminfo
 				+ ", fprecaution=" + fprecaution + ", user_id=" + user_id + ", heart=" + heart + ", rsum=" + rsum
 				+ ", rcount=" + rcount + ", f_create_date=" + f_create_date + ", f_status=" + f_status
 				+ ", originalFileName=" + originalFileName + ", renameFileName=" + renameFileName + ", introduce="
-				+ introduce + ", maxMember=" + maxMember + ", rank=" + rank + ", hid=" + hid + "]";
+				+ introduce + ", maxMember=" + maxMember + ", rank=" + rank + ", hid=" + hid + ", li=" + li + "]";
 	}
 
+	
 }
