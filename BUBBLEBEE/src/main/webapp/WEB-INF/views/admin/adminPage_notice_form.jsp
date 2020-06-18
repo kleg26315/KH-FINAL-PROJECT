@@ -162,6 +162,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 				var result = confirm('정말로 공지사항 등록하시겠습니까?');
 				if(result){
 					alert('공지사항 등록 완료');
+					/* socket.send(); */
 					$('#frm').submit();			
 				} else{
 					alert('등록을 취소합니다.');

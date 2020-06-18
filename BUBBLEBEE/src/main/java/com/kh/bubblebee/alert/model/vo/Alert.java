@@ -8,16 +8,18 @@ public class Alert {
 	private String check_yn;
 	private String a_content;
 	private Date a_create_date;
+	private int bno;
 	
 	public Alert() {}
 
-	public Alert(int aid, String user_id, String check_yn, String a_content, Date a_create_date) {
+	public Alert(int aid, String user_id, String check_yn, String a_content, Date a_create_date, int bno) {
 		super();
 		this.aid = aid;
 		this.user_id = user_id;
 		this.check_yn = check_yn;
 		this.a_content = a_content;
 		this.a_create_date = a_create_date;
+		this.bno = bno;
 	}
 
 	public int getAid() {
@@ -60,9 +62,17 @@ public class Alert {
 		this.a_create_date = a_create_date;
 	}
 
+	public int getBno() {
+		return bno;
+	}
+
+	public void setBno(int bno) {
+		this.bno = bno;
+	}
+
 	@Override
 	public String toString() {
-		return aid +"," + a_content + "," + a_create_date + "/";
+		return aid +"," + a_content + "," + a_create_date + "," + bno + "," + check_yn + "/";
 	}
 	
 	

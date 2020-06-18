@@ -142,4 +142,9 @@
 	<insert id="insertAlert">
 		insert into alert values(SEQ_ALERT.NEXTVAL, #{id}, DEFAULT, #{title}, SYSDATE, #{bno})
 	</insert>
+	
+	<update id="checkAlert">
+		update alert set check_yn = 'Y'
+		where user_id = #{id} and bno = #{bno}
+	</update>
 </mapper>

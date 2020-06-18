@@ -45,6 +45,7 @@
 	    		<li id="l_point" class="nav_li"><a href="mypoint.mg">마일리지</a></li>
 	    		<li id="l_modify" class="nav_li"><a href="updateInfoForm.mg">정보 수정</a></li>
 	    		<li id="l_review" class="nav_li"><a href="myreview.mg">후기</a></li>
+	    		<li id="l_alert" class="nav_li"><a href="myalert.mg">모든 알림</a></li>
 	    		<c:if test="${ sessionScope.loginUser.host_yn eq 'N' }">
 	    			<li id="l_hostenroll" class="nav_li"><a href="hostenrollForm.mg">호스트 등록</a></li>
 	    		</c:if>

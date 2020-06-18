@@ -166,7 +166,7 @@
 										</div> -->
 									</div>
 								</div>
-				          		<div class="button-content"><a href="#">더 많은 알람 보기</a></div>
+				          		<div class="button-content"><a href="myalert.mg">더 많은 알람 보기</a></div>
 						        </div>
 					        </div>
 					        
@@ -444,13 +444,6 @@
 		 	document.cookie = name + '=';
 		}
     	
-    	/* form 태그 두개있을때 뒤에 나오는 form태그는 보이지 않는 에러가 나서 위 form태그를 없앰 */
-    	/* $('#searchForm').submit(function(e){
-    		var value = $('.input').val();
-    		setCookie('search', value , 1);
-    		console.log(getCookie('search'));
-    	}) */
-    	
     	$('.input').keyup(function(key){
     		if(key.keyCode == 13){
     			var value = $('.input').val();
@@ -626,12 +619,14 @@
     
     <!-- 알림 스크립트 -->
     <script>
+    var socket = null;
 	    var wsUri = "ws://localhost:8780/bubblebee/count";
 	    function send_message(){
 	        websocket = new WebSocket(wsUri);
+	        socket = websocket;
 	        websocket.onopen = function(evt) {
 	            onOpen(evt);
-	           /* setTimeout(function(){
+	           /*  setTimeout(function(){
 	        	send_message();
 		        }, 1000); */
 	        };
@@ -642,7 +637,6 @@
 	        websocket.onerror = function(evt) {
 	            onError(evt);
 	        };
-	        
 	    } 
 	   
 	    function onOpen(evt) 
@@ -657,7 +651,6 @@
 	   		$('.num').text(realData[0]);	
 	   		
 			if(realData[1] != "[]"){
-				console.log("들어옴");
 				var data = realData[1].substr(1, ( realData[1].length)-3 );
 		   		var myArrayData1 =[];
 		   		var myArrayData2 =[];
@@ -669,28 +662,61 @@
 		   			var aid = myArrayData2[0];
 		   			var acontent = myArrayData2[1];
 		   			var acreatedate = myArrayData2[2];
+		   			var bno = myArrayData2[3];
+		   			var check_yn = myArrayData2[4];
 		   			
-		   			var $messageCover = $('<div class="infd-message-cover">');
-		   			// checked 클래스 추가하면 읽음 표시할수있는데 그럴라면 sql에서 check_yn도 가져와서 if로 비교해줘야함
-		   			var $a = $('<a class="infd-message-el">');
-		   			var $title = $('<span class="title">').text(acontent);
-		   			var $date = $('<span class="date">').text(acreatedate);
-		   			
-		   			$a.append($title);
-		   			$a.append($date);
-		   			$messageCover.append($a);
-		   			
-		   			$listContent.append($messageCover);
+		   			if(check_yn =='N'){
+		   				var $messageCover = $('<div class="infd-message-cover">');
+		   				var $a = $('<a class="infd-message-el">');
+			   			var $bno = $("<input name='bno' hidden>").val(bno);
+			   			var $title = $('<span class="title">').text(acontent);
+			   			var $date = $('<span class="date">').text(acreatedate);
+			   			
+			   			$a.append($bno);
+			   			$a.append($title);
+			   			$a.append($date);
+			   			$messageCover.append($a);
+			   			
+			   			$listContent.append($messageCover);
+		   			}
 		   		}
+		   		
+	   			for(var i in myArrayData1){
+		   			myArrayData2 = myArrayData1[i].split(",");
+		   			var aid = myArrayData2[0];
+		   			var acontent = myArrayData2[1];
+		   			var acreatedate = myArrayData2[2];
+		   			var bno = myArrayData2[3];
+		   			var check_yn = myArrayData2[4];
+		   			
+		   			if(check_yn =='Y'){
+		   				var $messageCover = $('<div class="infd-message-cover checked">');
+		   				var $a = $('<a class="infd-message-el">');
+			   			var $bno = $("<input name='bno' hidden>").val(bno);
+			   			var $title = $('<span class="title">').text(acontent);
+			   			var $date = $('<span class="date">').text(acreatedate);
+			   			
+			   			$a.append($bno);
+			   			$a.append($title);
+			   			$a.append($date);
+			   			$messageCover.append($a);
+			   			
+			   			$listContent.append($messageCover);
+		   			}
+	   			}
+		   	 	$('.infd-message-el').click(function(){
+			    	var bno = $(this).children().eq(0).val();
+					location.href = 'noticeSelect.no?bno='+ bno;
+			    })
 			}
 	    }
 	
 	    function onError(evt) {
-	
 	    }
 	    $(document).ready(function(){
 	    	 send_message();
 	    })
+	    
     </script>
 </body>
 </html>

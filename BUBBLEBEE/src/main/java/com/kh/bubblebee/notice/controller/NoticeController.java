@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.common.Pagination;
+import com.kh.bubblebee.member.model.vo.Member;
 import com.kh.bubblebee.notice.model.exception.NoticeException;
 import com.kh.bubblebee.notice.model.service.NoticeService;
 import com.kh.bubblebee.notice.model.vo.Notice;
@@ -270,6 +272,24 @@ public class NoticeController {
 			mv.setViewName("redirect:list.no");
 		} else {
 			throw new NoticeException("공지사항 수정에 실패하였습니다.");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping("noticeSelect")
+	public ModelAndView noticeSelect(@RequestParam("bno") String bno, HttpSession session, ModelAndView mv) {
+		String id = ((Member)session.getAttribute("loginUser")).getId();
+		
+		int result = nService.checkAlert(bno, id);
+		Notice notice = nService.selectupdateFAQ(bno);
+		if(notice != null) {
+			if(result > 0) {
+				mv.addObject("notice", notice);
+				mv.setViewName("noticeSelect");
+			} 
+		} else {
+			throw new NoticeException("공지사항 조회에 실패하였습니다.");
 		}
 		
 		return mv;
