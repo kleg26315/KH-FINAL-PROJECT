@@ -78,4 +78,11 @@ public class HomeController {
 		  .setViewName("redirect:detail.bo");
 		return mv;
 	}
+	
+//	@RequestMapping("boardDetail.do")
+//	public ModelAndView boardDetail(ModelAndView mv) {
+//		ArrayList<Board> bList = bService.selectList();
+//		return mv;
+//	}
+	
 }
