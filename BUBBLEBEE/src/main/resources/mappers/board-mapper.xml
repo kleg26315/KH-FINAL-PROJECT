@@ -75,8 +75,7 @@
 		update board
  		set FTYPE= #{ftype}, PRICE=#{price}, SMALL_TITLE=#{small_title}, FTITLE=#{ftitle}, CATEGORY=#{category}, LOCATION=#{location}, LAT=#{lat}, LON=#{lon}, 
 			FCONTAIN=#{fcontain}, FNCONTAIN=#{fncontain}, FCALENDAR=#{fcalendar}, FMATERIALS=#{fmaterials}, FMINFO=#{fminfo}, FPRECAUTION=#{fprecaution}, 
-			USER_ID=#{user_id}, HEART=default, RSUM=default, RCOUNT=default, F_CREATE_DATE=sysdate, F_STATUS=default, ORIGINALFILENAME=#{originalFileName},
-			RENAMEFILENAME=#{renameFileName}, INTRODUCE=#{introduce}, MAXMEMBER=#{maxMember})
+			ORIGINALFILENAME=#{originalFileName},RENAMEFILENAME=#{renameFileName}, INTRODUCE=#{introduce}, MAXMEMBER=#{maxMember})
  		where fno = #{fno}	
 	</update>
 	
