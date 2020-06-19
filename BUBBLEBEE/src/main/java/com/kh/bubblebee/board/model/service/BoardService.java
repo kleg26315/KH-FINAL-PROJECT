@@ -51,5 +51,9 @@ public interface BoardService {
 
 	int minusHeart(int fno);
 
+	ArrayList<Board> selectMList();
+	
+	ArrayList<Board> selectCList();
+
 	
 }

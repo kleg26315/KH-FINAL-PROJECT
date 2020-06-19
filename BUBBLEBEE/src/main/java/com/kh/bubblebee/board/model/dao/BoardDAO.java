@@ -108,5 +108,13 @@ public class BoardDAO {
 	public int minusHeart(SqlSessionTemplate sqlSession, int fno) {
 		return sqlSession.update("boardMapper.minusHeart", fno);
 	}
+
+	public ArrayList<Board> selectMList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectMList");
+	}
+
+	public ArrayList<Board> selectCList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectCList");
+	}
 	
 }
