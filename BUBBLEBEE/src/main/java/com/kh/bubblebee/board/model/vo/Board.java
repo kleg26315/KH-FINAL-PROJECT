@@ -35,6 +35,8 @@ public class Board {
 	private double rank; //인기순 정렬시 기준
 	private String hid; //하트누른 아이디
 	private String li; //하트누른 여부
+	private double avgrv;	// 리뷰 평균 점수 
+	
 	
 	public Board() {}
 
@@ -42,7 +44,7 @@ public class Board {
 			String location, double lat, double lon, String ad1, String ad2, String fcontain, String fncontain,
 			String fcalendar, String fmaterials, String fminfo, String fprecaution, String user_id, int heart, int rsum,
 			int rcount, Date f_create_date, String f_status, String originalFileName, String renameFileName,
-			String introduce, int maxMember, double rank, String hid, String li) {
+			String introduce, int maxMember, double rank, String hid, String li, double avgrv) {
 		super();
 		this.rnum = rnum;
 		this.fno = fno;
@@ -75,6 +77,7 @@ public class Board {
 		this.rank = rank;
 		this.hid = hid;
 		this.li = li;
+		this.avgrv = avgrv;
 	}
 
 	public int getRnum() {
@@ -324,7 +327,15 @@ public class Board {
 	public void setLi(String li) {
 		this.li = li;
 	}
-
+	
+	public double getAvgrv() {
+		return avgrv;
+	}
+	
+	public void setAvgrv(double avgrv) {
+		this.avgrv = avgrv;
+	}
+	
 	@Override
 	public String toString() {
 		return "Board [rnum=" + rnum + ", fno=" + fno + ", ftype=" + ftype + ", price=" + price + ", small_title="
@@ -334,8 +345,7 @@ public class Board {
 				+ ", fprecaution=" + fprecaution + ", user_id=" + user_id + ", heart=" + heart + ", rsum=" + rsum
 				+ ", rcount=" + rcount + ", f_create_date=" + f_create_date + ", f_status=" + f_status
 				+ ", originalFileName=" + originalFileName + ", renameFileName=" + renameFileName + ", introduce="
-				+ introduce + ", maxMember=" + maxMember + ", rank=" + rank + ", hid=" + hid + ", li=" + li + "]";
+				+ introduce + ", maxMember=" + maxMember + ", rank=" + rank + ", hid=" + hid + ", li=" + li + ", avgrv=" + avgrv + "]";
 	}
 
-	
 }

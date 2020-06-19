@@ -119,5 +119,13 @@ public class BoardServiceImpl implements BoardService {
 		return bDAO.minusHeart(sqlSession, fno);
 	}
 
+	@Override
+	public ArrayList<Board> selectMList() {
+		return bDAO.selectMList(sqlSession);
+	}
 
+	@Override
+	public ArrayList<Board> selectCList() {
+		return bDAO.selectCList(sqlSession);
+	}
 }
