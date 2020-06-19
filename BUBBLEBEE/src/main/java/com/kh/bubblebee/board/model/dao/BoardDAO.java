@@ -100,5 +100,13 @@ public class BoardDAO {
 	public ArrayList<Board> markLocation(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("boardMapper.makrLocation");
 	}
+
+	public int plusHeart(SqlSessionTemplate sqlSession, int fno) {
+		return sqlSession.update("boardMapper.plusHeart", fno);
+	}
+
+	public int minusHeart(SqlSessionTemplate sqlSession, int fno) {
+		return sqlSession.update("boardMapper.minusHeart", fno);
+	}
 	
 }

@@ -85,7 +85,7 @@
 			price>=#{sc.startPrice} and price<=#{sc.endPrice}
 		 ]]>
 		<if test='ad2 != null'>
-			and ad2=#{ad2}
+			and ad1=#{ad1} and ad2=#{ad2}
 		</if> 
 	</select>
 	
@@ -107,7 +107,7 @@
 			price>=#{sc.startPrice} and price<=#{sc.endPrice}
 		 ]]>
 		<if test='ad2 != null'>
-			and ad2=#{ad2}
+			and ad1=#{ad1} and ad2=#{ad2}
 		</if> 
 			<if test='sc.popular != null'>
 		    	order by rank desc
@@ -170,5 +170,17 @@
 		select *
 		from board
 	</select>
+	
+	<update id="plusHeart">
+		update board
+		set heart = heart + 1
+		where fno=#{fno}
+	</update>
+	
+	<update id="minusHeart">
+		update board
+		set heart = heart - 1
+		where fno=#{fno}
+	</update>
 	
 </mapper>

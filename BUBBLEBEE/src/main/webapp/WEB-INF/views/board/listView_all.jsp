@@ -167,6 +167,7 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '서울특별시' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
 									<c:param name="startPrice" value="0"/>
@@ -180,6 +181,7 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '부산광역시' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
 									<c:param name="startPrice" value="0"/>
@@ -193,6 +195,7 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '대구광역시' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
 									<c:param name="startPrice" value="0"/>
@@ -206,6 +209,7 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '인천광역시' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
 									<c:param name="startPrice" value="0"/>
@@ -219,6 +223,7 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '광주광역시' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
 									<c:param name="startPrice" value="0"/>
@@ -232,6 +237,7 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '대전광역시' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
 									<c:param name="startPrice" value="0"/>
@@ -245,6 +251,7 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '울산광역시' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
 									<c:param name="startPrice" value="0"/>
@@ -258,6 +265,7 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '세종특별자치시' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
 									<c:param name="startPrice" value="0"/>
@@ -271,6 +279,7 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '경기도' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
 									<c:param name="startPrice" value="0"/>
@@ -284,6 +293,7 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '강원도' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
 									<c:param name="startPrice" value="0"/>
@@ -297,6 +307,7 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '충청북도' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
 									<c:param name="startPrice" value="0"/>
@@ -310,6 +321,7 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '세종특별자치시' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
 									<c:param name="startPrice" value="0"/>
@@ -323,6 +335,7 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '전라북도' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
 									<c:param name="startPrice" value="0"/>
@@ -336,6 +349,7 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '전라남도' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
 									<c:param name="startPrice" value="0"/>
@@ -349,6 +363,7 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '경상북도' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
 									<c:param name="startPrice" value="0"/>
@@ -362,6 +377,7 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '경상남도' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
 									<c:param name="startPrice" value="0"/>
@@ -375,6 +391,7 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '제주특별자치도' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
 									<c:param name="startPrice" value="0"/>
