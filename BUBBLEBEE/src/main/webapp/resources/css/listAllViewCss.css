@@ -39,44 +39,6 @@ div.main{
 	padding-top:10px; font-size:16px;
 	}
 	
-	
-	/* 모달_언제 */
-input[id*="when"] {display:none;} /* 체크박스 */
-input[id*="when"] + label {display:inline-block; text-align:center; padding-top:4px; width:90px; height:33px;background:lightgray; border-radius:5px;}/* 버튼 */
-input[id*="when"] + label + div {position:fixed;top:0;left:0;width:100%;height:100%;z-index:100;}
-input[id*="when"] + label + div > div {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:550px;height:430px;background:white;z-index:2;} /* 모달창 */
-input[id*="when"] + label + div > div > label {font-size:20px; font-weight:bold; position:absolute;top:0%;right:3%;padding:5px;background:white;z-index:3;} /* 닫 기*/
-input[id*="when"] + label + div > label {position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);z-index:1;} /* 모달밖 */
-
-input[id*="when"] + label + div {display:none;}
-input[id*="when"]:checked + label + div {display:block;}
-
-.embedded-daterangepicker .daterangepicker::before,
-.embedded-daterangepicker .daterangepicker::after {
-  display: none;
-}
-.embedded-daterangepicker .daterangepicker {
-  position: relative !important;
-  top: auto !important;
-  left: auto !important;
-  float: left;
-  width: 110%;
-  margin-top: 0;
-  margin-left: 15px;
-  background-color:transparent;
-  border:none;
-}
-.embedded-daterangepicker .daterangepicker .drp-calendar {
-  width: 50%;
-  max-width: 50%;
-}
-
-#daterangepicker-result{font-weight:bold; margin-left: 45px; float:left;}
-.row{padding-top:5px;}
-#dateChoose{
-	margin-top:-10px;
-	text-align:center; width:100px; height:30px; padding-top:5px; color:white; font-weight:bold; background:gold; border-radius:5px;}
-
 	/* 모달_어디서 */
 input[id*="where"] {display:none;} /* 체크박스 */
 input[id*="where"] + label {display:inline-block; text-align:center; padding-top:4px; width:90px; height:33px;background:lightgray; border-radius:5px;}/* 버튼 */
