@@ -51,6 +51,10 @@ public interface BoardService {
 
 	int boardUpdateOption(HashMap<String, Option> map);
 
+	int deleteBoard(int fno);
+
+	int deleteBoardOption(int fno);
+
 
 
 	

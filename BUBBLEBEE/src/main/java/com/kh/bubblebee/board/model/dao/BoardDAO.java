@@ -111,6 +111,16 @@ public class BoardDAO {
 		return sqlSession.update("boardMapper.updateBoardOption", map);
 	}
 
+	public int deleteBoard(SqlSessionTemplate sqlSession, int fno) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("boardMapper.deleteBoard", fno);
+	}
+
+	public int deleteBoardOption(SqlSessionTemplate sqlSession, int fno) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("boardMapper.deleteBoardOption", fno);
+	}
+
 
 	
 	

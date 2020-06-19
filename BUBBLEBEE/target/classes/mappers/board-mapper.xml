@@ -86,6 +86,17 @@
 		where fno = #{fno}	
 	</update>
 	
+	<update id="deleteBoard">
+		update board
+		set F_STATUS = 'N'
+		where fno = #{fno}	
+	</update>
+	
+	<delete id="deleteBoardOption">
+		delete from choose
+		where fno=#{fno}
+	</delete>
+	
 	<select id="selectBoard" resultType="Board">
 		select *
 		from board
