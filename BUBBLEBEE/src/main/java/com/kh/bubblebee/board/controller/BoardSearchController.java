@@ -37,6 +37,18 @@ public class BoardSearchController {
 		
 		SearchCondition sc = new SearchCondition();
 		
+		if(startPrice>=10000) {
+			String sps = Integer.toString(startPrice);
+			sps=sps.substring(0, sps.length()-4);
+			endPrice = Integer.parseInt(sps);
+		}
+		
+		if(endPrice>=10000) {
+			String eps = Integer.toString(endPrice);
+			eps=eps.substring(0, eps.length()-4);
+			endPrice = Integer.parseInt(eps);
+		}
+		
 		String sp = startPrice+"0000";
 		String ep = endPrice+"0000";
 		startPrice = Integer.parseInt(sp);
@@ -97,12 +109,13 @@ public class BoardSearchController {
 		
 		
 		//어디서
-		ArrayList<Board> wlist = bService.selectwList(cate);
-		
+		ArrayList<Board> wlist = bService.selectwList(cate);	
 		if(list != null) {
 			mv.addObject("cate", cate);
 			mv.addObject("list", list);
 			mv.addObject("wlist", wlist);
+			mv.addObject("ad1", ad1);
+			mv.addObject("ad3", ad2);
 			mv.addObject("pi", pi);
 			mv.addObject("a", a);
 			mv.addObject("startPrice", startPrice);

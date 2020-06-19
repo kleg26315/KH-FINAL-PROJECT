@@ -231,4 +231,17 @@ public class BoardInputController {
 				f.delete();
 			}
 		}
+		
+		//게시글 삭제
+		@RequestMapping("bdelete.bo")
+		public String deleteBoard(@RequestParam("fno") int fno) {
+			int result1 = bService.deleteBoard(fno);
+			int result2 = bService.deleteBoardOption(fno);
+			
+			if(result1 > 0 && result2 > 0) {
+				return "redirect:blist.bo";
+			}else {
+				throw new BoardException("게시글 삭제 실패");
+			}
+		}
 	}
