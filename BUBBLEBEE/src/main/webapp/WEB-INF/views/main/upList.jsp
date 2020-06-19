@@ -122,9 +122,15 @@
 	
 	<section style="padding-top: 115px; padding-left: 20%; width: 78%;" id="section">
 		<div>
-	   	<label style="font-weight: bold; font-size: 20px;">지금 뜨는 모임</label>
+		<c:set var="list" value="${ list }" />
+		<c:set var="type" value="${ type }" />
+		<c:if test="${ type == 1 }">
+	   		<label style="font-weight: bold; font-size: 20px;">지금 뜨는 모임</label>
+	   	</c:if>
+	   	<c:if test="${ type == 2 }">
+	   		<label style="font-weight: bold; font-size: 20px;">지금 뜨는 클래스</label>
+	   	</c:if>
 	   	<br><br>
-	   	<c:set var="list" value="${ list }" />
 	   	<div class="moim">
 	   		<c:forEach items="${ list }" var="l">
 	   		<div class="moim_total">
