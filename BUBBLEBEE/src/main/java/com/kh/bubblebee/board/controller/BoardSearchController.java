@@ -85,25 +85,24 @@ public class BoardSearchController {
 		map.put("ad2", ad2);
 		map.put("id", id);
 		
-//		System.out.println("ad2"+ad2);
-//		System.out.println("map"+map);
-				
 		int currentPage = 1;
 		if(page!=null) {
 			currentPage = page;
 		}
 	
 		int listCount = bService.getSearchListCount(map);
-//		System.out.println(listCount);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Board> list = bService.selectSearchList(map, pi);
 		
-//		System.out.println("map"+map+"slist"+list);
+		
+		//어디서
+		ArrayList<Board> wlist = bService.selectwList(cate);
 		
 		if(list != null) {
 			mv.addObject("cate", cate);
 			mv.addObject("list", list);
+			mv.addObject("wlist", wlist);
 			mv.addObject("pi", pi);
 			mv.addObject("a", a);
 			mv.addObject("startPrice", startPrice);

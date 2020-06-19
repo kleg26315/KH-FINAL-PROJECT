@@ -29,22 +29,6 @@
 </header> 
 
 <br clear="all">  
-<!--      <div id = "category"> -->
-<!--      	<div id = "categoryD"> -->
-     		
-<!--      				<label id="cmoim">모임</label> -->
-<!--      				<hr id="chline" align="left"> -->
-<!--      			<table id="categoryT" >	 -->
-<!--      			<tr> -->
-<!--      				<td>토크/파티</td> -->
-<!--      				<td>취향</td> -->
-<!--      				<td>스터디</td> -->
-<!--      				<td>이벤트/공간</td> -->
-<!--      			</tr> -->
-<!--      		</table> -->
-     		
-<!--      	</div> -->
-<!--      </div> -->
      
       <div class = "main">
        	
