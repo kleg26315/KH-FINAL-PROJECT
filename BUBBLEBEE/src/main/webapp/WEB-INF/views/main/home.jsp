@@ -143,10 +143,6 @@
 .moim_each{
 	overflow: hidden;
 }
-.moim_post{
-}
-.moim_location{
-}
 .moim_l_location{
 	height: 10px;
     color: white;
@@ -237,7 +233,6 @@
 }
 </style>
 <body>
-	
 	<header id="header">
 	  <c:import url="../layout/header.jsp"/>
    	</header>

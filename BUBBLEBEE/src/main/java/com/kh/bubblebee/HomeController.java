@@ -85,4 +85,17 @@ public class HomeController {
 		return mv;
 	}
 	
+//	@RequestMapping("upMoimList.do")
+//	public ModelAndView upMoimList(ModelAndView mv) {
+//		ArrayList<Board> mList = bService.selectUpMList();
+//		mv.addObject("list", mList).setViewName("upList");
+//		return mv;
+//	}
+//	
+//	@RequestMapping("upClassList.do")
+//	public ModelAndView upClassList(ModelAndView mv) {
+//		ArrayList<Board> cList = bService.selectUpCList();
+//		mv.addObject("list", cList).setViewName("upList");
+//		return mv;
+//	}
 }
