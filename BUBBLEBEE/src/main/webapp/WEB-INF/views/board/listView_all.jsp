@@ -408,7 +408,7 @@
 						</tr>
 						<tr>
 							<td width=300px>인기순</td>
-							<td><input type="radio" name="farray" value="popular">
+							<td><input type="radio" name="farray" value="popular" >
 						</tr>
 						<tr>
 							<td>등록일순</td>
