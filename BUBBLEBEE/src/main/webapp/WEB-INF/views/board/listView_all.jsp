@@ -69,7 +69,7 @@
 		<label for="where">어디서</label>
 			<div>
 				<div>
-					<span id="pfilter">어디서</span> <span id="pfreset2">초기화</span>
+					<span id="pfilter">어디서</span>
 					<label for="where">x</label><br><br>
 					<hr>
 					
@@ -398,7 +398,7 @@
 			<label for="popup">필터</label>
 			<div>
 				<div>
-					<span id="pfilter">필터</span> <span id="pfreset">초기화</span>
+					<span id="pfilter">필터</span>
 					<label for="popup">x</label><br><br>
 					<hr>
 					<div id="sun">

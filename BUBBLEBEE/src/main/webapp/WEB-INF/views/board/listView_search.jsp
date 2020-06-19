@@ -69,7 +69,11 @@
 		<label for="where">어디서</label>
 			<div>
 				<div>
-					<span id="pfilter">어디서</span> <span id="pfreset2">초기화</span>
+					<c:url var="reset" value="allList.bo">
+						<c:param name="page" value="1"/>
+						<c:param name="cate" value="${ cate }"/>
+					</c:url>
+					<span id="pfilter">어디서</span> <span id="pfreset2"><a href="${ reset }">초기화</a></span>
 					<label for="where">x</label><br><br>
 					<hr>
 					
@@ -80,71 +84,71 @@
 						
 						<!-- 버튼요소 -->
 						<c:if test="${fn:contains(str, '서울특별시')}">
-							<input type="radio" name="tabmenu" id="tab01">
+							<input type="radio" name="tabmenu" id="tab01" ${(ad1 eq "서울특별시") ? "checked" : "" }>
 							<label for="tab01">서울</label><br>
 						</c:if>
 						<c:if test="${fn:contains(str, '부산광역시')}">
-							<input type="radio" name="tabmenu" id="tab02">
+							<input type="radio" name="tabmenu" id="tab02" ${(ad1 eq "부산광역시") ? "checked" : "" }>
 							<label for="tab02">부산</label><br>
 						</c:if>
 						<c:if test="${fn:contains(str, '대구광역시')}">
-							<input type="radio" name="tabmenu" id="tab03">
+							<input type="radio" name="tabmenu" id="tab03" ${(ad1 eq "대구광역시") ? "checked" : "" }>
 							<label for="tab03">대구</label><br>
 						</c:if>
 						<c:if test="${fn:contains(str, '인천광역시')}">
-							<input type="radio" name="tabmenu" id="tab04">
+							<input type="radio" name="tabmenu" id="tab04" ${(ad1 eq "인천광역시") ? "checked" : "" }>
 							<label for="tab04">인천</label><br>
 						</c:if>
 						<c:if test="${fn:contains(str, '광주광역시')}">
-							<input type="radio" name="tabmenu" id="tab05">
+							<input type="radio" name="tabmenu" id="tab05" ${(ad1 eq "광주광역시") ? "checked" : "" }>
 							<label for="tab05">광주</label><br>
 						</c:if>
 						<c:if test="${fn:contains(str, '대전광역시')}">	
-							<input type="radio" name="tabmenu" id="tab06">
+							<input type="radio" name="tabmenu" id="tab06" ${(ad1 eq "대전광역시") ? "checked" : "" }>
 							<label for="tab06">대전</label><br>
 						</c:if>
 						<c:if test="${fn:contains(str, '울산광역시')}">
-							<input type="radio" name="tabmenu" id="tab07">
+							<input type="radio" name="tabmenu" id="tab07" ${(ad1 eq "울산광역시") ? "checked" : "" }>
 							<label for="tab07">울산</label><br>
 						</c:if>
 						<c:if test="${fn:contains(str, '세종특별자치시')}">
-							<input type="radio" name="tabmenu" id="tab08">
+							<input type="radio" name="tabmenu" id="tab08" ${(ad1 eq "세종특별자치시") ? "checked" : "" }>
 							<label for="tab08">세종</label><br>
 						</c:if>
 						<c:if test="${fn:contains(str, '경기도')}">
-							<input type="radio" name="tabmenu" id="tab09">
+							<input type="radio" name="tabmenu" id="tab09" ${(ad1 eq "경기도") ? "checked" : "" }>
 							<label for="tab09">경기</label><br>
 						</c:if>
 						<c:if test="${fn:contains(str, '강원도')}">
-							<input type="radio" name="tabmenu" id="tab10">
+							<input type="radio" name="tabmenu" id="tab10" ${(ad1 eq "강원도") ? "checked" : "" }>
 							<label for="tab10">강원</label><br>
 						</c:if>
 						<c:if test="${fn:contains(str, '충청북도')}">
-							<input type="radio" name="tabmenu" id="tab11">
+							<input type="radio" name="tabmenu" id="tab11" ${(ad1 eq "충청북도") ? "checked" : "" }>
 							<label for="tab11">충북</label><br>
 						</c:if>
 						<c:if test="${fn:contains(str, '충청남도')}">
-							<input type="radio" name="tabmenu" id="tab12">
+							<input type="radio" name="tabmenu" id="tab12" ${(ad1 eq "충청남도") ? "checked" : "" }>
 							<label for="tab12">충남</label><br>
 						</c:if>
 						<c:if test="${fn:contains(str, '전라북도')}">
-							<input type="radio" name="tabmenu" id="tab13">
+							<input type="radio" name="tabmenu" id="tab13" ${(ad1 eq "전라북도") ? "checked" : "" }>
 							<label for="tab13">전북</label><br>
 						</c:if>
 						<c:if test="${fn:contains(str, '전라남도')}">
-							<input type="radio" name="tabmenu" id="tab14">
+							<input type="radio" name="tabmenu" id="tab14" ${(ad1 eq "전라남도") ? "checked" : "" }>
 							<label for="tab14">전남</label><br>
 						</c:if>
 						<c:if test="${fn:contains(str, '경상북도')}">
-							<input type="radio" name="tabmenu" id="tab15">
+							<input type="radio" name="tabmenu" id="tab15" ${(ad1 eq "경상북도") ? "checked" : "" }>
 							<label for="tab15">경북</label><br>
 						</c:if>
 						<c:if test="${fn:contains(str, '경상남도')}">
-							<input type="radio" name="tabmenu" id="tab16">
+							<input type="radio" name="tabmenu" id="tab16" ${(ad1 eq "경상남도") ? "checked" : "" }>
 							<label for="tab16">경남</label><br>
 						</c:if>
 						<c:if test="${fn:contains(str, '제주특별자치도')}">
-							<input type="radio" name="tabmenu" id="tab17">
+							<input type="radio" name="tabmenu" id="tab17" ${(ad1 eq "제주특별자치도") ? "checked" : "" }>
 							<label for="tab17">제주</label>
 						</c:if>
 						
@@ -417,7 +421,7 @@
 			<label for="popup">필터</label>
 			<div>
 				<div>
-					<span id="pfilter">필터</span> <span id="pfreset">초기화</span>
+					<span id="pfilter">필터</span> <span id="pfreset"><a href="${ reset }">초기화</a></span>
 					<label for="popup">x</label><br><br>
 					<hr>
 					<div id="sun">
