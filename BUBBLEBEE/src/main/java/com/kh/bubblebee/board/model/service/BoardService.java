@@ -47,5 +47,9 @@ public interface BoardService {
 
 	ArrayList<Board> markLocation();
 
+	int plusHeart(int fno);
+
+	int minusHeart(int fno);
+
 	
 }

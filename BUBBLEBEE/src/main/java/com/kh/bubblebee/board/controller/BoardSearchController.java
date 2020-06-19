@@ -27,7 +27,7 @@ public class BoardSearchController {
 	private BoardService bService;
 	
 	@RequestMapping("search.bo")
-	public ModelAndView searchAll(HttpServletRequest request, @RequestParam(value="ad2", required=false) String ad2, @RequestParam(value="page", required=false) Integer page, @RequestParam(value="cate") String cate, @RequestParam(value="a", required=false) String a, @RequestParam(value="startPrice", required=false) int startPrice, @RequestParam(value="endPrice", required=false) int endPrice, ModelAndView mv) {
+	public ModelAndView searchAll(HttpServletRequest request, @RequestParam(value="ad1", required=false) String ad1, @RequestParam(value="ad2", required=false) String ad2, @RequestParam(value="page", required=false) Integer page, @RequestParam(value="cate") String cate, @RequestParam(value="a", required=false) String a, @RequestParam(value="startPrice", required=false) int startPrice, @RequestParam(value="endPrice", required=false) int endPrice, ModelAndView mv) {
 		HttpSession session = request.getSession();
 	    Member m = (Member) session.getAttribute("loginUser");
 		String id = null;
@@ -81,6 +81,7 @@ public class BoardSearchController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("cate", cate);
 		map.put("sc", sc);
+		map.put("ad1", ad1);
 		map.put("ad2", ad2);
 		map.put("id", id);
 		

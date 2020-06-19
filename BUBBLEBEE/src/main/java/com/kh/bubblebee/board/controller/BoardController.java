@@ -156,10 +156,14 @@ public class BoardController {
 		int heartyn = bService.readHeart(map);
 		
 		if(heartyn==0) {
+			//좋아요입력
 			int heartIn = bService.insertHeart(map);
 			
 			try {
 				if(heartIn > 0) {
+					//좋아요수 +1
+					int heartPl = bService.plusHeart(fno);
+					
 					new Gson().toJson(heartIn, response.getWriter());
 				}else {
 					throw new BoardException("실패!");
@@ -172,9 +176,13 @@ public class BoardController {
 			} 
 			
 		} else {
+			//좋아요 제거
 			bService.deleteHeart(map);
 			int heartIn=0;
 			try {
+				//좋아요수 -1
+				int heartMn = bService.minusHeart(fno);
+				
 				new Gson().toJson(heartIn, response.getWriter());
 			} catch (JsonIOException e) {
 				e.printStackTrace();

@@ -633,6 +633,7 @@
 				<c:url var="after" value="allList.bo">
 					<c:param name="page" value="${ pi.currentPage + 1 }"/>
 					<c:param name="cate" value="${ cate }"/>
+					<c:param name="startPrice" value="${ startPrice }"/>
 				</c:url> 
 				<a href="${ after }"> > </a>
 			</c:if>
