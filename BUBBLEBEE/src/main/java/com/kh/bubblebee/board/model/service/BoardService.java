@@ -21,11 +21,11 @@ public interface BoardService {
 
 	ArrayList<Board> selectHtList(HashMap<String, String> map, PageInfo pi);
 
+	Board selectBoard(int fno);
+
 	int insertBoard(Board b);
 
 	int insertBoardOption(HashMap<String, Option> map);
-	
-	Board selectBoard(int fno);
 
 	Host selectHost(String hostId);
   
@@ -46,6 +46,12 @@ public interface BoardService {
 	ArrayList<Board> selectwList(String cate);
 
 	ArrayList<Board> markLocation();
+
+	int boardUpdate(Board b);
+
+	int boardUpdateOption(HashMap<String, Option> map);
+
+
 
 	
 }
