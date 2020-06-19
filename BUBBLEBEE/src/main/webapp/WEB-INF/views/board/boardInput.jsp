@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="resources/css/boardInput.css">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script src="resources/js/jquery-ui.js"></script>
 
 	<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/smartEditor/js/service/HuskyEZCreator2.js" charset="UTF-8"></script>
 </head>
@@ -34,7 +33,6 @@
 					<th colspan="2" >카테고리 설정</th>
 					<td rowspan="2">
 					<input type="hidden" id="userId" value="${loginUser.id}" name="user_id">
-					<input type="hidden" id="fno" value="${board.fno}" name="fno">
 						<div class="B_n" >
 							<b>다음과 같은 경우, 오픈이 어렵습니다.</b><br>
 							- 소개팅 / 남녀 만남 주선 프립<br>
@@ -793,10 +791,10 @@
 			$(this).next().keyup();
 		});
 		
+		//자동저장
 		window.onload = function(){
 			gettheLocal();
 		}
-		//자동저장
 		$('.bIncluded').keyup(function(e){
 			var fcontain = $('#fcontain').val() +(",") + $('#userId').val();;
 			var fncontain = $('#fncontain').val();

@@ -53,7 +53,7 @@ public class BoardDAO {
 		}
 		return count;
 	}
-
+	
 	public Board selectBoard(SqlSessionTemplate sqlSession, int fno) {
 		return sqlSession.selectOne("boardMapper.selectBoard", fno);
 	}
@@ -99,6 +99,17 @@ public class BoardDAO {
 
 	public ArrayList<Board> markLocation(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("boardMapper.makrLocation");
+	}
+
+
+	public int updateBoard(SqlSessionTemplate sqlSession, Board b) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("boardMapper.updateBoard", b);
+	}
+
+	public int updateBoardOption(SqlSessionTemplate sqlSession, HashMap<String, Option> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("boardMapper.updateBoardOption", map);
 	}
 
 	public int plusHeart(SqlSessionTemplate sqlSession, int fno) {
