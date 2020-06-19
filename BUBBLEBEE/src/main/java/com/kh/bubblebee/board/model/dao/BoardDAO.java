@@ -101,6 +101,7 @@ public class BoardDAO {
 		return (ArrayList)sqlSession.selectList("boardMapper.makrLocation");
 	}
 
+
 	public int updateBoard(SqlSessionTemplate sqlSession, Board b) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("boardMapper.updateBoard", b);
@@ -111,7 +112,20 @@ public class BoardDAO {
 		return sqlSession.update("boardMapper.updateBoardOption", map);
 	}
 
+	public int plusHeart(SqlSessionTemplate sqlSession, int fno) {
+		return sqlSession.update("boardMapper.plusHeart", fno);
+	}
 
-	
+	public int minusHeart(SqlSessionTemplate sqlSession, int fno) {
+		return sqlSession.update("boardMapper.minusHeart", fno);
+	}
+
+	public ArrayList<Board> selectMList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectMList");
+	}
+
+	public ArrayList<Board> selectCList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectCList");
+	}
 	
 }

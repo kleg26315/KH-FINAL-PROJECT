@@ -32,13 +32,19 @@ public class HomeController {
 	public BoardService bService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
-		return "home";
+	public ModelAndView home(ModelAndView mv) {
+		ArrayList<Board> mList = bService.selectMList();
+		ArrayList<Board> cList = bService.selectCList();
+		mv.addObject("mList", mList).addObject("cList", cList).setViewName("home");
+		return mv;
 	}
 	
 	@RequestMapping("home.do")
-	public String homeView() {
-		return "home";
+	public ModelAndView homeView(ModelAndView mv) {
+		ArrayList<Board> mList = bService.selectMList();
+		ArrayList<Board> cList = bService.selectCList();
+		mv.addObject("mList", mList).addObject("cList", cList).setViewName("home");
+		return mv;
 	}
 	
 	@RequestMapping("location.do")
@@ -78,4 +84,5 @@ public class HomeController {
 		  .setViewName("redirect:detail.bo");
 		return mv;
 	}
+	
 }

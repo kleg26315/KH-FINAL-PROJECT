@@ -27,7 +27,7 @@ public class BoardSearchController {
 	private BoardService bService;
 	
 	@RequestMapping("search.bo")
-	public ModelAndView searchAll(HttpServletRequest request, @RequestParam(value="ad2", required=false) String ad2, @RequestParam(value="page", required=false) Integer page, @RequestParam(value="cate") String cate, @RequestParam(value="a", required=false) String a, @RequestParam(value="startPrice", required=false) int startPrice, @RequestParam(value="endPrice", required=false) int endPrice, ModelAndView mv) {
+	public ModelAndView searchAll(HttpServletRequest request, @RequestParam(value="ad1", required=false) String ad1, @RequestParam(value="ad2", required=false) String ad2, @RequestParam(value="page", required=false) Integer page, @RequestParam(value="cate") String cate, @RequestParam(value="a", required=false) String a, @RequestParam(value="startPrice", required=false) int startPrice, @RequestParam(value="endPrice", required=false) int endPrice, ModelAndView mv) {
 		HttpSession session = request.getSession();
 	    Member m = (Member) session.getAttribute("loginUser");
 		String id = null;
@@ -81,28 +81,28 @@ public class BoardSearchController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("cate", cate);
 		map.put("sc", sc);
+		map.put("ad1", ad1);
 		map.put("ad2", ad2);
 		map.put("id", id);
 		
-//		System.out.println("ad2"+ad2);
-//		System.out.println("map"+map);
-				
 		int currentPage = 1;
 		if(page!=null) {
 			currentPage = page;
 		}
 	
 		int listCount = bService.getSearchListCount(map);
-//		System.out.println(listCount);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Board> list = bService.selectSearchList(map, pi);
 		
-//		System.out.println("map"+map+"slist"+list);
+		
+		//어디서
+		ArrayList<Board> wlist = bService.selectwList(cate);
 		
 		if(list != null) {
 			mv.addObject("cate", cate);
 			mv.addObject("list", list);
+			mv.addObject("wlist", wlist);
 			mv.addObject("pi", pi);
 			mv.addObject("a", a);
 			mv.addObject("startPrice", startPrice);

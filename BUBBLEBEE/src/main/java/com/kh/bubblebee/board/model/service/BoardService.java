@@ -53,5 +53,14 @@ public interface BoardService {
 
 
 
+	int plusHeart(int fno);
+
+	int minusHeart(int fno);
+
+	ArrayList<Board> selectMList();
+	
+	ArrayList<Board> selectCList();
+
+
 	
 }
