@@ -648,6 +648,13 @@
 				<c:url var="before" value="search.bo">
 					<c:param name="page" value="${ pi.currentPage - 1 }"/>
 					<c:param name="cate" value="${ cate }"/>
+					<c:param name="a" value="${ a }"/>
+					<c:param name="startPrice" value="${ startPrice }"/>
+					<c:param name="endPrice" value="${ endPrice }"/>
+					<c:if test="${ad1 ne null}">	
+						<c:param name="ad1" value="${ ad1 }"/>
+						<c:param name="ad2" value="${ ad2 }"/>
+					</c:if>
 				</c:url>
 				<a href="${ before }"> <</a> &nbsp;
 			</c:if>
@@ -662,6 +669,13 @@
 					<c:url var="pagination" value="search.bo">
 						<c:param name="page" value="${ p }"/>
 						<c:param name="cate" value="${ cate }"/>
+						<c:param name="a" value="${ a }"/>
+						<c:param name="startPrice" value="${ startPrice }"/>
+						<c:param name="endPrice" value="${ endPrice }"/>
+						<c:if test="${ad1 ne null}">	
+							<c:param name="ad1" value="${ ad1 }"/>
+							<c:param name="ad2" value="${ ad2 }"/>
+						</c:if>
 					</c:url>
 					<a href="${ pagination }">${ p }</a> &nbsp;
 				</c:if>
