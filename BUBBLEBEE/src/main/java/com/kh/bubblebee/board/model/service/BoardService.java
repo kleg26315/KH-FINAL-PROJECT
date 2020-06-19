@@ -1,3 +1,4 @@
+
 package com.kh.bubblebee.board.model.service;
 
 import java.util.ArrayList;
@@ -55,7 +56,12 @@ public interface BoardService {
 
 	int deleteBoardOption(int fno);
 
+	int plusHeart(int fno);
 
+	int minusHeart(int fno);
 
+	ArrayList<Board> selectMList();
 	
+	ArrayList<Board> selectCList();
+
 }

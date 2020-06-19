@@ -29,22 +29,6 @@
 </header> 
 
 <br clear="all">  
-<!--      <div id = "category"> -->
-<!--      	<div id = "categoryD"> -->
-     		
-<!--      				<label id="cmoim">모임</label> -->
-<!--      				<hr id="chline" align="left"> -->
-<!--      			<table id="categoryT" >	 -->
-<!--      			<tr> -->
-<!--      				<td>토크/파티</td> -->
-<!--      				<td>취향</td> -->
-<!--      				<td>스터디</td> -->
-<!--      				<td>이벤트/공간</td> -->
-<!--      			</tr> -->
-<!--      		</table> -->
-     		
-<!--      	</div> -->
-<!--      </div> -->
      
       <div class = "main">
        	
@@ -169,12 +153,14 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '서울특별시' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
-									<c:param name="startPrice" value="${stp}"/>
-									<c:param name="endPrice" value="${edp}"/>
+									<c:param name="a" value="${ a }"/>
+									<c:param name="startPrice" value="${ startPrice }"/>
+									<c:param name="endPrice" value="${ endPrice }"/>
 								</c:url>
-								<a href="${ ad2 }">${ w.ad2 } / ${stp}부터${edp} </a><br>
+								<a href="${ ad2 }">${ w.ad2 }</a><br>
 							</c:if>
 							</c:forEach>
 						</div>
@@ -182,10 +168,12 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '부산광역시' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
-									<c:param name="startPrice" value="0"/>
-									<c:param name="endPrice" value="30"/>
+									<c:param name="a" value="${ a }"/>
+									<c:param name="startPrice" value="${ startPrice }"/>
+									<c:param name="endPrice" value="${ endPrice }"/>
 								</c:url>
 								<a href="${ ad2 }">${ w.ad2 }</a><br>
 							</c:if>
@@ -195,10 +183,12 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '대구광역시' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
-									<c:param name="startPrice" value="0"/>
-									<c:param name="endPrice" value="30"/>
+									<c:param name="a" value="${ a }"/>
+									<c:param name="startPrice" value="${ startPrice }"/>
+									<c:param name="endPrice" value="${ endPrice }"/>
 								</c:url>
 								<a href="${ ad2 }">${ w.ad2 }</a><br>
 							</c:if>
@@ -208,10 +198,12 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '인천광역시' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
-									<c:param name="startPrice" value="0"/>
-									<c:param name="endPrice" value="30"/>
+									<c:param name="a" value="${ a }"/>
+									<c:param name="startPrice" value="${ startPrice }"/>
+									<c:param name="endPrice" value="${ endPrice }"/>
 								</c:url>
 								<a href="${ ad2 }">${ w.ad2 }</a><br>
 							</c:if>
@@ -221,10 +213,12 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '광주광역시' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
-									<c:param name="startPrice" value="0"/>
-									<c:param name="endPrice" value="30"/>
+									<c:param name="a" value="${ a }"/>
+									<c:param name="startPrice" value="${ startPrice }"/>
+									<c:param name="endPrice" value="${ endPrice }"/>
 								</c:url>
 								<a href="${ ad2 }">${ w.ad2 }</a><br>
 							</c:if>
@@ -234,10 +228,12 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '대전광역시' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
-									<c:param name="startPrice" value="0"/>
-									<c:param name="endPrice" value="30"/>
+									<c:param name="a" value="${ a }"/>
+									<c:param name="startPrice" value="${ startPrice }"/>
+									<c:param name="endPrice" value="${ endPrice }"/>
 								</c:url>
 								<a href="${ ad2 }">${ w.ad2 }</a><br>
 							</c:if>
@@ -247,10 +243,12 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '울산광역시' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
-									<c:param name="startPrice" value="0"/>
-									<c:param name="endPrice" value="30"/>
+									<c:param name="a" value="${ a }"/>
+									<c:param name="startPrice" value="${ startPrice }"/>
+									<c:param name="endPrice" value="${ endPrice }"/>
 								</c:url>
 								<a href="${ ad2 }">${ w.ad2 }</a><br>
 							</c:if>
@@ -260,10 +258,12 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '세종특별자치시' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
-									<c:param name="startPrice" value="0"/>
-									<c:param name="endPrice" value="30"/>
+									<c:param name="a" value="${ a }"/>
+									<c:param name="startPrice" value="${ startPrice }"/>
+									<c:param name="endPrice" value="${ endPrice }"/>
 								</c:url>
 								<a href="${ ad2 }">${ w.ad2 }</a><br>
 							</c:if>
@@ -273,10 +273,12 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '경기도' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
-									<c:param name="startPrice" value="0"/>
-									<c:param name="endPrice" value="30"/>
+									<c:param name="a" value="${ a }"/>
+									<c:param name="startPrice" value="${ startPrice }"/>
+									<c:param name="endPrice" value="${ endPrice }"/>
 								</c:url>
 								<a href="${ ad2 }">${ w.ad2 }</a><br>
 							</c:if>
@@ -286,10 +288,12 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '강원도' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
-									<c:param name="startPrice" value="0"/>
-									<c:param name="endPrice" value="30"/>
+									<c:param name="a" value="${ a }"/>
+									<c:param name="startPrice" value="${ startPrice }"/>
+									<c:param name="endPrice" value="${ endPrice }"/>
 								</c:url>
 								<a href="${ ad2 }">${ w.ad2 }</a><br>
 							</c:if>
@@ -299,10 +303,12 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '충청북도' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
-									<c:param name="startPrice" value="0"/>
-									<c:param name="endPrice" value="30"/>
+									<c:param name="a" value="${ a }"/>
+									<c:param name="startPrice" value="${ startPrice }"/>
+									<c:param name="endPrice" value="${ endPrice }"/>
 								</c:url>
 								<a href="${ ad2 }">${ w.ad2 }</a><br>
 							</c:if>
@@ -312,10 +318,12 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '세종특별자치시' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
-									<c:param name="startPrice" value="0"/>
-									<c:param name="endPrice" value="30"/>
+									<c:param name="a" value="${ a }"/>
+									<c:param name="startPrice" value="${ startPrice }"/>
+									<c:param name="endPrice" value="${ endPrice }"/>
 								</c:url>
 								<a href="${ ad2 }">${ w.ad2 }</a><br>
 							</c:if>
@@ -325,10 +333,12 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '전라북도' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
-									<c:param name="startPrice" value="0"/>
-									<c:param name="endPrice" value="30"/>
+									<c:param name="a" value="${ a }"/>
+									<c:param name="startPrice" value="${ startPrice }"/>
+									<c:param name="endPrice" value="${ endPrice }"/>
 								</c:url>
 								<a href="${ ad2 }">${ w.ad2 }</a><br>
 							</c:if>
@@ -338,10 +348,12 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '전라남도' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
-									<c:param name="startPrice" value="0"/>
-									<c:param name="endPrice" value="30"/>
+									<c:param name="a" value="${ a }"/>
+									<c:param name="startPrice" value="${ startPrice }"/>
+									<c:param name="endPrice" value="${ endPrice }"/>
 								</c:url>
 								<a href="${ ad2 }">${ w.ad2 }</a><br>
 							</c:if>
@@ -351,10 +363,12 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '경상북도' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
-									<c:param name="startPrice" value="0"/>
-									<c:param name="endPrice" value="30"/>
+									<c:param name="a" value="${ a }"/>
+									<c:param name="startPrice" value="${ startPrice }"/>
+									<c:param name="endPrice" value="${ endPrice }"/>
 								</c:url>
 								<a href="${ ad2 }">${ w.ad2 }</a><br>
 							</c:if>
@@ -364,10 +378,12 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '경상남도' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
-									<c:param name="startPrice" value="0"/>
-									<c:param name="endPrice" value="30"/>
+									<c:param name="a" value="${ a }"/>
+									<c:param name="startPrice" value="${ startPrice }"/>
+									<c:param name="endPrice" value="${ endPrice }"/>
 								</c:url>
 								<a href="${ ad2 }">${ w.ad2 }</a><br>
 							</c:if>
@@ -377,10 +393,12 @@
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '제주특별자치도' }">
 								<c:url var="ad2" value="search.bo">
+									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
 									<c:param name="cate" value="${ cate }"/>
-									<c:param name="startPrice" value="0"/>
-									<c:param name="endPrice" value="30"/>
+									<c:param name="a" value="${ a }"/>
+									<c:param name="startPrice" value="${ startPrice }"/>
+									<c:param name="endPrice" value="${ endPrice }"/>
 								</c:url>
 								<a href="${ ad2 }">${ w.ad2 }</a><br>
 							</c:if>
@@ -409,25 +427,29 @@
 						</tr>
 						<tr>
 							<td width=300px>인기순</td>
-							<td><input type="radio" name="farray" value="popular">
+							<td><input type="radio" name="farray" value="popular" ${(a eq "popular") ? "checked" : "" }>
 						</tr>
 						<tr>
 							<td>등록일순</td>
-							<td><input type="radio" name="farray" value="latest">
+							<td><input type="radio" name="farray" value="latest" ${(a eq "latest") ? "checked" : "" }>
 						</tr>
 						<tr>
 							<td>평점순</td>
-							<td><input type="radio" name="farray" value="rate">
+							<td><input type="radio" name="farray" value="rate" ${(a eq "rate") ? "checked" : "" }>
 						</tr>
 						<tr>
 							<td>가격높은순</td>
-							<td><input type="radio" name="farray" value="highprice">
+							<td><input type="radio" name="farray" value="highprice" ${(a eq "highprice") ? "checked" : "" }>
 						</tr>
 						<tr>
 							<td>가격낮은순</td>
-							<td><input type="radio" name="farray" value="lowprice">
+							<td><input type="radio" name="farray" value="lowprice" ${(a eq "lowprice") ? "checked" : "" }>
+								<c:if test="${ ad1 ne null }">
+									<input type="hidden" id="ad1" name="ad1" value="${ ad1 }">
+									<input type="hidden" id="ad2" name="ad2" value="${ ad3 }">
+								</c:if>
 						</tr>
-						
+							
 						</table>
 					</div>
 					<hr>
@@ -438,6 +460,7 @@
 					
 					<!-- 슬라이더 -->
 					<c:set var="stp" value="${ startPrice }"/>
+					<c:set var="edp" value="${ endPrice }"/>
 					<% 
                      	String stp = pageContext.getAttribute("stp").toString();
 						int stp_ = (Integer)pageContext.getAttribute("stp");
@@ -448,27 +471,40 @@
 							int stp2 = 0;
 							pageContext.setAttribute("stp2", stp2);
 						}
+						
+						String edp = pageContext.getAttribute("edp").toString();
+						int edp_ = (Integer)pageContext.getAttribute("edp");
+						if(edp_ != 0) {
+							String edp2 = edp.substring(0, edp.length()-4);
+							pageContext.setAttribute("edp2", edp2);
+						} else{
+							int edp2 = 30;
+							pageContext.setAttribute("edp2", edp2);
+						}
             			
             			
                      %> 
 					 <script>
 					 	var stp2 = '${stp2}';
-					 	console.log(stp2);
+					 	var edp2 = '${edp2}';
 						 $( function() {
+							 
 						   $( "#slider" ).slider({
 							   range:true,
 							   min: 0,
 							   max: 30,
-							   values: [stp2, 30],
+							   values: [stp2, edp2],
 							   slide: function(event, ui) {
-								   if(stp2 == 4) {
-									   $("#amount").val(stp2 + " ~ " + ui.values[1] + "만원");
-								   }
 								   $("#amount").val(ui.values[0] + " ~ " + ui.values[1] + "만원");
 								   $("#sprice").val(ui.values[0]);
 								   $("#eprice").val(ui.values[1]);
 							   }
 						   });
+						   
+						   $( "#amount" ).val( $( "#slider" ).slider( "values", 0 ) +
+								      " ~ " + $( "#slider" ).slider( "values", 1 ) +"만원" );
+						   $("#sprice").val($( "#slider" ).slider( "values", 0 ));
+						   $("#eprice").val($( "#slider" ).slider( "values", 1 ));
 						 } );
 					  </script>
 					  
@@ -486,7 +522,13 @@
 				var a = $(':radio[name="farray"]:checked').val();
 				var startPrice = $("#sprice").val();
 				var endPrice = $("#eprice").val();
+				var ad1 = $('#ad1').val();
+				var ad2 = $('#ad2').val();
 				location.href="search.bo?cate="+'${cate}'+"&a="+a+"&startPrice="+startPrice+"&endPrice="+endPrice;
+				
+				if(ad1 !=null) {
+					location.href="search.bo?cate="+'${cate}'+"&ad1="+ad1+"&ad2="+ad2+"&a="+a+"&startPrice="+startPrice+"&endPrice="+endPrice;
+				}
 			}
 			</script>
 
@@ -603,7 +645,7 @@
 				< &nbsp;
 			</c:if>
 			<c:if test="${ pi.currentPage > 1 }">
-				<c:url var="before" value="allList.bo">
+				<c:url var="before" value="search.bo">
 					<c:param name="page" value="${ pi.currentPage - 1 }"/>
 					<c:param name="cate" value="${ cate }"/>
 				</c:url>
@@ -617,7 +659,7 @@
 				</c:if>
 				
 				<c:if test="${ p ne pi.currentPage }">
-					<c:url var="pagination" value="allList.bo">
+					<c:url var="pagination" value="search.bo">
 						<c:param name="page" value="${ p }"/>
 						<c:param name="cate" value="${ cate }"/>
 					</c:url>
@@ -630,9 +672,16 @@
 				>
 			</c:if>
 			<c:if test="${ pi.currentPage < pi.maxPage }">
-				<c:url var="after" value="allList.bo">
+				<c:url var="after" value="search.bo">
 					<c:param name="page" value="${ pi.currentPage + 1 }"/>
 					<c:param name="cate" value="${ cate }"/>
+					<c:param name="a" value="${ a }"/>
+					<c:param name="startPrice" value="${ startPrice }"/>
+					<c:param name="endPrice" value="${ endPrice }"/>
+					<c:if test="${ad1 ne null}">	
+						<c:param name="ad1" value="${ ad1 }"/>
+						<c:param name="ad2" value="${ ad2 }"/>
+					</c:if>
 				</c:url> 
 				<a href="${ after }"> > </a>
 			</c:if>
