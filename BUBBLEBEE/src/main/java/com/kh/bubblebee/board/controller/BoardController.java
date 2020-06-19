@@ -64,10 +64,14 @@ public class BoardController {
 			System.out.println(b);
 		}
 		
+		//어디서
+		ArrayList<Board> wlist = bService.selectwList(cate);
+		
 		if(ltlist != null && htlist != null) {
 			mv.addObject("cate", cate);
 			mv.addObject("ltlist", ltlist);
 			mv.addObject("htlist", htlist);
+			mv.addObject("wlist", wlist);
 			mv.setViewName("listView");
 			
 		} else {
