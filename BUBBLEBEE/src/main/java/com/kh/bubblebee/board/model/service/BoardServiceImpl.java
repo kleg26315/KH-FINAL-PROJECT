@@ -58,7 +58,19 @@ public class BoardServiceImpl implements BoardService {
 	public Board selectBoard(int fno) {
 		return bDAO.selectBoard(sqlSession, fno);
 	}
+	
+	@Override
+	public int boardUpdate(Board b) {
+		// TODO Auto-generated method stub
+		return bDAO.updateBoard(sqlSession, b);
+	}
 
+	@Override
+	public int boardUpdateOption(HashMap<String, Option> map) {
+		// TODO Auto-generated method stub
+		return bDAO.updateBoardOption(sqlSession, map);
+	}
+	
 	@Override
 	public Host selectHost(String hostId) {
 		return bDAO.selectHost(sqlSession, hostId);
@@ -109,6 +121,7 @@ public class BoardServiceImpl implements BoardService {
 		return bDAO.markLocation(sqlSession);
 	}
 
+
 	@Override
 	public int plusHeart(int fno) {
 		return bDAO.plusHeart(sqlSession, fno);
@@ -119,5 +132,13 @@ public class BoardServiceImpl implements BoardService {
 		return bDAO.minusHeart(sqlSession, fno);
 	}
 
+	@Override
+	public ArrayList<Board> selectMList() {
+		return bDAO.selectMList(sqlSession);
+	}
 
+	@Override
+	public ArrayList<Board> selectCList() {
+		return bDAO.selectCList(sqlSession);
+	}
 }

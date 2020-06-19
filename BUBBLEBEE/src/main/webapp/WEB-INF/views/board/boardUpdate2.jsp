@@ -154,7 +154,7 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="file" class="thumb_file" name="uploadFile" required >
+							<input type="file" class="thumb_file" name="reloadFile" required >
 							<c:if test="${ !empty board.originalFileName }">
 								<br>현재 업로드한 파일 : 
 									<a href="${ contextPath }/resources/buploadFiles/${ board.renameFileName }">

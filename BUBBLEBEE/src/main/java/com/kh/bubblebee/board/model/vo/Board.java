@@ -33,14 +33,15 @@ public class Board {
 	private int maxMember; // 참여가능인원
 	private double rank; //인기순 정렬시 기준
 	private String li; //하트누른 여부
+	private double avgrv;	// 리뷰 평균 점수 
+	
 	
 	public Board() {}
-
-	public Board(int fno, int ftype, int price, String small_title, String ftitle, String category, String location,
-			double lat, double lon, String ad1, String ad2, String fcontain, String fncontain, String fcalendar,
-			String fmaterials, String fminfo, String fprecaution, String user_id, int heart, int rsum, int rcount,
-			Date f_create_date, String f_status, String originalFileName, String renameFileName, String introduce,
-			int maxMember, double rank, String li) {
+	public Board(int fno, int ftype, int price, String small_title, String ftitle, String category,
+			String location, double lat, double lon, String ad1, String ad2, String fcontain, String fncontain,
+			String fcalendar, String fmaterials, String fminfo, String fprecaution, String user_id, int heart, int rsum,
+			int rcount, Date f_create_date, String f_status, String originalFileName, String renameFileName,
+			String introduce, int maxMember, double rank, String li, double avgrv) {
 		super();
 		this.fno = fno;
 		this.ftype = ftype;
@@ -71,6 +72,7 @@ public class Board {
 		this.maxMember = maxMember;
 		this.rank = rank;
 		this.li = li;
+		this.avgrv = avgrv;
 	}
 
 	public int getFno() {
@@ -304,20 +306,26 @@ public class Board {
 	public void setLi(String li) {
 		this.li = li;
 	}
-
+	
+	public double getAvgrv() {
+		return avgrv;
+	}
+	
+	public void setAvgrv(double avgrv) {
+		this.avgrv = avgrv;
+	}
+	
 	@Override
 	public String toString() {
-		return "Board [fno=" + fno + ", ftype=" + ftype + ", price=" + price + ", small_title=" + small_title
-				+ ", ftitle=" + ftitle + ", category=" + category + ", location=" + location + ", lat=" + lat + ", lon="
-				+ lon + ", ad1=" + ad1 + ", ad2=" + ad2 + ", fcontain=" + fcontain + ", fncontain=" + fncontain
-				+ ", fcalendar=" + fcalendar + ", fmaterials=" + fmaterials + ", fminfo=" + fminfo + ", fprecaution="
-				+ fprecaution + ", user_id=" + user_id + ", heart=" + heart + ", rsum=" + rsum + ", rcount=" + rcount
-				+ ", f_create_date=" + f_create_date + ", f_status=" + f_status + ", originalFileName="
-				+ originalFileName + ", renameFileName=" + renameFileName + ", introduce=" + introduce + ", maxMember="
-				+ maxMember + ", rank=" + rank + ", li=" + li + "]";
+
+		return "Board [fno=" + fno + ", ftype=" + ftype + ", price=" + price + ", small_title="
+				+ small_title + ", ftitle=" + ftitle + ", category=" + category + ", location=" + location + ", lat="
+				+ lat + ", lon=" + lon + ", ad1=" + ad1 + ", ad2=" + ad2 + ", fcontain=" + fcontain + ", fncontain="
+				+ fncontain + ", fcalendar=" + fcalendar + ", fmaterials=" + fmaterials + ", fminfo=" + fminfo
+				+ ", fprecaution=" + fprecaution + ", user_id=" + user_id + ", heart=" + heart + ", rsum=" + rsum
+				+ ", rcount=" + rcount + ", f_create_date=" + f_create_date + ", f_status=" + f_status
+				+ ", originalFileName=" + originalFileName + ", renameFileName=" + renameFileName + ", introduce="
+				+ introduce + ", maxMember=" + maxMember + ", rank=" + rank + ", li=" + li + ", avgrv=" + avgrv + "]";
 	}
 
-	
-
-	
 }
