@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>등록Form</title>
+    <title>수정Form</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="resources/css/boardInput.css">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -28,13 +28,16 @@
 		
 		
 		<!-- 첨부파일 등록을 위해 Multipart/form-data encType 지정 -->
-		<form name="binsert" action="binsert.bo"  enctype="Multipart/form-data" id="form" method="POST" data-use-autosave="true">
+		<form action="bupdate.bo"  enctype="Multipart/form-data" id="form" method="POST" data-use-autosave="true">
+			<input type="hidden" value="${loginUser.id}" name="user_id">
+			<input type="hidden" value="${board.fno}" name="fno">
+			<input type="hidden" value="${board.ftype}" name="ftype">
+			<input type="hidden" value="${board.renameFileName}" name="renameFileName">
+			
 			<table> 
 				<tr>
 					<th colspan="2" >카테고리 설정</th>
 					<td rowspan="2">
-					<input type="hidden" id="userId" value="${loginUser.id}" name="user_id">
-					<input type="hidden" id="fno" value="${board.fno}" name="fno">
 						<div class="B_n" >
 							<b>다음과 같은 경우, 오픈이 어렵습니다.</b><br>
 							- 소개팅 / 남녀 만남 주선 프립<br>
@@ -118,15 +121,14 @@
 				<tr>
 					<td colspan="2">
 						<h4>Title</h4>
-						<input type="text" placeholder="제목을 입력해주세요" name="ftitle" id="title" style="height: 50px;" required>
+						<input type="text" value="${board.ftitle}" name="ftitle" id="title" style="height: 50px;" required>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
 						<h4>캐치프레이즈(제목을 부연 설명하는 문구입니다)</h4>
 						<div id="ca2">
-							<input type="text" placeholder="호스트님만의 특색과 매력을 함축적으로 보일 수 있게 적어주세요." 
-							 id="catch" name="small_title" maxlength="20" tabindex="0" style="height: 50px;" required>
+							<input type="text" value="${board.small_title}" id="catch" name="small_title" maxlength="20" tabindex="0" style="height: 50px;" required>
 							<span id="counter">0</span>/20<br>
 						</div>
 					</td>
@@ -153,6 +155,13 @@
 					<tr>
 						<td>
 							<input type="file" class="thumb_file" name="uploadFile" required >
+							<c:if test="${ !empty board.originalFileName }">
+								<br>현재 업로드한 파일 : 
+									<a href="${ contextPath }/resources/buploadFiles/${ board.renameFileName }">
+										${ board.originalFileName }
+									</a>
+									<input type="hidden" name="originalFileName" value="${ board.originalFileName }"/>
+							</c:if>
 						</td>
 					</tr>
 					
@@ -196,7 +205,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<input type="text" id="maxMember" name="maxMember" placeholder="최소 1명 이상 최대 20명 이하"  maxlength="2"  required >
+							<input type="text" id="maxMember" name="maxMember" value="${ board.maxMember }"  maxlength="2"  required >
 						</td>
 					</tr>
 					
@@ -223,17 +232,17 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" id="op" class="op" name="oname" placeholder="옵션명"  maxlength="30" required>
+								<input type="text" id="op" class="op" name="oname" value="${ board.oname }"  maxlength="30" required>
 							</td>
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" id="op2" class="op2" name="price" placeholder="가격(5000원 이상)"   required>
+								<input type="text" id="op2" class="op2" name="price" value="${ board.price }" required>
 							</td>
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" id="op3" class="op3" name="ocount" placeholder="수량(재고)" required onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+								<input type="text" id="op3" class="op3" name="ocount" value="${ board.ocount }" required onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 							</td>
 						</tr>
 						<tr>	
@@ -371,12 +380,12 @@
 					</tr>
 					<tr>
 						<td >
-							<input type="text" name="bTime" class="bTime"  placeholder="30분" required>
+							<input type="text" name="bTime" class="bTime"  value="${ board.bTime }" required>
 						</td>
 					</tr>
 					<tr>
 						<td >
-							<input type="text" name="bDetail" class="bDetail"  placeholder="세부일정" required>
+							<input type="text" name="bDetail" class="bDetail"  value="${ board.bDetail }" required>
 						</td>
 					</tr>
 					<tbody id="tbody2">
@@ -440,7 +449,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" class="bIncluded" id="fcontain" name="fcontain"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" id="fcontain" name="fcontain"  maxlength="500" required>${ board.fcontain }</textarea>
 							<span id="btext1">0</span>/500
 						</td>
 					</tr>
@@ -449,7 +458,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" class="bIncluded" id="fncontain" name = "fncontain"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" id="fncontain" name = "fncontain"  maxlength="500" required>${ board.fncontain }</textarea>
 							<span id="btext2">0</span>/500
 						</td>
 					</tr>
@@ -483,7 +492,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" class="bIncluded" id="fmaterials" name="fmaterials"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" id="fmaterials" name="fmaterials"  maxlength="500" required>${ board.fmaterials }</textarea>
 							<span id="btext3">0</span>/500
 						</td>
 					</tr>
@@ -492,7 +501,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<textarea rows="5" cols="50" class="bIncluded" id="fprecaution" name="fprecaution"  maxlength="500" required></textarea>
+							<textarea rows="5" cols="50" class="bIncluded" id="fprecaution" name="fprecaution"  maxlength="500" required>${ board.fprecaution }</textarea>
 							<span id="btext4">0</span>/500
 						</td>
 					</tr>
@@ -523,10 +532,10 @@
 							</td>
 						</tr>
 						<tr>
-							<td><span>Q</span><input type="text" class="b_Qt" name="b_Qt" placeholder="질문"></td>
+							<td><span>Q</span><input type="text" class="b_Qt" name="b_Qt" value="${ board.b_Qt }"></td>
 						</tr>
 						<tr>
-							<td><span>A</span><input type="text" class="b_An" name="b_An" placeholder="답변"></td>
+							<td><span>A</span><input type="text" class="b_An" name="b_An" value="${ board.b_An }"></td>
 						</tr>
 					</thead>
 					<tbody id="tbody3">
@@ -587,7 +596,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td><textarea class="form-control" id="editor" name="introduce"></textarea></td>
+						<td><textarea class="form-control" id="editor" name="introduce">${ board.introduce }</textarea></td>
 					</tr>
 			</table>
 			<script type="text/javascript">
@@ -619,9 +628,9 @@
 			<input type="hidden" id="lng" name="lon">
 			
 			<div id="btn_area">
-				<button id="complete" type="button">완료</button>
+				<button id="complete" type="button">수정</button>
+				<button type="button" onclick="location.href='${ list.bo }'">목록으로</button>
 				<button onclick="location.href='history.back()'" id="cancel">취소</button>
-				<button type="button" id="im">임시저장</button>
 			</div>
 				<script>
 					$('#complete').on('click', function(){
@@ -677,7 +686,7 @@
 							alert("유의사항을 작성해주세요");
 							$('#fprecaution').focus(); 
 						}else{
-							var result = confirm('모임/클래스/판매 등록 완료');
+							var result = confirm('모임/클래스/판매 수정 완료');
 							if(result){
 								$('#form').submit();		
 							} else{
@@ -793,50 +802,23 @@
 			$(this).next().keyup();
 		});
 		
-		window.onload = function(){
-			gettheLocal();
-		}
 		//자동저장
-		$('.bIncluded').keyup(function(e){
-			var fcontain = $('#fcontain').val() +(",") + $('#userId').val();;
+		$('#im').click(function(){
+			var fcontain = $('#fcontain').val();
 			var fncontain = $('#fncontain').val();
 			var fmaterials = $('#fmaterials').val();
 			var fprecaution = $('#fprecaution').val();
-			console.log("fcontain : " + fcontain);
 			
-			if(fcontain!="" || fncontain != "" || fmaterials !="" || fprecaution !=""){
+			if(true){
 				localStorage.setItem('fcontain', fcontain);
 				localStorage.setItem('fncontain', fncontain);
 				localStorage.setItem('fmaterials', fmaterials);
 				localStorage.setItem('fprecaution', fprecaution);
 				
+				document.querySelector('#fcontain').innerHTML = localStorage.getItem("fcontain");
+				$('#form').submit();		
 			}
 		})
-		
-		function gettheLocal(){
-			var userId = $('#userId').val();
-			var fcon = localStorage.getItem('fcontain');
-			var fnc = localStorage.getItem('fncontain');
-			var fma = localStorage.getItem('fmaterials');
-			var fpre= localStorage.getItem('fprecaution');
-			localStorage.setItem('userId', userId);
-			var user_Id = localStorage.getItem('userId');
-			var kId =  localStorage.getItem('kId');
-			
-			document.querySelector('#fcontain').innerHTML = fcon;
-			document.querySelector('#fncontain').innerHTML = fnc;
-			document.querySelector('#fmaterials').innerHTML = fma;
-			document.querySelector('#fprecaution').innerHTML = fpre;
-			
-			if(user_Id != kId){
-				document.querySelector('#fcontain').innerHTML = "";
-				localStorage.removeItem('fcontain');
-				localStorage.removeItem('fncontain');
-				localStorage.removeItem('fmaterials');
-				localStorage.removeItem('fprecaution');
-			}
-			
-		}
 		</script>
 		
 		

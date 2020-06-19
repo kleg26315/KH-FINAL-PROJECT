@@ -18,7 +18,7 @@ header{
 	  
 	}	
 	
-table,tr,td{border:1px solid red;}
+/* table,tr,td{border:1px solid red;} */
 
 th{
 	width: 60%;
@@ -63,7 +63,7 @@ th{
     right: 12px;
 }
 	
-#btn_DetailSet, #btn_Q, #postcodify_search_button, #btn_op, #complete, #sumFile{
+#btn_DetailSet, #btn_Q, #postcodify_search_button, #btn_op, #complete, #sumFile, .btnD, .btnDelete{
 	background:#f1e018;
     border-radius: 3px;
     color: white;
