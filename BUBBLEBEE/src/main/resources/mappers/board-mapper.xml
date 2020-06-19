@@ -212,7 +212,7 @@
 		<![CDATA[
 		select *
 		from (
-			select rownum rnum, fno, ftype, price, small_title, ftitle, (rsum/rcount) as avgrv
+			select rownum rnum, fno, ftype, price, small_title, ftitle, Round((rsum/rcount),1) as avgrv
 			from board
 			where rcount!=0 and rsum!=0 and f_status='Y' and ftype=1
 			order by avgrv desc)
@@ -221,6 +221,30 @@
 	</select>
 	
 	<select id="selectCList" resultType="Board">
+		<![CDATA[
+		select *
+		from (
+			select rownum rnum, fno, ftype, price, small_title, ftitle, Round((rsum/rcount),1) as avgrv
+			from board
+			where rcount!=0 and rsum!=0 and f_status='Y' and ftype=2
+			order by avgrv desc)
+		where rnum<5
+		]]>
+	</select>
+	
+	<select id="selectUpMList" resultType="Board">
+		<![CDATA[
+		select *
+		from (
+			select rownum rnum, fno, ftype, price, small_title, ftitle, Round((rsum/rcount),1) as avgrv
+			from board
+			where rcount!=0 and rsum!=0 and f_status='Y' and ftype=1
+			order by avgrv desc)
+		where rnum<21
+		]]>
+	</select>
+	
+	<select id="selectUpCList" resultType="Board">
 		<![CDATA[
 		select *
 		from (

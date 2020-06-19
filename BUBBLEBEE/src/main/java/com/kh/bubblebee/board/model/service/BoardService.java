@@ -64,4 +64,8 @@ public interface BoardService {
 	
 	ArrayList<Board> selectCList();
 
+	ArrayList<Board> selectUpMList();
+
+	ArrayList<Board> selectUpCList();
+
 }

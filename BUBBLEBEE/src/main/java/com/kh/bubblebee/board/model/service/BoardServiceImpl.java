@@ -152,6 +152,16 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<Board> selectCList() {
 		return bDAO.selectCList(sqlSession);
 	}
+
+	@Override
+	public ArrayList<Board> selectUpMList() {
+		return bDAO.selectUpMList(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Board> selectUpCList() {
+		return bDAO.selectUpCList(sqlSession);
+	}
 	
 
 	

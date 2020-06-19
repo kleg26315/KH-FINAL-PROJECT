@@ -137,6 +137,14 @@ public class BoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.delete("boardMapper.deleteBoardOption", fno);
 	}
+
+	public ArrayList<Board> selectUpMList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectUpMList");
+	}
+
+	public ArrayList<Board> selectUpCList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectUpCList");
+	}
 	
 	
 }
