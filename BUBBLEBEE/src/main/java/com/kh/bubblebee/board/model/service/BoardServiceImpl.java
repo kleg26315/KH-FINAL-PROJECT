@@ -121,7 +121,18 @@ public class BoardServiceImpl implements BoardService {
 		return bDAO.markLocation(sqlSession);
 	}
 
+	@Override
+	public int deleteBoard(int fno) {
+		// TODO Auto-generated method stub
+		return bDAO.deleteBoard(sqlSession, fno);
+	}
 
+	@Override
+	public int deleteBoardOption(int fno) {
+		// TODO Auto-generated method stub
+		return bDAO.deleteBoardOption(sqlSession, fno);
+	}
+	
 	@Override
 	public int plusHeart(int fno) {
 		return bDAO.plusHeart(sqlSession, fno);
@@ -141,4 +152,7 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<Board> selectCList() {
 		return bDAO.selectCList(sqlSession);
 	}
+	
+
+	
 }

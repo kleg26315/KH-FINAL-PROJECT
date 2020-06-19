@@ -1,3 +1,4 @@
+
 package com.kh.bubblebee.board.model.service;
 
 import java.util.ArrayList;
@@ -51,7 +52,9 @@ public interface BoardService {
 
 	int boardUpdateOption(HashMap<String, Option> map);
 
+	int deleteBoard(int fno);
 
+	int deleteBoardOption(int fno);
 
 	int plusHeart(int fno);
 
@@ -61,6 +64,4 @@ public interface BoardService {
 	
 	ArrayList<Board> selectCList();
 
-
-	
 }
