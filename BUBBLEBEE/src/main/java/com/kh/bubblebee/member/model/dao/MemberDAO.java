@@ -54,4 +54,8 @@ public class MemberDAO {
 		return (ArrayList)sqlSession.selectList("memberMapper.getHlist",id);
 	}
 
+	public Member loginCheck(SqlSessionTemplate sqlSession, String email) {
+		return sqlSession.selectOne("memberMapper.loginCheck", email);
+	}
+
 }

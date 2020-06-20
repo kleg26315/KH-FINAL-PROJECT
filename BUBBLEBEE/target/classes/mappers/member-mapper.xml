@@ -120,4 +120,10 @@
 		set check_yn = 'Y'
 		where user_id = #{id}
 	</update>
+	
+	<select id="loginCheck" resultMap="memberResultSet">
+		select *
+		from member
+		where user_id = #{email}
+	</select>
 </mapper>

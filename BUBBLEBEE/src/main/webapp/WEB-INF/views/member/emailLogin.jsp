@@ -22,9 +22,19 @@
 .loginBtn{
 	border: none;
     width: 325px;
-    height: 45px;
+    height: 65px;
     background: #f1e018;
     color: #fff;
+    border-radius: 8px;
+}
+.not{
+	background : rgb(221, 221, 221);
+	border: none;
+    width: 325px;
+    height: 65px;
+    color: #fff;
+    border-radius: 8px;
+    cursor: not-allowed;
 }
 .toast {
     visibility: hidden; 
@@ -67,7 +77,7 @@
 	<section style="padding-top: 115px; padding-left: 20%; width: 78%; text-align: center;">
 		<h3 style="font-weight: bold;">로그인</h3>
 		<br>
-		<form action="login.me" method="post" id="loginFormFF" onsubmit="return validate();">
+		<form action="login.me" method="post" id="loginForm">
 			<div class="">
 				<div class="">
 					<input class="inputBox" type="email" placeholder="이메일 입력" size="46" value="" name="id" id="emailBox">
@@ -78,8 +88,7 @@
 				</div>
 			</div>
 			<br><br>
-			<button class="loginBtn" type="submit" id="toastButton">로그인</button>
-			<button class="loginBtn" type="button" id="toastButton">토스트 메시지 테스트용</button>
+			<button class="loginBtn" type="button" id="loginBtn" onclick="validate();">로그인</button>
 		</form>
 		<br><br>
 		<div>
@@ -89,23 +98,25 @@
 		</div>
 		
 		<div class="toast" id="idToast">이메일을 입력해주세요.</div>
+		<div class="toast" id="idFormToast">이메일형식(@) 으로 입력해주세요.</div>
 		<div class="toast" id="pwdToast">비밀번호를 입력해주세요.</div>
 		<div class="toast" id="idPwdToast">이메일 및 비밀번호가 틀렸습니다.</div>
 		
 	</section>
 	<script>
-	  /* var toast = document.getElementById('toast');  // id가 toast인 요소 div */
 	  var toast = $('.toast');
 	  var idToast = $('#idToast');
 	  var pwdToast = $('#pwdToast');
 	  var idPwdToast = $('#idPwdToast');
+	  var idFormToast = $('#idFormToast');
 	  
       var isToastShown = false;
-      // id가 toastButton인 요소를 클릭하면 아래 함수가 호출됨
+
       function validate(){
     	  var email = $('#emailBox').val().trim();
     	  var pwd = $('#pwdBox').val().trim();
-    	  console.log($('#emailBox').val().trim());
+	      var flag = false;
+	      
     	  if(email == ""){
   	          if (isToastShown) return;   // 토스트 메시지가 띄어져 있다면 함수를 끝냄
   	          isToastShown = true;
@@ -116,38 +127,46 @@
   	              isToastShown = false;
   	          }, 2700);
     		  return false;
-    	  } else if(pwd == ""){
-    		  if (isToastShown) return;   // 토스트 메시지가 띄어져 있다면 함수를 끝냄
+    	  } else if(!email.includes('@')){
+    		  if (isToastShown) return;  
   	          isToastShown = true;
-  	          pwdToast.addClass('show');    // show라는 클래스를 추가해서 토스트 메시지를 띄우는 애니메이션을 발동시킴
+  	          idFormToast.addClass('show'); 
   	          setTimeout(function () {
-  	              // 2700ms 후에 show 클래스를 제거함
+  	              idFormToast.removeClass('show');
+  	              isToastShown = false;
+  	          }, 2700);
+  	          $('#emailBox').focus();
+    		  return false;
+    	  } else if(pwd == ""){
+    		  if (isToastShown) return;  
+  	          isToastShown = true;
+  	          pwdToast.addClass('show'); 
+  	          setTimeout(function () {
   	              pwdToast.removeClass('show');
   	              isToastShown = false;
   	          }, 2700);
     		  return false;
+    	  } else {
+    		  $.ajax({
+    	    		url : 'loginCheck.me',
+    	    		data : {email : email, pwd : pwd},
+    	    		success : function(data){
+    	    			if(data == 'fail'){
+    	    				if (isToastShown) return;
+    	    	  	          isToastShown = true;
+    	    	  	          idPwdToast.addClass('show');
+    	    	  	          setTimeout(function () {
+    	    	  	              idPwdToast.removeClass('show');
+    	    	  	              isToastShown = false;
+    	    	  	          }, 2700);
+    	    			} else{
+    	    				$('#loginForm').submit();
+    	    			}
+    	    			
+    	    		}
+    	   		})
     	  }
-    	  $.ajax({
-    		url : 'loginCheck.me',
-    		data : {email : email, pwd : pwd},
-    		success : function(data){
-    			if(data == '실패'){
-    				if (isToastShown) return;   // 토스트 메시지가 띄어져 있다면 함수를 끝냄
-    	  	          isToastShown = true;
-    	  	          pwdToast.addClass('show');    // show라는 클래스를 추가해서 토스트 메시지를 띄우는 애니메이션을 발동시킴
-    	  	          setTimeout(function () {
-    	  	              // 2700ms 후에 show 클래스를 제거함
-    	  	              pwdToast.removeClass('show');
-    	  	              isToastShown = false;
-    	  	          }, 2700);
-    				return false;
-    			} else{
-    				return true;
-    			}
-    		}
-    	  })
       }
-      
 	</script>
 	<footer id="footer" style="padding-top: 115px;">
 		<c:import url="../layout/footer.jsp"/>

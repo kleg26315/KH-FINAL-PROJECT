@@ -21,9 +21,10 @@
 .loginBtn{
 	border: none;
     width: 325px;
-    height: 45px;
+    height: 65px;
     background: #f1e018;
     color: #fff;
+    border-radius: 8px;
 }
 </style>
 <body>

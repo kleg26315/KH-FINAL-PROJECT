@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -260,7 +261,17 @@ public class MemberController {
 	
 	@RequestMapping("loginCheck.me")
 	@ResponseBody
-	public String loginCheck() {
-		return "";
+	public String loginCheck(@RequestParam("email") String email, @RequestParam("pwd") String pwd) {
+		Member m = mService.loginCheck(email);
+
+		if(m != null) {
+			if(bcryptPasswordEncoder.matches(pwd, m.getPwd())) {
+				return "success";
+			} else {
+				return "fail";
+			}
+		} else {
+			return "fail";
+		}
 	}
 }

@@ -71,4 +71,9 @@ public class MemberServiceImpl implements MemberService{
 		return mDAO.getHlist(sqlSession,id);
 	}
 
+	@Override
+	public Member loginCheck(String email) {
+		return mDAO.loginCheck(sqlSession, email);
+	}
+
 }
