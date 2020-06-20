@@ -17,4 +17,8 @@ public class AlertDAO {
 	public ArrayList<Alert> receive_data(SqlSessionTemplate sqlSession, String id) {
 		return (ArrayList)sqlSession.selectList("memberMapper.receivce_data", id);
 	}
+
+	public int checkAllAlert(SqlSessionTemplate sqlSession, String id) {
+		return sqlSession.update("memberMapper.checkAllAlert", id);
+	}
 }

@@ -114,4 +114,10 @@
 		where user_id = #{id}
 		order by aid desc
 	</select>
+	
+	<update id="checkAllAlert">
+		update alert
+		set check_yn = 'Y'
+		where user_id = #{id}
+	</update>
 </mapper>

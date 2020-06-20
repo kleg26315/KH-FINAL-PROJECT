@@ -626,8 +626,8 @@
 	        socket = websocket;
 	        websocket.onopen = function(evt) {
 	            onOpen(evt);
-	           /*  setTimeout(function(){
-	        	send_message();
+	            /* setTimeout(function(){
+	        		send_message();
 		        }, 1000); */
 	        };
 	        websocket.onmessage = function(evt) {
@@ -641,7 +641,7 @@
 	   
 	    function onOpen(evt) 
 	    {
-	       websocket.send("${loginUser.id}");
+			websocket.send("${loginUser.id}");
 	    }
 	
 	    function onMessage(evt) {

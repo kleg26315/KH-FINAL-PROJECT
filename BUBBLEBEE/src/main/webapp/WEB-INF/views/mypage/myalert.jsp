@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -167,12 +168,12 @@ a:hover {
 	   		<c:import url="../layout/mypage_nav.jsp"/> 
 	   </nav>
 	    <div id="c_body">
-		    <div id="" class="c_list"><a>모든 알림</a></div>
+		    <div id="" class="c_list"><a href="myalert.mg">모든 알림</a></div>
 		    <br><br>
 		    <div class="tool-section">
 		    	<div class="unchecked-cnt">읽지 않은 알림 <span class="cnt">${count }</span> 개</div>
 				<div class="all-check-cover">
-				  <button class="all-check e-all-check">
+				  <button class="all-check e-all-check" onclick="checkAll();">
 				    <span class="infd-icon circle">
 				      <i class="fas fa-chevron-down"></i>
 				    </span>
@@ -192,19 +193,31 @@ a:hover {
 			<div class="list-section">
 				<c:forEach var="a" items="${ alist }">
 					<c:if test="${a.check_yn == 'N' }">
-						<a href="/messages/12650" class="infd-message-el">
+						<a class="infd-message-el">
+						  <input value="${a.bno }" name="bno" hidden>
 						  <span class="title">${a.a_content }</span>
 						  <span class="date">${a.a_create_date }</span>
 						</a>
 					</c:if>
 					<c:if test="${a.check_yn == 'Y' }">
-						<a href="/messages/12650" class="infd-message-el checked">
+						<a class="infd-message-el checked">
+						  <input value="${a.bno }" name="bno" hidden>
 						  <span class="title">${a.a_content }</span>
 						  <span class="date">${a.a_create_date }</span>
 						</a>
 					</c:if>
 				</c:forEach>
 			</div>
+			<script>
+				$('.infd-message-el').click(function(){
+					var bno = $(this).children().eq(0).val();
+					location.href = 'noticeSelect.no?bno='+ bno;
+				})			
+				
+				function checkAll(){
+					location.href = 'checkAllAlert.mg';
+				}
+			</script>
 		</div>
 	</div>
    </section>

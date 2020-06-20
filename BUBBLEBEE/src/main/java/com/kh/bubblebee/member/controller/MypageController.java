@@ -89,6 +89,20 @@ public class MypageController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("checkAllAlert.mg")
+	public String checkAllAlert(HttpSession session) {
+		String id = ((Member)session.getAttribute("loginUser")).getId();
+		
+		int result = aDAO.checkAllAlert(sqlSession, id);
+		
+		if(result > 0) {
+			return "redirect:myalert.mg";
+		} else {
+			throw new MemberException("알림 모두 읽기 실패");
+		}
+	}
+	
 	// 내정보 수정페이지로 이동
 	@RequestMapping("updateInfoForm.mg")
 	public String updateInfoView() {
