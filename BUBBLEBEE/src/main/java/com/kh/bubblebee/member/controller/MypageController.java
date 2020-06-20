@@ -24,9 +24,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.bubblebee.alert.model.dao.AlertDAO;
 import com.kh.bubblebee.alert.model.vo.Alert;
+import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.member.model.exception.MemberException;
 import com.kh.bubblebee.member.model.service.MypageService;
 import com.kh.bubblebee.member.model.vo.Member;
+import com.kh.bubblebee.notice.model.vo.Pagination2;
+import com.kh.bubblebee.purchase.model.vo.PPoint;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -72,10 +75,33 @@ public class MypageController {
 		return "mypaid";
 	}
 	//마일리지
-	@RequestMapping("mypoint.mg")
-	public String mypoint() {
-		return "mypoint";
-	}
+		@RequestMapping("mypoint.mg")
+		public ModelAndView mypoint(@RequestParam(value="page" ,required = false) Integer page, HttpSession session,ModelAndView mv) {
+			String userId = ((Member)session.getAttribute("loginUser")).getId();
+			
+			int currentPage = 1;
+			if(page != null) {
+				currentPage = page;
+			}
+			
+			
+			
+			int listCount = mgService.getListCount(userId);
+			
+			PageInfo pi = Pagination2.getPageInfo(currentPage, listCount);	
+			
+			ArrayList<PPoint> pList = mgService.selectpList(pi,userId);
+			
+			if(pList !=null) {
+			mv.addObject("pi",pi);
+			mv.addObject("pList",pList);
+			mv.setViewName("mypoint");
+			}else {
+				throw new MemberException("마일리지 목록 조회 실패");
+			}
+			return mv;
+		}
+		
 	//모든 알림
 	@RequestMapping("myalert.mg")
 	public ModelAndView myalert(ModelAndView mv, HttpSession session) {

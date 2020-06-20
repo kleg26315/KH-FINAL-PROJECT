@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.bubblebee.board.model.vo.Board;
+import com.kh.bubblebee.board.model.vo.Reply;
 import com.kh.bubblebee.board.model.vo.Review;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.host.model.dao.HostDAO;
@@ -61,6 +62,26 @@ public class HostServiceImpl implements HostService{
 	@Override
 	public ArrayList<Review> selectQnAList(PageInfo pi, int fno) {
 		return hDAO.selectQnAList(sqlSession,pi,fno);
+	}
+
+	@Override
+	public int deleteQnA(int qno) {
+		return hDAO.deleteQnA(sqlSession,qno);
+	}
+
+	@Override
+	public int insertHostReply(Reply r) {
+		return hDAO.insertHostReply(sqlSession,r);
+	}
+
+	@Override
+	public Reply selectHostReply(Reply r) {
+		return hDAO.selectHostReply(sqlSession,r);
+	}
+
+	@Override
+	public ArrayList<Reply> selectReplyList(String hostId) {
+		return hDAO.selectReplyList(sqlSession,hostId);
 	}
 
 

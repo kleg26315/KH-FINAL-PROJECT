@@ -111,10 +111,10 @@
 					<div id="login_means">
 					<c:set var="way" value="${loginUser.id}"/>
 						<c:choose>
-							<c:when test="${fn:length(way) > 10}">이메일 계정</c:when>
+							<c:when test="${fn:contains(way,'@')}">이메일 계정</c:when>
 							<c:when test="${fn:length(way) == 10}">카카오톡 로그인 계정</c:when>
 							<c:when test="${fn:length(way) == 8}">네이버 로그인 계정</c:when>
-							<c:otherwise>이거 나오면 안됨ㅋㅋ</c:otherwise>
+							<c:otherwise>이메일 계정</c:otherwise>
 						</c:choose>
 					</div>
 				</div>
@@ -122,7 +122,7 @@
 					<div id="point_con">
 						<div id="point_1">마일리지 <img src="<%=request.getContextPath()%>/resources/img/next.png" id="next"/></div>
 						<br>
-						<div>2000</div>
+						<div>${sessionScope.point }</div>
 					</div>
 				</div>
     	</div>

@@ -33,11 +33,12 @@ header{z-index: 999;}
 .rprofile_all{display:flex;align-items: center;margin-bottom: 20px;}
 .r_name{font-weight: bold;}
 .r_img{margin-right: 14px;}
+.r_img>img{border-radius: 100%;width: 45px;height: 45px;}
 .r_content{display: flex;align-items: baseline;}
 .grade{display: flex;}
 .r_date{font-size: 11px;color:rgb(155, 155, 155);}
 <!-- -->
-.rcontent_all{margin-bottom: 20px;white-space: pre-line;font-size: 13px;line-height: 22px;}
+.rcontent_all{margin-bottom:20px;white-space: pre-line;font-size: 13px;line-height: 22px;}
 <!-- -->
 .rop{color: rgb(155, 155, 155);margin-bottom: 10px;line-height: 10px;font-size: 11px;}
 <!-- -->
@@ -57,3 +58,70 @@ header{z-index: 999;}
 /* 비밀글 */
 .fa-circle{color:#F39C12;font-size: 22.5px;}
 .fa-lock{color: white;font-size: 10px;}
+/* 삭제 버튼 */
+.r_delete{text-align: right;margin-bottom: 10px;}
+.deleteBtn:hover{color:#F39C12;cursor: pointer; }
+/* 답변 영역*/
+.replyEnrollForm{
+	display: none;
+	background: #F9F9F9;
+	padding:20px;
+	margin-top: 20px;
+}
+.r_replyBtn:hover{color:#F39C12;cursor: pointer; }
+.recontent{width: 100%;height: 100px;outline: none;border: none;resize: none;margin-bottom: 20px;}
+.replyContentForm{background: white;display: flex;flex-direction: column;padding: 20px;align-items: center;}
+/* .enrollBtn{background:#F39C12;border: none;align-self: center; padding: 10px 50px;border-radius: 5px;color: white;font-weight: bold;outline: none;} */
+/* 답변 등록 버튼 css */
+.enrollBtn{
+	width: 290px;
+    height: 50px;
+    line-height: normal;
+    background-color: rgb(221, 221, 221);
+    text-align: center;
+    cursor: not-allowed;
+    color: white;
+    font-size: 13px;
+    padding: 0px 13px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+.notext:hover{
+    cursor: not-allowed;
+}
+.text{
+    width: 290px;
+    height: 50px;
+    line-height: normal;
+    background-color: #F39C12;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    font-size: 13px;
+    padding: 0px 13px;
+    border-radius: 5px;
+}
+.text:hover{
+    cursor: pointer;
+}
+/* 문의에 대한 답변 */
+.r_reList_all{
+	background:#F9F9F9; 
+	padding: 20px;
+}
+.r_reList_wrap{
+	display:none;
+	padding: 20px;
+}
+.r_hinfo_wrap{
+	display: flex;
+}
+.r_h_name_date{
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+}
+.r_reList_recontent{
+	white-space: pre-line;
+}

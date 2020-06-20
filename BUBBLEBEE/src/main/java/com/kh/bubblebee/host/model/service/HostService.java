@@ -3,6 +3,7 @@ package com.kh.bubblebee.host.model.service;
 import java.util.ArrayList;
 
 import com.kh.bubblebee.board.model.vo.Board;
+import com.kh.bubblebee.board.model.vo.Reply;
 import com.kh.bubblebee.board.model.vo.Review;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.host.model.vo.Host;
@@ -33,6 +34,18 @@ public interface HostService {
 
 	// QnA 목록
 	ArrayList<Review> selectQnAList(PageInfo pi, int fno);
+
+	// QnA 삭제
+	int deleteQnA(int qno);
+
+	// 문의에 답변 달기 
+	int insertHostReply(Reply r);
+
+	// 해당 답변 가져오기
+	Reply selectHostReply(Reply r);
+
+	// 답변 목록 가져오기
+	ArrayList<Reply> selectReplyList(String hostId);
 
 	
 }

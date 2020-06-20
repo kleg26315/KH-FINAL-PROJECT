@@ -1,7 +1,12 @@
 package com.kh.bubblebee.host.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.bubblebee.board.model.vo.Board;
+import com.kh.bubblebee.board.model.vo.Reply;
 import com.kh.bubblebee.board.model.vo.Review;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.common.Pagination;
@@ -41,17 +47,6 @@ public class HostController {
 	// 호스트 등록하기
 	@RequestMapping("enrollHost.ho")
 	public String enrollHost(@ModelAttribute Host h,@ModelAttribute Member m,Model model) {
-		
-		System.out.println(m.getId());
-		System.out.println(m.getUserName());
-		System.out.println(m.getEmail());
-		System.out.println(m.getNickName());
-		System.out.println(m.getPhone());
-		
-		System.out.println(h.getIntroduction());
-		System.out.println(h.getAc_bname());
-		System.out.println(h.getAc_name());
-		System.out.println(h.getAc_no());
 		
 		// 이름, 닉네임, 이메일 , 전화번호 ,host_yn update
 		int result1 = hService.updateMemberInfo(m);
@@ -114,9 +109,9 @@ public class HostController {
 	
 	// 호스트 게시판 별 문의 
 	@RequestMapping("hostQnA.ho")
-	public ModelAndView hostQnAView(@RequestParam("fno") int fno,@RequestParam(value="page", required=false) Integer page,ModelAndView mv) {
+	public ModelAndView hostQnAView(@RequestParam("fno") int fno,@RequestParam(value="page2", required=false) Integer page,@RequestParam("hostId") String hostId,ModelAndView mv) {
 		System.out.println(fno);
-		
+		System.out.println(hostId);
 		//페이징 처리를 위한 전체 개수 가져오기
 		int listCount = hService.selectQnACount(fno);
 		
@@ -129,8 +124,16 @@ public class HostController {
 		
 		ArrayList<Review> rList = hService.selectQnAList(pi,fno);
 		
+		Host host = hService.selectHost(hostId);
+		
+		ArrayList<Reply> reList = hService.selectReplyList(hostId);
+		
+		
 		mv.addObject("fno",fno);
 		mv.addObject("rList",rList);
+		mv.addObject("pi",pi);
+		mv.addObject("host",host);
+		mv.addObject("reList",reList);
 		mv.setViewName("host_qna");		
 		return mv;
 	}
@@ -151,8 +154,41 @@ public class HostController {
 		
 		if(result >0) {
 			mv.addObject("fno",r.getRef_fid());
+			System.out.println("test"+r.getRef_fid());
 			mv.setViewName("host_qna");
 		}
 		return mv;
 	}
+	// 문의 삭제
+	@RequestMapping("deleteQnA.ho")
+	public void deleteQnA(@RequestParam("qno") int qno,HttpServletResponse response) {
+		int result = hService.deleteQnA(qno);
+		
+		boolean isDelete = result == 1 ? true : false;
+		
+		try {
+			response.getWriter().print(isDelete);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	// 문의에 대한 답변 등록
+	@RequestMapping("enrollReply.ho")
+	public void enrollReply(@ModelAttribute Reply r,HttpServletResponse response){
+		System.out.println(r);
+		
+		int result = hService.insertHostReply(r);
+		
+		Reply reply = hService.selectHostReply(r);
+		
+		boolean isEnroll = result == 1 ? true :false;
+		
+		try {
+			response.getWriter().print(isEnroll);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
