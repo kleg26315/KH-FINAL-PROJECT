@@ -29,4 +29,6 @@ public interface MemberService {
 
 	ArrayList<Board> getHlist(String id);
 
+	Member loginCheck(String email);
+
 }
