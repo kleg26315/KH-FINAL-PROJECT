@@ -31,6 +31,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 #table td{line-height: 13px;font-size: 15px;font-weight: bold;padding: 18px 20px;}
 #table th{line-height: 13px;font-size: 15px;font-weight: bolder;padding: 18px 20px;}
 #table tr{border-bottom: 1px solid #eee;}
+.paging{margin-top: 20px;text-align: center;}
 </style>
 <body>
    <header id="header">
@@ -57,16 +58,54 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 		    		<th>발급 날짜</th>
 		    		<th>마일리지</th>
 		    		<th>내용</th>
-		    		<th>유효기간</th>
 		    	</tr>
-		    	<tr>
-		    		<td>2020-05-26</td>
-		    		<td>+ 2000</td>
-		    		<td>생일</td>
-		    		<td>2020-06-26 까지</td>
-		    	</tr>
+		    	<c:forEach var="pe" items="${pList}">
+		    		<tr>
+		    		<td>${pe.p_date }</td>
+		    		<td>${pe.p_money }</td>
+		    		<td>${pe.p_content}</td>
+		    		</tr>
+		    	</c:forEach>
 		    </table>
 		    </div>
+		    <div class="paging">
+		   		<!-- [이전] -->
+				<c:if test="${ pi.currentPage <= 1 }">
+					[이전] &nbsp;
+				</c:if>
+				<c:if test="${ pi.currentPage > 1 }">
+					<c:url var="before" value="mypoint.mg">
+						<c:param name="page" value="${ pi.currentPage - 1 }"/>
+					</c:url>
+					<a href="${ before }">[이전]</a>&nbsp;
+				</c:if>
+				
+				<!-- 페이지 -->
+				<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+					<c:if test="${ p eq pi.currentPage }">
+						<font color="#F39C12" size="4"><b>[${ p }]</b></font>
+					</c:if>
+					
+					<c:if test="${ p ne pi.currentPage }">
+						<c:url var="pagination" value="mypoint.mg">
+							<c:param name="page" value="${ p }"/>
+						</c:url>
+						<a href="${ pagination }">${ p }</a> &nbsp;&nbsp; 
+					</c:if>
+				</c:forEach>
+				
+				<!-- [다음] -->
+				<c:if test="${ pi.currentPage >= pi.maxPage }">
+					[다음]
+				</c:if>
+				<c:if test="${ pi.currentPage < pi.maxPage }">
+					<c:url var="after" value="mypoint.mg">
+						<c:param name="page" value="${ pi.currentPage + 1 }"/>
+					</c:url> 
+					<a href="${ after }">[다음]</a>
+				</c:if> 
+		    </div>
+		    
 		 </div>
 	</div>
    </section>

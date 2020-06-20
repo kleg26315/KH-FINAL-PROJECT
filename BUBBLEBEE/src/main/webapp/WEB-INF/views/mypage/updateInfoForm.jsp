@@ -212,6 +212,16 @@ section input[type=text]{outline-color: #F39C12;height: 30px;}
 			  			}
 			  		});
 			  		
+			  		$('#phone').keyup(function(event){
+		   				regexp=/[^0-9]/gi;
+		   				v = $(this).val();
+		   				if(regexp.test(v)){
+		   					alert('숫자만 입력가능 합니다.');
+		   					$(this).val(v.replace(regexp, ''));
+		   				}
+		   			});
+			  		
+			  		
 			  	});
 			  </script>
 		</div>

@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.bubblebee.board.model.vo.Board;
+import com.kh.bubblebee.board.model.vo.Reply;
 import com.kh.bubblebee.board.model.vo.Review;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.host.model.vo.Host;
@@ -52,6 +53,22 @@ public class HostDAO {
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
 		return (ArrayList)sqlSession.selectList("hostMapper.selectQnAList", fno, rowBounds);
+	}
+
+	public int deleteQnA(SqlSessionTemplate sqlSession, int qno) {
+		return sqlSession.delete("hostMapper.deleteQnA",qno);
+	}
+
+	public int insertHostReply(SqlSessionTemplate sqlSession, Reply r) {
+		return sqlSession.insert("hostMapper.insertHostReply",r);
+	}
+
+	public Reply selectHostReply(SqlSessionTemplate sqlSession, Reply r) {
+		return sqlSession.selectOne("hostMapper.selectHostReply",r);
+	}
+
+	public ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, String hostId) {
+		return (ArrayList)sqlSession.selectList("hostMapper.selectReplyList",hostId);
 	}
 
 	

@@ -67,14 +67,15 @@
 	<select id="selectQnACount" resultType="_int">
 	select count(*)
 	from review
-	where ref_fid = #{fno}
+	where ref_fid = #{fno} and qtype=2
 	</select>
 	
 	<select id="selectQnAList" parameterType="_int" resultMap="ReviewResultSet">
 	select * 
 	from review
 	join member using(user_id)
-	where ref_fid = #{fno}
+	where ref_fid = #{fno} and qtype=2
+	order by qno desc
 	</select>
 	
 	<resultMap type="Review" id="ReviewResultSet">
@@ -90,5 +91,35 @@
 		<result property="qtype" column="QTYPE"/>
 		<collection property="member" resultMap="checkMember"/>
 	</resultMap>
+	
+	<delete id="deleteQnA">
+		delete from review
+		where qno = #{qno} and qtype=2
+	</delete>
+	
+	<insert id="insertHostReply">
+		insert into reply
+		values(#{rno},#{recontent},sysdate,#{user_id})
+	</insert>
+	
+	<select id="selectHostReply" resultMap="ReplyResultSet">
+		select *
+		from reply 
+		where rno = #{rno}
+	</select>
+		
+	<resultMap type="Reply" id="ReplyResultSet">
+		<id property="rno" column="RNO"/>
+		<result property="recontent" column="RECONTENT"/>
+		<result property="re_create_date" column="RE_CREATE_DATE"/>
+		<result property="user_id" column="USER_ID"/>
+	</resultMap>
+	
+	<select id="selectReplyList" resultMap="ReplyResultSet">
+		select *
+		from reply
+		where user_id = #{hostId}
+		order by rno desc
+	</select>
 	
 </mapper>
