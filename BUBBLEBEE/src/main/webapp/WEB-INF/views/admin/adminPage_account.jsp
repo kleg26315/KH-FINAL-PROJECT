@@ -109,6 +109,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
              <table id="table1" class="table table-hover" style="table-layout: fixed;">
              	<thead>
              	<tr>
+             		<th style="display: none;">정산 요청 번호</th>
              		<th style="width: 11%">정산 요청일</th>
              		<th style="width: 12%">호스트</th>
              		<th style="width: 31%">클래스명</th>
@@ -119,60 +120,44 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
              	</tr>
              	</thead>
              	<tbody>
-             	<tr>
-             		<td>2020-05-09</td>
-             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">닌텐도사주세요22222222222</td>
-             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">혼밥 도자기세트혼밥 도자기세트혼밥 도자기세트혼밥 도자기세트혼밥 도자기세트</td>
-             		<td>10</td>
-             		<td style="text-align: right">1,000,000</td>
-             		<td style="text-align: right">700,000</td>
-             		<td style="text-align: center;"><button class="agreeBtn">정산승인</button></td>
-             	</tr>
-             	<tr>
-             		<td>2020-05-09</td>
-             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">닌텐도사주세요</td>
-             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">혼밥 도자기세트</td>
-             		<td>10</td>
-             		<td style="text-align: right">1,000,000</td>
-             		<td style="text-align: right">700,000</td>
-             		<td style="text-align: center;"><button class="agreeBtn">정산승인</button></td>
-             	</tr>
-             	<tr>
-             		<td>2020-05-09</td>
-             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">닌텐도사주세요</td>
-             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">혼밥 도자기세트</td>
-             		<td>10</td>
-             		<td style="text-align: right">1,000,000</td>
-             		<td style="text-align: right">700,000</td>
-             		<td style="text-align: center;"><button class="agreeBtn">정산승인</button></td>
-             	</tr>
-             	<tr>
-             		<td>2020-05-09</td>
-             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">닌텐도사주세요</td>
-             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">혼밥 도자기세트</td>
-             		<td>10</td>
-             		<td style="text-align: right">1,000,000</td>
-             		<td style="text-align: right">700,000</td>
-             		<td style="text-align: center;"><button class="agreeBtn">정산승인</button></td>
-             	</tr>
-             	<tr>
-             		<td>2020-05-09</td>
-             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">닌텐도사주세요</td>
-             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">혼밥 도자기세트</td>
-             		<td>10</td>
-             		<td style="text-align: right">1,000,000</td>
-             		<td style="text-align: right">700,000</td>
-             		<td style="text-align: center;"><button class="agreeBtn">정산승인</button></td>
-             	</tr>
-             	<tr>
-             		<td>2020-05-09</td>
-             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">닌텐도사주세요</td>
-             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">혼밥 도자기세트</td>
-             		<td>10</td>
-             		<td style="text-align: right">1,000,000</td>
-             		<td style="text-align: right">700,000</td>
-             		<td style="text-align: center;"><button class="agreeBtn">정산승인</button></td>
-             	</tr>
+				<c:if test="${empty list}">
+					<tr>
+						<td colspan="7" style="text-align: center;">검색 결과가 없습니다.</td>
+					</tr>
+				</c:if>
+				<c:if test="${not empty list}">
+					<tr style="display: none;">
+						<td colspan="8" style="text-align: center;">현재 페이지</td>
+					</tr>
+					<c:forEach var="ac" items="${ list }">
+						<!-- ★ 클릭 시 어떤 클래스인지 디테일 뷰로 넘어가게 하자 ★ -->
+		            	<tr>
+		            		<td style="display: none;">${ac.acno }</td>
+		             		<td>${ac.period }</td>
+		             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${ac.user_name }</td>
+		             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${ac.name}</td>
+		             		<td>${ac.people }</td>
+		             		<td style="text-align: right">&#8361;${ac.sales }</td>
+		             		<td style="text-align: right">&#8361;${ac.amount }</td>
+		             		<td style="text-align: center;"><button class="agreeBtn">정산승인</button></td>
+		             	</tr>
+					</c:forEach>
+	             	<tr style="display: none;">
+						<td colspan="8">전체 페이지</td>
+					</tr>
+					<c:forEach var="acAll" items="${ AllList }">
+		            	<tr style="display: none;">
+		            		<td style="display: none;">${acAll.acno }</td>
+		             		<td>${acAll.period }</td>
+		             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${acAll.user_name }</td>
+		             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${acAll.name}</td>
+		             		<td>${acAll.people }</td>
+		             		<td style="text-align: right">&#8361;${acAll.sales }</td>
+		             		<td style="text-align: right">&#8361;${acAll.amount }</td>
+		             		<td style="text-align: center;"><button class="agreeBtn">정산승인</button></td>
+		             	</tr>
+					</c:forEach>
+				</c:if>
              	</tbody>
              </table>
              <iframe id="txtArea1" style="display:none"></iframe>
@@ -180,16 +165,42 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 			<input type='button' class='btn btn-inverse' value='excel 다운' style='width:100px;height:36px;font-weight:bold; float:right;' onclick="ReportToExcelConverter()" />
 			<br><br> 
              <div class="text-center">
-             	<ul class="pagination">
-             		<li><a href="#">&lt;</a></li>
-             		<li><a href="#">1</a></li>
-             		<li><a href="#">2</a></li>
-             		<li><a href="#">3</a></li>
-             		<li><a href="#">4</a></li>
-             		<li><a href="#">5</a></li>
-             		<li><a href="#">&gt;</a></li>
-             	</ul>
-             </div>
+           	<ul class="pagination">
+           		<c:if test="${ pi.currentPage <= 1 }">
+           			<!-- <li><a class="disable">&lt;</a></li> -->
+           			<li class="disabled"><a>&lt;</a></li>
+           		</c:if>
+           		<c:if test="${ pi.currentPage > 1 }">
+					<c:url var="before" value="account.ad">
+						<c:param name="page" value="${ pi.currentPage - 1 }"/>
+					</c:url>
+					<li><a href="${ before }">&lt;</a></li>
+				</c:if>
+				
+				<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+					<c:if test="${ p eq pi.currentPage }">
+						<li class="active"><a>${ p }</a></li>
+					</c:if>
+					
+					<c:if test="${ p ne pi.currentPage }">
+						<c:url var="pagination" value="account.ad">
+							<c:param name="page" value="${ p }"/>
+						</c:url>
+						<li><a href="${ pagination }">${ p }</a> &nbsp;</li>
+					</c:if>
+				</c:forEach>
+				
+           		<c:if test="${ pi.currentPage >= pi.maxPage }">
+					<li class="disabled"><a>&gt;</a></li>
+				</c:if>
+				<c:if test="${ pi.currentPage < pi.maxPage }">
+					<c:url var="after" value="account.ad">
+						<c:param name="page" value="${ pi.currentPage + 1 }"/>
+					</c:url> 
+					<li><a href="${ after }">&gt;</a></li>
+				</c:if>
+           	</ul>
+         </div>
           </div>
        </div>
    </div>
@@ -212,6 +223,17 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 				exclude_inputs: true
 			});
 		};
+		
+		$('.agreeBtn').click(function(){
+			var acno = $(this).parent().parent().children().eq(0).text();
+			var result = confirm('정말로 정산요청을 승인하시겠습니까?');
+			if(result){
+				alert('정산 처리 완료');
+				location.href = 'agreeAccount.ad?acno='+ acno;
+			} else{
+				alert('정산 처리 취소');	
+			}
+		})
 	</script>
 </body>
 </html>

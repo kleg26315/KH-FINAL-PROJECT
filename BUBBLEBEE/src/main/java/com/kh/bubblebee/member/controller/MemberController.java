@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -255,6 +256,11 @@ public class MemberController {
 		}else {
 			throw new MemberException("비밀번호 수정 실패");
 		}
-		
+	}
+	
+	@RequestMapping("loginCheck.me")
+	@ResponseBody
+	public String loginCheck() {
+		return "";
 	}
 }
