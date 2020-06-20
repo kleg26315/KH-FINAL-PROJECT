@@ -399,9 +399,8 @@
 	   		</c:forEach>
 	   	</div>
 	   </div>
-	
-	<button id="chk">확인버튼</button>	   
 	</section>
+	
 	<script>
 			$(function(){
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
