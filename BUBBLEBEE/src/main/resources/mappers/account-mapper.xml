@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="accountMapper">
+	<select id="getAccountListCount" resultType="_int">
+		select count(*)
+		from account
+		where progress = 'N'
+	</select>
+	
+	<select id="selectAccountList" resultMap="accountResultSet">
+		select acno, member.user_id AS USER_ID, period, name, people, TO_CHAR(sales, 'FM9,999,999,999') as sales, TO_CHAR(amount, 'FM9,999,999,999') as amount, progress, user_name
+		from account, member
+		where account.user_id = member.user_id and progress = 'N'
+		order by acno asc
+	</select>
+	
+	<resultMap type="Account" id="accountResultSet">
+		<id property="acno" column="ACNO"/>
+		<result property="user_id" column="USER_ID"/>
+		<result property="period" column="PERIOD"/>
+		<result property="name" column="NAME"/>
+		<result property="people" column="PEOPLE"/>
+		<result property="sales" column="SALES"/>
+		<result property="amount" column="AMOUNT"/>
+		<result property="progress" column="PROGRESS"/>
+		<result property="user_name" column="USER_NAME"/>
+	</resultMap>
+	
+	<select id="selectAllAccountList" resultMap="accountResultSet">
+		select acno, member.user_id AS USER_ID, period, name, people, TO_CHAR(sales, 'FM9,999,999,999') as sales, TO_CHAR(amount, 'FM9,999,999,999') as amount, progress, user_name
+		from account, member
+		where account.user_id = member.user_id and progress = 'N'
+		order by acno asc
+	</select>
+	
+	<update id="agreeAccount">
+		update account
+		set progress = 'Y'
+		where acno = #{acno}
+	</update>
+</mapper>

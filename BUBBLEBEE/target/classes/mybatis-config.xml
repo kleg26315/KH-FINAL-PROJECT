@@ -17,6 +17,7 @@
 		<typeAlias type="com.kh.bubblebee.purchase.model.vo.PChoose" alias = "PChoose"/>
 		<typeAlias type="com.kh.bubblebee.alert.model.vo.Alert" alias = "Alert"/>
 		<typeAlias type="com.kh.bubblebee.purchase.model.vo.PPoint" alias = "PPoint"/>
+		<typeAlias type="com.kh.bubblebee.account.model.vo.Account" alias = "Account"/>
 	</typeAliases>
 	
 	<mappers>
@@ -26,5 +27,6 @@
 		<mapper resource="mappers/mypage-mapper.xml"/>
 		<mapper resource="mappers/host-mapper.xml"/>
 		<mapper resource = "mappers/purchase-mapper.xml"/>
+		<mapper resource = "mappers/account-mapper.xml"/>
 	</mappers>
 </configuration>
