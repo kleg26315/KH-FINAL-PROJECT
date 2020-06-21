@@ -100,4 +100,9 @@ public class HomeController {
 		mv.addObject("list", cList).addObject("type",type).setViewName("upList");
 		return mv;
 	}
+	
+	@RequestMapping("test.do")
+	public String testView() {
+		return "test";
+	}
 }

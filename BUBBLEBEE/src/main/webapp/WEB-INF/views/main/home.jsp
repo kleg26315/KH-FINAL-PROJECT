@@ -399,6 +399,8 @@
 	   		</c:forEach>
 	   	</div>
 	   </div>
+	   
+	   <button onclick="location.href='test.do'">버튼</button>
 	</section>
 	
 	<script>
