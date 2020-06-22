@@ -647,22 +647,7 @@
         	e.stopPropagation();
         })
     </script>
-    <input id = "LRM12" type = "text" style = "display : none;" value = "${message }">
-    <script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script>
-    $(function(){
-/*     	var responseMessage = "<c:out value="${message}" />";
-   		var responseMessage = ${message}; */
-		var responseMessage = $("#LRM12").val();
-   		console.log("씨발련이 : " + responseMessage);
-        if(responseMessage != ""){
-            alert(responseMessage)
-            console.log(responseMessage);
-        }
-//     	var responseMessage = ${message}
-//     	alert(responseMessage)
-    })     
-    </script>
+
     
     <!-- 알림 스크립트 -->
     <script>
