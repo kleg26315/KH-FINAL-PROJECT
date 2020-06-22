@@ -201,6 +201,7 @@
 		})
 		$('#pwdBox').keyup(function(){
 			var pwd = $('#pwdBox').val();
+			var pwdChk = $('#pwdChkBox').val();
 			var regExp = new RegExp("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$])[A-Za-z0-9!@#$]{8,20}$");
 			
 			if(pwd !=''){
@@ -219,6 +220,18 @@
 				$('#pwdBox').removeClass('inputCannot');
 				$('#pwdBox').addClass('inputBox');
 				$('#pwdWarn').hide();
+			}
+			
+			if(pwdChk != ''){
+				if(pwd != pwdChk){
+					$('#pwdChkBox').addClass('inputCannot');
+					$('#pwdChkBox').removeClass('inputBox');
+					$('#pwdChkWarn').show();
+				} else{
+					$('#pwdChkBox').removeClass('inputCannot');
+					$('#pwdChkBox').addClass('inputBox');
+					$('#pwdChkWarn').hide();
+				}
 			}
 		})
 		
@@ -260,17 +273,18 @@
 	  	  var id = $('#idBox').val().trim();
 	  	  var pwd = $('#pwdBox').val().trim();
 	  	  var pwdChk = $('#pwdChkBox').val().trim();
-		      
+	  	  var regExpEmail = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+
 	  	  if(id == ""){
-		          if (isToastShown) return; 
-		          isToastShown = true;
-		          idToast.addClass('show');
-		          setTimeout(function () {
-		              idToast.removeClass('show');
-		              isToastShown = false;
-		          }, 2700);
+	          if (isToastShown) return; 
+	          isToastShown = true;
+	          idToast.addClass('show');
+	          setTimeout(function () {
+	              idToast.removeClass('show');
+	              isToastShown = false;
+	          }, 2700);
 	  		  return false;
-	  	  } else if(!id.includes('@')){
+	  	  } else if(regExpEmail.test(id)==false){
 	  		  if (isToastShown) return;  
 		          isToastShown = true;
 		          idFormToast.addClass('show'); 

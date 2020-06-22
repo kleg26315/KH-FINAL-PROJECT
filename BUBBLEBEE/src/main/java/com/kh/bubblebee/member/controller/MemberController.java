@@ -6,7 +6,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Properties;
+import java.util.Random;
 
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,7 +25,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -284,6 +291,75 @@ public class MemberController {
 			return "fail";
 		} else {
 			return "success";
+		}
+	}
+	
+	@RequestMapping(value="emailSendPage.me" ,method=RequestMethod.POST)
+	public String emailSendPage(@RequestParam("email") String email) {
+		String host = "smtp.naver.com";
+		String user = "kleg26315@naver.com";
+		String password = "12rnstn!!";
+		
+		String to_email = email;
+		
+		Properties props = new Properties();
+		props.put("mail.smtp.host", host);
+		props.put("mail.smtp.port", 465);
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.ssl.enable", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		
+		StringBuffer temp = new StringBuffer();
+		Random rnd = new Random();
+		for(int i=0; i<10; i++) {
+			int rIndex = rnd.nextInt(3);
+			switch(rIndex) {
+			case 0:
+				temp.append((char) ((int) (rnd.nextInt(26)) + 97));
+				break;
+			case 1:
+				temp.append((char) ((int) (rnd.nextInt(26)) + 65));
+				break;
+			case 2:
+				temp.append((rnd.nextInt(10)));
+				break;
+			}
+		}
+		
+		String AuthenticationKey = temp.toString();
+		
+		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(user, password);
+			}
+		});
+		
+		try {
+			MimeMessage msg = new MimeMessage(session);
+			msg.setFrom(new InternetAddress(user, "BUBBLEBEE"));
+			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to_email));
+			
+			msg.setSubject("[BUBBLEBEE] 임시 비밀번호 발급 메일입니다.	");
+			
+			msg.setText("임시 비밀번호 : " +temp);
+			
+			Transport.send(msg);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		String encPwd = bcryptPasswordEncoder.encode(AuthenticationKey);
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("id", email);
+		map.put("newpwd",encPwd);
+		
+		int result = mService.memberPwdUpdate(map);
+		
+		if(result > 0) {
+			return "emailSend";			
+		} else {
+			throw new MemberException("임시 비밀번호 발급에 실패하였습니다.");
 		}
 	}
 }
