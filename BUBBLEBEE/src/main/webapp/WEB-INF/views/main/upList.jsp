@@ -166,7 +166,7 @@
 		</section>
 	</c:if>
 	<c:if test="${ list.isEmpty() == 'true' }">
-		<section style="height: 389px;">
+		<section style="height: 318px;">
 			<h3 style="text-align:center;">뜨는 <c:if test="${ type == 1 }">모임이</c:if> <c:if test="${ type == 2 }">클래스가</c:if> 존재하지 않습니다.</h3>
 		</section>
 	</c:if>
