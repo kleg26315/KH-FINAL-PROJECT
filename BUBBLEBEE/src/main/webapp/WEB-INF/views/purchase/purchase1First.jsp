@@ -190,7 +190,5 @@
 		
 	<script src = "<%=request.getContextPath()%>/resources/js/purchase1First/PFgh1.js"></script>
 	<script src = "<%=request.getContextPath()%>/resources/js/purchase1First/PFgh2.js"></script>
-	<script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src = "<%=request.getContextPath()%>/resources/js/loginRequired.js"></script>
 </body>
 </html>
