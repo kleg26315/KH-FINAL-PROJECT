@@ -315,7 +315,7 @@
 		<c:import url="../layout/footer.jsp"/>
 	</footer>		
 	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDhansol2.js"></script>
-	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDoption.js"></script>
+	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDoption.js?ver=1"></script>
 	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDkakaomap.js"></script>
 </body>
 </html>
