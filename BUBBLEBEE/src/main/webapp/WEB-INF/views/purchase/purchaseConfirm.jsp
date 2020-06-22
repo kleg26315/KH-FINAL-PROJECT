@@ -47,11 +47,11 @@
 					</div>
 					<div class = "submitFormSectionMainD">
 						<input class = "submitFormSectionMainIntro" type = "text" value = "수량" readonly>
-						<input class = "submitFormSectionMainData" type = "text" value = "${p.ocount } 개" readonly>
+						<input class = "submitFormSectionMainData" type = "text" value = "${p.ocode } 개" readonly>
 					</div>
 					<div class = "submitFormSectionMainD">
 						<input class = "submitFormSectionMainIntro" type = "text" value = "옵션합계" readonly>
-						<input class = "submitFormSectionMainData" type = "text" value = " ${ p.ocount * c.price }원" readonly>
+						<input class = "submitFormSectionMainData" type = "text" value = " ${ p.ocode * c.price }원" readonly>
 					</div>
 					<div class = "submitFormSectionMainD">
 						<input class = "submitFormSectionMainIntro" type = "text" value = "할인금액" readonly>
@@ -86,6 +86,8 @@
 					<div class = "submitFormSectionMainD" style = "margin-top : -40px;">
 						<input class = "submitFormSectionMainIntro" type = "text" value = "배송지"readonly style = "margin-top : 10px;">
 						<input class = "submitFormSectionMainData" type = "text" value = "${p.gaddress }"readonly style = "width : 90%; margin-top : 10px;">
+						<input class = "submitFormSectionMainIntro" type = "text" value = "잔여포인트 " style = "margin-top : 46px;">
+						<input class = "submitFormSectionMainData" type = "text" value = "${pp.p_money } 포인트" style = "margin-top : 46px;">
 					</div>
 					<div>
 						<input  class = "submitBtn" type = "submit" value = "장바구니로 돌아가기" >

@@ -30,7 +30,7 @@
             pg : 'kakaopay',
             pay_method : 'card',
             merchant_uid : 'merchant_' + new Date().getTime(),
-            name : 'BUBBLEBEE 펀딩 결제 ',
+            name : 'BUBBLEBEE결제 ',
             amount : ${gpay},
             buyer_address :'${gaddress}',
             buyer_name : '${gname}',

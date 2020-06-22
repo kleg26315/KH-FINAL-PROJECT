@@ -26,14 +26,14 @@ public class PurchaseServiceImpl implements PurchaseService {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public ArrayList<PBoard> selectBList(int fno) {
+	public ArrayList<PBoard> selectBList(String fno) {
 		
 		System.out.println("pService : " + fno);
 		return pDAO.selectList(sqlSession, fno);
 	}
 
 	@Override
-	public ArrayList<PSList> selectPList(String ono) {
+	public ArrayList<PChoose> selectPList(String ono) {
 		return pDAO.selectPSList(sqlSession, ono);
 	}
 
@@ -87,7 +87,14 @@ public class PurchaseServiceImpl implements PurchaseService {
 		return pDAO.selectPcost(sqlSession, user_id);
 	}
 
+	@Override
+	public int insertPused(String user_id, String discountP, String comment) {
+		return pDAO.insertPused(sqlSession, user_id, discountP, comment);
+	}
 
-	
-	
+	@Override
+	public PPoint selectPPoint(String user_id) {
+		return pDAO.selectPPoint(sqlSession, user_id);
+	}
+
 }

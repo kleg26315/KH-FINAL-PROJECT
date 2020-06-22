@@ -12,39 +12,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-<script>
-	var j = $.noConflict(true); // $.noConflict(true) 를 사용해서 $ -> 변수로 선언한 j로 바꾸니 해결!
-	j(document).ready(function() {
-		var main = j('.bxslider').bxSlider({
-			mode : 'fade',
-			auto : true, //자동으로 슬라이드 
-			controls : true, //좌우 화살표   
-			autoControls : true, //stop,play 
-			pager : true, //페이징 
-			pause : 3000,
-			autoDelay : 0,
-			slideWidth : 500,
-			speed : 300,
-			stopAutoOnclick : true
-		});
 
-		j(".bx-stop").click(function() { // 중지버튼 눌렀을때 
-			main.stopAuto();
-			j(".bx-stop").hide();
-			j(".bx-start").show();
-			return false;
-		});
-
-		j(".bx-start").click(function() { //시작버튼 눌렀을때 
-			main.startAuto();
-			j(".bx-start").hide();
-			j(".bx-stop").show();
-			return false;
-		});
-
-		j(".bx-start").hide(); //onload시 시작버튼 숨김. 
-	});
-</script>
+<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDhansol1.js"></script>
 </head>
 <style>
 #header {
@@ -241,7 +210,7 @@
 						<hr style="border: 0.5px solid lightgray">
 					</div>
 					
-					<form action="hostQnA.ho" method="post">
+					<form action="hostQnA.ho">
 					<div class="hashTagEnquiry">
 						문의하기 <input class="hashTagEnquiryBtn" type="submit" value=">">
 						<input type="hidden" name="fno" value="${b.fno }">
@@ -296,20 +265,21 @@
 						<c:forEach var = "pu" items = "${ p }" varStatus = "index">
 						
 						<div class = "CLK" style = "float : left; width : 100%; background-color : rgb(249, 249, 249); margin-top : -20px; height : 94px; cursor : pointer;" id = "${ pu.ono }" >
-							<div style = "margin-top : 2px;">
-								<div style = "font-weight : 600; margin-left : 4%; margin-top : 16px;">
+							<div style = "margin-top : 2px;" id = "${ pu.ono }"> 
+								<div style = "font-weight : 600; margin-left : 4%; margin-top : 16px;" id = "${ pu.ono }">
 									${pu.oname }
 								</div>
-								<div style = "margin-left : 4%; width : 70%; float: left; margin-top : 16px; font-size : 10pt; color : rgb(85, 85, 85);">
+								<div style = "margin-left : 4%; width : 70%; float: left; margin-top : 16px; font-size : 10pt; color : rgb(85, 85, 85);" id = "${ pu.ono }">
 									남은 수량 ${pu.ocount }개
 								</div>
-								<div style = "margin-left : 4%; width : 22%; float: left; margin-top : 16px; font-weight : 900;">
+								<div style = "margin-left : 4%; width : 22%; float: left; margin-top : 16px; font-weight : 900;" id = "${ pu.ono }">
 									${pu.price }원
 								</div>
-								<input id = "ONA" type = "text" style = "display : none" value = "${pu.oname }">
-								<input id = "OCO" type = "text" style = "display : none" value = "${pu.ocount }">
-								<input id = "PRI" type = "text" style = "display : none" value = "${pu.price }">
-								<input id = "ONO" type = "text" style = "display : none" value = "${ pu.ono }" name = "oNo">
+								<input id = "ONA${ pu.ono }" type = "text" style = "display : none" value = "${pu.oname }">
+								<input id = "OCO${ pu.ono }" type = "text" style = "display : none" value = "${pu.ocount }" >
+								<input id = "PRI${ pu.ono }" type = "text" style = "display : none" value = "${pu.price }" >
+								<input id = "ONO${ pu.ono }" type = "text" style = "display : none" value = "${pu.ono }">
+								<input id = "confirmONO" type = "text" style = "display : none;" name = "oNo">
 							</div>
 							<div style = "margin-top : 57px;">
 								<hr>
@@ -336,172 +306,16 @@
 		</div>
 		<div class="blank"></div>
 	</section>
+	<!--  -->
+	<div style = "display : none">
+		<input type = "text" style = "display : none">
+	</div>
 	
-	<script>
-		$(".hashTagEnquiryContents").hide();
-		$(".hashTagRefundContents").hide();
-
-		$("#TQB1").on("click", function() {
-			$(".hashTagEnquiryContents").toggle();
-		});
-
-		$("#TRB1").on("click", function() {
-			$(".hashTagRefundContents").toggle();
-		});
-		
-		</script>
-		
-		<script>
-			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-			mapOption = {
-				center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-				level : 1
-			// 지도의 확대 레벨
-			};
-
-			// 지도를 생성합니다    
-			var map = new kakao.maps.Map(mapContainer, mapOption);
-
-			// 주소-좌표 변환 객체를 생성합니다
-			var geocoder = new kakao.maps.services.Geocoder();
-
-			// 주소 따오기
-			var addressArr = document.getElementById('address').innerHTML.trim().split("/");
-			var address = addressArr[1];
-			console.log(address);
-			
-			// 주소로 좌표를 검색합니다
-			geocoder.addressSearch(address, function(result, status) {
-				
-				// 정상적으로 검색이 완료됐으면 
-				if (status === kakao.maps.services.Status.OK) {
-					var coords = new kakao.maps.LatLng(result[0].y, result[0].x);	
-	
-					// 결과값으로 받은 위치를 마커로 표시합니다
-						var marker = new kakao.maps.Marker({
-							map : map,
-							position : coords
-						});
-	
-					// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-						map.setCenter(coords);
-						getInfo();
-				}
-				
-				function getInfo() {
-				    // 지도의 현재 중심좌표를 얻어옵니다 
-				    var center = map.getCenter(coords); 
-				    
-				    var message = '지도 중심좌표는 위도 ' + center.getLat() + ', <br>';
-				    message += '경도 ' + center.getLng() + ' 이고 <br>';
-				    
-				    // 개발자도구를 통해 직접 message 내용을 확인해 보세요.
-				    console.log(message);
-				}
-			});
-		</script>
-		
-		<script>
-	// 		var CONT = $('<div id = "CONT">');
-			var CONT1 = $("<div>")
-			var CONT2 = $("<div>")
-			var CONT3 = $("<div>")
-			var MID = $('<input type = "text" readonly style = "border:none; outline:none; height : 15px; width : 15px;" id ="MID" value = "1" name = "ocount">');
-			var BTN1 = $('<div style = "width : 20px; height : 20px; border-radius : 10px 10px; border : 1px solid gray; cursor : pointer;" >')
-			var BTN2 = $('<div style = "width : 20px; height : 20px; border-radius : 10px 10px; border : 1px solid gray; cursor : pointer;" >')
-			var BTN1V = $('<div style = "float : left; cursor : pointer;" id = "MIN1">')
-			var BTN2V = $('<div style = "float : left; cursor : pointer;" id = "ADD1">')
-			
-			var ona = $("#ONA").val();
-			var oco = $("#OCO").val()*1;
-			var pri = $("#PRI").val();
-			var ono = $("#ONO").val();
-			
-			$(".CLK").hide();
-			$("#CON").hide();
-			
-			$("#DIV").on("click", function(){
-				$(".CLK").toggle();
-			})
-			
-			$(".CLK").on("click", function(){
-				$(".CLK").hide();
-				$("#CON").show();
-				
-				MID.val(1);
-				
-				CONT1.text(ona);
-				CONT1.css('font-weight', '600');
-				CONT1.css('margin-left' , '4%');
-				CONT1.css('margin-top', '16px');
-				
-				CONT2.text(pri + "원");
-				CONT2.css('margin-left', '4%');
-				CONT2.css('width', '70%');
-				CONT2.css('float', 'left');
-				CONT2.css('margin-top', '16px');
-				CONT2.css('font-size', '14pt');
-				CONT2.css('color', 'gold');
-				CONT2.css('font-weight', '900');
-				
-				BTN1.css("margin-left" , "74%");
-				BTN1.css("float", "left");
-				BTN1.css("margin-top", "-20px");
-				
-				BTN1V.text(" -");
-				BTN1V.css("font-size", "24pt");
-				BTN1V.css("font-weight", "900");
-				BTN1V.css("margin-top", "-15px");
-				BTN1V.css("margin-left", "3.5px");
-				
-				BTN2.css("margin-left" , "90%");
-				BTN2.css("float", "left");
-				BTN2.css("margin-top", "-20px");
-				
-				BTN2V.text(" +");
-				BTN2V.css("font-size", "16pt");
-				BTN2V.css("font-weight", "900");
-				BTN2V.css("margin-top", "-7px");
-				BTN2V.css("margin-left", "3px");
-				
-				MID.css("margin-top" , "23px");
-				MID.css("margin-left", "8.8%");
-				
-				BTN1.append(BTN1V);
-				BTN2.append(BTN2V);
-				
-// 				CONT.append(CONT1, CONT2);
-// 				$("#CON").append(CONT);
-
-				$("#CON").append(CONT1, CONT2, BTN1, MID, BTN2);
-				$("#ADD1").on("click", function(){
-					var MIDVAL = $("#MID").val();
-					console.log(MIDVAL);
-					if($("#MID").val()*1 > 4 ){
-						$("#MID").val(5);
-					}else if( $("#MID").val()*1 >= oco){
-						$("#MID").val(oco);
-					}else{
-						$("#MID").val(MIDVAL*1 + 1);
-						CONT2.text(pri*(MIDVAL*1+1) + "원");
-					}
-				});
-				
-				$("#MIN1").on("click", function(){
-					var MIDVAL = $("#MID").val();
-					if($("#MID").val()*1 <= 1 ){
-						$("#MID").val(1);
-					}else{
-						$("#MID").val(MIDVAL*1 - 1);
-						CONT2.text(pri*(MIDVAL*1-1) + "원");
-					}
-				});
-				
-			})
-		</script>
-		
-		<footer id="footer" style="padding-top: 115px;">
-			<c:import url="../layout/footer.jsp"/>
-		</footer>
+	<footer id="footer" style="padding-top: 115px;">
+		<c:import url="../layout/footer.jsp"/>
+	</footer>		
+	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDhansol2.js"></script>
+	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDoption.js"></script>
+	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDkakaomap.js"></script>
 </body>
 </html>
