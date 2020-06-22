@@ -243,9 +243,9 @@
 			<button class="btn-direction">
 				<img id="prev" src="${contextPath }/resources/img/prev.png">
 			</button>
-		   <img class="slides" id="slide1" src="${contextPath }/resources/img/cos-banner1.png">
-		   <img class="slides" id="slide2" src="${contextPath }/resources/img/cos-banner3.png">
-		   <img class="slides" id="slide3" src="${contextPath }/resources/img/cos-banner2.png">
+		   <img class="slides" id="slide1" src="${contextPath }/resources/img/ybee.png">
+		   <img class="slides" id="slide2" src="${contextPath }/resources/img/wbee.jpg">
+		   <img class="slides" id="slide3" src="${contextPath }/resources/img/mmoim.jpg">
 		   <button class="btn-direction"><img id="next" src="${contextPath }/resources/img/next.png"></button>
 		   <script>
 			   $(function() {
