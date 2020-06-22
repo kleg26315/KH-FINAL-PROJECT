@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -188,5 +190,7 @@
 		
 	<script src = "<%=request.getContextPath()%>/resources/js/purchase1First/PFgh1.js"></script>
 	<script src = "<%=request.getContextPath()%>/resources/js/purchase1First/PFgh2.js"></script>
+	<script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src = "<%=request.getContextPath()%>/resources/js/loginRequired.js"></script>
 </body>
 </html>
