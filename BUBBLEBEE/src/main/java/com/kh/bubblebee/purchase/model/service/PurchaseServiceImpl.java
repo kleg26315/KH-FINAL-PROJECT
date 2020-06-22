@@ -1,19 +1,17 @@
 package com.kh.bubblebee.purchase.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.bubblebee.board.model.vo.Board;
-import com.kh.bubblebee.member.model.vo.Member;
 import com.kh.bubblebee.purchase.model.dao.PurchaseDAO;
 import com.kh.bubblebee.purchase.model.vo.PBoard;
 import com.kh.bubblebee.purchase.model.vo.PChoose;
 import com.kh.bubblebee.purchase.model.vo.PPoint;
-import com.kh.bubblebee.purchase.model.vo.PSList;
 import com.kh.bubblebee.purchase.model.vo.Purchase;
 
 @Service("pService")
@@ -95,6 +93,11 @@ public class PurchaseServiceImpl implements PurchaseService {
 	@Override
 	public PPoint selectPPoint(String user_id) {
 		return pDAO.selectPPoint(sqlSession, user_id);
+	}
+
+	@Override
+	public int addSlist(HashMap<String, String> map) {
+		return pDAO.addSlist(sqlSession, map);
 	}
 
 }
