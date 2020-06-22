@@ -55,24 +55,24 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 				    			<div>참석 일자 :2020-05-16</div>
 				    		</div>
 		    			</div>
-		    			<div class="write_btn" style="margin:auto 0; "><button>후기 작성</button></div>
+		    			<div class="write_btn" style="margin:auto 0; "><button onclick="location.href='reviewInsertForm.mg'">후기 작성</button></div>
 		    		</div>
 		    	</div>
-		    	<div id="review_wrap">
-		    		<div class="per_review">
-		    			<div class="per_img">
-		    				<a style="margin: 20px 20px;"><img width="80" height="80"src="<%=request.getContextPath()%>/resources/img/main_resize.png"></a>
-		    			</div>
-		    			<div class="per_info">
-		    				<div>
-				    			<div>참가 신청일 : 2020-05-06</div>
-				    			<div>[요리]신전 떡볶이 따라잡기</div>
-				    			<div>참석 일자 :2020-05-16</div>
-				    		</div>
-		    			</div>
-		    			<div class="write_btn" style="margin:auto 0; "><button>후기 작성</button></div>
-		    		</div>
-		    	</div>
+<!-- 		    	<div id="review_wrap"> -->
+<!-- 		    		<div class="per_review"> -->
+<!-- 		    			<div class="per_img"> -->
+<%-- 		    				<a style="margin: 20px 20px;"><img width="80" height="80"src="<%=request.getContextPath()%>/resources/img/main_resize.png"></a> --%>
+<!-- 		    			</div> -->
+<!-- 		    			<div class="per_info"> -->
+<!-- 		    				<div> -->
+<!-- 				    			<div>참가 신청일 : 2020-05-06</div> -->
+<!-- 				    			<div>[요리]신전 떡볶이 따라잡기</div> -->
+<!-- 				    			<div>참석 일자 :2020-05-16</div> -->
+<!-- 				    		</div> -->
+<!-- 		    			</div> -->
+<!-- 		    			<div class="write_btn" style="margin:auto 0; "><button>후기 작성</button></div> -->
+<!-- 		    		</div> -->
+<!-- 		    	</div> -->
 		    </div>
 		 </div>
 	</div>
