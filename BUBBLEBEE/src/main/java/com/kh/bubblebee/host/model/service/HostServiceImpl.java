@@ -120,7 +120,15 @@ public class HostServiceImpl implements HostService{
 		return hDAO.insertHostLike(sqlSession,map);
 	}
 
+	@Override
+	public int getBListCount(HashMap<String, Object> map) {
+		return hDAO.getBListCount(sqlSession,map);
+	}
 
+	@Override
+	public ArrayList<Board> hostBoardAll(PageInfo pi, HashMap<String, Object> map) {
+		return hDAO.hostBoardAll(sqlSession,pi,map);
+	}
 
 
 }

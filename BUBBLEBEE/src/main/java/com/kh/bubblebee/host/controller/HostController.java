@@ -276,4 +276,33 @@ public class HostController {
 		
 		
 	}
+	//호스트 내 모임,내 클래스,내 작품
+	@RequestMapping("hostBoardAll.ho")
+	public ModelAndView hostBoardAll(@RequestParam("ftype") int ftype,@RequestParam(value="page", required=false) Integer page,ModelAndView mv,HttpSession session) {
+		
+		String hostId = ((Member)session.getAttribute("loginUser")).getId();
+		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("ftype", ftype);
+		map.put("hostId",hostId);
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int listCount = hService.getBListCount(map);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		
+		ArrayList<Board> bList = hService.hostBoardAll(pi,map);
+	
+		mv.addObject("bList", bList);
+		mv.addObject("pi",pi);
+		mv.addObject("ftype", ftype);
+		mv.setViewName("host_board_all");
+		
+		return mv;
+	}
 }

@@ -150,6 +150,7 @@ public class PurchaseController {
 				int purchaseThis1 = pService.insertPurchase(param);
 				PChoose c = pService.selectPChoose(ono);
 				PBoard b = pService.selectBPBoard(fno);
+				PPoint pp = pService.selectPPoint(user_id);
 				
 				int discount1 = Integer.parseInt(discountPrice);
 				int discount2 = presentPoint - discount1;
@@ -171,6 +172,7 @@ public class PurchaseController {
 					mv.addObject("p", p);
 					mv.addObject("c", c);
 					mv.addObject("b",b);
+					mv.addObject("pp", pp);
 					mv.setViewName("purchaseConfirm");
 				}else {
 					throw new PurchaseException("결제에 실패하였습니다!");
@@ -341,6 +343,15 @@ public class PurchaseController {
 		}
 		return mv;
 	}
+
+	@RequestMapping("redirect")
+	public ModelAndView redirectMethod(ModelAndView mv) {
+		
+		mv.setViewName("redirect:home.do");
+		
+		return mv;
+	}
+	
 }
 	
 	

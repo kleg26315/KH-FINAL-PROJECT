@@ -264,7 +264,7 @@
 								</c:if>
 								</c:forEach>
 						</div>
-							<div id="paging" style="margin-left:50%; margin-top:30px; font-size:20px;">
+			<div id="paging" style="margin-left:50%; margin-top:30px; font-size:20px;">
 		      <!-- [이전] -->
 				<c:if test="${ pi.currentPage <= 1 }">
 					< &nbsp;

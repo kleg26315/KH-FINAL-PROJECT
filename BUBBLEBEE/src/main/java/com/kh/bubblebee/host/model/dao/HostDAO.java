@@ -100,5 +100,18 @@ public class HostDAO {
 		return sqlSession.insert("hostMapper.insertHostLike",map);
 	}
 
+	public int getBListCount(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		return sqlSession.selectOne("hostMapper.getBListCount",map);
+	}
+
+	public ArrayList<Board> hostBoardAll(SqlSessionTemplate sqlSession, PageInfo pi, HashMap<String, Object> map) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("hostMapper.hostBoardAll",map,rowBounds);
+	}
+
+	
+
 	
 }

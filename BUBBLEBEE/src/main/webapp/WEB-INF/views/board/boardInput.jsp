@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="resources/css/boardInput.css">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/smartEditor/js/service/HuskyEZCreator2.js" charset="UTF-8"></script>
 </head>
 <style>
@@ -278,7 +278,6 @@
 						});
 												
 						function delete1(obj){
-							console.log(obj);
 							$(obj).parent().parent().parent().next().remove();
 							$(obj).parent().parent().parent().parent().remove();
 						}
@@ -619,7 +618,6 @@
 			<div id="btn_area">
 				<button id="complete" type="button">완료</button>
 				<button onclick="location.href='history.back()'" id="cancel">취소</button>
-				<button type="button" id="im">임시저장</button>
 			</div>
 				<script>
 					$('#complete').on('click', function(){
@@ -635,7 +633,7 @@
 				        var bTime = $('.bTime').val();
 				        var bDetail = $('.bDetail').val();
 						 if( editor == ""  || editor == null || editor == '&nbsp;' || editor == '<p>&nbsp;</p>' || editor== '<p><br></p>')  {
-				             alert("내용을 입력하세요.");
+				             swal("내용을 입력하세요.");
 				             oEditors.getById["editor"].exec("FOCUS"); //포커싱
 				             return;
 						} else if(category == ""){
@@ -677,7 +675,8 @@
 						}else{
 							var result = confirm('모임/클래스/판매 등록 완료');
 							if(result){
-								$('#form').submit();		
+								$('#form').submit();
+// 								localStorage.removeItem(loginUser);
 							} else{
 								alert('등록을 취소합니다.');
 							}
@@ -696,7 +695,7 @@
 		<script>
 			function addressInfo(){
 				var address = $('.postcodify_address').val();
-				console.log(address);
+				//console.log(address);
 				
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 				    mapOption = {
@@ -741,8 +740,8 @@
 					$('input[name=lat]').val(lat);
 					$('input[name=lon]').val(lng); 
 					
-					console.log($('#lat').val());
-					console.log(typeof($('#lat').val()));
+// 					console.log($('#lat').val());
+// 					console.log(typeof($('#lat').val()));
 				};
 			};
 		</script>
@@ -796,9 +795,9 @@
 			gettheLocal();
 		}
 		
-		var loginUser = '${loginUser.id}'
-		$('.bIncluded').keyup(function(e){
-			var editor = $('iframe').contents().find('iframe').contents().find('.se2_inputarea').text()
+		var loginUser = '${loginUser.id}';
+		$('.bIncluded, iframe').keyup(function(e){
+			var editor = $('iframe').contents().find('iframe').contents().find('.se2_inputarea').text();
 			var test = [$('#fcontain').val(), $('#fncontain').val(), $('#fmaterials').val(), $('#fprecaution').val(), editor]
 			
 			console.log("test : " + test);
@@ -810,9 +809,9 @@
 		
 		function gettheLocal(){
 			var test = localStorage.getItem(loginUser);
-			test = test.replace(/\"/gi, "");
-			test = test.replace(/\[/gi, "");
-			test = test.replace(/\]/gi, "");
+				test = test.replace(/\"/gi, "");
+				test = test.replace(/\[/gi, "");
+				test = test.replace(/\]/gi, "");
 			var arr = test.split(",");
 			
 			if(arr != null ){

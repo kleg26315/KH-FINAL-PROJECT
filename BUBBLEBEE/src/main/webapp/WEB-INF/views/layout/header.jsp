@@ -251,7 +251,12 @@
 						        </div>
 						        <div class="right_content">
 						          <a href="updateInfoForm.mg"><span class="name">${sessionScope.loginUser.nickName}</span></a>
-						          <div class="policy">회원</div>
+						          <c:if test="${ sessionScope.loginUser.host_yn eq 'N' }">
+						          	<div class="policy">회원</div>
+						          </c:if>
+						          <c:if test="${ sessionScope.loginUser.host_yn eq 'Y' }">
+						          	<div class="policy">호스트</div>
+						          </c:if>
 						        </div>
 						      </div>
 						      <div class="point_content">
@@ -263,7 +268,12 @@
 						    </div>
 						    <div class="menu_content">
 						      <div class="tab_content">
-						        <span class="tab_menu active" data-id="0" style="font-weight: bold;">회원</span>
+						      	<c:if test="${ sessionScope.loginUser.host_yn eq 'N' }">
+						        	<span class="tab_menu active" data-id="0" style="font-weight: bold;">회원</span>
+						        </c:if>
+						        <c:if test="${ sessionScope.loginUser.host_yn eq 'Y' }">
+						        	<span class="tab_menu active" data-id="0" style="font-weight: bold;">호스트</span>
+						        </c:if>
 						      </div>
 						      <div class="list_content">
 						        <div class="tab_list active" data-id="0">
@@ -277,11 +287,13 @@
 							        	<span class="name">결제 내역</span>
 							        </div>
 							      </a>
-							  	  <a href="mymeet.mg" class="title">
-							        <div class="list_el">
-							        	<span class="name">신청한 모임관리</span>
-							        </div>
-							      </a>
+							      <c:if test="${ sessionScope.loginUser.host_yn eq 'N' }">
+								  	  <a href="mymeet.mg" class="title">
+								        <div class="list_el">
+								        	<span class="name">신청한 모임관리</span>
+								        </div>
+								      </a>
+							      </c:if>
 							      <a href="myreview.mg" class="title">
 							        <div class="list_el">
 							        	<span class="name">후기</span>
@@ -292,16 +304,32 @@
 							        	<span class="name">마일리지</span>
 							        </div>
 							      </a>
-							      <a href="myslist.mg" class="title">
-							        <div class="list_el">
-							        	<span class="name">장바구니 목록</span>
-							        </div>
-							      </a>
+							      <c:if test="${ sessionScope.loginUser.host_yn eq 'N' }">
+								      <a href="myslist.mg" class="title">
+								        <div class="list_el">
+								        	<span class="name">장바구니 목록</span>
+								        </div>
+								      </a>
+							      </c:if>
+							      <c:if test="${ sessionScope.loginUser.host_yn eq 'Y' }">
+							      	<a href="myalert.mg" class="title">
+								        <div class="list_el">
+								        	<span class="name">모든 알림</span>
+								        </div>
+								      </a>
+							      </c:if>
 							      <a href="updateInfoForm.mg" class="title">
 							        <div class="list_el">
 							        	<span class="name">정보 수정</span>
 							        </div>
 							      </a>
+							      <c:if test="${ sessionScope.loginUser.host_yn eq 'Y' }">
+							      	<a href="hostpage.ho" class="title">
+								        <div class="list_el">
+								        	<span class="name">호스트 페이지</span>
+								        </div>
+								      </a>
+							      </c:if>
 								</div>
 						      </div>
 						    </div>
@@ -619,22 +647,7 @@
         	e.stopPropagation();
         })
     </script>
-    <input id = "LRM12" type = "text" style = "display : none;" value = "${message }">
-    <script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script>
-    $(function(){
-/*     	var responseMessage = "<c:out value="${message}" />";
-   		var responseMessage = ${message}; */
-		var responseMessage = $("#LRM12").val();
-   		console.log("씨발련이 : " + responseMessage);
-        if(responseMessage != ""){
-            alert(responseMessage)
-            console.log(responseMessage);
-        }
-//     	var responseMessage = ${message}
-//     	alert(responseMessage)
-    })     
-    </script>
+
     
     <!-- 알림 스크립트 -->
     <script>
