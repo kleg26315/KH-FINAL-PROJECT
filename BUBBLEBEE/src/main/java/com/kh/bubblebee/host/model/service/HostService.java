@@ -1,6 +1,7 @@
 package com.kh.bubblebee.host.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.board.model.vo.Reply;
@@ -46,6 +47,29 @@ public interface HostService {
 
 	// 답변 목록 가져오기
 	ArrayList<Reply> selectReplyList(String hostId);
+
+	// 문의 개수
+	int selectQ(String hostId);
+
+	// 답변 개수
+	int selectA(String hostId);
+
+	// 호스트 페이지에서 이름,닉네임,전화번호,이메일 업데이트
+	int updateMemberProfile(Member m);
+
+	// 호스트 페이지에서 호스트 정보 업데이트
+	int updateHostInfo(Host h);
+
+	// 호스트 좋아요 체크
+	int hostLikeCheck(HashMap<String, String> map);
+
+	// 호스트 좋아요 삭제
+	int deleteHostLike(HashMap<String, String> map);
+
+	// 호스트 좋아요 추가
+	int insertHostLike(HashMap<String, String> map);
+
+	
 
 	
 }

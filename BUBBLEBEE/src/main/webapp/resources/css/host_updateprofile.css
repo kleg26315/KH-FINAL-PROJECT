@@ -1,0 +1,73 @@
+@charset "UTF-8";
+div.host_header{font-size: 25px;font-weight: bolder;margin-bottom: 10px;}
+div.host_info_all{display: flex;flex-direction: column;}
+div.host_info_wrap{display: flex;flex-direction: column;}
+div.host_photo_wrap{display: flex;flex-direction: column;margin-bottom: 40px;}
+div.host_intro_wrap{display: flex;flex-direction: column;margin-bottom: 40px;}
+form#fileForm{display: flex;align-items: center;}
+div.host_name_wrap{display: flex;margin-bottom: 50px;align-items: center;}
+div.host_phone_wrap,.host_nickname_wrap,.host_email_wrap{display: flex;margin-bottom: 40px;align-items: flex-start;}
+div.host_fees_wrap{display: flex;margin-bottom: 40px;}
+div.host_account_wrap{display: flex;flex-direction: column;}
+input#fileUpload{display: none;}
+div.h_title{font-size: 20px;}
+form.infoForm input,textarea,select{outline:none;border:1px solid rgb(230, 230, 230);}
+form.infoForm input[type=text]:focus,textarea:focus,select:focus{border:1px solid #F39C12;}
+form#fileForm input{outline:none;border:1px solid #eee;}
+div.h_intro_text{white-space: pre-line;}
+div.c_body input[type=text]{width: 300px;height: 40px;border-radius: 5px;padding: 0 15px;}
+div.c_body select{width: 150px; height: 40px;}
+input.input2{width: 150px;}
+.h_title{width: 150px;}
+div.p_text,.nick_text,.e_text{margin-top: 10px;color:rgb(164, 164, 164);font-size: 13px;}
+div.i_text{font-size: 14px;color: rgb(164, 164, 164);}
+div.i_warn{color: rgb(255, 102, 102);}
+section input[name="userName"]{
+	color:rgb(192, 192, 192);
+}
+/* 소개 */
+.h_textarea{
+	width: 100%;
+    height: 150px;
+    resize: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(230, 230, 230);
+    border-image: initial;
+    border-radius: 4px;
+    padding: 10px 16px;
+}
+/*프로필 부분*/
+.imgbutton{height: 40px;background:#F39C12;border:none;border-radius: 5px; padding: 10px 30px;color: white;margin-left: 5px;outline: none;}
+#h_profile{margin-bottom: 20px;}
+.h_img_center{text-align: center;}
+#profileimg{margin-right: 20px;}
+/* 이전, 저장 버튼 */
+.host_btn{
+	text-align: center;
+    margin-top: 50px;
+}
+.host_btn input{
+	width: 200px;
+	height: 40px;
+	border-radius: 5px;
+}
+.host_btn input[type="submit"]{
+	background:#F39C12;
+	border: #F39C12;
+	color: white;
+}
+#h_ac{margin-bottom: 20px;}
+/* 프로필 팝업? */
+/* .success_pro{ */
+/* 	display: none; */
+/* 	position: absolute; */
+/*     left: 613px; */
+/*     font-size: 20px; */
+/*     z-index: 10; */
+/*     vertical-align: middle; */
+/*     width: 871px; */
+/*     background: #F39C12; */
+/*     color: white; */
+/*     padding: 20px; */
+/* } */

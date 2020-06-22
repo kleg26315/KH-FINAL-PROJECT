@@ -1,12 +1,12 @@
 package com.kh.bubblebee.host.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.board.model.vo.Reply;
@@ -40,8 +41,24 @@ public class HostController {
 	
 	// 호스트페이지로 이동 
 	@RequestMapping("hostpage.ho")
-	public String hostpageView() {
-		return "hostpage_main";
+	public ModelAndView hostpageView(HttpSession session,ModelAndView mv) {
+		
+		String hostId = ((Member)session.getAttribute("loginUser")).getId();
+		
+		Host host = hService.selectHost(hostId);
+		
+		double qcount = hService.selectQ(hostId);
+		double acount = hService.selectA(hostId);
+		
+		double qna = 0;
+		if(qcount != 0 || acount != 0 || (qcount != 0 && acount != 0)) {
+			qna = (acount/qcount)*100; 
+		}
+		
+		mv.addObject("qna",qna);
+		mv.addObject("host",host);
+		mv.setViewName("hostpage_main");
+		return mv;
 	}
 	
 	// 호스트 등록하기
@@ -72,8 +89,10 @@ public class HostController {
 	}
 	// 호스트 프로필 보기
 	@RequestMapping("hostProfile.ho")
-	public ModelAndView hostProfileView(@RequestParam("hostId") String hostId,@RequestParam(value="page", required=false) Integer page,ModelAndView mv) {
+	public ModelAndView hostProfileView(@RequestParam("hostId") String hostId,@RequestParam(value="page", required=false) Integer page,ModelAndView mv,HttpSession session) {
 		System.out.println(hostId);
+		
+		String userId = ((Member)session.getAttribute("loginUser")).getId();
 		
 		Host host = hService.selectHost(hostId);
 		
@@ -82,6 +101,12 @@ public class HostController {
 			currentPage = page;
 		}
 		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("hostId", hostId);
+		map.put("userId", userId);
+		
+		int check = hService.hostLikeCheck(map);
+		
 		int listCount = hService.getListCount(hostId);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
@@ -89,6 +114,7 @@ public class HostController {
 		
 		ArrayList<Board> bList = hService.selectBoard(pi,hostId);
 		if(host != null && bList != null) {
+			mv.addObject("check",check);
 			mv.addObject("host",host);
 			mv.addObject("pi",pi);
 			mv.addObject("bList",bList);
@@ -191,4 +217,63 @@ public class HostController {
 		}
 	}
 	
+	// 호스트 프로필 수정 페이지로 이동
+	@RequestMapping("hostUpdateProfile.ho")
+	public ModelAndView hostUpdateProfileForm(HttpSession session,ModelAndView mv) {
+		String hostId = ((Member)session.getAttribute("loginUser")).getId();
+		
+		Host host = hService.selectHost(hostId);
+		
+		mv.addObject("host",host);
+		mv.setViewName("hostpage_updateprofile");
+		
+		return mv;
+	}
+	// 호스트 프로필 수정
+	@RequestMapping("hUpdateProfile.ho")
+	public String hUpdateProfile(@ModelAttribute Member m, @ModelAttribute Host h,ModelAndView mv) {
+		System.out.println(m);
+		System.out.println(h);
+
+		int result1 = hService.updateMemberProfile(m); // member 업데이트
+		int result2= hService.updateHostInfo(h); // host 업데이트
+	
+		if(result1 > 0 && result2 > 0) {
+			return "redirect:hostpage.ho";
+		}else {
+			throw new HostException("업데이트 실패!");
+		}
+		
+	}
+	// 호스트 좋아요 버튼
+	@RequestMapping("hostLike.ho")
+	public void HostLike(@RequestParam("hostId") String hostId,@RequestParam("userId") String userId,HttpServletResponse response) {
+		
+		HashMap<String,String> map = new HashMap<>();
+		
+		map.put("hostId",hostId);
+		map.put("userId", userId);
+		
+		// 좋아요가 눌러져있는지 아닌지 검사
+		int check = hService.hostLikeCheck(map);
+		
+		String status ="";
+		
+		int result = 0;
+		if(check == 1) {
+			result = hService.deleteHostLike(map);
+			status = "delete";
+		}else {
+			result = hService.insertHostLike(map);
+			status = "insert";
+		}
+		
+		try {
+			response.getWriter().print(status);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 }

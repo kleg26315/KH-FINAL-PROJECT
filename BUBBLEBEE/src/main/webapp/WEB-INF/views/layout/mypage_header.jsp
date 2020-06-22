@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>mypage_header</title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 <style type="text/css">
 #main_header{
 	margin-left: 10px;
@@ -70,8 +71,22 @@
 	height: 8px;
 }
 #interest span{color:#F39C12;}
-
-
+.profile_img{
+	position: relative;
+}
+.update_pro{
+position: absolute; 
+z-index: 100;
+width: inherit;
+border-radius: 100%;
+background: white;
+border: 3px solid white;
+top: 210px;
+left: 475px;
+}
+.update_pro:hover {
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -88,9 +103,15 @@
 								<c:otherwise>
 									<img id="profile" class="profile_img" style="width: 120px; height: 120px; border-radius: 100%; cursor: pointer;" src="${contextPath}/resources/proFiles/${sessionScope.loginUser.profile}" />
 								</c:otherwise>
-					         </c:choose>
+					    </c:choose>
 					</form>
 				</div>
+			</div>
+			<div class="update_pro">
+				<span class="fa-stack fa-lg">
+						<i class="fas fa-circle fa-stack-2x" style="color:#eee;"></i>
+						<i class="fas fa-pencil-alt fa-stack-1x fa-inverse" style="color:gray;"></i>
+				</span>
 			</div>
 				<div id="info_wrap">
 					<div id="name_d">${loginUser.nickName}</div>
@@ -140,7 +161,7 @@
 			
 			
 			// 사진 업로드 부분
-			$('#profile').click(function(){
+			$('#profile, .update_pro').click(function(){
 				$('#fileUpload').click();
 			});
 			

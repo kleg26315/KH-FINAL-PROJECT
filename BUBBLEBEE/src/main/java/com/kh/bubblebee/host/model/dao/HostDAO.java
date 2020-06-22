@@ -1,6 +1,7 @@
 package com.kh.bubblebee.host.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -69,6 +70,34 @@ public class HostDAO {
 
 	public ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, String hostId) {
 		return (ArrayList)sqlSession.selectList("hostMapper.selectReplyList",hostId);
+	}
+
+	public int selectQ(SqlSessionTemplate sqlSession, String hostId) {
+		return sqlSession.selectOne("hostMapper.selectQ",hostId);
+	}
+
+	public int selectA(SqlSessionTemplate sqlSession, String hostId) {
+		return sqlSession.selectOne("hostMapper.selectA",hostId);
+	}
+
+	public int updateMemberProfile(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("hostMapper.updateMemberProfile",m);
+	}
+
+	public int updateHostInfo(SqlSessionTemplate sqlSession, Host h) {
+		return sqlSession.update("hostMapper.updateHostInfo",h);
+	}
+
+	public int hostLikeCheck(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("hostMapper.hostLikeChcek",map);
+	}
+
+	public int deleteHostLike(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.delete("hostMapper.deleteHostLike",map);
+	}
+
+	public int insertHostLike(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.insert("hostMapper.insertHostLike",map);
 	}
 
 	

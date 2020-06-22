@@ -38,6 +38,7 @@
 		<result property="nickName" column="nickname" />
 		<result property="phone" column="phone" />
 		<result property="profile" column="profile" />
+		<result property="email" column="EMAIL"/>
 	</resultMap>
 	
 	<select id="getListCount" resultType="_int">
@@ -122,4 +123,44 @@
 		order by rno desc
 	</select>
 	
+	<select id="selectQ" resultType="_int">
+	select count(*)
+	from review r
+	join board b on(fno = ref_fid)
+	where b.user_id = #{hostId} and qtype=2
+	</select>
+	
+	<select id="selectA" resultType="_int">
+	select count(*)
+	from reply 
+	where user_id = #{hostId}
+	</select>	
+	
+	<update id="updateMemberProfile">
+	update member
+	set nickname=#{nickName},phone=#{phone},email=#{email}
+	where user_id = #{id}
+	</update>
+
+	<update id="updateHostInfo">
+	update host 
+	set ac_bname=#{ac_bname}, ac_name=#{ac_name},ac_no=#{ac_no},introduction=#{introduction}
+	where user_id = #{id}
+	</update>
+	
+	<select id="hostLikeChcek" parameterType="map" resultType="_int">
+	select count(*)
+	from heart
+	where user_id = #{userId} and host_id =#{hostId}
+	</select>
+	
+	<delete id="deleteHostLike">
+	delete from heart 
+	where user_id = #{userId} and host_id=#{hostId}
+	</delete>
+	
+	<insert id="insertHostLike">
+	insert into heart
+	values(SEQ_HEART.nextval,#{userId},#{hostId},null)
+	</insert>
 </mapper>
