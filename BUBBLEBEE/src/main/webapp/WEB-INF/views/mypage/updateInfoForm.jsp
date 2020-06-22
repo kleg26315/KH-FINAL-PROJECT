@@ -46,8 +46,8 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 	margin-bottom: 20px;
 }
 
-input[type=checkbox]{display:none;}
-label{border: 1px solid #F39C12;background: none;outline: none; padding: 10px 20px;color:#F39C12; border-radius: 5px;margin-right: 10px;}
+#c_body input[type=checkbox]{display:none;}
+#c_body label{border: 1px solid #F39C12;background: none;outline: none; padding: 10px 20px;color:#F39C12; border-radius: 5px;margin-right: 10px;}
 
 #submit_wrap{
 	margin-top: 30px;
@@ -57,7 +57,7 @@ label{border: 1px solid #F39C12;background: none;outline: none; padding: 10px 20
 #submit{background: #F39C12; border:none;outline: none;width:300px;height: 50px;color: white;border-radius: 5px;}
 #updatePwdbtn{background: #F39C12; border:none;outline: none; width: 100px;height: 30px;border-radius: 5px;color: white;}
 #c_body button:not(#updatePwdbtn){border:1px solid #F39C12;outline: none;}
-input[type=checkbox]:checked + label{
+#c_body input[type=checkbox]:checked + label{
 	background:#F39C12;color:white;
 }
 
@@ -98,7 +98,7 @@ section input[type=text]{outline-color: #F39C12;height: 30px;}
 						   	<div class="p_content"><input type="text" id="phone" value="${loginUser.phone }" name="phone" placeholder="전화번호를 입력해주세요"></div>
 					  </div>
 					  <c:out value=""></c:out>
-					  <c:if test="${ fn:length(loginUser.id) > 10 }">
+					  <c:if test="${ fn:contains(loginUser.id,'@')}">
 					  <div class="pro_wrap">
 						   	<div class="title">비밀번호</div>
 						   	<div class="p_content"><button type="button" id="updatePwdbtn">변경하기</button></div>

@@ -163,4 +163,17 @@
 	insert into heart
 	values(SEQ_HEART.nextval,null,#{userId},#{hostId},null)
 	</insert>
+	
+	
+	<select id="getBListCount" parameterType="map" resultType="_int">
+	select count(*)
+	from board 
+	where ftype=#{ftype} and user_id =#{hostId}
+	</select>
+	
+	<select id="hostBoardAll" parameterType="map" resultType="Board">
+	select *
+	from board 
+	where ftype=#{ftype} and user_id =#{hostId}
+	</select>
 </mapper>

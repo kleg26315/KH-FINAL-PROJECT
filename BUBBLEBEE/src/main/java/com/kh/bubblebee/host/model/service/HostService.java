@@ -69,6 +69,13 @@ public interface HostService {
 	// 호스트 좋아요 추가
 	int insertHostLike(HashMap<String, String> map);
 
+	// 호스트 개설 보드 개수 카운트
+	int getBListCount(HashMap<String, Object> map);
+
+	// 호스트 개설 보드 전체
+	ArrayList<Board> hostBoardAll(PageInfo pi, HashMap<String, Object> map);
+
+
 	
 
 	
