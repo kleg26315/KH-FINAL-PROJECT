@@ -67,7 +67,7 @@
 		where fno = #{fno}
 	</select>	
 	
-	<select id = "selectSList" resultMap = "ChooseResultSet">
+	<select id = "selectCList" resultMap = "ChooseResultSet">
 		select *
 		from choose
 		where ono = #{ono}
@@ -77,11 +77,10 @@
 		insert into buying
 		values(SEQ_BUYING.nextval, #{gname},
 		#{gphone}, #{gaddress}, #{gmsg}, #{user_id},
-		#{ono}, #{ocount}, #{gpay}, #{dcode}
+		#{ono}, #{gpay}, #{dcode} , #{ocode}
 		)
 	</insert>
 
-	
 	<select id = "selectPPList" resultMap = "PurchaseResultSet">
 		select * 
 		from buying
@@ -111,7 +110,7 @@
 		insert into buying
 		values(SEQ_BUYING.nextval, #{gname},
 		#{gphone}, #{gaddress}, #{gmsg}, #{user_id},
-		#{ono}, #{ocount}, #{gpay} , #{dcode}
+		#{ono}, #{gpay}, #{dcode} , #{ocode}
 		)
 	</insert>
 	
@@ -140,9 +139,26 @@
 	</select>
 	
 	<select id = "selectPcost" resultMap = "PointResultSet">
-		select * 
-		from point
-		where user_id = #{user_id}
+		select * from
+		(select * from point where user_id = #{user_id}  order by pno desc)
+		where rownum = 1
+	</select>
+	
+	<insert id="insertPused">
+		insert into point
+		values(
+		SEQ_POINT.nextval
+		, #{discountP}
+		, #{comment}
+		, default
+		, sysdate
+		, #{user_id})
+	</insert>
+	
+	<select id = "selectPPoint" resultMap = "PointResultSet">
+		select * from
+		(select * from point where user_id = #{user_id}  order by pno desc)
+		where rownum = 1
 	</select>
 	
 </mapper> 	

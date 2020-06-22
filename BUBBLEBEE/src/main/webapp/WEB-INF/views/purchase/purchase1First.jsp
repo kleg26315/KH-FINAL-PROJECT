@@ -42,7 +42,7 @@
 						<input class = "mProfileT21" name = "rTitle" value = "${ plist.ftitle }" readonly >
 					</div>
 					<div class = "mProfileT3">
-						<input class = "mProfileT31" id = "PT31" name = "rCost" readonly >
+						<input class = "mProfileT31" id = "PT31" name = "rCost" readonly value = "${plist.price}원" >
 					</div>
 				</div>
 			
@@ -61,17 +61,19 @@
 						<!-- input -->
 						<div class = "mOptionO">
 							<h3 class = "mOptionO1">선택한 옵션</h3>
-							<input name = "oname" class = "mOptionO2" name = "rTitleDetail" value = "${ pslist.oname }" readonly>
+							<input name = "oname" class = "mOptionO2" name = "rTitleDetail" value = "${ pslist.oname }" readonly style = "text-align : right; margin-left : -132px;">
 							<input name = "ono" style = "display : none" value = "${pslist.ono }" >
 						</div>
 						<div class = "mOptionP">
 							<h3 class = "mOptionP1">수량</h3>	
-							<input name = "ocount"class = "mOptionP2" name = "rCount" value = "${ ocount }" readonly id = "OP2">개
+							<h3 class = "mOptionS2" style = "float : right;">
+								<input name = "ocode"class = "mOptionP2" name = "rCount" value = "${ ocode }" readonly id = "OP2" style = "margin-top : 0px; text-align : right;">개
+							</h3>
 						</div>
 						<div class = "mOptionS">
 							<h3 class = "mOptionS1">옵션합계</h3>
 							<h3 class = "mOptionS2" style = "float : right;">
-								<input id = "TC1" name = "rACost" type = "text" value = "${ pslist.price * ocount }"readonly>원
+								<input id = "TC1" name = "rACost" type = "text" value = "${ pslist.price * ocode }"readonly style = "margin-left : -24px;">원
 							</h3>
 						</div>
 					</c:forEach>
@@ -140,9 +142,11 @@
 				<div class = "mInfo">
 					<h3 class = "mInfoH">마일리지</h3>
 					<h3 class = "mInfoH" style = "color : gray; margin-left : 20px; font-weight : 200;">보유</h3>
-					<input class = "mInfoHI" id = "IH1" type = "text"  value = "${ pcost.p_money }" readonly/>
+< 					<input class = "mInfoHI" id = "IH1" type = "text"  value = "${ pcost.p_money }" readonly  name = "presentPoint"/> 
+		
 					<h3 class = "mInfoH1" style = "margin-top : 12px;">
-						<input class = "mInfoH1I" id = "IH1I1" type = "text" placeholder = "사용 마일리지 " maxlength = "8" style = "border : 1px solid gray; text-align : right; margin-right : 24px; outline : none; border-radius : 2px 2px;"  onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" >
+						<input class = "mInfoH1I" id = "IH1I1" type = "text" placeholder = "사용 마일리지 " maxlength = "8" 
+						style = "border : 1px solid gray; text-align : right; margin-right : 24px; outline : none; border-radius : 2px 2px;"  onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 						<input class = "mInfoH1B" id = "IH1B1" type = "button" value = "전체 사용" style = "outline : none;">
 					</h3>
 				</div>
@@ -182,180 +186,7 @@
 			</div>
 			</form>
 		
-	<script>
-	$(".mInputQ").on("keyup", function(){
-		var iqi2 = $("#IQI2").val();
-		var iqi21 = $("#IQI21").val();
-		var iqi22 = $("#IQI22").val();
-		
-		$("#GADD").val(iqi2 + " " + iqi21 + iqi22);
-		
-		console.log($("#GADD").val());
-	});
-	
-	$('#FBDI1').on('click', function(){
-		
-		var fbdi2 = $("#FBDI2").val();
-		
-		if($("#IQI1").val() == 0){
-			alert("수신자를 입력해주세요!");
-			
-			$("#IQI1").focus();
-			
-		}else if(($("#IQI2").val() == 0)||($("#IQI21").val() == 0)||($("#IQI22").val() == 0)){
-			alert("배송지를 입력해주세요!");
-			
-			$("#IQI2").focus();
-		}else{
-			if(fbdi2 == 0){
-				$('form[name=doubleTarget]').attr('action', 'purchaseConfirm.pu');
-				$('form[name=doubleTarget]').submit();	
-				
-			}else{
-				$('form[name=doubleTarget]').attr('action', 'kakaoPay.pu');
-				$('form[name=doubleTarget]').submit();
-			}
-		}
-	})
-	
-	
-	//variable
-	var tc1 = $("#TC1").val();
-	var ih1 = Number($("#IH1").val());
-	var ih1ih = Number($("#IH1I1").val());
-	
-	var totalC = tc1 - ih1ih;
-	
-	//onload
-	$("#BIC3").text(tc1);
-	
-	// 종합계산
-	var costCarculate = function(){
-		var tc1 = Number($("#TC1").val());
-		var ih1 = Number($("#IH1").val());
-		var ih1ih = Number($("#IH1I1").val());
-		var bic3 = $("#BIC3").text();
-		var bic1 = $("#BIC1").text();
-		
-		var totalC = tc1 - ih1ih;
-		
-		
-		
-		if($("#FCC1").is(":checked") == true){
-			if((ih1ih < tc1)&&(ih1ih <= ih1)){
-				$("#IH1I1").css("color", "black");
-				$("#BIC3").text(totalC);
-				$("#BIC1").text(ih1ih);
-				$("#FBDI3").val(ih1ih);
-				$("#FBDI1").val(totalC + "원 결제하기");
-				$("#FBDI1").css("color", "black");
-				$("#FBDI1").attr('disabled', false);
-				$("#FBDI2").val(totalC);
-			}else if((ih1ih > ih1)&&(ih1ih <= tc1)){
-				alert("님의 마일리지 사용한도는" + ih1 + "입니다.");
-				$("#BIC1").text(ih1);
-				$("#FBDI3").val(ih1);
-				$("#BIC3").text(tc1 - ih1);
-				$("#IH1I1").val(ih1);
-				$("#FBDI1").val(tc1 - ih1 + "원 결제하기");
-				$("#FBDI2").val(tc1 - ih1);
-			}else if((ih1ih == tc1)&&(ih1ih <= ih1)){
-				$("#FBDI1").attr('disabled', false);
-				$("#IH1I1").val(tc1);
-				$("#BIC1").text(tc1);
-				$("#FBDI3").val(tc1);
-				$("#BIC3").text("0");	
-				$("#FBDI1").val("결제하기");
-				$("#FBDI2").val("0");
-			}else if((ih1ih >= tc1)&&(ih1ih <= ih1)){
-				alert("최대금액은" + tc1 + "원 까지 설정하실 수 있습니다.");
-				$("#FBDI1").attr('disabled', false);
-				$("#IH1I1").val(tc1);
-				$("#BIC1").text(tc1);
-				$("#FBDI3").val(tc1);
-				$("#BIC3").text("0");	
-				$("#FBDI1").val("결제하기");
-				$("#FBDI2").val("0");
-			}else{
-				$("#IH1I1").val("");
-				$("#BIC3").text(tc1);
-				$("#BIC1").text("0");
-				$("#FBDI3").val(0);
-				$("#FBDI1").val(tc1 + "원 결제하기");
-				$("#FBDI1").css("color", "black");
-				$("#FBDI1").attr('disabled', false);
-				$("#FBDI2").val(tc1);
-			}
-		}else{
-			$("#FBDI1").attr('disabled', true);
-			$("#FBDI1").val("약관에 동의해 주세요");
-			if((ih1ih < tc1)&&(ih1ih <= ih1)){
-				$("#BIC1").text(ih1ih);
-				$("#FBDI3").val(ih1ih);
-				$("#BIC3").text(totalC);
-			}else if((ih1ih > ih1)&&(ih1ih <= tc1)){
-				alert("님의 마일리지 사용한도는" + ih1 + "입니다.");
-				$("#BIC1").text(ih1);
-				$("#FBDI3").val(ih1);
-				$("#BIC3").text(tc1 - ih1);
-				$("#IH1I1").val(ih1);
-			}else if((ih1ih == tc1)&&(ih1ih <= ih1)){
-				$("#IH1I1").val(tc1);
-				$("#BIC1").text(tc1);
-				$("#FBDI3").val(tc1);
-				$("#BIC3").text("0");	
-			}else if((ih1ih >= tc1)&&(ih1ih <= ih1)){
-				alert("최대금액은" + tc1 + "원 까지 설정하실 수 있습니다.");
-				$("#IH1I1").val(tc1);
-				$("#BIC1").text(tc1);
-				$("#FBDI3").val(tc1);
-				$("#BIC3").text("0");
-			}else{
-				$("#IH1I1").val("");
-				$("#BIC3").text(tc1);
-				$("#BIC1").text("0");
-				$("#FBDI3").val(0);
-			}
-		}
-	}
-	$(function(){
-		$("#FBDI1").attr("disabled", true);
-		
-		$("#IH1B1").on("click", function(){
-			var ih1 = $("#IH1").val();
-			$("#IH1I1").val(ih1);
-			costCarculate();
-		})
-		
-		$("#FCC1").on("change", function(){
-			costCarculate();
-		});
-		
-		
-		$(function(){
-			costCarculate();
-		});
-		
-		//keyup function
-		$("#IH1I1").on("keydown",function(){
-			costCarculate();
-		})
-		
-		$("#IH1I1").on("keyup",function(){
-			costCarculate();
-		})	
-	})
-	
-		
-	</script>
-	
-	<script>
-					var p1 = $("#P1").val();
-					var op2 = $("#OP2").val();
-					var du = p1 * op2;
-					console.log($("#PRICEE"));
-					$("#PRICEE").val(du + "원");
-					console.log(du);
-				</script>
+	<script src = "<%=request.getContextPath()%>/resources/js/purchase1First/PFgh1.js"></script>
+	<script src = "<%=request.getContextPath()%>/resources/js/purchase1First/PFgh2.js"></script>
 </body>
 </html>

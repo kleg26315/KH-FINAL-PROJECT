@@ -34,32 +34,35 @@ public class PurchaseController {
 	private PurchaseService pService;
 
 	@RequestMapping("purchase1First")
-	public ModelAndView purchase1First(@RequestParam(value = "fNo") int fno, ModelAndView mv,HttpSession session, @RequestParam(value = "oNo")String ono, @RequestParam(value = "ocount")String ocount) {
+	public ModelAndView purchase1First(@RequestParam(value = "fNo") String fno, 
+			ModelAndView mv,HttpSession session, 
+			@RequestParam(value = "oNo")String ono, 
+			@RequestParam(value = "ocode")String ocode 
+			) {
+		
+		String onoo = ono.replace(",","");
 		
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		String user_id = loginUser.getId();
 		
-		System.out.println("ono는?" + ono);
+		System.out.println("ono : " + onoo);
 		System.out.println("fno : " + fno);
-		System.out.println("ocount : " + ocount);
+		System.out.println("ocode : " + ocode);
 		
 		if(loginUser != null) {
 			ArrayList<PBoard> plist = pService.selectBList(fno);
-			ArrayList<PSList> pslist = pService.selectPList(ono);
-			
+			ArrayList<PChoose> pclist = pService.selectPList(onoo);
 			PPoint pcost = pService.selectPcost(user_id);
-			
-			
-			
+		
 			System.out.println("plist : " + plist);
-			System.out.println("pslist : " + pslist);
+			System.out.println("pslist : " + pclist);
 			
-			if(plist != null && pslist != null) 	 {
+			if(plist != null && pclist != null ){
 				mv.addObject("fno", fno);
-				mv.addObject("pslist", pslist);
+				mv.addObject("pslist", pclist);
 				mv.addObject("pcost", pcost);
 				mv.addObject("plist", plist);
-				mv.addObject("ocount", ocount);
+				mv.addObject("ocode", ocode);
 				mv.setViewName("purchase1First");
 			}else {
 				throw new PurchaseException("구매에 실패하였습니다.");
@@ -79,11 +82,12 @@ public class PurchaseController {
 						@RequestParam(value = "gaddress2")String gaddress2,
 						@RequestParam(value = "gaddress3")String gaddress3,
 						@RequestParam(value = "gmsg")String gmsg,
-						@RequestParam(value = "ocount")String ocount,
+						@RequestParam(value = "ocode")String ocode,
 						@RequestParam(value = "ono")String ono,
 						@RequestParam(value = "totalPrice")String gpay,
 						@RequestParam(value = "discountPrice")String discountPrice,
 						@RequestParam(value = "fno")String fno,
+						@RequestParam(value = "presentPoint") int presentPoint,
 						HttpSession session,
 						ModelAndView mv
 						){
@@ -104,6 +108,7 @@ public class PurchaseController {
 			
 			
 			String dcode = format_time + "-" + ono + "-" + user_id;
+			System.out.println("ocode : " + ocode);
 			
 			Map<String , String> param = new HashMap<String, String>();
 			
@@ -111,17 +116,29 @@ public class PurchaseController {
 			param.put("gaddress", gaddress );
 			param.put("gphone", gphone);
 			param.put("gmsg", gmsg);
-			param.put("ocount", ocount);
+			param.put("ocode", ocode);
 			param.put("ono", ono);
 			param.put("gpay", gpay);
 			param.put("discountPrice", discountPrice);
 			param.put("fno", fno);
 			param.put("user_id", user_id);
 			param.put("dcode", dcode);
+			param.put("ocode", ocode);
 		
 			int purchaseThis1 = pService.insertPurchase(param);
 			PChoose c = pService.selectPChoose(ono);
 			PBoard b = pService.selectBPBoard(fno);
+			
+			int discount1 = Integer.parseInt(discountPrice);
+			
+			int discount2 = presentPoint - discount1;
+			
+			String discountP = Integer.toString(discount2);
+			
+			String comment =  gname + "상품을 결제하셨습니다. " + "결제금액은 " + gpay + " 입니다." ;
+			
+			int pused = pService.insertPused(user_id, discountP, comment);
+			
 			
 			System.out.println("gaddress : " + gaddress);
 			System.out.println("p : " + purchaseThis1);
@@ -147,12 +164,13 @@ public class PurchaseController {
 			@RequestParam(value = "gaddress2")String gaddress2,
 			@RequestParam(value = "gaddress3")String gaddress3,
 			@RequestParam(value = "gmsg")String gmsg,
-			@RequestParam(value = "ocount")String ocount,
+			@RequestParam(value = "ocode")String ocode,
 			@RequestParam(value = "ono")String ono,
 			@RequestParam(value = "totalPrice")String gpay,
 			@RequestParam(value = "discountPrice")String discountPrice,
 			@RequestParam(value = "fno")String fno,
 			@RequestParam(value = "gaddress")String gaddress,
+			@RequestParam(value = "presentPoint") int presentPoint,
 			HttpSession session,
 			ModelAndView mv) {
 		
@@ -174,7 +192,7 @@ public class PurchaseController {
 		param.put("gaddress", gaddress );
 		param.put("gphone", gphone);
 		param.put("gmsg", gmsg);
-		param.put("ocount", ocount);
+		param.put("ocode", ocode);
 		param.put("ono", ono);
 		param.put("gpay", gpay);
 		param.put("discountPrice", discountPrice);
@@ -182,8 +200,26 @@ public class PurchaseController {
 		param.put("user_id", user_id);
 		param.put("dcode", dcode);
 
+		System.out.println("dcode : " + dcode);
+		
 		
 		int purchaseThis1 = pService.insertPurchase2(param);
+		
+		int discount1 = Integer.parseInt(discountPrice);
+		
+		int discount2 = presentPoint - discount1;
+		
+		String discountP = Integer.toString(discount2);
+		
+		String comment = "결제금액은 " + gpay + " 원 입니다." ;
+		
+		System.out.println(
+				"user_id : " + user_id
+				+ " discountP : " + discountP 
+				+ " comment : " + comment 
+				);
+		
+		int pused = pService.insertPused(user_id, discountP, comment);
 		
 		int gno = pService.selectGno(dcode);
 		
@@ -191,7 +227,7 @@ public class PurchaseController {
 		
 		if(purchaseThis1 != 0 && user_id != null) {
 			mv.addObject("gname", gname);
-			String address = gaddress1 + " " + gaddress2 + gaddress3;
+			String address = gaddress1 + " " + gaddress2 +  " " + gaddress3 + " ";
 			mv.addObject("gaddress", address);
 			mv.addObject("gpay", gpay);
 			mv.addObject("gmsg", gmsg);
@@ -210,12 +246,16 @@ public class PurchaseController {
 	public ModelAndView kakaoPayConfirm(ModelAndView mv, 
 			@RequestParam(value = "gno")String gno,
 			@RequestParam(value = "fno")String fno,
-			@RequestParam(value = "ono")String ono) {
+			@RequestParam(value = "ono")String ono,
+			HttpSession session) {
 
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		String user_id = loginUser.getId();
 		
 		Purchase p = pService.selectPurchase2(gno);
 		PChoose c = pService.selectPChoose2(ono);
 		PBoard b = pService.selectBPBoard2(fno);
+		PPoint pp = pService.selectPPoint(user_id);
 		
 		System.out.println("kakao gno : " + gno);
 		System.out.println("kakao fno : " + fno);
@@ -227,6 +267,7 @@ public class PurchaseController {
 		mv.addObject("p", p);
 		mv.addObject("c", c);
 		mv.addObject("b", b);
+		mv.addObject("pp", pp);
 		mv.setViewName("purchaseConfirmKakao");
 		return mv;
 	}

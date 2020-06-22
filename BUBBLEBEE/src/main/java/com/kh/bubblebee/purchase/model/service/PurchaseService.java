@@ -13,9 +13,9 @@ import com.kh.bubblebee.purchase.model.vo.Purchase;
 
 public interface PurchaseService {
 
-	ArrayList<PBoard> selectBList(int fno);
+	ArrayList<PBoard> selectBList(String fno);
 
-	ArrayList<PSList> selectPList(String ono);
+	ArrayList<PChoose> selectPList(String ono);
 
 	int insertPurchase(Map<String, String> param);
 
@@ -39,5 +39,8 @@ public interface PurchaseService {
 
 	PPoint selectPcost(String user_id);
 
+	int insertPused(String user_id, String discountP, String comment);
+
+	PPoint selectPPoint(String user_id);
 
 }

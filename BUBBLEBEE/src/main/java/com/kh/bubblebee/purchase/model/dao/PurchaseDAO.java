@@ -19,15 +19,15 @@ import com.kh.bubblebee.purchase.model.vo.Purchase;
 public class PurchaseDAO {
 
 
-	public ArrayList<PBoard> selectList(SqlSessionTemplate sqlSession, int fNo) {
+	public ArrayList<PBoard> selectList(SqlSessionTemplate sqlSession, String fno) {
 
-		System.out.println("pDAO : " + fNo);
+		System.out.println("pDAO : " + fno);
 		
-		return (ArrayList)sqlSession.selectList("purchaseMapper.selectProduct", fNo);
+		return (ArrayList)sqlSession.selectList("purchaseMapper.selectProduct", fno);
 	}
 
-	public ArrayList<PSList> selectPSList(SqlSessionTemplate sqlSession, String ono) {
-		return (ArrayList)sqlSession.selectList("purchaseMapper.selectSList", ono);
+	public ArrayList<PChoose> selectPSList(SqlSessionTemplate sqlSession, String ono) {
+		return (ArrayList)sqlSession.selectList("purchaseMapper.selectCList", ono);
 	}
 
 	public int purchaseThis1(SqlSessionTemplate sqlSession, Map<String, String> param) {
@@ -72,6 +72,18 @@ public class PurchaseDAO {
 
 	public PPoint selectPcost(SqlSessionTemplate sqlSession, String user_id) {
 		return sqlSession.selectOne("purchaseMapper.selectPcost", user_id);
+	}
+
+	public int insertPused(SqlSessionTemplate sqlSession, String user_id, String discountP, String comment) {
+		HashMap<String, String>map = new HashMap<>();
+		map.put("user_id", user_id);
+		map.put("discountP", discountP);
+		map.put("comment", comment);
+		return sqlSession.insert("purchaseMapper.insertPused", map);
+	}
+
+	public PPoint selectPPoint(SqlSessionTemplate sqlSession, String user_id) {
+		return sqlSession.selectOne("purchaseMapper.selectPPoint", user_id);
 	}
 
 
