@@ -274,4 +274,16 @@ public class MemberController {
 			return "fail";
 		}
 	}
+	
+	@RequestMapping("emailSameCheck.me")
+	@ResponseBody
+	public String emailSameCheck(@RequestParam("id") String id) {
+		Member m = mService.emailSameCheck(id);
+
+		if(m != null) {
+			return "fail";
+		} else {
+			return "success";
+		}
+	}
 }

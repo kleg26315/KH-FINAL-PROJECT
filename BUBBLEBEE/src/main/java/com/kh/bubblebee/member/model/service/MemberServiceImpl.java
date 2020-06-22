@@ -76,4 +76,9 @@ public class MemberServiceImpl implements MemberService{
 		return mDAO.loginCheck(sqlSession, email);
 	}
 
+	@Override
+	public Member emailSameCheck(String id) {
+		return mDAO.emailSameCheck(sqlSession, id);
+	}
+
 }

@@ -126,4 +126,10 @@
 		from member
 		where user_id = #{email}
 	</select>
+	
+	<select id="emailSameCheck" resultMap="memberResultSet">
+		select *
+		from member
+		where user_id = #{id}
+	</select>
 </mapper>
