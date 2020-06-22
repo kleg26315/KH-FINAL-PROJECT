@@ -24,7 +24,7 @@
 		
 	</header>
 	
-		<form id = "submitForm" >
+		<form id = "submitForm" action = "redirect.pu" method = "post">
 			<section id = "submitFormSection">
 				<div id = "submitFormSectionMain">
 					<h3 id = "submitFormSectionMainH">
@@ -57,7 +57,7 @@
 					</div>
 					<div class = "submitFormSectionMainD">
 						<input class = "submitFormSectionMainIntro" type = "text" value = "할인금액" readonly>
-						<input class = "submitFormSectionMainData" type = "text" value = "${p.discount} 포인트 " readonly>
+						<input class = "submitFormSectionMainData" type = "text" value = " ${p.ocode * c.price - p.gpay} 포인트 " readonly>
 					</div>
 					<div class = "submitFormSectionMainD">
 						<input class = "submitFormSectionMainIntro" type = "text" value = "최종금액" readonly>
