@@ -585,7 +585,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td><textarea class="form-control" id="editor" name="introduce"></textarea></td>
+						<td><textarea class="form-control bIncluded" id="editor" name="introduce"></textarea></td>
 					</tr>
 			</table>
 			<script type="text/javascript">
@@ -605,8 +605,8 @@
 				              }
 				          }, 
 				          fOnAppLoad : function(){
+				              //oEditors.getById["editor"].exec("PASTE_HTML", []);
 				              //기존 저장된 내용의 text 내용을 에디터상에 뿌려주고자 할때 사용
-				              //oEditors.getById["smartEditor"].exec("PASTE_HTML", ["기존 DB에 저장된 내용을 에디터에 적용할 문구"]);
 				          },
 					    fCreator: "createSEditor2"
 					});   
@@ -795,46 +795,43 @@
 		window.onload = function(){
 			gettheLocal();
 		}
+		
+		var loginUser = '${loginUser.id}'
 		$('.bIncluded').keyup(function(e){
-			var fcontain = $('#fcontain').val() +(",") + $('#userId').val();;
-			var fncontain = $('#fncontain').val();
-			var fmaterials = $('#fmaterials').val();
-			var fprecaution = $('#fprecaution').val();
-			console.log("fcontain : " + fcontain);
+			var editor = $('iframe').contents().find('iframe').contents().find('.se2_inputarea').text()
+			var test = [$('#fcontain').val(), $('#fncontain').val(), $('#fmaterials').val(), $('#fprecaution').val(), editor]
 			
-			if(fcontain!="" || fncontain != "" || fmaterials !="" || fprecaution !=""){
-				localStorage.setItem('fcontain', fcontain);
-				localStorage.setItem('fncontain', fncontain);
-				localStorage.setItem('fmaterials', fmaterials);
-				localStorage.setItem('fprecaution', fprecaution);
-				
+			console.log("test : " + test);
+			if(test !=""){
+				localStorage.setItem(loginUser, JSON.stringify(test));
+				console.log("loginUser : " + loginUser);
 			}
 		})
 		
 		function gettheLocal(){
-			var userId = $('#userId').val();
-			var fcon = localStorage.getItem('fcontain');
-			var fnc = localStorage.getItem('fncontain');
-			var fma = localStorage.getItem('fmaterials');
-			var fpre= localStorage.getItem('fprecaution');
-			localStorage.setItem('userId', userId);
-			var user_Id = localStorage.getItem('userId');
-			var kId =  localStorage.getItem('kId');
+			var test = localStorage.getItem(loginUser);
+			test = test.replace(/\"/gi, "");
+			test = test.replace(/\[/gi, "");
+			test = test.replace(/\]/gi, "");
+			var arr = test.split(",");
 			
-			document.querySelector('#fcontain').innerHTML = fcon;
-			document.querySelector('#fncontain').innerHTML = fnc;
-			document.querySelector('#fmaterials').innerHTML = fma;
-			document.querySelector('#fprecaution').innerHTML = fpre;
-			
-			if(user_Id != kId){
-				document.querySelector('#fcontain').innerHTML = "";
-				localStorage.removeItem('fcontain');
-				localStorage.removeItem('fncontain');
-				localStorage.removeItem('fmaterials');
-				localStorage.removeItem('fprecaution');
+			if(arr != null ){
+				for(var i=0; i<arr.length; i++){
+					console.log(arr[i])	
+					document.getElementsByClassName('bIncluded')[i].innerHTML += arr[i];
+				}
 			}
-			
+			console.log("arr : " + arr);
 		}
+// 			if(user_Id != kId){
+// 				document.querySelector('#fcontain').innerHTML = "";
+// 				localStorage.removeItem('fcontain');
+// 				localStorage.removeItem('fncontain');
+// 				localStorage.removeItem('fmaterials');
+// 				localStorage.removeItem('fprecaution');
+// 			}
+			
+// 		}
 		</script>
 		
 		
