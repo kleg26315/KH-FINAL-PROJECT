@@ -33,6 +33,7 @@
      
       <div class = "main" style="margin-top:80px;">
        	
+       	<c:if test="${ cate != 'sell'}" >	
       	<!-- 어디서버튼 -->
      	<input type="checkbox" id="where">
 		<label for="where">어디서</label>
@@ -361,6 +362,7 @@
 				<label for="where"><!-- 외곽클릭 --></label>
 			</div>
       	<!-- 어디서버튼 끝 -->&nbsp;&nbsp;
+      	</c:if>
       	
       	<!-- 필터버튼 -->
      	<input type="checkbox" id="popup">

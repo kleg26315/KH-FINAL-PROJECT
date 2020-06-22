@@ -55,7 +55,7 @@ input[type="radio"] {display:none;} /* input을 안보이게 처리 */
 input[type="radio"] + label {text-align:center; padding-top:8px; display:inline-block; width:100px; height:35px; background:#f5f5f5;color:#999;font-size:14px;cursor:pointer;} /* 버튼 공통 속성 */
 input[type="radio"]:checked + label {background:gold;color:#000;} /* 선택된 버튼속성 */
 
-.conbox {position:absolute; left:105px; top:80px; padding:5px; width:275px; height:380px;background:lightgray;display:none;text-align:left;font-size:12px;padding:20px;box-sizing:border-box;} /* 컨텐츠박스 공통 속성 */
+.conbox {position:absolute; left:105px; top:80px; padding:5px; width:275px; height:380px;background:lightgray;display:none;text-align:left;font-size:15px;padding:20px;box-sizing:border-box;} /* 컨텐츠박스 공통 속성 */
 input[id="tab01"]:checked ~ .con1 {display:block;} /* 인풋에 체크가 해당 요소보이게 설정 */
 input[id="tab02"]:checked ~ .con2 {display:block;}
 input[id="tab03"]:checked ~ .con3 {display:block;}
@@ -80,7 +80,8 @@ input[id="tab17"]:checked ~ .con17 {display:block;}
 input[id*="popup"] {display:none;} /* 체크박스 */
 input[id*="popup"] + label {display:inline-block; text-align:center; padding-top:4px; width:90px; height:33px;background:lightgray; border-radius:5px;}/* 버튼 */
 input[id*="popup"] + label + div {position:fixed;top:0;left:0;width:100%;height:100%;z-index:100;}
-input[id*="popup"] + label + div > div {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:330px;height:430px;background:white;z-index:2;} /* 모달창 */
+input[id*="popup"] + label + div > div {font-size:15px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:330px;height:430px;background:white;z-index:2;} /* 모달창 */
+input[id*="where"] + label + div > div a:hover{text-decoration: none;}
 input[id*="popup"] + label + div > div > label {font-size:20px; font-weight:bold; position:absolute;top:0%;right:3%;padding:5px;background:white;z-index:3;} /* 닫 기*/
 input[id*="popup"] + label + div > label {position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);z-index:1;} /* 모달밖 */
 
@@ -104,6 +105,13 @@ input[id*="popup"]:checked + label + div {display:block;}
    flex-wrap: wrap;
     min-height: 1px;
 }
+
+.moim a:hover{
+   text-decoration: none;
+}
+
+ *:focus { outline:none; }
+ 
 .moim > *{
    margin-right: 7px;
     width: calc(25% - 7.5px);
