@@ -24,6 +24,12 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 .per_info{display: flex;flex-direction: column;margin:auto 10px;flex-grow: 1;font-size: 15px;}
 .agreeBtn{border:none; border-radius:5px; font-weight:bold; width:80px; height:35px;font-size:15px; background-color: #f39c12;}
 #btnbox{margin-left:83%;}
+
+#title{float:left}
+#starimg{margin-left:400px; margin-top:-18px;}
+#rvsecret{width:15px; height: 15px;}
+#scr{font-size:17px; font-weight: lighter; padding-left:5px;}
+
 </style>
 <body>
    <header id="header">
@@ -42,13 +48,66 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 			<div id="content_list">
           	 <form action="reviewInsert.mg" id="frm" method="post">
 <%--           		 <input name="bno" hidden value="${review.qno }"> --%>
-	             <input type="text" id="title" name="title" placeholder="제목" style="height: 40px;" size="50">
-	             <br><br>
+				 <input type="checkbox" id="rvsecret" name="rvsecret" value="Y"><label id="scr">비밀로 리뷰쓰기</label><br>
+	             <input type="text" id="title" name="title" placeholder="제목" style="height: 40px;" size="50">&nbsp;&nbsp;&nbsp;
+	             <div id="starimg">
+		             <img src="<%=request.getContextPath()%>/resources/img/star.png" width="35px" height='35px' id="star1" class="star">
+					 <img src="<%=request.getContextPath()%>/resources/img/star.png" width="35px" height='35px' id="star2" class="star">
+					 <img src="<%=request.getContextPath()%>/resources/img/star.png" width="35px" height='35px' id="star3" class="star">
+					 <img src="<%=request.getContextPath()%>/resources/img/star.png" width="35px" height='35px' id="star4" class="star">
+					 <img src="<%=request.getContextPath()%>/resources/img/star.png" width="35px" height='35px' id="star5" class="star">
+			     </div>
+				 <!-- 평점 넘기기 -->
+				 <input type="hidden" id="stargrade">
+	             <br clear="all"><br>
 	             <textarea id="content" name="content" rows="20" cols="" style="width: 100%; resize: none;"></textarea><br>
 	             <div id="btnbox">
 		             <button class="agreeBtn" type="button" id="cancel" onclick="history.go(-1)">취소</button>&nbsp;&nbsp;
 		             <button class="agreeBtn" id="save" type="button">작성</button>
 	             </div>
+	             
+	             <script>
+	             $('#star1').click(function(){
+	     			$('#star1').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+	     			$('#star2').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+	     			$('#star3').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+	     			$('#star4').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+	     			$('#star5').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+	     			$('#stargrade').val(1);
+	     		});
+	     		$('#star2').click(function(){
+	     			$('#star1').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+	     			$('#star2').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+	     			$('#star3').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+	     			$('#star4').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+	     			$('#star5').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+	     			$('#stargrade').val(2);
+	     		});
+	     		$('#star3').click(function(){
+	     			$('#star1').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+	     			$('#star2').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+	     			$('#star3').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+	     			$('#star4').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+	     			$('#star5').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+	     			$('#stargrade').val(3);
+	     		});
+	     		$('#star4').click(function(){
+	     			$('#star1').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+	     			$('#star2').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+	     			$('#star3').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+	     			$('#star4').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+	     			$('#star5').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+	     			$('#stargrade').val(4);
+	     		});
+	     		$('#star5').click(function(){
+	     			$('#star1').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+	     			$('#star2').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+	     			$('#star3').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+	     			$('#star4').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+	     			$('#star5').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+	     			$('#stargrade').val(5);
+	     		});
+	             </script>
              </form>
           </div>
 		    
