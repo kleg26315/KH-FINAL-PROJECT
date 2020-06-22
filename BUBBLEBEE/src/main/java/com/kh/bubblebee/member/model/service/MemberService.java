@@ -31,4 +31,6 @@ public interface MemberService {
 
 	Member loginCheck(String email);
 
+	Member emailSameCheck(String id);
+
 }

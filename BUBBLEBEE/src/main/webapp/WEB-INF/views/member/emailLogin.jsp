@@ -115,7 +115,6 @@
       function validate(){
     	  var email = $('#emailBox').val().trim();
     	  var pwd = $('#pwdBox').val().trim();
-	      var flag = false;
 	      
     	  if(email == ""){
   	          if (isToastShown) return;   // 토스트 메시지가 띄어져 있다면 함수를 끝냄
@@ -145,6 +144,7 @@
   	              pwdToast.removeClass('show');
   	              isToastShown = false;
   	          }, 2700);
+  	          $('#pwdBox').focus();
     		  return false;
     	  } else {
     		  $.ajax({

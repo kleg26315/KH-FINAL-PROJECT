@@ -58,4 +58,8 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.loginCheck", email);
 	}
 
+	public Member emailSameCheck(SqlSessionTemplate sqlSession, String id) {
+		return sqlSession.selectOne("memberMapper.emailSameCheck", id);
+	}
+
 }
