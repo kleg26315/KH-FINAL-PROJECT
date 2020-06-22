@@ -58,8 +58,14 @@ public class BoardInputController {
 		String[] deadline = odeadline.split(",");
 		
 		HashMap<String, Option> map = new HashMap<>();
-		for(int i = 0; i < name.length; i++) {
-			map.put("op" + i, new Option(name[i], pr[i], count[i], deadline[i]));
+		if(deadline == null) {
+			for(int i = 0; i < name.length; i++) {
+				map.put("op" + i, new Option(name[i], pr[i], count[i], null));
+			}
+		}else {
+			for(int i = 0; i < name.length; i++) {
+				map.put("op" + i, new Option(name[i], pr[i], count[i], deadline[i]));
+			}
 		}
 		
 		String[] originalFileName = new String[uploadFile.size()];
