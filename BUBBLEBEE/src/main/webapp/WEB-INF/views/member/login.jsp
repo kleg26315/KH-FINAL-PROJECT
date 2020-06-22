@@ -118,7 +118,17 @@ input.loginFBtn {
 	<footer id="footer" style="padding-top: 115px;">
 		<c:import url="../layout/footer.jsp"/>
 	</footer>
-   
+	<script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+    $(function(){
+    	var responseMessage = "<c:out value="${message}" />";
+//    	var responseMessage = ${message};
+        if(responseMessage != ""){
+            alert(responseMessage)
+            console.log(responseMessage);
+        }
+    })     
+    </script>
 </body>
 
 </html>

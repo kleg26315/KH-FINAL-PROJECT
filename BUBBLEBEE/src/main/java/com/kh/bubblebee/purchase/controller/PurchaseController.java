@@ -1,5 +1,7 @@
 package com.kh.bubblebee.purchase.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
@@ -8,6 +10,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,19 +40,23 @@ public class PurchaseController {
 	public ModelAndView purchase1First(@RequestParam(value = "fNo") String fno, 
 			ModelAndView mv,HttpSession session, 
 			@RequestParam(value = "oNo")String ono, 
-			@RequestParam(value = "ocode")String ocode 
+			@RequestParam(value = "ocode")String ocode,
+			HttpServletResponse response
 			) {
 		
 		String onoo = ono.replace(",","");
 		
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		String user_id = loginUser.getId();
 		
+		
+		System.out.println("loginUser : " + loginUser);
 		System.out.println("ono : " + onoo);
 		System.out.println("fno : " + fno);
 		System.out.println("ocode : " + ocode);
 		
 		if(loginUser != null) {
+			String user_id = loginUser.getId();
+			
 			ArrayList<PBoard> plist = pService.selectBList(fno);
 			ArrayList<PChoose> pclist = pService.selectPList(onoo);
 			PPoint pcost = pService.selectPcost(user_id);
@@ -68,7 +75,21 @@ public class PurchaseController {
 				throw new PurchaseException("구매에 실패하였습니다.");
 			}
 		}else {
-			mv.setViewName("redirect:loginView.me");
+			throw new PurchaseException("구매에 실패하였습니다.");
+//			response.setContentType("text/html; charset=UTF-8");
+//			PrintWriter out;
+//			try {
+//				out = response.getWriter();
+//				out.println("<script>alert('로그인이 필요한 서비스입니다.'); </script>");
+//				out.flush();
+////				out.println("<script>alert('로그인이 필요한 서비스입니다.'); location.href=purchase1First.pu; </script>");
+////				mv.addObject("message", "로그인이 필요한 서비스입니다.");
+////				mv.setViewName("redirect:loginView.me");
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}finally {
+//				mv.setViewName("boardDetail");	
+//			}
 		}
 		return mv;
 	
@@ -125,34 +146,39 @@ public class PurchaseController {
 			param.put("dcode", dcode);
 			param.put("ocode", ocode);
 		
-			int purchaseThis1 = pService.insertPurchase(param);
-			PChoose c = pService.selectPChoose(ono);
-			PBoard b = pService.selectBPBoard(fno);
-			
-			int discount1 = Integer.parseInt(discountPrice);
-			
-			int discount2 = presentPoint - discount1;
-			
-			String discountP = Integer.toString(discount2);
-			
-			String comment =  gname + "상품을 결제하셨습니다. " + "결제금액은 " + gpay + " 입니다." ;
-			
-			int pused = pService.insertPused(user_id, discountP, comment);
-			
-			
-			System.out.println("gaddress : " + gaddress);
-			System.out.println("p : " + purchaseThis1);
-			
-			if(purchaseThis1 > 0) {
-				mv.addObject("p", p);
-				mv.addObject("c", c);
-				mv.addObject("b",b);
-				mv.setViewName("purchaseConfirm");
+			if(loginUser != null) {
+				int purchaseThis1 = pService.insertPurchase(param);
+				PChoose c = pService.selectPChoose(ono);
+				PBoard b = pService.selectBPBoard(fno);
+				
+				int discount1 = Integer.parseInt(discountPrice);
+				int discount2 = presentPoint - discount1;
+				
+				String discountP = Integer.toString(discount2);
+				
+				String comment =  gname + "상품을 결제하셨습니다. " + "결제금액은 " + gpay + " 입니다." ;
+				
+				int pused = pService.insertPused(user_id, discountP, comment);
+				
+				
+				System.out.println("gaddress : " + gaddress);
+				System.out.println("p : " + purchaseThis1);
+				
+				if(purchaseThis1 > 0 && 
+						c != null &&
+						b != null &&
+						pused > 0) {
+					mv.addObject("p", p);
+					mv.addObject("c", c);
+					mv.addObject("b",b);
+					mv.setViewName("purchaseConfirm");
+				}else {
+					throw new PurchaseException("결제에 실패하였습니다!");
+				}
 			}else {
-				throw new PurchaseException("결제에 실패하였습니다!");
+				mv.addObject("message", "로그인이 필요한 서비스입니다.");
 			}
-			
-			return mv;
+		return mv;
 		
 	}
 	
@@ -202,42 +228,46 @@ public class PurchaseController {
 
 		System.out.println("dcode : " + dcode);
 		
-		
-		int purchaseThis1 = pService.insertPurchase2(param);
-		
-		int discount1 = Integer.parseInt(discountPrice);
-		
-		int discount2 = presentPoint - discount1;
-		
-		String discountP = Integer.toString(discount2);
-		
-		String comment = "결제금액은 " + gpay + " 원 입니다." ;
-		
-		System.out.println(
-				"user_id : " + user_id
-				+ " discountP : " + discountP 
-				+ " comment : " + comment 
-				);
-		
-		int pused = pService.insertPused(user_id, discountP, comment);
-		
-		int gno = pService.selectGno(dcode);
-		
-		System.out.println("dcode : " + dcode + " gno : " + gno);
-		
-		if(purchaseThis1 != 0 && user_id != null) {
-			mv.addObject("gname", gname);
-			String address = gaddress1 + " " + gaddress2 +  " " + gaddress3 + " ";
-			mv.addObject("gaddress", address);
-			mv.addObject("gpay", gpay);
-			mv.addObject("gmsg", gmsg);
-			mv.addObject("gphone", gphone);
-			mv.addObject("gno", gno);
-			mv.addObject("ono", ono);
-			mv.addObject("fno", fno);
-			mv.setViewName("kakaoPay");
+		if(loginUser != null) {
+			int purchaseThis1 = pService.insertPurchase2(param);
+			
+			int discount1 = Integer.parseInt(discountPrice);
+			
+			int discount2 = presentPoint - discount1;
+			
+			String discountP = Integer.toString(discount2);
+			
+			String comment = "결제금액은 " + gpay + " 원 입니다." ;
+			
+			System.out.println(
+					"user_id : " + user_id
+					+ " discountP : " + discountP 
+					+ " comment : " + comment 
+					);
+			
+			int pused = pService.insertPused(user_id, discountP, comment);
+			
+			int gno = pService.selectGno(dcode);
+			
+			System.out.println("dcode : " + dcode + " gno : " + gno);
+			
+			if(purchaseThis1 != 0 && user_id != null && pused > 0 && gno > 0) {
+				mv.addObject("gname", gname);
+				String address = gaddress1 + " " + gaddress2 +  " " + gaddress3 + " ";
+				mv.addObject("gaddress", address);
+				mv.addObject("gpay", gpay);
+				mv.addObject("gmsg", gmsg);
+				mv.addObject("gphone", gphone);
+				mv.addObject("gno", gno);
+				mv.addObject("ono", ono);
+				mv.addObject("fno", fno);
+				mv.setViewName("kakaoPay");
+			}else {
+				throw new PurchaseException("결제에 실패하였습니다!");
+			}
+		}else {
+			mv.addObject("message", "로그인이 필요한 서비스입니다.");
 		}
-		
 		return mv;
 		
 	}
@@ -252,23 +282,30 @@ public class PurchaseController {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		String user_id = loginUser.getId();
 		
-		Purchase p = pService.selectPurchase2(gno);
-		PChoose c = pService.selectPChoose2(ono);
-		PBoard b = pService.selectBPBoard2(fno);
-		PPoint pp = pService.selectPPoint(user_id);
-		
-		System.out.println("kakao gno : " + gno);
-		System.out.println("kakao fno : " + fno);
-		System.out.println("kakao ono : " + ono);
-		System.out.println("kakao p : " + p);
-		System.out.println("kakao c : " + c);
-		System.out.println("kakao b : " + b);
-		
-		mv.addObject("p", p);
-		mv.addObject("c", c);
-		mv.addObject("b", b);
-		mv.addObject("pp", pp);
-		mv.setViewName("purchaseConfirmKakao");
+		if(loginUser != null) {
+			Purchase p = pService.selectPurchase2(gno);
+			PChoose c = pService.selectPChoose2(ono);
+			PBoard b = pService.selectBPBoard2(fno);
+			PPoint pp = pService.selectPPoint(user_id);
+			
+			System.out.println("kakao gno : " + gno);
+			System.out.println("kakao fno : " + fno);
+			System.out.println("kakao ono : " + ono);
+			System.out.println("kakao p : " + p);
+			System.out.println("kakao c : " + c);
+			System.out.println("kakao b : " + b);
+			if(p != null && c != null && b != null && pp != null) {
+				mv.addObject("p", p);
+				mv.addObject("c", c);
+				mv.addObject("b", b);
+				mv.addObject("pp", pp);
+				mv.setViewName("purchaseConfirmKakao");
+			}else {
+				throw new PurchaseException("결제에 실패하였습니다!");
+			}
+		}else {
+			mv.addObject("message", "로그인이 필요한 서비스입니다.");
+		}
 		return mv;
 	}
 	

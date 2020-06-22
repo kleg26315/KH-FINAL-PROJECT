@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -290,15 +292,38 @@
 						
 					</div>
 				<br> 
-				<div>
-				<input type="submit" value = "장바구니에 담기" 
-				style = "width : 310px;; height: 40px; margin-top : 100%; background-color : rgb(249, 249, 249); border:none; border-radius : 2px 2px; ">
-				</div>
-				<div style = "margin-top : 4px;">
-				<input type="submit" value="참가하기" 
-				style="width : 310px; height: 40px;  background-color: gold; border: none; ">
-				</div>
+				<c:if test = "${loginUser == null }">
+					<div>
+					<input class = "loginUserNull" id = "loginUserNull1" type="button" value = "장바구니에 담기" 
+					style = "width : 310px; height: 40px; margin-top : 100%; background-color : rgb(249, 249, 249); border:none; border-radius : 2px 2px; outline : none;" >
+					</div>
+					<div style = "margin-top : 4px;">
+					<input class = "loginUserNull" id = "loginUserNull2" type="button" value="참가하기" 
+					style="width : 310px; height: 40px;  background-color: rgb(249, 249, 249); border: none; outline : none;" >
+					</div>
+				</c:if>
+				
+				<c:if test = "${loginUser != null }">
+					<div>
+					<input class = "loginUserNull2" id = "optionNull3" type="button" value = "장바구니에 담기" 
+					style = "width : 310px; height: 40px; margin-top : 100%; background-color : rgb(249, 249, 249); border:none; border-radius : 2px 2px; outline : none;" >
+					</div>
+					<div style = "margin-top : 4px;">
+					<input class = "loginUserNull2" id = "optionNull4" type="button" value="참가하기" 
+					style="width : 310px; height: 40px;  background-color: rgb(249, 249, 249); border: none; outline : none;" >
+					</div>
+					<div>
+					<input  class = "loginUserNull2" id = "comfirmNull3" type="submit" value = "장바구니에 담기" 
+					style = "width : 310px;; height: 40px; margin-top : 100%; background-color : gold; border:none; border-radius : 2px 2px; outline : none;">
+					</div>
+					<div style = "margin-top : 4px;">
+					<input  class = "loginUserNull2" id = "comfirmNull4" type="submit" value="참가하기" 
+					style="width : 310px; height: 40px;  background-color: gold; border: none; outline : none;">
+					</div>
+				</c:if>
+				
 			</div>
+			
 		</form>
 		<div class="recommendation">
 			<div class="recommendationIntroduce">이런 클래스는 어때요?</div>
@@ -315,7 +340,8 @@
 		<c:import url="../layout/footer.jsp"/>
 	</footer>		
 	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDhansol2.js"></script>
-	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDoption.js?ver=1"></script>
+	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDoption.js?ver=3"></script>
 	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDkakaomap.js"></script>
+	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDloginusernull.js?ver=1"></script>
 </body>
 </html>
