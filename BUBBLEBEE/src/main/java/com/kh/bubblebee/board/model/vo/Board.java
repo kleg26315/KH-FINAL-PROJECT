@@ -23,6 +23,7 @@ public class Board {
 	private String fminfo; //추가정보
 	private String fprecaution; //유의사항
 	private String user_id; //주최자
+	private String user_id_ht;
 	private int heart; //좋아요
 	private int rsum; //해당 리뷰점수합
 	private int rcount; //해당 리뷰갯수
@@ -42,9 +43,9 @@ public class Board {
 
 	public Board(int rnum, int fno, int ftype, int price, String small_title, String ftitle, String category,
 			String location, double lat, double lon, String ad1, String ad2, String fcontain, String fncontain,
-			String fcalendar, String fmaterials, String fminfo, String fprecaution, String user_id, int heart, int rsum,
-			int rcount, Date f_create_date, String f_status, String originalFileName, String renameFileName,
-			String introduce, int maxMember, double rank, String li, double avgrv) {
+			String fcalendar, String fmaterials, String fminfo, String fprecaution, String user_id, String user_id_ht,
+			int heart, int rsum, int rcount, Date f_create_date, String f_status, String originalFileName,
+			String renameFileName, String introduce, int maxMember, double rank, String li, double avgrv) {
 		super();
 		this.rnum = rnum;
 		this.fno = fno;
@@ -65,6 +66,7 @@ public class Board {
 		this.fminfo = fminfo;
 		this.fprecaution = fprecaution;
 		this.user_id = user_id;
+		this.user_id_ht = user_id_ht;
 		this.heart = heart;
 		this.rsum = rsum;
 		this.rcount = rcount;
@@ -270,6 +272,16 @@ public class Board {
 	}
 
 
+	public String getUser_id_ht() {
+		return user_id_ht;
+	}
+
+
+	public void setUser_id_ht(String user_id_ht) {
+		this.user_id_ht = user_id_ht;
+	}
+
+
 	public int getHeart() {
 		return heart;
 	}
@@ -396,11 +408,15 @@ public class Board {
 				+ small_title + ", ftitle=" + ftitle + ", category=" + category + ", location=" + location + ", lat="
 				+ lat + ", lon=" + lon + ", ad1=" + ad1 + ", ad2=" + ad2 + ", fcontain=" + fcontain + ", fncontain="
 				+ fncontain + ", fcalendar=" + fcalendar + ", fmaterials=" + fmaterials + ", fminfo=" + fminfo
-				+ ", fprecaution=" + fprecaution + ", user_id=" + user_id + ", heart=" + heart + ", rsum=" + rsum
-				+ ", rcount=" + rcount + ", f_create_date=" + f_create_date + ", f_status=" + f_status
-				+ ", originalFileName=" + originalFileName + ", renameFileName=" + renameFileName + ", introduce="
-				+ introduce + ", maxMember=" + maxMember + ", rank=" + rank + ", li=" + li + ", avgrv=" + avgrv + "]";
+				+ ", fprecaution=" + fprecaution + ", user_id=" + user_id + ", user_id_ht=" + user_id_ht + ", heart="
+				+ heart + ", rsum=" + rsum + ", rcount=" + rcount + ", f_create_date=" + f_create_date + ", f_status="
+				+ f_status + ", originalFileName=" + originalFileName + ", renameFileName=" + renameFileName
+				+ ", introduce=" + introduce + ", maxMember=" + maxMember + ", rank=" + rank + ", li=" + li + ", avgrv="
+				+ avgrv + "]";
 	}
+
+
+	
 	
 	
 
