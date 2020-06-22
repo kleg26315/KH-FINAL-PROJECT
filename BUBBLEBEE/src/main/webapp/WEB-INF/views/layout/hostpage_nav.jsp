@@ -73,7 +73,7 @@
 				</div>
 			<div id="profile" class="menu">
 			<div><img src="${contextPath}/resources/img/modify.png" width="20px" height="20px"></div>
-			 <div class="htitle">프로필수정</div>
+			 <div class="htitle" id="hupdateprofile">프로필수정</div>
 			</div>
 			<script type="text/javascript">
 			  $( document ).ready(function() {
@@ -96,6 +96,9 @@
 					location.href="binsertForm.bo";
 				})
 				
+				$('#hupdateprofile').click(function(){
+					location.href="hostUpdateProfile.ho";
+				});
 				
 			  });
 			</script>

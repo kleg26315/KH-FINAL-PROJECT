@@ -1,6 +1,7 @@
 package com.kh.bubblebee.host.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -83,6 +84,42 @@ public class HostServiceImpl implements HostService{
 	public ArrayList<Reply> selectReplyList(String hostId) {
 		return hDAO.selectReplyList(sqlSession,hostId);
 	}
+
+	@Override
+	public int selectQ(String hostId) {
+		return hDAO.selectQ(sqlSession,hostId);
+	}
+
+	@Override
+	public int selectA(String hostId) {
+		return hDAO.selectA(sqlSession,hostId);
+	}
+
+	@Override
+	public int updateMemberProfile(Member m) {
+		return hDAO.updateMemberProfile(sqlSession,m);
+	}
+
+	@Override
+	public int updateHostInfo(Host h) {
+		return hDAO.updateHostInfo(sqlSession,h);
+	}
+
+	@Override
+	public int hostLikeCheck(HashMap<String, String> map) {
+		return hDAO.hostLikeCheck(sqlSession,map);
+	}
+
+	@Override
+	public int deleteHostLike(HashMap<String, String> map) {
+		return hDAO.deleteHostLike(sqlSession,map);
+	}
+
+	@Override
+	public int insertHostLike(HashMap<String, String> map) {
+		return hDAO.insertHostLike(sqlSession,map);
+	}
+
 
 
 
