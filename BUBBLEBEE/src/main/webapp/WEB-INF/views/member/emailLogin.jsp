@@ -115,7 +115,8 @@
       function validate(){
     	  var email = $('#emailBox').val().trim();
     	  var pwd = $('#pwdBox').val().trim();
-	      
+    	  var regExpEmail = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+    	  
     	  if(email == ""){
   	          if (isToastShown) return;   // 토스트 메시지가 띄어져 있다면 함수를 끝냄
   	          isToastShown = true;
@@ -126,7 +127,7 @@
   	              isToastShown = false;
   	          }, 2700);
     		  return false;
-    	  } else if(!email.includes('@')){
+    	  } else if(regExpEmail.test(email)==false){
     		  if (isToastShown) return;  
   	          isToastShown = true;
   	          idFormToast.addClass('show'); 
