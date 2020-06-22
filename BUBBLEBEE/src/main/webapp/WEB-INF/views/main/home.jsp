@@ -459,6 +459,7 @@
 					url: 'location.do',
 					dataType: 'json',
 					success: function(data){
+						console.log(data);
 						// 마커를 표시할 위치와 title 객체 배열입니다
 						var positions = [];
 						var loc;
@@ -505,11 +506,13 @@
 						}
 						
 						// 마커에 클릭이벤트를 등록합니다
-						kakao.maps.event.addListener(marker, 'click', function() {
-						      // 마커 위에 인포윈도우를 표시합니다
-						    console.log("fno" + fno);
-						    location.href="detail.do?fno="+fno;
-						});
+						if(data.list.length != 0){
+							kakao.maps.event.addListener(marker, 'click', function() {
+							      // 마커 위에 인포윈도우를 표시합니다
+							    console.log("fno" + fno);
+							    location.href="detail.do?fno="+fno;
+							});
+						}
 					}
 				})
 			};
