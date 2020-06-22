@@ -161,4 +161,8 @@
 		where rownum = 1
 	</select>
 	
+	<insert id="addSlist">
+		insert into slist
+		values(seq_slist.nextval, #{ ono }, #{ userId }, #{ tcount })
+	</insert>
 </mapper> 	
