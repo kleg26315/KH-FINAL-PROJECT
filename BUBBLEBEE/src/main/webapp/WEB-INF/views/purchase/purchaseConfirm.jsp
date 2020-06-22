@@ -89,7 +89,7 @@
 						<input class = "submitFormSectionMainIntro" type = "text" value = "배송지"readonly style = "margin-top : 10px;">
 						<input class = "submitFormSectionMainData" type = "text" value = "${p.gaddress }"readonly style = "width : 90%; margin-top : 10px;">
 						<input class = "submitFormSectionMainIntro" type = "text" value = "잔여포인트 " style = "margin-top : 46px;">
-						<input class = "submitFormSectionMainData" type = "text" value = "${pp.p_money } 포인트" style = "margin-top : 46px;">
+						<input class = "submitFormSectionMainData" type = "text" value = "${pp.p_money } 포인트" style = "margin-top : 46px;" readonly>
 					</div>
 					<div>
 						<input  class = "submitBtn" type = "submit" value = "장바구니로 돌아가기" >
