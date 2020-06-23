@@ -29,6 +29,20 @@
 .navbar-nav>li{
 	font-size: 20px;
 }
+.alarmRedCircle{
+    position: absolute;
+    width: 21px;
+    height: 22px;
+    box-shadow: 0 2px 4px 0 rgba(33,37,41,.24);
+    top: 13px;
+    right: 523px;
+    z-index: 10;
+    color: white;
+    text-align: center;
+    background: red; border-radius: 70%; border: 0px;
+    cursor: pointer;
+    display: none;
+}
 </style>
 <body>
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
@@ -133,7 +147,7 @@
 					        <span class="alarm alarm_cover is_active_alarm">
 					        	<img id="alarm_img2" class="alarm_img" style="width: 30px; height: 30px; cursor: pointer; margin-right: 1rem;" src="${ pageContext.servletContext.contextPath }/resources/img/bell2.png" />
 					        </span>
-							
+							<span class="alarmRedCircle"></span>
 							<!-- 장바구니 이미지 -->
 					        <span class="icon icon_cover ">
 					        	<img id="cart_img1" class="cart_img" style="width: 30px; height: 30px; cursor: pointer; margin-right: 1rem;" src="${ pageContext.servletContext.contextPath }/resources/img/cart.png" />
@@ -584,7 +598,7 @@
         
         $('.message_modal_cover').hide();
         $('.is_active_alarm').hide();
-        $('.alarm_cover').click(function(e){
+        $('.alarm_cover, .alarmRedCircle').click(function(e){
         	e.stopPropagation();
         	if($('.message_modal_cover')[0].style.display=='none'){
         		$('.message_modal_cover').show();
@@ -647,27 +661,11 @@
         	e.stopPropagation();
         })
     </script>
-    <input id = "LRM12" type = "text" style = "display : none;" value = "${message }">
-    <script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script>
-    $(function(){
-/*     	var responseMessage = "<c:out value="${message}" />";
-   		var responseMessage = ${message}; */
-		var responseMessage = $("#LRM12").val();
-   		console.log("씨발련이 : " + responseMessage);
-        if(responseMessage != ""){
-            alert(responseMessage)
-            console.log(responseMessage);
-        }
-//     	var responseMessage = ${message}
-//     	alert(responseMessage)
-    })     
-    </script>
     
     <!-- 알림 스크립트 -->
     <script>
     var socket = null;
-	    var wsUri = "ws://localhost:8780/bubblebee/count";
+	    var wsUri = "ws://"+location.host+"/bubblebee/count";
 	    function send_message(){
 	        websocket = new WebSocket(wsUri);
 	        socket = websocket;
@@ -696,7 +694,12 @@
 	    	realData = evt.data.split('&');
 	    	console.log(realData[1]);
 	   		$('.num').text(realData[0]);	
-	   		
+	   		if(realData[0] != 0){
+	   			$('.alarmRedCircle').show();
+	   			$('.alarmRedCircle').text(realData[0]);
+	   		} else{
+	   			$('.alarmRedCircle').hide();
+	   		}
 			if(realData[1] != "[]"){
 				var data = realData[1].substr(1, ( realData[1].length)-3 );
 		   		var myArrayData1 =[];
