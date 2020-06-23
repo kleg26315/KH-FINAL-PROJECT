@@ -50,7 +50,8 @@
 	<select id="selectBoard" resultType="Board">
 		select *
 		from board
-		where user_id = #{hostId}
+		where user_id = #{hostId} and f_status ='Y'
+		order by fno desc
 	</select>
 	
 	<insert id="insertHostQnA">

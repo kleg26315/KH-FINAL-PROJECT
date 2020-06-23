@@ -33,6 +33,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 .btn_wrap{display: flex;}
 .button{flex-grow: 1;margin-top: 10px;height: 30px;}
 .button button{width: 90%;height: 100%;border: none;background:#F39C12;border-radius: 5px;}
+.thimg_wrap:hover{cursor: pointer;}
 
 /* 클래스 X */
 .no_result_all{margin: 60px 0;}
@@ -94,8 +95,25 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 			<div class="main_all">
 				<c:forEach var="b" items="${bList}">
 		    <!-- 진행중인 모임이 있을 때  -->
+			    <c:url var="bdetail" value="detail.bo">
+	            	<c:param name="fno" value="${ b.fno }"/>
+	            	<c:param name="page" value="${ pi.currentPage }"/>
+	            </c:url>
+	            <c:set var="rf2" value="${ b.renameFileName }"/>
+                     <% 
+                     	String rf2 = (String)pageContext.getAttribute("rf2");
+                     	String str2 = null;
+                     	if(!rf2.contains(",")) {
+                     		str2 = rf2;
+                     	} else {
+                     		int idx2 = rf2.indexOf(",");
+                			str2 = rf2.substring(0, idx2);
+                     	}
+            			
+            			pageContext.setAttribute("str2", str2);
+                 %> 
 		    	<div class="class_all">
-		    		<div><img src="${contextPath}/resources/img/nightsky.jpg" width="250px" height="200px"></div>
+		    		<div class="thimg_wrap"><img src="${contextPath }/resources/buploadFiles/${ str2 }" width="250px" height="200px"></div>
 			    	<div class="text_wrap">
 			    		<div>
 			    			<div class="text">
@@ -109,22 +127,27 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 			    			<div class="text">
 			    				<div class="img_wrap"><img src="${contextPath}/resources/img/place.png" width="18px" height="18px" ></div>
 			    				<div>
-			    				${b.location}
+			    				<c:forTokens items="${b.location}" delims="/  " var="bl" varStatus="bstatus">
+			    				<c:if test="${ bstatus.count == 2 || bstatus.count == 3 }">
+			    					${bl}
+			    				</c:if>
+			    				</c:forTokens>
 			    				</div>
 			    			</div>
 			    			<div class="text">
 			    				<div class="img_wrap"><img src="${contextPath}/resources/img/coin.png" width="18px" height="18px" ></div>
-			    				<div>개인비용</div>
+			    				<div>${b.price}원</div>
 			    			</div>
 			    		</div>
 			    		<div class="btn_wrap">
 			    			<div class="button" id="modifybtn"><c:url var="mo" value="bupdate1.bo?fno=${b.fno}"/><button><a href="${mo }">수정</a></button></div>
-			    			<div class="button" id="deletebtn"><button>삭제</button></div>
+			    			<div class="button" id="deletebtn"><c:url var="delete" value="bdelete.bo?fno=${b.fno}"/><button><a href="${delete}"></a>삭제</button></div>
 			    		</div>
 			    	</div>
 		    	</div>
 				</c:forEach>
-				<!-- 페이징 영역 -->
+		    </div>
+		    	<!-- 페이징 영역 -->
 				<div id="paging" style="margin-left:50%; margin-top:30px; font-size:20px;">
 		      <!-- [이전] -->
 				<c:if test="${ pi.currentPage <= 1 }">
@@ -166,7 +189,6 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 				</c:if>
 			
 			</div>
-		    </div>
 			</c:if>
 		 </div>
 	</div>
@@ -181,10 +203,10 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 					window.alert('취소');	
 				}
 			});
+			$('.thimg_wrap').click(function(){
+				location.href="${bdetail}";
+			});
 			
-			$('#modifybtn').click(function(){
-				location.href="";
-			})
 		});
 	</script>
    </section>
