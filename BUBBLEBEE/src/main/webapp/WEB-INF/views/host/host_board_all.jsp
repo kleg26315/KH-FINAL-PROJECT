@@ -141,7 +141,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 			    		</div>
 			    		<div class="btn_wrap">
 			    			<div class="button" id="modifybtn"><c:url var="mo" value="bupdate1.bo?fno=${b.fno}"/><button><a href="${mo }">수정</a></button></div>
-			    			<div class="button" id="deletebtn"><c:url var="delete" value="bdelete.bo?fno=${b.fno}"/><button><a href="${delete}"></a>삭제</button></div>
+			    			<div class="button" id="deletebtn"><a href="bdelete.bo?fno=${b.fno}"></a><button>삭제</button></div>
 			    		</div>
 			    	</div>
 		    	</div>

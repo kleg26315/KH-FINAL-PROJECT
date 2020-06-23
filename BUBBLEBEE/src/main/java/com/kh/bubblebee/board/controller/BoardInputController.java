@@ -244,10 +244,15 @@ public class BoardInputController {
 			int result1 = bService.deleteBoard(fno);
 			int result2 = bService.deleteBoardOption(fno);
 			
-			if(result1 > 0 && result2 > 0) {
-				return "redirect:blist.bo";
+			if(result1 > 0 ) {
+				if(result2 > 0) {
+					return "redirect:hostpage.ho";
+				}else {
+					throw new BoardException("게시글 삭제 실패 옵션 안지워짐");
+				}
 			}else {
 				throw new BoardException("게시글 삭제 실패");
 			}
 		}
+		
 	}
