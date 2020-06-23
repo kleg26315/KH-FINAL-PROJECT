@@ -220,11 +220,11 @@ public class MypageController {
 			return renameFileName;
 		}
 		
-		// 후기
-		@RequestMapping("myreview.mg")
-		public String myreview() {
-			return "myreview";
-		}
+//		// 후기
+//		@RequestMapping("myreview.mg")
+//		public String myreview() {
+//			return "myreview";
+//		}
 		// 비밀번호 업데이트form
 		@RequestMapping("updatePwdForm.mg")
 		public String updatePwd() {
