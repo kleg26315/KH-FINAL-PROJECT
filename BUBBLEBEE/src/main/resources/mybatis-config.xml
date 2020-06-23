@@ -29,5 +29,6 @@
 		<mapper resource="mappers/host-mapper.xml"/>
 		<mapper resource = "mappers/purchase-mapper.xml"/>
 		<mapper resource = "mappers/account-mapper.xml"/>
+		<mapper resource = "mappers/review-mapper.xml"/>
 	</mappers>
 </configuration>
