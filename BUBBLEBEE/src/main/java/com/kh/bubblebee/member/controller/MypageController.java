@@ -56,7 +56,12 @@ public class MypageController {
 	}
 	//좋아요(호스트)
 	@RequestMapping("mylikehost.mg")
-	public String mylikehost() {
+	public String mylikehost(HttpSession session) {
+		
+		String userId = ((Member)session.getAttribute("loginUser")).getId();
+		
+//		ArrayList<Host> hList = mgService.mylikeHost();
+
 		return "mylikehost";
 	}
 	//참여 모임/클래스
@@ -220,11 +225,12 @@ public class MypageController {
 			return renameFileName;
 		}
 		
-		// 후기
-		@RequestMapping("myreview.mg")
-		public String myreview() {
-			return "myreview";
-		}
+//		// 후기
+//		@RequestMapping("myreview.mg")
+//		public String myreview() {
+//			return "myreview";
+//		}
+	
 		// 비밀번호 업데이트form
 		@RequestMapping("updatePwdForm.mg")
 		public String updatePwd() {

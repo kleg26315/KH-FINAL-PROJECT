@@ -56,7 +56,7 @@
 		      		<div id="likebtn"><i class="fas fa-bookmark"></i></div>
 		      	</div>
 		      	<div id="intro2">
-		      	<span id="intro2_text">개설 ${pi.listCount} | 후기 24 | 좋아요 46</span>
+		      	<span id="intro2_text">개설 ${pi.listCount} | 후기 24 | 좋아요 ${ likeCount }</span>
 		      	</div>
 	      	</div>
 	      </div>	
@@ -72,7 +72,9 @@
 	      	후기
 	      	</button>
 	      </div>
-	    
+	    	<div>
+	    	
+	    	</div>
       </div>
    </section>
    <script>

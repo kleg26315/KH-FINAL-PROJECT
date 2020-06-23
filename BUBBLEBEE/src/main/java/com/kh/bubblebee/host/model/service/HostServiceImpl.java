@@ -130,5 +130,10 @@ public class HostServiceImpl implements HostService{
 		return hDAO.hostBoardAll(sqlSession,pi,map);
 	}
 
+	@Override
+	public int likeCount(String hostId) {
+		return hDAO.likeCount(sqlSession,hostId);
+	}
+
 
 }

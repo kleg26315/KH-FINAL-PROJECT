@@ -145,6 +145,12 @@ public class BoardDAO {
 	public ArrayList<Board> selectUpCList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectUpCList");
 	}
+
+	public ArrayList<Option> selectOption(SqlSessionTemplate sqlSession, int fno) {
+		return (ArrayList)sqlSession.selectList("purchaseMapper.selectOption",fno);
+	}
+
+	
 	
 	
 }
