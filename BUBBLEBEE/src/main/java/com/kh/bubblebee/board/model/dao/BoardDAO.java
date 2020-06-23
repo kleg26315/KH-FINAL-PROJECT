@@ -130,7 +130,7 @@ public class BoardDAO {
 	
 	public int deleteBoard(SqlSessionTemplate sqlSession, int fno) {
 		// TODO Auto-generated method stub
-		return sqlSession.delete("boardMapper.deleteBoard", fno);
+		return sqlSession.update("boardMapper.deleteBoard", fno);
 	}
 
 	public int deleteBoardOption(SqlSessionTemplate sqlSession, int fno) {
