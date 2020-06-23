@@ -86,5 +86,9 @@ public class PurchaseDAO {
 		return sqlSession.selectOne("purchaseMapper.selectPPoint", user_id);
 	}
 
+	public int addSlist(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.insert("purchaseMapper.addSlist", map);
+	}
+
 
 }

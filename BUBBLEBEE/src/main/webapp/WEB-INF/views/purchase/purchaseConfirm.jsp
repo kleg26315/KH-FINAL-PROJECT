@@ -24,7 +24,7 @@
 		
 	</header>
 	
-		<form id = "submitForm" >
+		<form id = "submitForm" action = "redirect.pu" method = "post">
 			<section id = "submitFormSection">
 				<div id = "submitFormSectionMain">
 					<h3 id = "submitFormSectionMainH">
@@ -57,7 +57,7 @@
 					</div>
 					<div class = "submitFormSectionMainD">
 						<input class = "submitFormSectionMainIntro" type = "text" value = "할인금액" readonly>
-						<input class = "submitFormSectionMainData" type = "text" value = "${p.discount} 포인트 " readonly>
+						<input class = "submitFormSectionMainData" type = "text" value = " ${p.ocode * c.price - p.gpay} 포인트 " readonly>
 					</div>
 					<div class = "submitFormSectionMainD">
 						<input class = "submitFormSectionMainIntro" type = "text" value = "최종금액" readonly>
@@ -89,7 +89,7 @@
 						<input class = "submitFormSectionMainIntro" type = "text" value = "배송지"readonly style = "margin-top : 10px;">
 						<input class = "submitFormSectionMainData" type = "text" value = "${p.gaddress }"readonly style = "width : 90%; margin-top : 10px;">
 						<input class = "submitFormSectionMainIntro" type = "text" value = "잔여포인트 " style = "margin-top : 46px;">
-						<input class = "submitFormSectionMainData" type = "text" value = "${pp.p_money } 포인트" style = "margin-top : 46px;">
+						<input class = "submitFormSectionMainData" type = "text" value = "${pp.p_money } 포인트" style = "margin-top : 46px;" readonly>
 					</div>
 					<div>
 						<input  class = "submitBtn" type = "submit" value = "장바구니로 돌아가기" >

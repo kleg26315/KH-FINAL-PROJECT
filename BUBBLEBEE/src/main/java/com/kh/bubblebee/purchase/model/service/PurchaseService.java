@@ -1,6 +1,7 @@
 package com.kh.bubblebee.purchase.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.kh.bubblebee.board.model.vo.Board;
@@ -42,5 +43,7 @@ public interface PurchaseService {
 	int insertPused(String user_id, String discountP, String comment);
 
 	PPoint selectPPoint(String user_id);
+
+	int addSlist(HashMap<String, String> map);
 
 }

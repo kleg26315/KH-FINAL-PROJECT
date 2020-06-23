@@ -150,6 +150,7 @@ public class PurchaseController {
 				int purchaseThis1 = pService.insertPurchase(param);
 				PChoose c = pService.selectPChoose(ono);
 				PBoard b = pService.selectBPBoard(fno);
+				PPoint pp = pService.selectPPoint(user_id);
 				
 				int discount1 = Integer.parseInt(discountPrice);
 				int discount2 = presentPoint - discount1;
@@ -171,6 +172,7 @@ public class PurchaseController {
 					mv.addObject("p", p);
 					mv.addObject("c", c);
 					mv.addObject("b",b);
+					mv.addObject("pp", pp);
 					mv.setViewName("purchaseConfirm");
 				}else {
 					throw new PurchaseException("결제에 실패하였습니다!");
@@ -306,6 +308,47 @@ public class PurchaseController {
 		}else {
 			mv.addObject("message", "로그인이 필요한 서비스입니다.");
 		}
+		return mv;
+	}
+	
+	@RequestMapping("addslist.pu")
+	public ModelAndView addSlist(@RequestParam(value = "fNo") String fno, 
+			ModelAndView mv,HttpSession session, 
+			@RequestParam(value = "oNo")String ono, 
+			@RequestParam(value = "ocode")String ocode,
+			HttpServletResponse response
+			) {
+		
+		String onoo = ono.replace(",","");
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		if(loginUser != null) {
+			String userId = loginUser.getId();
+			
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("userId", userId);
+			map.put("ono", onoo);
+			map.put("tcount", ocode);
+			
+			int result = pService.addSlist(map);
+			
+			if(result > 0) {
+				mv.addObject("ono", onoo).addObject("tcount",ocode).setViewName("redirect:myslist.mg");
+			}else {
+				throw new PurchaseException("장바구니 추가에 실패하였습니다.");
+			}
+		}else {
+			mv.addObject("message", "로그인이 필요한 서비스입니다.");
+		}
+		return mv;
+	}
+
+	@RequestMapping("redirect")
+	public ModelAndView redirectMethod(ModelAndView mv) {
+		
+		mv.setViewName("redirect:home.do");
+		
 		return mv;
 	}
 	

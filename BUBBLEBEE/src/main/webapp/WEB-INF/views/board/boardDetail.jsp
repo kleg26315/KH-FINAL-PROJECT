@@ -43,7 +43,7 @@
 				클래스
 			</c:if>
 			<c:if test="${ b.ftype == 3 }">
-				클래스
+				작품
 			</c:if>
 			상세보기</h2>
 			<!-- 사진 슬라이드 보기 -->
@@ -179,7 +179,7 @@
 					</div>
 
 					<div class="hashTagLocation">진행 장소</div>
-					<div class="hashTagIntroduceContent" id="map"></div>
+					<div class="hashTagLocationContent" id="map"></div>
 					<div class="hashTagLocationInfo" id="address">${ b.location }</div>
 
 					<div class="hashTagLocationPaste">
@@ -243,7 +243,7 @@
 				</div>
 			</div>
 		</div>
-		<form action = "purchase1First.pu" method = "post">
+		<form method = "post">
 			<input type = "text" style = "display : none" value = "${b.fno }" name = "fNo">
 			<div id="detailMainForm2" class="detailMainForm">
 				<h3 style = "font-size : 16pt; font-weight : 600; margin-left : 1%;">
@@ -255,7 +255,6 @@
 <%-- 					<c:forEach var = "pu" items = "${p }" varStatus = "index"> --%>
 <%-- 						<option selected value = "${pu.ono }">${ pu.oname } ${pu.price}원       재고 : ${pu.ocount }개</option> --%>
 <%-- 					</c:forEach> --%>
-					
 <!-- 				</select>  -->
 					
 						<hr style = "margin-top : 6px;">
@@ -313,11 +312,11 @@
 					style="width : 310px; height: 40px;  background-color: rgb(249, 249, 249); border: none; outline : none;" >
 					</div>
 					<div>
-					<input  class = "loginUserNull2" id = "comfirmNull3" type="submit" value = "장바구니에 담기" 
+					<input  class = "loginUserNull2" id = "comfirmNull3" type="submit" value = "장바구니에 담기" onclick="javascript: form.action='addslist.pu';"
 					style = "width : 310px;; height: 40px; margin-top : 100%; background-color : gold; border:none; border-radius : 2px 2px; outline : none;">
 					</div>
 					<div style = "margin-top : 4px;">
-					<input  class = "loginUserNull2" id = "comfirmNull4" type="submit" value="참가하기" 
+					<input  class = "loginUserNull2" id = "comfirmNull4" type="submit" value="참가하기" onclick="javascript: form.action='purchase1First.pu';"
 					style="width : 310px; height: 40px;  background-color: gold; border: none; outline : none;">
 					</div>
 				</c:if>
@@ -325,15 +324,10 @@
 			</div>
 			
 		</form>
-		<div class="recommendation">
-			<div class="recommendationIntroduce">이런 클래스는 어때요?</div>
-			<div class="recommendationContents">클래스 추천 목록</div>
-		</div>
-		<div class="blank"></div>
 	</section>
 	<!--  -->
 	<div style = "display : none">
-		<input type = "text" style = "display : none">
+		<input type = "text" style = "display : none">ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹ
 	</div>
 	
 	<footer id="footer" style="padding-top: 115px;">
