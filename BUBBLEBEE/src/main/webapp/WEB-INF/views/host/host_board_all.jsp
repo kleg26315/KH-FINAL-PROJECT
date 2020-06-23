@@ -118,7 +118,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 			    			</div>
 			    		</div>
 			    		<div class="btn_wrap">
-			    			<div class="button" id="modifybtn"><input type="hidden" name="fno" value="${b.fno}"><button>수정</button></div>
+			    			<div class="button" id="modifybtn"><c:url var="mo" value="bupdate1.bo?fno=${b.fno}"/><button><a href="${mo }">수정</a></button></div>
 			    			<div class="button" id="deletebtn"><button>삭제</button></div>
 			    		</div>
 			    	</div>
