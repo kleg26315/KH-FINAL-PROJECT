@@ -111,6 +111,10 @@ public class HostDAO {
 		return (ArrayList)sqlSession.selectList("hostMapper.hostBoardAll",map,rowBounds);
 	}
 
+	public int likeCount(SqlSessionTemplate sqlSession, String hostId) {
+		return sqlSession.selectOne("hostMapper.likeCount",hostId);
+	}
+
 	
 
 	

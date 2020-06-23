@@ -68,4 +68,8 @@ public interface BoardService {
 
 	ArrayList<Board> selectUpCList();
 
+	ArrayList<Option> selectOption(int fno);
+
+	
+
 }

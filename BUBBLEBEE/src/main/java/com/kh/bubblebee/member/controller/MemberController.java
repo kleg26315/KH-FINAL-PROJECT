@@ -362,4 +362,16 @@ public class MemberController {
 			throw new MemberException("임시 비밀번호 발급에 실패하였습니다.");
 		}
 	}
+	
+	@RequestMapping("prePwdCheck.me")
+	@ResponseBody
+	public String prePwdCheck(@RequestParam("id") String id, @RequestParam("pwd") String pwd) {
+		Member m = mService.emailSameCheck(id);
+		
+		if(bcryptPasswordEncoder.matches(pwd, m.getPwd())) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
 }

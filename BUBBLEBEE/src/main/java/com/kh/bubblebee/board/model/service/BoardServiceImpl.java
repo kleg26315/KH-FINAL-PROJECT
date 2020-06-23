@@ -162,7 +162,12 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<Board> selectUpCList() {
 		return bDAO.selectUpCList(sqlSession);
 	}
-	
+
+	@Override
+	public ArrayList<Option> selectOption(int fno) {
+		return bDAO.selectOption(sqlSession,fno);
+	}
+
 
 	
 }

@@ -179,7 +179,7 @@
 					</div>
 
 					<div class="hashTagLocation">진행 장소</div>
-					<div class="hashTagIntroduceContent" id="map"></div>
+					<div class="hashTagLocationContent" id="map"></div>
 					<div class="hashTagLocationInfo" id="address">${ b.location }</div>
 
 					<div class="hashTagLocationPaste">
@@ -324,15 +324,10 @@
 			</div>
 			
 		</form>
-		<div class="recommendation">
-			<div class="recommendationIntroduce">이런 클래스는 어때요?</div>
-			<div class="recommendationContents">클래스 추천 목록</div>
-		</div>
-		<div class="blank"></div>
 	</section>
 	<!--  -->
 	<div style = "display : none">
-		<input type = "text" style = "display : none">
+		<input type = "text" style = "display : none">ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹ
 	</div>
 	
 	<footer id="footer" style="padding-top: 115px;">
