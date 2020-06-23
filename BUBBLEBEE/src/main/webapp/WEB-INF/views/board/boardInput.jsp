@@ -676,7 +676,7 @@
 							var result = confirm('모임/클래스/판매 등록 완료');
 							if(result){
 								$('#form').submit();
-// 								localStorage.removeItem(loginUser);
+ 								localStorage.removeItem(loginUser);
 							} else{
 								alert('등록을 취소합니다.');
 							}
@@ -693,6 +693,10 @@
    </footer>
    
 		<script>
+			$('.b_An').click(function(e){
+				addressInfo();
+			});
+		
 			function addressInfo(){
 				var address = $('.postcodify_address').val();
 				//console.log(address);
@@ -776,10 +780,10 @@
 		
 		//포함사항, 불포함사항, 준비물, 유의사항 500자 제한
 		$(function(){
-			$('.bIncluded').keyup(function(e){
+			$('.bIncluded').click(function(e){
 				// console.log(this);
 				var counter = $(this).val();
-				addressInfo();
+				
 				$(this).next().html(counter.length);
 				if(counter.length >= 500){
 					$(this).next().css('color', 'red');
@@ -790,13 +794,14 @@
 			$(this).next().keyup();
 		});
 		
+		
 		//자동저장
 		window.onload = function(){
 			gettheLocal();
 		}
 		
 		var loginUser = '${loginUser.id}';
-		$('.bIncluded, iframe').keyup(function(e){
+		$('.bIncluded, .se2_inputarea').click(function(e){
 			var editor = $('iframe').contents().find('iframe').contents().find('.se2_inputarea').text();
 			var test = [$('#fcontain').val(), $('#fncontain').val(), $('#fmaterials').val(), $('#fprecaution').val(), editor]
 			
@@ -822,20 +827,7 @@
 			}
 			console.log("arr : " + arr);
 		}
-// 			if(user_Id != kId){
-// 				document.querySelector('#fcontain').innerHTML = "";
-// 				localStorage.removeItem('fcontain');
-// 				localStorage.removeItem('fncontain');
-// 				localStorage.removeItem('fmaterials');
-// 				localStorage.removeItem('fprecaution');
-// 			}
-			
-// 		}
 		</script>
-		
-		
-	
-	
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 </body>
 </html>
