@@ -17,44 +17,46 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
-                    <h2 class="logo"><a href="#"> LOGO </a></h2>
+                    <h2 class="logo"><a href="home.do"><img src="${ pageContext.servletContext.contextPath }/resources/img/footerLogo.png"> </a></h2>
                 </div>
                 <div class="col-sm-2">
                     <h5>Get started</h5>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Sign up</a></li>
-                        <li><a href="#">Downloads</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-2">
-                    <h5>About us</h5>
-                    <ul>
-                        <li><a href="#">Company Information</a></li>
-                        <li><a href="#">Contact us</a></li>
-                        <li><a href="#">Reviews</a></li>
+                        <li><a href="home.do">Home</a></li>
+                        <li><a href="signUpView.me">Sign up</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-2">
                     <h5>Support</h5>
                     <ul>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Help desk</a></li>
-                        <li><a href="#">Forums</a></li>
+                        <li><a href="list.no">FAQ</a></li>
+                        <li><a href="javascript;" onclick="window.open('http://pf.kakao.com/_RdFxkxb', 'kT', 'width=500px, height=1000px, left=500px'); return false;">Help desk</a></li>
+                    </ul>
+                </div> 
+                <div class="col-sm-2">
+                    <h5 id="creator">Creator</h5>
+                    <ul>
+                        <li>
+                        	<a onclick="window.open('about:blank').location.href='https://github.com/kleg26315'">김경섭</a>
+                        	<a onclick="window.open('about:blank').location.href='https://github.com/SoulJ-K'" id="makeCenter">김솔지</a>
+                        </li>
+                        <li>
+                        	<a onclick="window.open('about:blank').location.href='https://github.com/HansolKim-joy'">김한솔</a>
+                        	<a onclick="window.open('about:blank').location.href='https://github.com/leehj00'" id="makeCenter">이화진</a>
+                        </li>
+                        <li>
+                        	<a onclick="window.open('about:blank').location.href='https://github.com/jhAg047">전희은</a>
+                        	<a onclick="window.open('about:blank').location.href='https://github.com/kuku2000213'" id="makeCenter">최규혁</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-sm-3">
-                    <div class="social-networks">
-                        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
-                    </div>
-                    <button type="button" class="btn btn-default">Contact us</button>
+                    <button type="button" class="btn btn-default" onclick="window.open('http://pf.kakao.com/_RdFxkxb', 'kT', 'width=500px, height=1000px, left=500px'); return false;">Contact us</button>
                 </div>
             </div>
         </div>
         <div class="footer-copyright">
-            <p>© 2016 Copyright Text </p>
+            <p>© 2020 Copyright Text </p>
         </div>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
