@@ -63,7 +63,7 @@ $(".CLK").on("click", function(){
 	CONT2.css('float', 'left');
 	CONT2.css('margin-top', '16px');
 	CONT2.css('font-size', '14pt');
-	CONT2.css('color', 'gold');
+	CONT2.css('color', '#F39C12');
 	CONT2.css('font-weight', '900');
 	
 	BTN1.css("margin-left" , "74%");

@@ -10,6 +10,7 @@
 <title>BUBLEBEE</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/boardDetail1.css" type="text/css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/boardDetail3.css" type="text/css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/boardBonjour.css" type="text/css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&displ ay=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
@@ -33,7 +34,7 @@
 		<%@ include file="../layout/header.jsp"%>
 	</header>
 	
-	<section style="padding-top: 115px; padding-left: 5%; width: 85%;">
+	<section style="float : left; width : 78%; margin-left : 6%; margin-top : 78px;">
 		<div id="detailMainForm1" class="detailMainForm">
 			<h2>
 			<c:if test="${ b.ftype == 1}">
@@ -245,7 +246,7 @@
 		</div>
 		<form method = "post">
 			<input type = "text" style = "display : none" value = "${b.fno }" name = "fNo">
-			<div id="detailMainForm2" class="detailMainForm">
+			<div id="detailMainForm2" class="positionfixed detailMainForm">
 				<h3 style = "font-size : 16pt; font-weight : 600; margin-left : 1%;">
 					옵션 선택
 				</h3>
@@ -294,7 +295,7 @@
 				<c:if test = "${loginUser == null }">
 					<div>
 					<input class = "loginUserNull" id = "loginUserNull1" type="button" value = "장바구니에 담기" 
-					style = "width : 310px; height: 40px; margin-top : 100%; background-color : rgb(249, 249, 249); border:none; border-radius : 2px 2px; outline : none;" >
+					style = "width : 310px; height: 40px; margin-top : 80%; background-color : rgb(249, 249, 249); border:none; border-radius : 2px 2px; outline : none;" >
 					</div>
 					<div style = "margin-top : 4px;">
 					<input class = "loginUserNull" id = "loginUserNull2" type="button" value="참가하기" 
@@ -313,34 +314,41 @@
 					</div>
 					<div>
 					<input  class = "loginUserNull2" id = "comfirmNull3" type="submit" value = "장바구니에 담기" onclick="javascript: form.action='addslist.pu';"
-					style = "width : 310px;; height: 40px; margin-top : 100%; background-color : gold; border:none; border-radius : 2px 2px; outline : none;">
+					style = "width : 310px;; height: 40px; margin-top : 100%; background-color : #F39C12; color : white; border:none; border-radius : 2px 2px; outline : none;">
 					</div>
 					<div style = "margin-top : 4px;">
 					<input  class = "loginUserNull2" id = "comfirmNull4" type="submit" value="참가하기" onclick="javascript: form.action='purchase1First.pu';"
-					style="width : 310px; height: 40px;  background-color: gold; border: none; outline : none;">
+					style="width : 310px; height: 40px;  background-color: #F39C12; border: none; color : white; outline : none;">
 					</div>
 				</c:if>
-				
 			</div>
-			
 		</form>
+	</section>
+	<section class = "bonjour">
+		<header class = "bonjour1">
+			<div class="recommendationIntroduce" style = "float : left; width : 58%; margin-left : 21%; height : 280px;" >
+				<div style = "font-size : 16pt; font-weight : 600; float : left; width : 90%; margin-left : 5%; margin-top : 40px;">
+					이런 클래스는 어때요?
+				</div>
+			</div>
+		</header>
 		<div class="recommendation">
-			<div class="recommendationIntroduce">이런 클래스는 어때요?</div>
-			<div class="recommendationContents">클래스 추천 목록</div>
+			
 		</div>
 		<div class="blank"></div>
 	</section>
 	<!--  -->
-	<div style = "display : none">
-		<input type = "text" style = "display : none">
-	</div>
+<!-- 	<div style = "display : none"> -->
+<!-- 		<input type = "text" style = "display : none"> -->
+<!-- 	</div> -->
 	
 	<footer id="footer" style="padding-top: 115px;">
 		<c:import url="../layout/footer.jsp"/>
 	</footer>		
 	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDhansol2.js"></script>
-	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDoption.js?ver=3"></script>
+	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDoption.js?ver=4"></script>
 	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDkakaomap.js"></script>
-	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDloginusernull.js?ver=1"></script>
+	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDloginusernull.js?ver=7"></script>
+	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDscroll.js?ver=6"></script>
 </body>
 </html>
