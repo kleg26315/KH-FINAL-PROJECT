@@ -201,11 +201,11 @@
 								      	</c:if>
 								      	<c:if test="${not empty slist}">
 								      		<c:forEach var="s" items="${ slist }">
-								      			<a class="list_el" href="/course/스프링-데이터-JPA-실전">
-												  <div class="thumb_content"><img src="https://cdn.inflearn.com/public/courses/324474/course_cover/58c8632c-7a6e-4c76-9893-d7fffa32faf2/kyh_JPA_Spring2%20%E1%84%87%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%206.png"></div>
+								      			<a class="list_el" href="detail.bo?fno=${s.fno }">
+												  <div class="thumb_content"><img src="${contextPath }/resources/buploadFiles/${ s.renameFileName}"></div>
 												  <div class="item_content">
-												    <p class="item_title">실전! 스프링 데이터 JPA</p>
-												    <p class="item_price">₩88,000</p>
+												    <p class="item_title">${s.ftitle }</p>
+												    <p class="item_price">&#8361;${s.price }</p>
 												  </div>
 												</a>
 								      		</c:forEach>
@@ -218,11 +218,11 @@
 								      	</c:if>
 								      	<c:if test="${not empty hlist}">
 								      		<c:forEach var="h" items="${ hlist }">
-								      			<a class="list_el" href="/course/스프링-데이터-JPA-실전">
-												  <div class="thumb_content"><img src="https://cdn.inflearn.com/public/courses/324474/course_cover/58c8632c-7a6e-4c76-9893-d7fffa32faf2/kyh_JPA_Spring2%20%E1%84%87%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%206.png"></div>
+								      			<a class="list_el" href="detail.bo?fno=${h.fno }">
+												  <div class="thumb_content"><img src="${contextPath }/resources/buploadFiles/${ h.renameFileName}"></div>
 												  <div class="item_content">
-												    <p class="item_title">실전! 스프링 데이터 JPA</p>
-												    <p class="item_price">₩88,000</p>
+												    <p class="item_title">${h.ftitle }</p>
+												    <p class="item_price">&#8361;${h.price }</p>
 												  </div>
 												</a>
 								      		</c:forEach>
@@ -682,7 +682,7 @@
 	        websocket.onerror = function(evt) {
 	            onError(evt);
 	        };
-	    } 
+	    }
 	   
 	    function onOpen(evt) 
 	    {

@@ -23,12 +23,16 @@ import com.kh.bubblebee.board.model.vo.PaginationLi;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.common.Pagination;
 import com.kh.bubblebee.host.model.vo.Host;
+import com.kh.bubblebee.member.model.service.MemberService;
 import com.kh.bubblebee.member.model.vo.Member;
 import com.kh.bubblebee.purchase.model.service.PurchaseService;
 import com.kh.bubblebee.purchase.model.vo.Purchase;
 
 @Controller
 public class BoardController {
+	
+	@Autowired
+	private MemberService mService;
 	
 	@Autowired
 	private BoardService bService;
@@ -151,8 +155,10 @@ public class BoardController {
 	}
 		
 	@RequestMapping("heart.bo")
-	public void heart(@RequestParam("fno") int fno, @RequestParam("uid") String uid, HttpServletResponse response) {
+	public void heart(@RequestParam("fno") int fno, @RequestParam("uid") String uid, HttpServletResponse response, HttpServletRequest request, HttpSession session) {
 		response.setContentType("application/json; charset=UTF-8");
+		session = request.getSession();
+		Member loginUser = (Member)session.getAttribute("loginUser");
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("uid", uid);
 		map.put("fno", fno);
@@ -167,8 +173,12 @@ public class BoardController {
 				if(heartIn > 0) {
 					//좋아요수 +1
 					int heartPl = bService.plusHeart(fno);
+	    			// 좋아요 조회
+	    			ArrayList<Board> hlist = mService.getHlist(loginUser.getId());
+	    			session.setAttribute("hlist", hlist);
 					
 					new Gson().toJson(heartIn, response.getWriter());
+					
 				}else {
 					throw new BoardException("실패!");
 				}
@@ -186,7 +196,9 @@ public class BoardController {
 			try {
 				//좋아요수 -1
 				int heartMn = bService.minusHeart(fno);
-				
+				// 좋아요 조회
+    			ArrayList<Board> hlist = mService.getHlist(loginUser.getId());
+    			session.setAttribute("hlist", hlist);
 				new Gson().toJson(heartIn, response.getWriter());
 			} catch (JsonIOException e) {
 				e.printStackTrace();
