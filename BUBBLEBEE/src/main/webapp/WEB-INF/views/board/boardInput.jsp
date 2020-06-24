@@ -14,7 +14,6 @@
 	<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/smartEditor/js/service/HuskyEZCreator2.js" charset="UTF-8"></script>
 </head>
 <style>
-
 </style>
 <body>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=be0b8d3e154f1e2bf1a278bd7fbf3d2a&libraries=services"></script>
@@ -281,7 +280,6 @@
 							$(obj).parent().parent().parent().next().remove();
 							$(obj).parent().parent().parent().parent().remove();
 						}
-
 						
 						function delete_file(obj){
 							$(obj).parent().parent().remove();
@@ -394,7 +392,6 @@
 						innerHtml += '<tr>';
 						innerHtml += '<td><input type="text" name="bDetail" class="bDetail"  placeholder="세부일정"></td>';
 						innerHtml += '</tr>';
-
 						$('#tbody2').append(innerHtml);
 					}else{
 						alert("최대 10개까지만 가능합니다.");
@@ -699,7 +696,7 @@
 		
 			function addressInfo(){
 				var address = $('.postcodify_address').val();
-				//console.log(address);
+				console.log(address);
 				
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 				    mapOption = {
