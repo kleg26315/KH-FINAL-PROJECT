@@ -11,11 +11,36 @@
 		select *
 		from rvlist
 		where user_id=#{user_id}
+		order by qno desc
 	</select>
 	
 	<insert id="insertReview">
 		insert into review
 		values(SEQ_REVIEW.nextval, #{qcontent}, sysdate, sysdate, 'Y', #{ref_fid}, #{user_id}, 'N', #{grade}, 1, #{ono})
 	</insert>
+	
+	<update id="updateReviewGrade">
+		update board
+		set rcount=rcount+1, rsum=rsum+#{grade}
+		where fno=#{ref_fid}
+	</update>
+	
+	<select id="selectMyReview" resultType="Review">
+		select *
+		from review
+		where qno=#{qno}
+	</select>
+	
+	<update id="updateReview">
+		update review
+		set grade=#{grade}, qcontent=#{qcontent}, q_modify_date=sysdate
+		where qno=#{qno}
+	</update>
+	
+	<update id="deleteReviewGrade">
+		update board
+		set rcount=rcount-1, rsum=rsum-#{exgrade}
+		where fno=#{ref_fid}
+	</update>
 	
 </mapper>

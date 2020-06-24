@@ -1,6 +1,7 @@
 package com.kh.bubblebee.member.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,26 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public int insertReview(Review r) {
 		return rDAO.insertReview(sqlSession, r);
+	}
+
+	@Override
+	public int updateReviewGrade(Review r) {
+		return rDAO.updateReviewGrade(sqlSession, r);
+	}
+
+	@Override
+	public Review selectMyReview(int qno) {
+		return rDAO.selectMyReview(sqlSession, qno);
+	}
+
+	@Override
+	public int updateReview(Review r) {
+		return rDAO.updateReview(sqlSession, r);
+	}
+
+	@Override
+	public int deleteReviewGrade(HashMap<String, Integer> map) {
+		return rDAO.deleteReviewGrade(sqlSession, map);
 	}
 	
 	
