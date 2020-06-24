@@ -170,6 +170,25 @@ public class BoardDAO {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectwFindFilterList", search);
 	}
 
+	public int getClassListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("boardMapper.getClassListCount");
+	}
+
+	public ArrayList<Board> selectClassList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("boardMapper.selectClassList", null, rowBounds);
+	}
+
+	public int agreeClass(SqlSessionTemplate sqlSession, String fno) {
+		return sqlSession.update("boardMapper.agreeClass", fno);
+	}
+
+	public int rejectClass(SqlSessionTemplate sqlSession, String fno) {
+		return sqlSession.update("boardMapper.rejectClass", fno);
+	}
+
 	
 	
 	
