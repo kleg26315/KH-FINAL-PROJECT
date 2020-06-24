@@ -175,7 +175,7 @@
 		where user_id like '%' || #{search} || '%'
 		or ftitle like '%' || #{search} || '%'
 		or small_title like '%' || #{search} || '%'
-		or f_status = 'Y'
+		and f_status = 'Y'
 	</select>
 	
 	<select id="getFindListCount" resultType="_int">
@@ -184,7 +184,7 @@
 		where user_id like '%' || #{search} || '%'
 		or ftitle like '%' || #{search} || '%'
 		or small_title like '%' || #{search} || '%'
-		or f_status = 'Y'
+		and f_status = 'Y'
 	</select>
 	
 	<select id="selectwList" resultType="Board">
@@ -256,5 +256,72 @@
 			order by avgrv desc)
 		where rnum<5
 		]]>
+	</select>
+	
+	<select id="selectHeartList" resultType="_int">
+		select fno2
+		from heart
+		where user_id_ht = #{id}	
+	</select>
+	
+	<select id="getFindFilterListCount" resultType="_int">
+		select count(*)
+		from blist
+		where (ftitle like '%' || #{search} || '%'
+		or small_title like '%' || #{search} || '%')
+		and f_status = 'Y' and 
+		<![CDATA[ 
+			price>=#{sc.startPrice} and price<=#{sc.endPrice}
+		 ]]>
+		<if test='ad2 != null'>
+			and ad1=#{ad1} and ad2=#{ad2} 
+		</if> 
+	</select>
+	
+	<select id="selectFindFilterList" parameterType="map" resultType="Board">
+		select *
+		from(select FNO, FTYPE, PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, AD1, AD2, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, RANK, RENAMEFILENAME, 'hy' li
+		     from blist
+		     where fno in (select fno2
+		                   from heart
+		                   where user_id_ht=#{id})   
+		    union
+		    select FNO, FTYPE, PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, AD1, AD2, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, RANK, RENAMEFILENAME, 'hn' li
+		    from blist
+		    where fno not in (select fno2
+		                      from heart
+		                      where user_id_ht=#{id}) )
+		where (ftitle like '%' || #{search} || '%'
+		or small_title like '%' || #{search} || '%')
+		and f_status = 'Y' and
+		<![CDATA[ 
+			price>=#{sc.startPrice} and price<=#{sc.endPrice}
+		 ]]>
+		<if test='ad2 != null'>
+			and ad1=#{ad1} and ad2=#{ad2}
+		</if> 
+			<if test='sc.popular != null'>
+		    	order by rank desc
+		    </if>
+		    <if test='sc.latest != null'>
+		    	order by f_create_date desc
+		    </if>
+		    <if test='sc.rate != null'>
+				order by (rsum/decode(rcount,0,1,rcount)) desc
+		    </if>
+		    <if test='sc.highprice != null'>
+		    	order by price desc
+		    </if>
+		    <if test='sc.lowprice != null'>
+		    	order by price
+		    </if>
+	</select>
+	
+	<select id="selectwFindFilterList" resultType="Board">
+		select DISTINCT AD1, AD2
+		from BLIST
+		where (ftitle like '%' || #{search} || '%'
+		or small_title like '%' || #{search} || '%')
+		and f_status = 'Y'
 	</select>
 </mapper>

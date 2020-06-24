@@ -202,7 +202,20 @@
 								      	<c:if test="${not empty slist}">
 								      		<c:forEach var="s" items="${ slist }">
 								      			<a class="list_el" href="detail.bo?fno=${s.fno }">
-												  <div class="thumb_content"><img src="${contextPath }/resources/buploadFiles/${ s.renameFileName}"></div>
+												  <div class="thumb_content">
+												  <c:set var="rf" value="${ s.renameFileName }"/>
+								                     <% 
+								                     	String rf = (String)pageContext.getAttribute("rf");
+								                     	String str = null;
+								                     	if(!rf.contains(",")) {
+								                     		str = rf;
+								                     	} else {
+								                     		int idx2 = rf.indexOf(",");
+								                			str = rf.substring(0, idx2);
+								                     	}
+								            			pageContext.setAttribute("str", str);
+								                     %>     
+												  <img src="${contextPath }/resources/buploadFiles/${ str}"></div>
 												  <div class="item_content">
 												    <p class="item_title">${s.ftitle }</p>
 												    <p class="item_price">&#8361;${s.price }</p>
@@ -219,7 +232,20 @@
 								      	<c:if test="${not empty hlist}">
 								      		<c:forEach var="h" items="${ hlist }">
 								      			<a class="list_el" href="detail.bo?fno=${h.fno }">
-												  <div class="thumb_content"><img src="${contextPath }/resources/buploadFiles/${ h.renameFileName}"></div>
+												  <div class="thumb_content">
+												  <c:set var="rf" value="${ h.renameFileName }"/>
+								                     <% 
+								                     	String rf = (String)pageContext.getAttribute("rf");
+								                     	String str = null;
+								                     	if(!rf.contains(",")) {
+								                     		str = rf;
+								                     	} else {
+								                     		int idx2 = rf.indexOf(",");
+								                			str = rf.substring(0, idx2);
+								                     	}
+								            			pageContext.setAttribute("str", str);
+								                     %>     
+												  <img src="${contextPath }/resources/buploadFiles/${ str}"></div>
 												  <div class="item_content">
 												    <p class="item_title">${h.ftitle }</p>
 												    <p class="item_price">&#8361;${h.price }</p>
