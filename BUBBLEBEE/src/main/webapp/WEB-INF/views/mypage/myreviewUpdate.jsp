@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,12 +47,11 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 	   </nav>
 	    <div id="c_body">
 			<div id="content_list">
-			<form name="rinsert" action="reviewInsert.mg" id="form" method="POST">
+			<form name="rupdate" action="reviewUpdate.mg" id="form" method="POST">
           		<input name="ref_fid" type="hidden" value="${review.ref_fid }">
-          		<input name="ono" type="hidden" value="${review.ono }">
-<!-- 				 <input type="checkbox" id="rvsecret" name="rvsecret" value="Y"><label id="scr">비밀로 리뷰쓰기</label><br> -->
+          		<input name="qno" type="hidden" value="${review.qno }">
 				<c:if test="${ review.category == 'party' }">
-    				<label id="rvlb">[ 토크/파티 ] ${ review.ftitle } / ${ review.odeadline } 참여</label><br>
+    				<label id="rvlb">[ 토크/파티 ] ${ review.ftitle } / ${ review.odeadline } 참여 </label><br>
     			</c:if>
     			<c:if test="${ review.category == 'like' }">
     				<label id="rvlb">[ 취향 ] ${ review.ftitle } / ${ review.odeadline } 참여</label><br>
@@ -85,17 +85,57 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 					 <img src="<%=request.getContextPath()%>/resources/img/star.png" width="35px" height='35px' id="star4" class="star">
 					 <img src="<%=request.getContextPath()%>/resources/img/star.png" width="35px" height='35px' id="star5" class="star">
 			     </div>
+			     <label style="color:gray; font-size:17px; padding-top:10px;"> 작성일 : ${ review.q_modify_date }</label>
 				 <!-- 평점 넘기기 -->
 				 <input type="hidden" id="grade" name="grade">
+				 <input type="hidden" id="exgrade" name="exgrade" value="${review.grade}">
 	             <br clear="all"><br>
+	             <textarea id="qcontent" name="qcontent" rows="15" cols="" style="overflow-y:scroll; width: 100%; resize: none;">${review.qcontent}</textarea><br>
 	             
-	             <textarea id="qcontent" name="qcontent" rows="15" cols="" style="overflow-y:scroll; width: 100%; resize: none;"></textarea><br>
 	             <div id="btnbox">
 		             <button class="agreeBtn" type="button" id="cancel" onclick="history.go(-1)">취소</button>&nbsp;&nbsp;
-		             <button class="agreeBtn" id="save" type="submit">작성</button>
+		             <button class="agreeBtn" id="save" type="submit">수정</button>
 	             </div>
 	             
 	             <script>
+	             $(document).ready(function(){
+	         		// 작성시 넣은점수 가져오기
+	         		if(${review.grade} == 1) {
+	         			$('#star1').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+		     			$('#star2').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+		     			$('#star3').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+		     			$('#star4').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+		     			$('#star5').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+	         		} else if(${review.grade} == 2) {
+	         			$('#star1').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+		     			$('#star2').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+		     			$('#star3').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+		     			$('#star4').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+		     			$('#star5').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+	         		} else if(${review.grade} == 3) {
+	         			$('#star1').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+		     			$('#star2').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+		     			$('#star3').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+		     			$('#star4').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+		     			$('#star5').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+	         		} else if(${review.grade} == 4) {
+	         			$('#star1').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+		     			$('#star2').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+		     			$('#star3').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+		     			$('#star4').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+		     			$('#star5').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
+	         		} else if(${review.grade} == 5) {
+	         			$('#star1').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+		     			$('#star2').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+		     			$('#star3').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+		     			$('#star4').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+		     			$('#star5').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
+	         		}
+	         		// 점수유지시 에러안나게!
+	         		$('#grade').val(${review.grade});
+	         		
+	             });	
+	             
 	             $('#star1').click(function(){
 	     			$('#star1').attr("src","<%=request.getContextPath()%>/resources/img/starfull.png");
 	     			$('#star2').attr("src","<%=request.getContextPath()%>/resources/img/star.png");
