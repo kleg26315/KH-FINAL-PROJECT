@@ -164,7 +164,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 				
 			<input type='button' class='btn btn-inverse' value='excel 다운' style='width:100px;height:36px;font-weight:bold; float:right;' onclick="ReportToExcelConverter()" />
 			<br><br> 
-             <div class="text-center">
+            <div class="text-center">
            	<ul class="pagination">
            		<c:if test="${ pi.currentPage <= 1 }">
            			<!-- <li><a class="disable">&lt;</a></li> -->

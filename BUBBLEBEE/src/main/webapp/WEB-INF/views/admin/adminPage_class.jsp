@@ -110,69 +110,70 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
              <table class="table table-hover" style="table-layout: fixed;">
              	<thead>
              	<tr>
-             		<th style="width: 13%">예상 진행일</th>
-             		<th style="width: 10%">호스트</th>
+             		<!-- <th style="width: 13%">예상 진행일</th> -->
+             		<th style="width: 20%">호스트</th>
              		<th style="width: 50%">클래스명</th>
-             		<th style="text-align: center;">승인</th>
-             		<th style="text-align: center;">거절</th>
+             		<th style="text-align: center; width: 15%">승인</th>
+             		<th style="text-align: center; width: 15%">거절</th>
              	</tr>
              	</thead>
              	<tbody>
-             	<tr>
-             		<td>2020-05-09</td>
-             		<td style=" text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">버블비22222222222222222222222222222</td>
-             		<td style=" text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">스프링 파헤치기</td>
-             		<td style="text-align: center;"><button class="agreeBtn">클래스 승인</button></td>
-             		<td style="text-align: center;"><button class="agreeBtn">승인 거절</button></td>
-             	</tr>
-             	<tr>
-             		<td>2020-05-09</td>
-             		<td style=" text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">버블비</td>
-             		<td style=" text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">스프링 파헤치기스프링 파헤치기스프링 파헤치기스프링 파헤치기스프링 파헤치기스프링 파헤치기스프링 파헤치기스프링 파헤치기</td>
-             		<td style="text-align: center;"><button class="agreeBtn">클래스 승인</button></td>
-             		<td style="text-align: center;"><button class="agreeBtn">승인 거절</button></td>
-             	</tr>
-             	<tr>
-             		<td>2020-05-09</td>
-             		<td style=" text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">버블비</td>
-             		<td style=" text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">스프링 파헤치기</td>
-             		<td style="text-align: center;"><button class="agreeBtn">클래스 승인</button></td>
-             		<td style="text-align: center;"><button class="agreeBtn">승인 거절</button></td>
-             	</tr>
-             	<tr>
-             		<td>2020-05-09</td>
-             		<td style=" text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">버블비</td>
-             		<td style=" text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">스프링 파헤치기</td>
-             		<td style="text-align: center;"><button class="agreeBtn">클래스 승인</button></td>
-             		<td style="text-align: center;"><button class="agreeBtn">승인 거절</button></td>
-             	</tr>
-             	<tr>
-             		<td>2020-05-09</td>
-             		<td style=" text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">버블비</td>
-             		<td style=" text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">스프링 파헤치기</td>
-             		<td style="text-align: center;"><button class="agreeBtn">클래스 승인</button></td>
-             		<td style="text-align: center;"><button class="agreeBtn">승인 거절</button></td>
-             	</tr>
-             	<tr>
-             		<td>2020-05-09</td>
-             		<td style=" text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">버블비</td>
-             		<td style=" text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">스프링 파헤치기</td>
-             		<td style="text-align: center;"><button class="agreeBtn">클래스 승인</button></td>
-             		<td style="text-align: center;"><button class="agreeBtn">승인 거절</button></td>
-             	</tr>
+             	<c:if test="${empty list}">
+					<tr>
+						<td colspan="4" style="text-align: center;">검색 결과가 없습니다.</td>
+					</tr>
+				</c:if>
+				<c:if test="${not empty list}">
+					<c:forEach var="c" items="${ list }">
+						<tr>
+							<td style="display: none;">${c.fno }</td>
+							<td style="display: none;">${c.user_id }</td>
+	             			<td class="detailTR" style="cursor: pointer; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${c.nickname }</td>
+		             		<td class="detailTR" style="cursor: pointer; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${c.ftitle }</td>
+		             		<td style="text-align: center;"><button class="agreeBtn" id="agree">클래스 승인</button></td>
+		             		<td style="text-align: center;"><button class="agreeBtn" id="reject">승인 거절</button></td>
+	             		</tr>
+             		</c:forEach>
+             	</c:if>
              	</tbody>
              </table>
              <div class="text-center">
-             	<ul class="pagination">
-             		<li><a href="#">&lt;</a></li>
-             		<li><a href="#">1</a></li>
-             		<li><a href="#">2</a></li>
-             		<li><a href="#">3</a></li>
-             		<li><a href="#">4</a></li>
-             		<li><a href="#">5</a></li>
-             		<li><a href="#">&gt;</a></li>
-             	</ul>
-             </div>
+           	<ul class="pagination">
+           		<c:if test="${ pi.currentPage <= 1 }">
+           			<!-- <li><a class="disable">&lt;</a></li> -->
+           			<li class="disabled"><a>&lt;</a></li>
+           		</c:if>
+           		<c:if test="${ pi.currentPage > 1 }">
+					<c:url var="before" value="class.ad">
+						<c:param name="page" value="${ pi.currentPage - 1 }"/>
+					</c:url>
+					<li><a href="${ before }">&lt;</a></li>
+				</c:if>
+				
+				<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+					<c:if test="${ p eq pi.currentPage }">
+						<li class="active"><a>${ p }</a></li>
+					</c:if>
+					
+					<c:if test="${ p ne pi.currentPage }">
+						<c:url var="pagination" value="class.ad">
+							<c:param name="page" value="${ p }"/>
+						</c:url>
+						<li><a href="${ pagination }">${ p }</a> &nbsp;</li>
+					</c:if>
+				</c:forEach>
+				
+           		<c:if test="${ pi.currentPage >= pi.maxPage }">
+					<li class="disabled"><a>&gt;</a></li>
+				</c:if>
+				<c:if test="${ pi.currentPage < pi.maxPage }">
+					<c:url var="after" value="class.ad">
+						<c:param name="page" value="${ pi.currentPage + 1 }"/>
+					</c:url> 
+					<li><a href="${ after }">&gt;</a></li>
+				</c:if>
+           	</ul>
+         </div>
           </div>
        </div>
    </div>
@@ -182,6 +183,36 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
      <c:import url="../layout/footer.jsp"/>
    </footer>
    
-   
+   <script>
+	   $('.detailTR').click(function(){
+		   var fno = $(this).parent().children().eq(0).text();
+	   	   location.href = 'detail.bo?fno='+ fno;
+	   })
+	   
+	   $('#agree').click(function(){
+			var fno = $(this).parent().parent().children().eq(0).text();
+			var result = confirm('정말로 승인하시겠습니까?');
+			if(result){
+				alert('승인 처리 완료');
+				location.href = 'agreeClass.ad?fno='+ fno;
+			} else{
+				alert('승인 처리 취소');	
+			}
+		})
+		 $('#reject').click(function(){
+			var fno = $(this).parent().parent().children().eq(0).text();
+			var id = $(this).parent().parent().children().eq(1).text();
+			var title = $(this).parent().parent().children().eq(3).text();
+			console.log(title);
+			var result = confirm('정말로 거절하시겠습니까?');
+			if(result){
+				var content = window.prompt();
+				location.href = 'rejectClass.ad?fno='+ fno+'&content='+content+'&title='+title+'&id='+id;
+			} else{
+				alert('거절 처리 취소');	
+			}
+		})
+		
+   </script>
 </body>
 </html>
