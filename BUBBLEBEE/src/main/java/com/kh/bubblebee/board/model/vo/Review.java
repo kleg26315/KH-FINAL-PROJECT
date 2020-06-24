@@ -20,7 +20,7 @@ public class Review {
 	
 	//후기페이지시 필요한 항목
 	private String bday;//참가신청일
-	private Date odeadline; //참석일자
+	private String odeadline; //참석일자
 	private String category;//카테고리
 	private String ftitle;//모임이름
 	private String renamefilename;//모임썸네일
@@ -30,7 +30,7 @@ public class Review {
 	public Review() {}
 
 	public Review(int qno, String qcontent, Date q_create_date, Date q_modify_date, String q_status, int ref_fid,
-			String user_id, String secret_yn, int grade, int qtype, Member member, String bday, Date odeadline,
+			String user_id, String secret_yn, int grade, int qtype, Member member, String bday, String odeadline,
 			String category, String ftitle, String renamefilename, String profile, String ono) {
 		super();
 		this.qno = qno;
@@ -149,11 +149,11 @@ public class Review {
 		this.bday = bday;
 	}
 
-	public Date getOdeadline() {
+	public String getOdeadline() {
 		return odeadline;
 	}
 
-	public void setOdeadline(Date odeadline) {
+	public void setOdeadline(String odeadline) {
 		this.odeadline = odeadline;
 	}
 

@@ -73,7 +73,33 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 		    			<div class="per_info">
 		    				<div>
 				    			<div>참가 신청일 : ${d1}-${d2}-${d3}</div>
-				    			<div>[${ r.category }]${r.ftitle }</div>
+				    			<c:if test="${ r.category == 'party' }">
+				    				<div>[ 토크/파티 ]${r.ftitle }</div>
+				    			</c:if>
+				    			<c:if test="${ r.category == 'like' }">
+				    				<div>[ 취향 ]${r.ftitle }</div>
+				    			</c:if>
+				    			<c:if test="${ r.category == 'study' }">
+				    				<div>[ 스터디 ]${r.ftitle }</div>
+				    			</c:if>
+				    			<c:if test="${ r.category == 'event' }">
+				    				<div>[ 이벤트/공간 ]${r.ftitle }</div>
+				    			</c:if>
+				    			<c:if test="${ r.category == 'diy' }">
+				    				<div>[ 공예/DIY ]${r.ftitle }</div>
+				    			</c:if>
+				    			<c:if test="${ r.category == 'cook' }">
+				    				<div>[ 요리 ]${r.ftitle }</div>
+				    			</c:if>
+				    			<c:if test="${ r.category == 'sport' }">
+				    				<div>[ 스포츠 ]${r.ftitle }</div>
+				    			</c:if>
+				    			<c:if test="${ r.category == 'learn' }">
+				    				<div>[ 어학/취업 ]${r.ftitle }</div>
+				    			</c:if>
+				    			<c:if test="${ r.category == 'sell' }">
+				    				<div>[ 작품 ]${r.ftitle }</div>
+				    			</c:if>
 				    			<div>참석 일자 :${ r.odeadline }</div>
 				    		</div>
 		    			</div>
@@ -87,8 +113,15 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 						<c:if test="${r.qno eq 0}">
 		    				<div class="write_btn" style="margin:auto 0;"><button style="font-weight:bold; padding:10px; border-radius:3px; border:1px solid black; background-color: gold;" onclick="location.href='${write}'">후기 작성</button></div>
 		    			</c:if>
+		    			<c:url var="rewrite" value="reviewUpdateForm.mg">
+							<c:param name="qno" value="${r.qno}"/>
+							<c:param name="ref_fid" value="${r.ref_fid}"/>
+							<c:param name="odeadline" value="${r.odeadline}"/>
+							<c:param name="category" value="${r.category}"/>
+							<c:param name="ftitle" value="${r.ftitle}"/>
+						</c:url>
 		    			<c:if test="${r.qno ne 0}">
-		    				<div class="update_btn" style="margin:auto 0;"><button style="padding:10px; border-radius:3px; border:1px solid black; background-color: lightgray;" onclick="location.href='#'">후기 수정</button></div>
+		    				<div class="update_btn" style="margin:auto 0;"><button style="padding:10px; border-radius:3px; border:1px solid black; background-color: lightgray;" onclick="location.href='${rewrite}'">후기 수정</button></div>
 		    			</c:if>
 		    			
 		    			

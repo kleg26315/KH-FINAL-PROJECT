@@ -324,4 +324,29 @@
 		or small_title like '%' || #{search} || '%')
 		and f_status = 'Y'
 	</select>
+	
+	<select id="getClassListCount" resultType="_int">
+		select count(*)
+		from board
+		where f_status = 'Y' and (category ='diy' or category ='cook' or category='sport' or category='learn')
+	</select>
+	
+	<select id="selectClassList" resultType="Board">
+		select fno, ftitle, nickname, board.user_id
+		from board, member
+		where board.user_id = member.user_id
+		and f_status = 'W' and (category ='diy' or category ='cook' or category='sport' or category='learn')
+	</select>
+	
+	<update id="agreeClass">
+		update board
+		set f_status = 'Y'
+		where fno = #{fno}
+	</update>
+	
+	<update id="rejectClass">
+		update board
+		set f_status = 'R'
+		where fno = #{fno}
+	</update>
 </mapper>

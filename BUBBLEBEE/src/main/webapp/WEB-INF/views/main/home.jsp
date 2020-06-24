@@ -248,46 +248,62 @@
 		   <img class="slides" id="slide3" src="${contextPath }/resources/img/mmoim.jpg">
 		   <button class="btn-direction"><img id="next" src="${contextPath }/resources/img/next.png"></button>
 		   <script>
-			   $(function() {
-					$('#slide3').hide();
-					$('#slide2').hide();
-		
-					var currentSlide = 1;
-					$('#next').click(function() {
-						if (currentSlide == 1) {
-							$('#slide1').hide();
-							$('#slide2').fadeIn(300);
-							currentSlide = 2;
-						} else if (currentSlide == 2) {
-							$('#slide2').hide();
-							$('#slide3').fadeIn(300);
-							currentSlide = 3;
-						} else if (currentSlide == 3) {
-							$('#slide3').hide();
-							$('#slide1').fadeIn(300);
-							currentSlide = 1;
-						}
-					});
-		
-					var currentSlide = 1;
-					$('#prev').click(function() {
-						if (currentSlide == 1) {
-							$('#slide1').hide();
-							$('#slide3').fadeIn(300);
-							currentSlide = 3;
-						} else if (currentSlide == 2) {
-							$('#slide2').hide();
-							$('#slide1').fadeIn(300);
-							currentSlide = 1;
-						} else if (currentSlide == 3) {
-							$('#slide3').hide();
-							$('#slide2').fadeIn(300);
-							currentSlide = 2;
-						}
-					});
+		   $(document).ready(function(){
+			    $('#slide3').hide();
+				$('#slide2').hide();
+	
+				var currentSlide = 1;
+				$('#next').click(function() {
+					if (currentSlide == 1) {
+						$('#slide1').hide();
+						$('#slide2').fadeIn(800);
+						currentSlide = 2;
+					} else if (currentSlide == 2) {
+						$('#slide2').hide();
+						$('#slide3').fadeIn(800);
+						currentSlide = 3;
+					} else if (currentSlide == 3) {
+						$('#slide3').hide();
+						$('#slide1').fadeIn(800);
+						currentSlide = 1;
+					}
 				});
+	
+				$('#prev').click(function() {
+					if (currentSlide == 1) {
+						$('#slide1').hide();
+						$('#slide3').fadeIn(800);
+						currentSlide = 3;
+					} else if (currentSlide == 2) {
+						$('#slide2').hide();
+						$('#slide1').fadeIn(800);
+						currentSlide = 1;
+					} else if (currentSlide == 3) {
+						$('#slide3').hide();
+						$('#slide2').fadeIn(800);
+						currentSlide = 2;
+					}
+				});
+				 
+				setInterval(function(){
+					if (currentSlide == 1) {
+						$('#slide1').hide();
+						$('#slide2').fadeIn(800);
+						currentSlide = 2;
+					} else if (currentSlide == 2) {
+						$('#slide2').hide();
+						$('#slide3').fadeIn(800);
+						currentSlide = 3;
+					} else if (currentSlide == 3) {
+						$('#slide3').hide();
+						$('#slide1').fadeIn(800);
+						currentSlide = 1;
+					}
+		        }, 5000);
+				
+		   });
 		   </script>
-	   </div>
+	   </div> 
 	   <br>
 	   <br>
 	   

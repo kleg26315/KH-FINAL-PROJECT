@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.bubblebee.account.model.vo.Account;
 import com.kh.bubblebee.board.model.dao.BoardDAO;
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.board.model.vo.Option;
@@ -188,6 +189,24 @@ public class BoardServiceImpl implements BoardService {
 		return bDAO.selectwFindFilterList(sqlSession, search);
 	}
 
+	@Override
+	public int getClassListCount() {
+		return bDAO.getClassListCount(sqlSession);
+	}
 
+	@Override
+	public ArrayList<Board> selectClassList(PageInfo pi) {
+		return bDAO.selectClassList(sqlSession, pi);
+	}
+
+	@Override
+	public int agreeClass(String fno) {
+		return bDAO.agreeClass(sqlSession, fno);
+	}
+
+	@Override
+	public int rejectClass(String fno) {
+		return bDAO.rejectClass(sqlSession, fno);
+	}
 	
 }
