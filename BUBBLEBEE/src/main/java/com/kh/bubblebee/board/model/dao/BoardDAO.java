@@ -130,12 +130,12 @@ public class BoardDAO {
 	
 	public int deleteBoard(SqlSessionTemplate sqlSession, int fno) {
 		// TODO Auto-generated method stub
-		return sqlSession.delete("boardMapper.deleteBoard", fno);
+		return sqlSession.update("boardMapper.deleteBoard", fno);
 	}
 
 	public int deleteBoardOption(SqlSessionTemplate sqlSession, int fno) {
 		// TODO Auto-generated method stub
-		return sqlSession.delete("boardMapper.deleteBoardOption", fno);
+		return sqlSession.update("boardMapper.deleteBoardOption", fno);
 	}
 
 	public ArrayList<Board> selectUpMList(SqlSessionTemplate sqlSession) {
@@ -145,6 +145,51 @@ public class BoardDAO {
 	public ArrayList<Board> selectUpCList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectUpCList");
 	}
+
+	public ArrayList<Option> selectOption(SqlSessionTemplate sqlSession, int fno) {
+		return (ArrayList)sqlSession.selectList("purchaseMapper.selectOption",fno);
+	}
+
+	public ArrayList<Integer> selectHeartList(SqlSessionTemplate sqlSession, String id) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectHeartList", id);
+	}
+
+	public int getFindFilterListCount(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		return sqlSession.selectOne("boardMapper.getFindFilterListCount", map);
+	}
+
+	public ArrayList<Board> selectFindFilterList(SqlSessionTemplate sqlSession, HashMap<String, Object> map,
+			PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("boardMapper.selectFindFilterList", map, rowBounds);
+	}
+
+	public ArrayList<Board> selectwFindFilterList(SqlSessionTemplate sqlSession, String search) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectwFindFilterList", search);
+	}
+
+	public int getClassListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("boardMapper.getClassListCount");
+	}
+
+	public ArrayList<Board> selectClassList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("boardMapper.selectClassList", null, rowBounds);
+	}
+
+	public int agreeClass(SqlSessionTemplate sqlSession, String fno) {
+		return sqlSession.update("boardMapper.agreeClass", fno);
+	}
+
+	public int rejectClass(SqlSessionTemplate sqlSession, String fno) {
+		return sqlSession.update("boardMapper.rejectClass", fno);
+	}
+
+	
 	
 	
 }

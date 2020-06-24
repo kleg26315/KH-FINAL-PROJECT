@@ -4,6 +4,7 @@ package com.kh.bubblebee.board.model.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.kh.bubblebee.account.model.vo.Account;
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.board.model.vo.Option;
 import com.kh.bubblebee.board.model.vo.Review;
@@ -67,5 +68,25 @@ public interface BoardService {
 	ArrayList<Board> selectUpMList();
 
 	ArrayList<Board> selectUpCList();
+
+	ArrayList<Option> selectOption(int fno);
+
+	ArrayList<Integer> selectHeartList(String id);
+
+	int getFindFilterListCount(HashMap<String, Object> map);
+
+	ArrayList<Board> selectFindFilterList(HashMap<String, Object> map, PageInfo pi);
+
+	ArrayList<Board> selectwFindFilterList(String search);
+
+	int getClassListCount();
+
+	ArrayList<Board> selectClassList(PageInfo pi);
+
+	int agreeClass(String fno);
+
+	int rejectClass(String fno);
+
+	
 
 }

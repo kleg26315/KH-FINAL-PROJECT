@@ -75,6 +75,9 @@ public interface HostService {
 	// 호스트 개설 보드 전체
 	ArrayList<Board> hostBoardAll(PageInfo pi, HashMap<String, Object> map);
 
+	// 호스트 프로필에서 좋아요 총 수
+	int likeCount(String hostId);
+
 
 	
 

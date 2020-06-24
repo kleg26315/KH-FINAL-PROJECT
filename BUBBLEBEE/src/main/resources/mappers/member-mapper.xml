@@ -87,7 +87,7 @@
 	</select>
 	
 	<select id="getSlist" resultType="Board">
-		select board.ftitle, board.price
+		select board.fno, board.ftitle,  board.price, renamefilename
 		from slist, choose, board
 		where slist.ono = choose.ono
 		and choose.fno = board.fno
@@ -95,9 +95,9 @@
 	</select>
 	
 	<select id="getHlist" resultType="Board">
-		select board.ftitle, board.price
+		select fno, board.ftitle, board.price, renamefilename
 		from board, member, heart
-		where member.user_id = heart.user_id
+		where member.user_id = heart.user_id_ht
 		and heart.fno2 = board.fno
 		and member.user_id = #{id}
 	</select>

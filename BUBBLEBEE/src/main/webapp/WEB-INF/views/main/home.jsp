@@ -243,57 +243,73 @@
 			<button class="btn-direction">
 				<img id="prev" src="${contextPath }/resources/img/prev.png">
 			</button>
-		   <img class="slides" id="slide1" src="${contextPath }/resources/img/ybee.jpg">
+		   <img class="slides" id="slide1" src="${contextPath }/resources/img/ybee.png">
 		   <img class="slides" id="slide2" src="${contextPath }/resources/img/bubbleperson.png">
 		   <img class="slides" id="slide3" src="${contextPath }/resources/img/mmoim.jpg">
 		   <button class="btn-direction"><img id="next" src="${contextPath }/resources/img/next.png"></button>
 		   <script>
-			   $(function() {
-					$('#slide3').hide();
-					$('#slide2').hide();
-		
-					var currentSlide = 1;
-					$('#next').click(function() {
-						if (currentSlide == 1) {
-							$('#slide1').hide();
-							$('#slide2').fadeIn(300);
-							currentSlide = 2;
-						} else if (currentSlide == 2) {
-							$('#slide2').hide();
-							$('#slide3').fadeIn(300);
-							currentSlide = 3;
-						} else if (currentSlide == 3) {
-							$('#slide3').hide();
-							$('#slide1').fadeIn(300);
-							currentSlide = 1;
-						}
-					});
-		
-					var currentSlide = 1;
-					$('#prev').click(function() {
-						if (currentSlide == 1) {
-							$('#slide1').hide();
-							$('#slide3').fadeIn(300);
-							currentSlide = 3;
-						} else if (currentSlide == 2) {
-							$('#slide2').hide();
-							$('#slide1').fadeIn(300);
-							currentSlide = 1;
-						} else if (currentSlide == 3) {
-							$('#slide3').hide();
-							$('#slide2').fadeIn(300);
-							currentSlide = 2;
-						}
-					});
+		   $(document).ready(function(){
+			    $('#slide3').hide();
+				$('#slide2').hide();
+	
+				var currentSlide = 1;
+				$('#next').click(function() {
+					if (currentSlide == 1) {
+						$('#slide1').hide();
+						$('#slide2').fadeIn(800);
+						currentSlide = 2;
+					} else if (currentSlide == 2) {
+						$('#slide2').hide();
+						$('#slide3').fadeIn(800);
+						currentSlide = 3;
+					} else if (currentSlide == 3) {
+						$('#slide3').hide();
+						$('#slide1').fadeIn(800);
+						currentSlide = 1;
+					}
 				});
+	
+				$('#prev').click(function() {
+					if (currentSlide == 1) {
+						$('#slide1').hide();
+						$('#slide3').fadeIn(800);
+						currentSlide = 3;
+					} else if (currentSlide == 2) {
+						$('#slide2').hide();
+						$('#slide1').fadeIn(800);
+						currentSlide = 1;
+					} else if (currentSlide == 3) {
+						$('#slide3').hide();
+						$('#slide2').fadeIn(800);
+						currentSlide = 2;
+					}
+				});
+				 
+				setInterval(function(){
+					if (currentSlide == 1) {
+						$('#slide1').hide();
+						$('#slide2').fadeIn(800);
+						currentSlide = 2;
+					} else if (currentSlide == 2) {
+						$('#slide2').hide();
+						$('#slide3').fadeIn(800);
+						currentSlide = 3;
+					} else if (currentSlide == 3) {
+						$('#slide3').hide();
+						$('#slide1').fadeIn(800);
+						currentSlide = 1;
+					}
+		        }, 5000);
+				
+		   });
 		   </script>
-	   </div>
+	   </div> 
 	   <br>
 	   <br>
 	   
 	   <!-- 인기있는 카테고리 -->
 	   <div id="popular">
-	   		<p style="font-weight: bold; font-size: 20px;">인기 있는 카테고리</p><br>
+	   		<p style="font-weight: bold; font-size: 20px;">카테고리</p><br>
 	   		<table class="tpopular" id="tpopular1">
 	   			<tr>
 		   			<td><a href="list.bo?cate=party"><img id="firstCg" class="c_popular" src="${contextPath }/resources/img/토크.jpg"/><br>토크/파티</a></td>
@@ -333,7 +349,7 @@
 	   <!-- 지금 뜨는 모임 -->
 	   <div>
 	   	<label style="font-weight: bold; font-size: 20px;">지금 뜨는 모임</label>
-	   	<a href="upMoimList.do"><label style="float: right; padding-right: 5px;">전체보기</label></a>
+	   	<a href="upMoimList.do"><label style="float: right; padding-right: 5px; cursor: pointer;">전체보기</label></a>
 	   	<br><br>
 	   	<div class="moim">
 	   		<c:forEach items="${ mList }" var="ml">
@@ -369,7 +385,7 @@
 	   <!-- 지금 뜨는 클래스 -->
 	   <div>
 	   	<label style="font-weight: bold; font-size: 20px;">지금 뜨는 클래스</label>
-	   	<a href="upClassList.do"><label style="float: right; padding-right: 5px;">전체보기</label></a>
+	   	<a href="upClassList.do"><label style="float: right; padding-right: 5px; cursor: pointer;" >전체보기</label></a>
 	   	<br><br>
 	   	<div class="moim">
 	   		<c:forEach items="${ cList }" var="cl">

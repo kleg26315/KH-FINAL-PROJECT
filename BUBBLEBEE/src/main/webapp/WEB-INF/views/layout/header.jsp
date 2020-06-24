@@ -29,6 +29,20 @@
 .navbar-nav>li{
 	font-size: 20px;
 }
+.alarmRedCircle{
+    position: absolute;
+    width: 21px;
+    height: 22px;
+    box-shadow: 0 2px 4px 0 rgba(33,37,41,.24);
+    top: 13px;
+    right: 523px;
+    z-index: 10;
+    color: white;
+    text-align: center;
+    background: red; border-radius: 70%; border: 0px;
+    cursor: pointer;
+    display: none;
+}
 </style>
 <body>
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
@@ -133,7 +147,7 @@
 					        <span class="alarm alarm_cover is_active_alarm">
 					        	<img id="alarm_img2" class="alarm_img" style="width: 30px; height: 30px; cursor: pointer; margin-right: 1rem;" src="${ pageContext.servletContext.contextPath }/resources/img/bell2.png" />
 					        </span>
-							
+							<span class="alarmRedCircle"></span>
 							<!-- 장바구니 이미지 -->
 					        <span class="icon icon_cover ">
 					        	<img id="cart_img1" class="cart_img" style="width: 30px; height: 30px; cursor: pointer; margin-right: 1rem;" src="${ pageContext.servletContext.contextPath }/resources/img/cart.png" />
@@ -187,11 +201,24 @@
 								      	</c:if>
 								      	<c:if test="${not empty slist}">
 								      		<c:forEach var="s" items="${ slist }">
-								      			<a class="list_el" href="/course/스프링-데이터-JPA-실전">
-												  <div class="thumb_content"><img src="https://cdn.inflearn.com/public/courses/324474/course_cover/58c8632c-7a6e-4c76-9893-d7fffa32faf2/kyh_JPA_Spring2%20%E1%84%87%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%206.png"></div>
+								      			<a class="list_el" href="detail.bo?fno=${s.fno }">
+												  <div class="thumb_content">
+												  <c:set var="rf" value="${ s.renameFileName }"/>
+								                     <% 
+								                     	String rf = (String)pageContext.getAttribute("rf");
+								                     	String str = null;
+								                     	if(!rf.contains(",")) {
+								                     		str = rf;
+								                     	} else {
+								                     		int idx2 = rf.indexOf(",");
+								                			str = rf.substring(0, idx2);
+								                     	}
+								            			pageContext.setAttribute("str", str);
+								                     %>     
+												  <img src="${contextPath }/resources/buploadFiles/${ str}"></div>
 												  <div class="item_content">
-												    <p class="item_title">실전! 스프링 데이터 JPA</p>
-												    <p class="item_price">₩88,000</p>
+												    <p class="item_title">${s.ftitle }</p>
+												    <p class="item_price">&#8361;${s.price }</p>
 												  </div>
 												</a>
 								      		</c:forEach>
@@ -204,11 +231,24 @@
 								      	</c:if>
 								      	<c:if test="${not empty hlist}">
 								      		<c:forEach var="h" items="${ hlist }">
-								      			<a class="list_el" href="/course/스프링-데이터-JPA-실전">
-												  <div class="thumb_content"><img src="https://cdn.inflearn.com/public/courses/324474/course_cover/58c8632c-7a6e-4c76-9893-d7fffa32faf2/kyh_JPA_Spring2%20%E1%84%87%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%206.png"></div>
+								      			<a class="list_el" href="detail.bo?fno=${h.fno }">
+												  <div class="thumb_content">
+												  <c:set var="rf" value="${ h.renameFileName }"/>
+								                     <% 
+								                     	String rf = (String)pageContext.getAttribute("rf");
+								                     	String str = null;
+								                     	if(!rf.contains(",")) {
+								                     		str = rf;
+								                     	} else {
+								                     		int idx2 = rf.indexOf(",");
+								                			str = rf.substring(0, idx2);
+								                     	}
+								            			pageContext.setAttribute("str", str);
+								                     %>     
+												  <img src="${contextPath }/resources/buploadFiles/${ str}"></div>
 												  <div class="item_content">
-												    <p class="item_title">실전! 스프링 데이터 JPA</p>
-												    <p class="item_price">₩88,000</p>
+												    <p class="item_title">${h.ftitle }</p>
+												    <p class="item_price">&#8361;${h.price }</p>
 												  </div>
 												</a>
 								      		</c:forEach>
@@ -584,7 +624,7 @@
         
         $('.message_modal_cover').hide();
         $('.is_active_alarm').hide();
-        $('.alarm_cover').click(function(e){
+        $('.alarm_cover, .alarmRedCircle').click(function(e){
         	e.stopPropagation();
         	if($('.message_modal_cover')[0].style.display=='none'){
         		$('.message_modal_cover').show();
@@ -647,12 +687,11 @@
         	e.stopPropagation();
         })
     </script>
-
     
     <!-- 알림 스크립트 -->
     <script>
     var socket = null;
-	    var wsUri = "ws://localhost:8780/bubblebee/count";
+	    var wsUri = "ws://"+location.host+"/bubblebee/count";
 	    function send_message(){
 	        websocket = new WebSocket(wsUri);
 	        socket = websocket;
@@ -669,7 +708,7 @@
 	        websocket.onerror = function(evt) {
 	            onError(evt);
 	        };
-	    } 
+	    }
 	   
 	    function onOpen(evt) 
 	    {
@@ -681,7 +720,12 @@
 	    	realData = evt.data.split('&');
 	    	console.log(realData[1]);
 	   		$('.num').text(realData[0]);	
-	   		
+	   		if(realData[0] != 0){
+	   			$('.alarmRedCircle').show();
+	   			$('.alarmRedCircle').text(realData[0]);
+	   		} else{
+	   			$('.alarmRedCircle').hide();
+	   		}
 			if(realData[1] != "[]"){
 				var data = realData[1].substr(1, ( realData[1].length)-3 );
 		   		var myArrayData1 =[];

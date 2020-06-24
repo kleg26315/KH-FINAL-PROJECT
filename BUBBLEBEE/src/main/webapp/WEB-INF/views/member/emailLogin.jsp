@@ -68,8 +68,15 @@
         opacity: 0;
     }
 }
+.whole {
+    position: relative;
+    display: flex;
+    min-height: 100vh;
+    flex-flow: column nowrap;
+}
 </style>
 <body>
+	<div class="whole">
 	<header id="header">
       <c:import url="../layout/header.jsp"/>
    	</header>
@@ -172,6 +179,6 @@
 	<footer id="footer" style="padding-top: 115px;">
 		<c:import url="../layout/footer.jsp"/>
 	</footer>
-   
+   </div>
 </body>
 </html>

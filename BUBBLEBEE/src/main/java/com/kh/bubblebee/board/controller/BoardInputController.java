@@ -1,6 +1,10 @@
 package com.kh.bubblebee.board.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,14 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.bubblebee.board.model.exception.BoardException;
+import com.kh.bubblebee.board.model.service.BoardService;
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.board.model.vo.Option;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-
-import com.kh.bubblebee.board.model.service.BoardService;
 
 
 @Controller
@@ -140,91 +139,92 @@ public class BoardInputController {
 		}
 		return renameFileName;
 	}
-//	
-//	@RequestMapping("bupdate1.bo")
-//	public ModelAndView boardUpdateView(@RequestParam("fno") int fno, @RequestParam("page") int page,ModelAndView mv) {
-//		
-//		Board board = bService.selectBoard(fno);
-//		
-//		if(board != null) {
-//			mv.addObject("board", board).addObject("fno", fno).addObject("page", page).setViewName("boardUpdate2");
-//			return mv;
-//		} else {
-//			throw new BoardException("게시글 수정 요청 실패");
-//		}
-//	}
-//	
-//	@RequestMapping("bupdate2.bo")
-//	public ModelAndView boardUpdate(@ModelAttribute Board b,  @ModelAttribute Option o, @RequestParam("reloadFile") List<MultipartFile> reloadFile,
-//									@RequestParam("post") String post, @RequestParam("address1") String address1, @RequestParam("address2") String address2, 
-//									@RequestParam("bTime") String bTime, @RequestParam("bDetail") String bDetail,
-//									@RequestParam("b_Qt") String b_Qt, @RequestParam("b_An") String b_An,
-//									@RequestParam("lat") String lat, @RequestParam("lon") String lon,
-//									@RequestParam("oname") String oname, @RequestParam("price") String price, @RequestParam("ocount") String ocount,
-//									@RequestParam("odeadline") String odeadline, @RequestParam(value="category", required=false) String cate,
-//									@RequestParam("page") int page, HttpServletRequest request, ModelAndView mv) {
-//		
-//		b.setLat(Double.parseDouble(lat));
-//		b.setLon(Double.parseDouble(lon));
-//		b.setLocation(post + "/" + address1 + "/" + address2);
-//		b.setFminfo(b_Qt + "<br>" + b_An);
-//		b.setFcalendar(bTime + "<br>" + bDetail);
-//	
-//		String[] name = oname.split(",");
-//		String[] pr = price.split(",");
-//		String[] count = ocount.split(",");
-//		String[] deadline = odeadline.split(",");
-//		
-//		HashMap<String, Option> map = new HashMap<>();
-//		for(int i = 0; i < name.length; i++) {
-//			map.put("op" + i, new Option(name[i], pr[i], count[i], deadline[i]));
-//		}
-//	
-//		String[] originalFileName = new String[reloadFile.size()];
-//		
-//		for(int i = 0; i<reloadFile.size(); i++) {
-//			originalFileName[i] = reloadFile.get(i).getOriginalFilename();
-//		}
-//		
-//		if(reloadFile != null && !reloadFile.isEmpty()) {
-//			if(b.getRenameFileName() != null) {
-//				deleteFile(b.getRenameFileName(), request);
-//			}
-//			
-//			String[] renameFileName = saveFile(reloadFile, request);
-//			String origin = "";
-//			String rename = "";
-//			int i = 0;
-//			if(renameFileName != null) {
-//				origin = String.join(",", originalFileName);
-//				rename = String.join(",", renameFileName);
-//				b.setOriginalFileName(origin);
-//				b.setRenameFileName(rename);
-//			}
-//		}
-//		
-//		int result1 = bService.boardUpdate(b);
-//	
-//		int result2 = bService.boardUpdateOption(map);
-//		
-//		if(result1 > 0) {
-//			if(result2 > 0) {
-//				mv.addObject("page", page);
-//				mv.addObject("lat", lat);
-//				mv.addObject("lon", lon);
-//				mv.addObject("location", location);
-//				mv.addObject("fminfo", fminfo);
-//				mv.addObject("fcalendar", fcalendar);
-//				mv.setViewName("redirect:bdetail.bo?fno=" + b.getFno());
-//			}else {
-//				throw new BoardException("게시글 수정 실패!");
-//			}
-//		} else {
-//			throw new BoardException("게시글 수정 실패");
-//		}
-//		
-//		return mv;
-//	}
+	
+	@RequestMapping("bupdate1.bo")
+	public ModelAndView boardUpdateView(@RequestParam("fno") int fno,ModelAndView mv) {
+		
+		Board board = bService.selectBoard(fno);
+		
+		ArrayList<Option> oList = bService.selectOption(fno);
+		
+		if(board != null) {
+			mv.addObject("board", board).addObject("fno", fno).addObject("oList",oList).setViewName("boardUpdate2");
+			return mv;
+		} else {
+			throw new BoardException("게시글 수정 요청 실패");
+		}
+	}
+	
+	@RequestMapping("bupdate2.bo")
+	public ModelAndView boardUpdate(@ModelAttribute Board b,  @ModelAttribute Option o, @RequestParam("reloadFile") List<MultipartFile> reloadFile,
+									@RequestParam("post") String post, @RequestParam("address1") String address1, @RequestParam("address2") String address2, 
+									@RequestParam("bTime") String bTime, @RequestParam("bDetail") String bDetail,
+									@RequestParam("b_Qt") String b_Qt, @RequestParam("b_An") String b_An,
+									@RequestParam("lat") String lat, @RequestParam("lon") String lon,
+									@RequestParam("oname") String oname, @RequestParam("price") String price, @RequestParam("ocount") String ocount,
+									@RequestParam("odeadline") String odeadline, @RequestParam(value="category", required=false) String cate,
+									HttpServletRequest request, ModelAndView mv) {
+		
+		b.setLat(Double.parseDouble(lat));
+		b.setLon(Double.parseDouble(lon));
+		b.setLocation(post + "/" + address1 + "/" + address2);
+		b.setFminfo(b_Qt + "<br>" + b_An);
+		b.setFcalendar(bTime + "<br>" + bDetail);
+	
+		String[] name = oname.split(",");
+		String[] pr = price.split(",");
+		String[] count = ocount.split(",");
+		String[] deadline = odeadline.split(",");
+		
+		HashMap<String, Option> map = new HashMap<>();
+		for(int i = 0; i < name.length; i++) {
+			map.put("op" + i, new Option(name[i], pr[i], count[i], deadline[i]));
+		}
+	
+		String[] originalFileName = new String[reloadFile.size()];
+		
+		for(int i = 0; i<reloadFile.size(); i++) {
+			originalFileName[i] = reloadFile.get(i).getOriginalFilename();
+		}
+		
+		if(reloadFile != null && !reloadFile.isEmpty()) {
+			if(b.getRenameFileName() != null) {
+				deleteFile(b.getRenameFileName(), request);
+			}
+			
+			String[] renameFileName = saveFile(reloadFile, request);
+			String origin = "";
+			String rename = "";
+			int i = 0;
+			if(renameFileName != null) {
+				origin = String.join(",", originalFileName);
+				rename = String.join(",", renameFileName);
+				b.setOriginalFileName(origin);
+				b.setRenameFileName(rename);
+			}
+		}
+		
+		int result1 = bService.boardUpdate(b);
+	
+		int result2 = bService.boardUpdateOption(map);
+		
+		if(result1 > 0) {
+			if(result2 > 0) {
+				mv.addObject("lat", lat);
+				mv.addObject("lon", lon);
+				mv.addObject("location", b.getLocation());
+				mv.addObject("fminfo", b.getFminfo());
+				mv.addObject("fcalendar", b.getFcalendar());
+				mv.setViewName("redirect:bdetail.bo?fno=" + b.getFno());
+			}else {
+				throw new BoardException("게시글 수정 실패!");
+			}
+		} else {
+			throw new BoardException("게시글 수정 실패");
+		}
+		
+		return mv;
+	}
 	
 	//첨부된 파일 삭제
 		public void deleteFile(String fileName, HttpServletRequest request) {
@@ -244,10 +244,15 @@ public class BoardInputController {
 			int result1 = bService.deleteBoard(fno);
 			int result2 = bService.deleteBoardOption(fno);
 			
-			if(result1 > 0 && result2 > 0) {
-				return "redirect:blist.bo";
+			if(result1 > 0 ) {
+				if(result2 > 0) {
+					return "redirect:hostpage.ho";
+				}else {
+					throw new BoardException("게시글 삭제 실패 옵션 안지워짐");
+				}
 			}else {
 				throw new BoardException("게시글 삭제 실패");
 			}
 		}
+		
 	}

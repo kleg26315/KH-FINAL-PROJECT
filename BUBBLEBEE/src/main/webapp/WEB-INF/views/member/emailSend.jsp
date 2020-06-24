@@ -36,11 +36,10 @@
 		<h3 style="font-weight: bold;">비밀번호 재설정</h3>
 		<br><br>
 		<b>입력하신 주소로 임시 비밀번호를 발급하여 메일을 발송했습니다.<br>
-		      만약 이메일을 받지 못했다면 스팸함을 확인해 주시고,<br>
-		      가입되지 않은 이메일인지 확인해 주시기 바랍니다.</b>
+		      만약 이메일을 받지 못했다면 스팸함을 확인해주세요.</b>
 		<br><br><br><br>
 		
-		<button class="loginBtn" type="button" onclick="location.href='loginView.me'" id="emailSend">로그인</button>
+		<button class="loginBtn" type="button" onclick="location.href='emailLoginView.me'" id="emailSend">로그인</button>
 		</form>
 	</section>
 	

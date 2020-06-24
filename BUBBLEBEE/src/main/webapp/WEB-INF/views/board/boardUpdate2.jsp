@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,7 @@
 		
 		
 		<!-- 첨부파일 등록을 위해 Multipart/form-data encType 지정 -->
-		<form action="bupdate.bo"  enctype="Multipart/form-data" id="form" method="POST" data-use-autosave="true">
+		<form action="bupdate2.bo"  enctype="Multipart/form-data" id="form" method="POST" data-use-autosave="true">
 			<input type="hidden" value="${loginUser.id}" name="user_id">
 			<input type="hidden" value="${board.fno}" name="fno">
 			<input type="hidden" value="${board.ftype}" name="ftype">
@@ -230,26 +231,28 @@
 								</div>
 							</td>
 						</tr>
+						<c:forEach var="o" items="${oList }">
 						<tr>
 							<td>
-								<input type="text" id="op" class="op" name="oname" value="${ board.oname }"  maxlength="30" required>
+								<input type="text" id="op" class="op" name="oname" value="${ o.oname }"  maxlength="30" required>
 							</td>
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" id="op2" class="op2" name="price" value="${ board.price }" required>
+								<input type="text" id="op2" class="op2" name="price" value="${ o.price }" required>
 							</td>
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" id="op3" class="op3" name="ocount" value="${ board.ocount }" required onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+								<input type="text" id="op3" class="op3" name="ocount" value="${ o.ocount }" required onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 							</td>
 						</tr>
 						<tr>	
 							<td>
-								<input type="date" id="op4" class="op4" name="odeadline" placeholder="마감일"  >
+								<input type="date" id="op4" class="op4" name="odeadline" value="${o.odeadline}"placeholder="마감일"  >
 							</td>
 						</tr>
+						</c:forEach>
 					<tbody id="tbody1">
 					
 					</tbody>
@@ -378,16 +381,28 @@
 							</div>
 						</td>
 					</tr>
-					<tr>
-						<td >
-							<input type="text" name="bTime" class="bTime"  value="${ board.bTime }" required>
-						</td>
-					</tr>
-					<tr>
-						<td >
-							<input type="text" name="bDetail" class="bDetail"  value="${ board.bDetail }" required>
-						</td>
-					</tr>
+					
+					<c:set var="calArr" value="${ board.fcalendar.split('<br>') }"/>
+						<c:set var="timeArr" value="${ calArr[0].split(',') }" />
+						<c:set var="detailArr" value="${ calArr[1].split(',') }" />
+						
+						<c:forEach var="time" items="${ timeArr }" varStatus="times">
+						<tr>
+								<td>
+									<input type="text" name="bTime" class="bTime"  value="${ time } " required>						
+								</td>
+						</tr>
+							
+							<c:forEach var="det" items="${ detailArr }" varStatus="dets">
+								<c:if test="${ times.index eq dets.index }">
+								<tr>
+								<td>
+									<input type="text" name="bDetail" class="bDetail"  value="${ det }" required>
+								</td>
+								</tr>
+								</c:if>
+							</c:forEach>
+						</c:forEach>
 					<tbody id="tbody2">
 						
 					</tbody>
@@ -531,12 +546,22 @@
 								</div>
 							</td>
 						</tr>
-						<tr>
-							<td><span>Q</span><input type="text" class="b_Qt" name="b_Qt" value="${ board.b_Qt }"></td>
-						</tr>
-						<tr>
-							<td><span>A</span><input type="text" class="b_An" name="b_An" value="${ board.b_An }"></td>
-						</tr>
+						<c:set var="splitArr" value="${ board.fminfo.split('<br>') }"/>
+						<c:set var="questionArr" value="${ splitArr[0].split(',') }" />
+						<c:set var="answerArr" value="${ splitArr[1].split(',') }" />
+					
+						<c:forEach var="ques" items="${ questionArr }" varStatus="que">
+							<tr>
+								<td><span>Q</span><input type="text" class="b_Qt" name="b_Qt" value="${ques}"></td>
+							</tr>
+						<c:forEach var="anss" items="${ answerArr }" varStatus="anw">
+							<c:if test="${ que.index eq anw.index }">
+								<tr>
+									<td><span>A</span><input type="text" class="b_An" name="b_An" value="${ anss }"></td>
+								</tr>
+							</c:if>
+						</c:forEach>
+					</c:forEach>
 					</thead>
 					<tbody id="tbody3">
 						
@@ -629,8 +654,7 @@
 			
 			<div id="btn_area">
 				<button id="complete" type="button">수정</button>
-				<button type="button" onclick="location.href='${ list.bo }'">목록으로</button>
-				<button onclick="location.href='history.back()'" id="cancel">취소</button>
+				<button onclick="location.href='javascript:history.back()'" id="cancel">취소</button>
 			</div>
 				<script>
 					$('#complete').on('click', function(){

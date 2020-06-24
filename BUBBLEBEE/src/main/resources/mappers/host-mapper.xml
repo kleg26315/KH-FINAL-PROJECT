@@ -50,7 +50,8 @@
 	<select id="selectBoard" resultType="Board">
 		select *
 		from board
-		where user_id = #{hostId}
+		where user_id = #{hostId} and f_status ='Y'
+		order by fno desc
 	</select>
 	
 	<insert id="insertHostQnA">
@@ -175,5 +176,11 @@
 	select *
 	from board 
 	where ftype=#{ftype} and user_id =#{hostId}
+	</select>
+	
+	<select id="likeCount" resultType="_int">
+	select count(*)
+	from heart
+	where user_id = #{hostId}
 	</select>
 </mapper>

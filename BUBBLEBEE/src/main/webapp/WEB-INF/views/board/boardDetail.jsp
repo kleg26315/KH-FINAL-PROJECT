@@ -180,7 +180,7 @@
 					</div>
 
 					<div class="hashTagLocation">진행 장소</div>
-					<div class="hashTagIntroduceContent" id="map"></div>
+					<div class="hashTagLocationContent" id="map"></div>
 					<div class="hashTagLocationInfo" id="address">${ b.location }</div>
 
 					<div class="hashTagLocationPaste">
@@ -341,6 +341,13 @@
 <!-- 	<div style = "display : none"> -->
 <!-- 		<input type = "text" style = "display : none"> -->
 <!-- 	</div> -->
+
+	</section>
+	<!--  -->
+	<div style = "display : none">
+		<input type = "text" style = "display : none">ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹ
+	</div>
+
 	
 	<footer id="footer" style="padding-top: 115px;">
 		<c:import url="../layout/footer.jsp"/>

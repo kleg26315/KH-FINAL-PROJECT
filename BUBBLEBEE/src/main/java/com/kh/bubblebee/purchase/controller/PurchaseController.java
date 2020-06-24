@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.bubblebee.board.model.vo.Board;
+import com.kh.bubblebee.member.model.service.MemberService;
 import com.kh.bubblebee.member.model.vo.Member;
 import com.kh.bubblebee.purchase.model.exception.PurchaseException;
 import com.kh.bubblebee.purchase.model.service.PurchaseService;
@@ -32,6 +34,8 @@ import com.kh.bubblebee.purchase.model.vo.Purchase;
 @Controller
 public class PurchaseController {
 	
+	@Autowired
+	private MemberService mService;
 	
 	@Autowired
 	private PurchaseService pService;
@@ -334,6 +338,9 @@ public class PurchaseController {
 			int result = pService.addSlist(map);
 			
 			if(result > 0) {
+				// 장바구니 조회
+    			ArrayList<Board> slist = mService.getSlist(loginUser.getId());
+    			session.setAttribute("slist", slist);
 				mv.addObject("ono", onoo).addObject("tcount",ocode).setViewName("redirect:myslist.mg");
 			}else {
 				throw new PurchaseException("장바구니 추가에 실패하였습니다.");

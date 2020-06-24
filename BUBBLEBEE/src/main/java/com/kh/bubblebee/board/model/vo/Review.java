@@ -18,10 +18,20 @@ public class Review {
 	private int qtype; //게시판 타입 1.후기 2.QnA
 	private Member member;
 	
+	//후기페이지시 필요한 항목
+	private String bday;//참가신청일
+	private String odeadline; //참석일자
+	private String category;//카테고리
+	private String ftitle;//모임이름
+	private String renamefilename;//모임썸네일
+	private String profile; //프로필사진
+	private String ono; //옵션번호
+	
 	public Review() {}
 
 	public Review(int qno, String qcontent, Date q_create_date, Date q_modify_date, String q_status, int ref_fid,
-			String user_id, String secret_yn, int grade,int qtype,Member member) {
+			String user_id, String secret_yn, int grade, int qtype, Member member, String bday, String odeadline,
+			String category, String ftitle, String renamefilename, String profile, String ono) {
 		super();
 		this.qno = qno;
 		this.qcontent = qcontent;
@@ -32,8 +42,15 @@ public class Review {
 		this.user_id = user_id;
 		this.secret_yn = secret_yn;
 		this.grade = grade;
-		this.qtype=qtype;
-		this.member=member;
+		this.qtype = qtype;
+		this.member = member;
+		this.bday = bday;
+		this.odeadline = odeadline;
+		this.category = category;
+		this.ftitle = ftitle;
+		this.renamefilename = renamefilename;
+		this.profile = profile;
+		this.ono = ono;
 	}
 
 	public int getQno() {
@@ -124,12 +141,75 @@ public class Review {
 		this.member = member;
 	}
 
+	public String getBday() {
+		return bday;
+	}
+
+	public void setBday(String bday) {
+		this.bday = bday;
+	}
+
+	public String getOdeadline() {
+		return odeadline;
+	}
+
+	public void setOdeadline(String odeadline) {
+		this.odeadline = odeadline;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getFtitle() {
+		return ftitle;
+	}
+
+	public void setFtitle(String ftitle) {
+		this.ftitle = ftitle;
+	}
+
+	public String getRenamefilename() {
+		return renamefilename;
+	}
+
+	public void setRenamefilename(String renamefilename) {
+		this.renamefilename = renamefilename;
+	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+	public String getOno() {
+		return ono;
+	}
+
+	public void setOno(String ono) {
+		this.ono = ono;
+	}
+
 	@Override
 	public String toString() {
 		return "Review [qno=" + qno + ", qcontent=" + qcontent + ", q_create_date=" + q_create_date + ", q_modify_date="
 				+ q_modify_date + ", q_status=" + q_status + ", ref_fid=" + ref_fid + ", user_id=" + user_id
-				+ ", secret_yn=" + secret_yn + ", grade=" + grade + ", qtype=" + qtype + ", member=" + member + "]";
+				+ ", secret_yn=" + secret_yn + ", grade=" + grade + ", qtype=" + qtype + ", member=" + member
+				+ ", bday=" + bday + ", odeadline=" + odeadline + ", category=" + category + ", ftitle=" + ftitle
+				+ ", renamefilename=" + renamefilename + ", profile=" + profile + ", ono=" + ono + "]";
 	}
+
+	
+
+	
+	
 
 	
 }

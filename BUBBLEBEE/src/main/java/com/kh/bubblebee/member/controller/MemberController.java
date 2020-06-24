@@ -142,6 +142,12 @@ public class MemberController {
                 		session.setAttribute("loginUser", loginUser);
             			session.setMaxInactiveInterval(6000);
             			session.setAttribute("point", point);
+            			// 장바구니 조회
+            			ArrayList<Board> slist = mService.getSlist(loginUser.getId());
+            			session.setAttribute("slist", slist);
+            			// 좋아요 조회
+            			ArrayList<Board> hlist = mService.getHlist(loginUser.getId());
+            			session.setAttribute("hlist", hlist);
             			mv.setViewName("redirect:home.do");
             		} else {
                 		throw new MemberException("소셜로그인 회원가입 실패하였습니다.");
@@ -173,6 +179,12 @@ public class MemberController {
 			model.addAttribute("loginUser", loginUser);
 			int point = mService.getPoint(m.getId());
 			session.setAttribute("point", point);
+			// 장바구니 조회
+			ArrayList<Board> slist = mService.getSlist(m.getId());
+			session.setAttribute("slist", slist);
+			// 좋아요 조회
+			ArrayList<Board> hlist = mService.getHlist(m.getId());
+			session.setAttribute("hlist", hlist);
 			return "redirect:home.do";
 		} else {
 			throw new MemberException("로그인에 실패하였습니다.");
@@ -196,6 +208,12 @@ public class MemberController {
 				model.addAttribute("loginUser", loginUser);
 				int point = mService.getPoint(m.getId());
 				session.setAttribute("point", point);
+				// 장바구니 조회
+				ArrayList<Board> slist = mService.getSlist(m.getId());
+				session.setAttribute("slist", slist);
+				// 좋아요 조회
+				ArrayList<Board> hlist = mService.getHlist(m.getId());
+				session.setAttribute("hlist", hlist);
 				return "redirect:home.do";
 			} else {
 				throw new MemberException("회원가입에 실패하였습니다.");
@@ -221,6 +239,12 @@ public class MemberController {
 			session.setMaxInactiveInterval(6000);
 			point = mService.getPoint(loginUser.getId());
 			session.setAttribute("point", point);
+			// 장바구니 조회
+			ArrayList<Board> slist = mService.getSlist(loginUser.getId());
+			session.setAttribute("slist", slist);
+			// 좋아요 조회
+			ArrayList<Board> hlist = mService.getHlist(loginUser.getId());
+			session.setAttribute("hlist", hlist);
 			return "redirect:home.do";
 		} else {
 			result = mService.insertkakaoMember(userInfo);
@@ -232,6 +256,12 @@ public class MemberController {
 					session.setMaxInactiveInterval(6000);
 					point = mService.getPoint(loginUser.getId());
 					session.setAttribute("point", point);
+					// 장바구니 조회
+					ArrayList<Board> slist = mService.getSlist(loginUser.getId());
+					session.setAttribute("slist", slist);
+					// 좋아요 조회
+					ArrayList<Board> hlist = mService.getHlist(loginUser.getId());
+					session.setAttribute("hlist", hlist);
 					return "redirect:home.do";
 				} else {
 					throw new MemberException("카카오톡 회원가입에 실패하였습니다.");
@@ -360,6 +390,18 @@ public class MemberController {
 			return "emailSend";			
 		} else {
 			throw new MemberException("임시 비밀번호 발급에 실패하였습니다.");
+		}
+	}
+	
+	@RequestMapping("prePwdCheck.me")
+	@ResponseBody
+	public String prePwdCheck(@RequestParam("id") String id, @RequestParam("pwd") String pwd) {
+		Member m = mService.emailSameCheck(id);
+		
+		if(bcryptPasswordEncoder.matches(pwd, m.getPwd())) {
+			return "success";
+		} else {
+			return "fail";
 		}
 	}
 }

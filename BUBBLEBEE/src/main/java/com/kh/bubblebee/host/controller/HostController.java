@@ -107,13 +107,18 @@ public class HostController {
 		
 		int check = hService.hostLikeCheck(map);
 		
+		int likeCount = hService.likeCount(hostId);
+		
 		int listCount = hService.getListCount(hostId);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		
+		
+		
 		ArrayList<Board> bList = hService.selectBoard(pi,hostId);
 		if(host != null && bList != null) {
+			mv.addObject("likeCount",likeCount);
 			mv.addObject("check",check);
 			mv.addObject("host",host);
 			mv.addObject("pi",pi);
