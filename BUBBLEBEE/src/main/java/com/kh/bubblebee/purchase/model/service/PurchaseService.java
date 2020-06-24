@@ -46,4 +46,6 @@ public interface PurchaseService {
 
 	int addSlist(HashMap<String, String> map);
 
+	ArrayList<PBoard> selectPBoard2();
+
 }

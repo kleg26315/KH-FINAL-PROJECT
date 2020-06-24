@@ -165,4 +165,13 @@
 		insert into slist
 		values(seq_slist.nextval, #{ ono }, #{ userId }, #{ tcount })
 	</insert>
+	
+	<select id = "selectPBoard2" resultMap = "PBoardResultSet">
+		SELECT  *
+		FROM BOARD
+		<![CDATA[
+		WHERE ROWNUM < 4
+		]]>
+		ORDER BY HEART DESC 
+	</select>
 </mapper> 	

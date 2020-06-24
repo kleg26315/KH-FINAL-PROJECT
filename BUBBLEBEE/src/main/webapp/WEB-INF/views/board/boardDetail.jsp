@@ -306,7 +306,7 @@
 				<c:if test = "${loginUser != null }">
 					<div>
 					<input class = "loginUserNull2" id = "optionNull3" type="button" value = "장바구니에 담기" 
-					style = "width : 310px; height: 40px; margin-top : 100%; background-color : rgb(249, 249, 249); border:none; border-radius : 2px 2px; outline : none;" >
+					style = "width : 310px; height: 40px; margin-top : 80%; background-color : rgb(249, 249, 249); border:none; border-radius : 2px 2px; outline : none;" >
 					</div>
 					<div style = "margin-top : 4px;">
 					<input class = "loginUserNull2" id = "optionNull4" type="button" value="참가하기" 
@@ -314,7 +314,7 @@
 					</div>
 					<div>
 					<input  class = "loginUserNull2" id = "comfirmNull3" type="submit" value = "장바구니에 담기" onclick="javascript: form.action='addslist.pu';"
-					style = "width : 310px;; height: 40px; margin-top : 100%; background-color : #F39C12; color : white; border:none; border-radius : 2px 2px; outline : none;">
+					style = "width : 310px;; height: 40px; margin-top : 80%; background-color : #F39C12; color : white; border:none; border-radius : 2px 2px; outline : none;">
 					</div>
 					<div style = "margin-top : 4px;">
 					<input  class = "loginUserNull2" id = "comfirmNull4" type="submit" value="참가하기" onclick="javascript: form.action='purchase1First.pu';"
@@ -326,15 +326,33 @@
 	</section>
 	<section class = "bonjour">
 		<header class = "bonjour1">
-			<div class="recommendationIntroduce" style = "float : left; width : 58%; margin-left : 21%; height : 280px;" >
-				<div style = "font-size : 16pt; font-weight : 600; float : left; width : 90%; margin-left : 5%; margin-top : 40px;">
-					이런 클래스는 어때요?
+			<div class="recommendationIntroduce" style = "float : left; width : 58%; margin-left : 21%; height : 80px;" >
+				<div style = "font-size : 16pt; font-weight : 600; float : left; width : 100%; margin-left : 0%; margin-top : 30px;">
+				이런 버블비는 어때요?
 				</div>
 			</div>
 		</header>
-		<div class="recommendation">
-			
+		<form action = "findFrip.pu" method = "post" name = "frip2" id = "hugn">
+		<div class="recommendation" style = "float : left; width : 60%; height : 260px; margin-top : 10px; margin-left : 20%;">
+			<c:forEach items = "${blist}" var = "blist">
+			<div class = "recom">
+				<div class = "recomi">
+					<img src = "${contextPath }/resources/buploadFiles/${ b.renameFileName }" style = "width : 100%; height: 100%;"/>
+				</div>
+				<div class = "recoms">
+					${blist.small_title }
+				</div>
+				<div class = "recomt" id = "recomt">
+					<input type = "text" id = "loc" style = "display : none;" value = "${blist.location }">
+					<input type = "text" id = "tit" style = "display : none;" value = "${blist.ftitle }">
+								</div>
+				<div class = "recomp">
+					${blist.price }원
+				</div>
+			</div>
+			</c:forEach>
 		</div>
+		</form>
 		<div class="blank"></div>
 	</section>
 	<!--  -->
@@ -342,12 +360,22 @@
 <!-- 		<input type = "text" style = "display : none"> -->
 <!-- 	</div> -->
 
-	</section>
+	
 	<!--  -->
 	<div style = "display : none">
-		<input type = "text" style = "display : none">ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹ
+		<input type = "text" style = "display : none">
 	</div>
-
+	<script>
+		var loc = $("#loc").val();
+		var locs1 = loc.split("/");
+		var l1 = locs1[1];
+		var locs2 = l1.split(" ");
+		var l3 = locs2[1];
+		var tit = $("#tit").val();
+		$("#recomt").text("[" + l3 + "]" + " " + tit);
+	
+	</script>
+	
 	
 	<footer id="footer" style="padding-top: 115px;">
 		<c:import url="../layout/footer.jsp"/>

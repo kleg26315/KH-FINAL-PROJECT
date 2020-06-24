@@ -90,5 +90,9 @@ public class PurchaseDAO {
 		return sqlSession.insert("purchaseMapper.addSlist", map);
 	}
 
+	public ArrayList<PBoard> selectPBoard2(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("purchaseMapper.selectPBoard2");
+	}
+
 
 }
