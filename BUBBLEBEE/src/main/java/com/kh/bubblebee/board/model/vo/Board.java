@@ -35,7 +35,8 @@ public class Board {
 	private int maxMember; // 참여가능인원
 	private double rank; //인기순 정렬시 기준
 	private String li; //하트누른 여부
-	private double avgrv;	// 리뷰 평균 점수 
+	private double avgrv;	// 리뷰 평균 점수
+	private Date lastdate; // 옵션 중 마지막 날짜 
 	
 	
 	public Board() {}
@@ -45,7 +46,7 @@ public class Board {
 			String location, double lat, double lon, String ad1, String ad2, String fcontain, String fncontain,
 			String fcalendar, String fmaterials, String fminfo, String fprecaution, String user_id, String user_id_ht,
 			int heart, int rsum, int rcount, Date f_create_date, String f_status, String originalFileName,
-			String renameFileName, String introduce, int maxMember, double rank, String li, double avgrv) {
+			String renameFileName, String introduce, int maxMember, double rank, String li, double avgrv, Date lastdate) {
 		super();
 		this.rnum = rnum;
 		this.fno = fno;
@@ -79,6 +80,7 @@ public class Board {
 		this.rank = rank;
 		this.li = li;
 		this.avgrv = avgrv;
+		this.lastdate = lastdate;
 	}
 
 
@@ -104,6 +106,16 @@ public class Board {
 
 	public int getFtype() {
 		return ftype;
+	}
+
+
+	public Date getLastdate() {
+		return lastdate;
+	}
+
+
+	public void setLastdate(Date lastdate) {
+		this.lastdate = lastdate;
 	}
 
 

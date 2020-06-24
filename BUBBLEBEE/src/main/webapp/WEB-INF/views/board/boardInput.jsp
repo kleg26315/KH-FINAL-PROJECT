@@ -226,7 +226,7 @@
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" id="op2" class="op2" name="price" placeholder="가격(5000원 이상)"   required>
+								<input type="text" id="op2" class="op2" name="price" placeholder="가격(5000원 이상)"   required onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 							</td>
 						</tr>
 						<tr>	
@@ -778,6 +778,7 @@
 		  }
 		});
 		
+		//
 		//포함사항, 불포함사항, 준비물, 유의사항 500자 제한
 		$(function(){
 			$('.bIncluded').click(function(e){
