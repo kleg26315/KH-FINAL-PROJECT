@@ -8,10 +8,10 @@
 //}
 
 $(window).scroll(function(){
-	if($(this).scrollTop() > 2520){
+	if($(this).scrollTop() > 2100){
 		$("#detailMainForm2").removeClass("positionfixed");
-		$("#detailMainForm2").css("margin-top","2562px");
-		$("#detailMainForm2").css("margin-left","2.65%");
+		$("#detailMainForm2").css("margin-top","2142px");
+		$("#detailMainForm2").css("margin-left","2.58%");
 
 	}else{
 		$("#detailMainForm2").addClass("positionfixed");

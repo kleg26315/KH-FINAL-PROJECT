@@ -100,4 +100,9 @@ public class PurchaseServiceImpl implements PurchaseService {
 		return pDAO.addSlist(sqlSession, map);
 	}
 
+	@Override
+	public ArrayList<PBoard> selectPBoard2() {
+		return pDAO.selectPBoard2(sqlSession);
+	}
+
 }
