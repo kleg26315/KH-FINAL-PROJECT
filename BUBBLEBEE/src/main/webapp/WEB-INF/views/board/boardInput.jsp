@@ -14,7 +14,6 @@
 	<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/smartEditor/js/service/HuskyEZCreator2.js" charset="UTF-8"></script>
 </head>
 <style>
-
 </style>
 <body>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=be0b8d3e154f1e2bf1a278bd7fbf3d2a&libraries=services"></script>
@@ -226,7 +225,7 @@
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" id="op2" class="op2" name="price" placeholder="가격(5000원 이상)"   required>
+								<input type="text" id="op2" class="op2" name="price" placeholder="가격(5000원 이상)"   required onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 							</td>
 						</tr>
 						<tr>	
@@ -281,7 +280,6 @@
 							$(obj).parent().parent().parent().next().remove();
 							$(obj).parent().parent().parent().parent().remove();
 						}
-
 						
 						function delete_file(obj){
 							$(obj).parent().parent().remove();
@@ -394,7 +392,6 @@
 						innerHtml += '<tr>';
 						innerHtml += '<td><input type="text" name="bDetail" class="bDetail"  placeholder="세부일정"></td>';
 						innerHtml += '</tr>';
-
 						$('#tbody2').append(innerHtml);
 					}else{
 						alert("최대 10개까지만 가능합니다.");
@@ -778,6 +775,7 @@
 		  }
 		});
 		
+		//
 		//포함사항, 불포함사항, 준비물, 유의사항 500자 제한
 		$(function(){
 			$('.bIncluded').click(function(e){
