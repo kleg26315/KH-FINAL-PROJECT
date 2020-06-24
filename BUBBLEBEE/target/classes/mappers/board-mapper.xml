@@ -68,7 +68,7 @@
 	
 	<insert id="insertBoardOption">
 		insert into choose
-		values(SEQ_CHOOSE.nextval, #{oname}, #{price}, #{ocount}, SEQ_BOARD.currval, #{odeadline})
+		values(SEQ_CHOOSE.nextval, #{oname}, #{price}, #{ocount}, SEQ_BOARD.currval, #{odeadline}, default)
 	</insert>
 	
 	<update id="updateBoard">
@@ -91,10 +91,12 @@
 		where fno = #{fno}	
 	</update>
 	
-	<delete id="deleteBoardOption">
-		delete from choose
+	<update id="deleteBoardOption">
+		update choose
+		set o_status = 'N'
 		where fno=#{fno}
-	</delete>
+	</update
+	>
 	
 	<select id="selectBoard" resultType="Board">
 		select *
