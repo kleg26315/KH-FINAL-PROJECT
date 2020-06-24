@@ -35,17 +35,18 @@ public class Board {
 	private int maxMember; // 참여가능인원
 	private double rank; //인기순 정렬시 기준
 	private String li; //하트누른 여부
-	private double avgrv;	// 리뷰 평균 점수 
+	private double avgrv; //리뷰 평균점수
+	private Date lastdate; // 옵션 중 마지막 날짜 
 	private String nickname;
 	
 	public Board() {}
-
 
 	public Board(int rnum, int fno, int ftype, int price, String small_title, String ftitle, String category,
 			String location, double lat, double lon, String ad1, String ad2, String fcontain, String fncontain,
 			String fcalendar, String fmaterials, String fminfo, String fprecaution, String user_id, String user_id_ht,
 			int heart, int rsum, int rcount, Date f_create_date, String f_status, String originalFileName,
-			String renameFileName, String introduce, int maxMember, double rank, String li, double avgrv,String nickname) {
+			String renameFileName, String introduce, int maxMember, double rank, String li, double avgrv, Date lastdate, String nickname) {
+
 		super();
 		this.rnum = rnum;
 		this.fno = fno;
@@ -79,19 +80,18 @@ public class Board {
 		this.rank = rank;
 		this.li = li;
 		this.avgrv = avgrv;
+		this.lastdate = lastdate;
 		this.nickname = nickname;
 	}
-
 
 	public String getNickname() {
 		return nickname;
 	}
 
-
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
-	}
 
+	}
 
 	public int getRnum() {
 		return rnum;
@@ -115,6 +115,16 @@ public class Board {
 
 	public int getFtype() {
 		return ftype;
+	}
+
+
+	public Date getLastdate() {
+		return lastdate;
+	}
+
+
+	public void setLastdate(Date lastdate) {
+		this.lastdate = lastdate;
 	}
 
 
@@ -412,7 +422,6 @@ public class Board {
 		this.avgrv = avgrv;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Board [rnum=" + rnum + ", fno=" + fno + ", ftype=" + ftype + ", price=" + price + ", small_title="
@@ -423,12 +432,7 @@ public class Board {
 				+ heart + ", rsum=" + rsum + ", rcount=" + rcount + ", f_create_date=" + f_create_date + ", f_status="
 				+ f_status + ", originalFileName=" + originalFileName + ", renameFileName=" + renameFileName
 				+ ", introduce=" + introduce + ", maxMember=" + maxMember + ", rank=" + rank + ", li=" + li + ", avgrv="
-				+ avgrv + "]";
+				+ avgrv + ", lastdate=" + lastdate + ", nickname=" + nickname + "]";
 	}
-
-
-	
-	
-	
 
 }

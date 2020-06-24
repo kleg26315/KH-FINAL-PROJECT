@@ -696,7 +696,7 @@
 		
 			function addressInfo(){
 				var address = $('.postcodify_address').val();
-				//console.log(address);
+				console.log(address);
 				
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 				    mapOption = {
