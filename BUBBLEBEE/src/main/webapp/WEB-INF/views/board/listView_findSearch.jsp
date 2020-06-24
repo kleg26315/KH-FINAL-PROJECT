@@ -33,35 +33,7 @@
       <div class = "main">
        	
       	<div id="allLabel" style="margin-top:80px;">
-      		<c:if test="${ cate eq 'party'}" >	     
-         		토크/파티 모임 전체
-         	</c:if>
-         	<c:if test="${ cate == 'like'}" >	     
-         		취향 모임 전체
-         	</c:if>	
-         	<c:if test="${ cate == 'study'}" >	     
-         		스터디 모임 전체
-         	</c:if>	
-         	<c:if test="${ cate == 'event'}" >	     
-         		이벤트/공간 모임 전체
-         	</c:if>	
-         	
-         	<c:if test="${ cate == 'diy'}" >	     
-         		공예/DIY 클래스 전체
-         	</c:if>
-         	<c:if test="${ cate == 'cook'}" >	     
-         		요리 클래스 전체
-         	</c:if>
-         	<c:if test="${ cate == 'sport'}" >	     
-         		스포츠 클래스 전체
-         	</c:if>
-         	<c:if test="${ cate == 'learn'}" >	     
-         		어학/취업 클래스 전체
-         	</c:if>
-         	
-         	<c:if test="${ cate == 'sell'}" >	     
-         		작품  전체
-         	</c:if>
+      		<span>${search} 검색 결과 ${searchCount }</span>
       	</div>
       	
       	<!-- 어디서버튼 -->
@@ -69,11 +41,7 @@
 		<label for="where">어디서</label>
 			<div>
 				<div>
-					<c:url var="reset" value="allList.bo">
-						<c:param name="page" value="1"/>
-						<c:param name="cate" value="${ cate }"/>
-					</c:url>
-					<span id="pfilter">어디서</span> <span id="pfreset2"><a href="${ reset }">초기화</a></span>
+					<span id="pfilter">어디서</span>
 					<label for="where">x</label><br><br>
 					<hr>
 					
@@ -156,10 +124,10 @@
 						<div class="conbox con1">
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '서울특별시' }">
-								<c:url var="ad2" value="search.bo">
+								<c:url var="ad2" value="findFilter.bo">
 									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
-									<c:param name="cate" value="${ cate }"/>
+									<c:param name="search" value="${ search }"/>
 									<c:param name="a" value="${ a }"/>
 									<c:param name="startPrice" value="${ startPrice }"/>
 									<c:param name="endPrice" value="${ endPrice }"/>
@@ -171,10 +139,10 @@
 						<div class="conbox con2">
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '부산광역시' }">
-								<c:url var="ad2" value="search.bo">
+								<c:url var="ad2" value="findFilter.bo">
 									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
-									<c:param name="cate" value="${ cate }"/>
+									<c:param name="search" value="${ search }"/>
 									<c:param name="a" value="${ a }"/>
 									<c:param name="startPrice" value="${ startPrice }"/>
 									<c:param name="endPrice" value="${ endPrice }"/>
@@ -186,10 +154,10 @@
 						<div class="conbox con3">
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '대구광역시' }">
-								<c:url var="ad2" value="search.bo">
+								<c:url var="ad2" value="findFilter.bo">
 									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
-									<c:param name="cate" value="${ cate }"/>
+									<c:param name="search" value="${ search }"/>
 									<c:param name="a" value="${ a }"/>
 									<c:param name="startPrice" value="${ startPrice }"/>
 									<c:param name="endPrice" value="${ endPrice }"/>
@@ -201,10 +169,10 @@
 						<div class="conbox con4">
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '인천광역시' }">
-								<c:url var="ad2" value="search.bo">
+								<c:url var="ad2" value="findFilter.bo">
 									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
-									<c:param name="cate" value="${ cate }"/>
+									<c:param name="search" value="${ search }"/>
 									<c:param name="a" value="${ a }"/>
 									<c:param name="startPrice" value="${ startPrice }"/>
 									<c:param name="endPrice" value="${ endPrice }"/>
@@ -216,10 +184,10 @@
 						<div class="conbox con5">
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '광주광역시' }">
-								<c:url var="ad2" value="search.bo">
+								<c:url var="ad2" value="findFilter.bo">
 									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
-									<c:param name="cate" value="${ cate }"/>
+									<c:param name="search" value="${ search }"/>
 									<c:param name="a" value="${ a }"/>
 									<c:param name="startPrice" value="${ startPrice }"/>
 									<c:param name="endPrice" value="${ endPrice }"/>
@@ -231,10 +199,10 @@
 						<div class="conbox con6">
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '대전광역시' }">
-								<c:url var="ad2" value="search.bo">
+								<c:url var="ad2" value="findFilter.bo">
 									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
-									<c:param name="cate" value="${ cate }"/>
+									<c:param name="search" value="${ search }"/>
 									<c:param name="a" value="${ a }"/>
 									<c:param name="startPrice" value="${ startPrice }"/>
 									<c:param name="endPrice" value="${ endPrice }"/>
@@ -246,10 +214,10 @@
 						<div class="conbox con7">
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '울산광역시' }">
-								<c:url var="ad2" value="search.bo">
+								<c:url var="ad2" value="findFilter.bo">
 									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
-									<c:param name="cate" value="${ cate }"/>
+									<c:param name="search" value="${ search }"/>
 									<c:param name="a" value="${ a }"/>
 									<c:param name="startPrice" value="${ startPrice }"/>
 									<c:param name="endPrice" value="${ endPrice }"/>
@@ -261,10 +229,10 @@
 						<div class="conbox con8">
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '세종특별자치시' }">
-								<c:url var="ad2" value="search.bo">
+								<c:url var="ad2" value="findFilter.bo">
 									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
-									<c:param name="cate" value="${ cate }"/>
+									<c:param name="search" value="${ search }"/>
 									<c:param name="a" value="${ a }"/>
 									<c:param name="startPrice" value="${ startPrice }"/>
 									<c:param name="endPrice" value="${ endPrice }"/>
@@ -276,10 +244,10 @@
 						<div class="conbox con9">
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '경기도' }">
-								<c:url var="ad2" value="search.bo">
+								<c:url var="ad2" value="findFilter.bo">
 									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
-									<c:param name="cate" value="${ cate }"/>
+									<c:param name="search" value="${ search }"/>
 									<c:param name="a" value="${ a }"/>
 									<c:param name="startPrice" value="${ startPrice }"/>
 									<c:param name="endPrice" value="${ endPrice }"/>
@@ -291,10 +259,10 @@
 						<div class="conbox con10">
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '강원도' }">
-								<c:url var="ad2" value="search.bo">
+								<c:url var="ad2" value="findFilter.bo">
 									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
-									<c:param name="cate" value="${ cate }"/>
+									<c:param name="search" value="${ search }"/>
 									<c:param name="a" value="${ a }"/>
 									<c:param name="startPrice" value="${ startPrice }"/>
 									<c:param name="endPrice" value="${ endPrice }"/>
@@ -306,10 +274,10 @@
 						<div class="conbox con11">
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '충청북도' }">
-								<c:url var="ad2" value="search.bo">
+								<c:url var="ad2" value="findFilter.bo">
 									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
-									<c:param name="cate" value="${ cate }"/>
+									<c:param name="search" value="${ search }"/>
 									<c:param name="a" value="${ a }"/>
 									<c:param name="startPrice" value="${ startPrice }"/>
 									<c:param name="endPrice" value="${ endPrice }"/>
@@ -321,10 +289,10 @@
 						<div class="conbox con12">
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '세종특별자치시' }">
-								<c:url var="ad2" value="search.bo">
+								<c:url var="ad2" value="findFilter.bo">
 									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
-									<c:param name="cate" value="${ cate }"/>
+									<c:param name="search" value="${ search }"/>
 									<c:param name="a" value="${ a }"/>
 									<c:param name="startPrice" value="${ startPrice }"/>
 									<c:param name="endPrice" value="${ endPrice }"/>
@@ -336,10 +304,10 @@
 						<div class="conbox con13">
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '전라북도' }">
-								<c:url var="ad2" value="search.bo">
+								<c:url var="ad2" value="findFilter.bo">
 									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
-									<c:param name="cate" value="${ cate }"/>
+									<c:param name="search" value="${ search }"/>
 									<c:param name="a" value="${ a }"/>
 									<c:param name="startPrice" value="${ startPrice }"/>
 									<c:param name="endPrice" value="${ endPrice }"/>
@@ -351,10 +319,10 @@
 						<div class="conbox con14">
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '전라남도' }">
-								<c:url var="ad2" value="search.bo">
+								<c:url var="ad2" value="findFilter.bo">
 									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
-									<c:param name="cate" value="${ cate }"/>
+									<c:param name="search" value="${ search }"/>
 									<c:param name="a" value="${ a }"/>
 									<c:param name="startPrice" value="${ startPrice }"/>
 									<c:param name="endPrice" value="${ endPrice }"/>
@@ -366,10 +334,10 @@
 						<div class="conbox con15">
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '경상북도' }">
-								<c:url var="ad2" value="search.bo">
+								<c:url var="ad2" value="findFilter.bo">
 									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
-									<c:param name="cate" value="${ cate }"/>
+									<c:param name="search" value="${ search }"/>
 									<c:param name="a" value="${ a }"/>
 									<c:param name="startPrice" value="${ startPrice }"/>
 									<c:param name="endPrice" value="${ endPrice }"/>
@@ -381,10 +349,10 @@
 						<div class="conbox con16">
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '경상남도' }">
-								<c:url var="ad2" value="search.bo">
+								<c:url var="ad2" value="findFilter.bo">
 									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
-									<c:param name="cate" value="${ cate }"/>
+									<c:param name="search" value="${ search }"/>
 									<c:param name="a" value="${ a }"/>
 									<c:param name="startPrice" value="${ startPrice }"/>
 									<c:param name="endPrice" value="${ endPrice }"/>
@@ -396,10 +364,10 @@
 						<div class="conbox con17">
 							<c:forEach var="w" items="${ wlist }" varStatus="status">
 							<c:if test="${!empty w.ad1 && w.ad1 eq '제주특별자치도' }">
-								<c:url var="ad2" value="search.bo">
+								<c:url var="ad2" value="findFilter.bo">
 									<c:param name="ad1" value="${ w.ad1 }"/>
 									<c:param name="ad2" value="${ w.ad2 }"/>
-									<c:param name="cate" value="${ cate }"/>
+									<c:param name="search" value="${ search }"/>
 									<c:param name="a" value="${ a }"/>
 									<c:param name="startPrice" value="${ startPrice }"/>
 									<c:param name="endPrice" value="${ endPrice }"/>
@@ -514,7 +482,7 @@
 					  
 					<!-- 슬라이더 -->
 					
-					<div id="applyb" onclick="searchBoard();">적용하기</div>
+					<div id="applyb" onclick="findFilterBoard();">적용하기</div>
 					
 				</div>
 				<label for="popup"><!-- 외곽클릭 --></label>
@@ -522,16 +490,16 @@
 			
 			<!-- 필터값넘기기 -->
 			<script>
-			function searchBoard(){
+			function findFilterBoard(){
 				var a = $(':radio[name="farray"]:checked').val();
 				var startPrice = $("#sprice").val();
 				var endPrice = $("#eprice").val();
 				var ad1 = $('#ad1').val();
 				var ad2 = $('#ad2').val();
-				location.href="search.bo?cate="+'${cate}'+"&a="+a+"&startPrice="+startPrice+"&endPrice="+endPrice;
+				location.href="findFilter.bo?search="+'${search}'+"&a="+a+"&startPrice="+startPrice+"&endPrice="+endPrice;
 				
 				if(ad1 !=null) {
-					location.href="search.bo?cate="+'${cate}'+"&ad1="+ad1+"&ad2="+ad2+"&a="+a+"&startPrice="+startPrice+"&endPrice="+endPrice;
+					location.href="findFilter.bo?search="+'${search}'+"&ad1="+ad1+"&ad2="+ad2+"&a="+a+"&startPrice="+startPrice+"&endPrice="+endPrice;
 				}
 			}
 			</script>
@@ -547,6 +515,19 @@
          
 		<div id="hotmoim">
          <div class="moim">
+         <c:if test="${empty list }">
+	         	<div class="" style="text-align: center; width: 100%;">
+		         	<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath fill='%23FFF' fill-opacity='0' fill-rule='nonzero' d='M0 0h80v80H0z'/%3E %3Cg transform='translate(10 10)'%3E %3Ccircle cx='26.2' cy='26.2' r='24.6' fill-rule='nonzero' stroke='%23DDD' stroke-width='2'/%3E %3Cpath fill='%23DDD' d='M19.8 24.6a1.6 1.6 0 1 1 0-3.2 1.6 1.6 0 0 1 0 3.2zm12.8 0a1.6 1.6 0 1 1 0-3.2 1.6 1.6 0 0 1 0 3.2z'/%3E %3Cpath stroke='%23DDD' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M23 29.4c2.133-2.133 4.267-2.133 6.4 0'/%3E %3Cpath fill-rule='nonzero' stroke='%23DDD' stroke-width='2' d='M43.8 43.8l14.708 14.708'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E">
+		         	<div class="">
+			         	<p>검색 결과가 없어요.</p>
+			         	<p>다른 검색어로 검색해 주세요!</p>
+		         	</div>
+	         	</div>
+	         	<script>
+	         		$('.main').height('497px');
+	         	</script>
+         </c:if>
+         <c:if test="${not empty list }">
          <c:forEach var="b" items="${ list }" varStatus="status">
             <div class="moim_total">
             <c:url var="bdetail" value="detail.bo">
@@ -608,6 +589,7 @@
                </a>
             </div>
             </c:forEach>
+            </c:if>
             </div>
             </div>
 
@@ -641,15 +623,16 @@
             </script>	                 
  
       <!-- 페이징 처리 -->
+         <c:if test="${not empty list }">
       <div id="paging" style="margin-left:50%; margin-top:30px; font-size:20px;">
 	      <!-- [이전] -->
 			<c:if test="${ pi.currentPage <= 1 }">
 				< &nbsp;
 			</c:if>
 			<c:if test="${ pi.currentPage > 1 }">
-				<c:url var="before" value="search.bo">
+				<c:url var="before" value="findFilter.bo">
 					<c:param name="page" value="${ pi.currentPage - 1 }"/>
-					<c:param name="cate" value="${ cate }"/>
+					<c:param name="search" value="${ search }"/>
 					<c:param name="a" value="${ a }"/>
 					<c:param name="startPrice" value="${ startPrice }"/>
 					<c:param name="endPrice" value="${ endPrice }"/>
@@ -668,9 +651,9 @@
 				</c:if>
 				
 				<c:if test="${ p ne pi.currentPage }">
-					<c:url var="pagination" value="search.bo">
+					<c:url var="pagination" value="findFilter.bo">
 						<c:param name="page" value="${ p }"/>
-						<c:param name="cate" value="${ cate }"/>
+						<c:param name="search" value="${ search }"/>
 						<c:param name="a" value="${ a }"/>
 						<c:param name="startPrice" value="${ startPrice }"/>
 						<c:param name="endPrice" value="${ endPrice }"/>
@@ -688,9 +671,9 @@
 				>
 			</c:if>
 			<c:if test="${ pi.currentPage < pi.maxPage }">
-				<c:url var="after" value="search.bo">
+				<c:url var="after" value="findFilter.bo">
 					<c:param name="page" value="${ pi.currentPage + 1 }"/>
-					<c:param name="cate" value="${ cate }"/>
+					<c:param name="search" value="${ search }"/>
 					<c:param name="a" value="${ a }"/>
 					<c:param name="startPrice" value="${ startPrice }"/>
 					<c:param name="endPrice" value="${ endPrice }"/>
@@ -703,6 +686,7 @@
 			</c:if>
 		
 		</div>
+      	</c:if>
       	
       </div> <!-- main div끝 -->
       

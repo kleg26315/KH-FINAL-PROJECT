@@ -150,6 +150,26 @@ public class BoardDAO {
 		return (ArrayList)sqlSession.selectList("purchaseMapper.selectOption",fno);
 	}
 
+	public ArrayList<Integer> selectHeartList(SqlSessionTemplate sqlSession, String id) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectHeartList", id);
+	}
+
+	public int getFindFilterListCount(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		return sqlSession.selectOne("boardMapper.getFindFilterListCount", map);
+	}
+
+	public ArrayList<Board> selectFindFilterList(SqlSessionTemplate sqlSession, HashMap<String, Object> map,
+			PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("boardMapper.selectFindFilterList", map, rowBounds);
+	}
+
+	public ArrayList<Board> selectwFindFilterList(SqlSessionTemplate sqlSession, String search) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectwFindFilterList", search);
+	}
+
 	
 	
 	

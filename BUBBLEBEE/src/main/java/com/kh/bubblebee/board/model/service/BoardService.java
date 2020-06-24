@@ -70,6 +70,14 @@ public interface BoardService {
 
 	ArrayList<Option> selectOption(int fno);
 
+	ArrayList<Integer> selectHeartList(String id);
+
+	int getFindFilterListCount(HashMap<String, Object> map);
+
+	ArrayList<Board> selectFindFilterList(HashMap<String, Object> map, PageInfo pi);
+
+	ArrayList<Board> selectwFindFilterList(String search);
+
 	
 
 }

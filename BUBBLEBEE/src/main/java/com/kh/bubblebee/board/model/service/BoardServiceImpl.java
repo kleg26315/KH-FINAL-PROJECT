@@ -168,6 +168,26 @@ public class BoardServiceImpl implements BoardService {
 		return bDAO.selectOption(sqlSession,fno);
 	}
 
+	@Override
+	public ArrayList<Integer> selectHeartList(String id) {
+		return bDAO.selectHeartList(sqlSession, id);
+	}
+
+	@Override
+	public int getFindFilterListCount(HashMap<String, Object> map) {
+		return bDAO.getFindFilterListCount(sqlSession, map);
+	}
+
+	@Override
+	public ArrayList<Board> selectFindFilterList(HashMap<String, Object> map, PageInfo pi) {
+		return bDAO.selectFindFilterList(sqlSession, map, pi);
+	}
+
+	@Override
+	public ArrayList<Board> selectwFindFilterList(String search) {
+		return bDAO.selectwFindFilterList(sqlSession, search);
+	}
+
 
 	
 }
