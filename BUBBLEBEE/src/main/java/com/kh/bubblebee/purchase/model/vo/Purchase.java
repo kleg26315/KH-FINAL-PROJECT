@@ -13,14 +13,14 @@ public class Purchase {
 	private String ono;
 	private String discount;
 	private String dcode;
-
+	private String buy_status;
 	
 	public Purchase() {
 		
 	}
 
 	public Purchase(int gno, String gname, String gphone, String gaddress, String gmsg, int gpay, String ocode,
-			String user_id, String ono, String discount, String dcode) {
+			String user_id, String ono, String discount, String dcode, String buy_status) {
 		super();
 		this.gno = gno;
 		this.gname = gname;
@@ -33,7 +33,16 @@ public class Purchase {
 		this.ono = ono;
 		this.discount = discount;
 		this.dcode = dcode;
+		this.buy_status = buy_status;
 
+	}
+
+	public String getBuy_status() {
+		return buy_status;
+	}
+
+	public void setBuy_status(String buy_status) {
+		this.buy_status = buy_status;
 	}
 
 	public int getGno() {
