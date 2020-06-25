@@ -15,8 +15,6 @@
 section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-width: 130px;}
 #c_body{flex-grow: 2;margin-left: 30px;width: 900px;}
 .c_list{display: inline;margin-right: 50px;font-size: 20px; font-weight:bold;}
-/* .c_list a{color: black;} */
-/* .c_list a:hover{text-decoration: none;color: black;cursor: pointer;} */
 
 #review a, #l_review a{font-weight: bold;color: gold;}
 #review_all{margin-top: 30px;}
@@ -46,7 +44,6 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 	    <div id="c_body">
 		    <div id="content_list">
 		   		<div id="review" class="c_list">후기</div>
-<!-- 		    	<div id="writed" class="c_list"><a>작성 완료 후기</a></div> -->
 		    </div>
 		    <div id="review_all">
 		    
@@ -100,7 +97,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 				    			<c:if test="${ r.category == 'sell' }">
 				    				<div>[ 작품 ]${r.ftitle }</div>
 				    			</c:if>
-				    			<div>참석 일자 :${ r.odeadline }</div>
+				    			<div>참석 일자 :${ r.odeadline } </div>
 				    		</div>
 		    			</div>
 		    			<c:url var="write" value="reviewInsertForm.mg">
@@ -135,7 +132,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 					[이전] &nbsp;
 				</c:if>
 				<c:if test="${ pi.currentPage > 1 }">
-					<c:url var="before" value="mypoint.mg">
+					<c:url var="before" value="myreview.mg">
 						<c:param name="page" value="${ pi.currentPage - 1 }"/>
 					</c:url>
 					<a href="${ before }">[이전]</a>&nbsp;
@@ -148,7 +145,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 					</c:if>
 					
 					<c:if test="${ p ne pi.currentPage }">
-						<c:url var="pagination" value="mypoint.mg">
+						<c:url var="pagination" value="myreview.mg">
 							<c:param name="page" value="${ p }"/>
 						</c:url>
 						<a href="${ pagination }">${ p }</a>&nbsp;&nbsp; 
@@ -160,7 +157,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 					[다음]
 				</c:if>
 				<c:if test="${ pi.currentPage < pi.maxPage }">
-					<c:url var="after" value="mypoint.mg">
+					<c:url var="after" value="myreview.mg">
 						<c:param name="page" value="${ pi.currentPage + 1 }"/>
 					</c:url> 
 					<a href="${ after }">[다음]</a>

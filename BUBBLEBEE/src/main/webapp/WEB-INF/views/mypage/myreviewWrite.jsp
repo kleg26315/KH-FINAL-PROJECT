@@ -49,7 +49,6 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 			<form name="rinsert" action="reviewInsert.mg" id="form" method="POST">
           		<input name="ref_fid" type="hidden" value="${review.ref_fid }">
           		<input name="ono" type="hidden" value="${review.ono }">
-<!-- 				 <input type="checkbox" id="rvsecret" name="rvsecret" value="Y"><label id="scr">비밀로 리뷰쓰기</label><br> -->
 				<c:if test="${ review.category == 'party' }">
     				<label id="rvlb">[ 토크/파티 ] ${ review.ftitle } / ${ review.odeadline } 참여</label><br>
     			</c:if>
