@@ -154,7 +154,7 @@
 		insert into point
 		values(
 		SEQ_POINT.nextval
-		, #{discountP}
+		, -#{discountP}
 		, #{comment}
 		, default
 		, sysdate
@@ -176,8 +176,19 @@
 		SELECT  *
 		FROM BOARD
 		<![CDATA[
-		WHERE ROWNUM < 5
+		WHERE ROWNUM < 5 AND F_STATUS = 'Y'
 		]]>
 		ORDER BY HEART DESC 
 	</select>
+	
+	<insert id="insertplusPoint">
+		insert into point
+		values(
+		SEQ_POINT.nextval
+		, -#{d}
+		, #{comment}
+		, default
+		, sysdate
+		, #{user_id})
+	</insert>
 </mapper> 	

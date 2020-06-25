@@ -163,10 +163,11 @@ public class PurchaseController {
 				
 				String discountP = Integer.toString(discount2);
 				
-				String comment =  gname + "상품을 결제하셨습니다. " + "결제금액은 " + gpay + " 입니다." ;
+				String comment =  gpay + " 사용" ;
+				String comment2 =  "결제 후 마일리지 적립" ;
 				
 				int pused = pService.insertPused(user_id, discountP, comment);
-				
+				int plusPoint = pService.insertplusPoint(user_id, Integer.parseInt(gpay)*0.01, comment2);
 				
 				System.out.println("gaddress : " + gaddress);
 				System.out.println("p : " + purchaseThis1);
@@ -174,7 +175,8 @@ public class PurchaseController {
 				if(purchaseThis1 > 0 && 
 						c != null &&
 						b != null &&
-						pused > 0) {
+						pused > 0 &&
+						plusPoint > 0) {
 					mv.addObject("p", p);
 					mv.addObject("c", c);
 					mv.addObject("b",b);

@@ -48,4 +48,6 @@ public interface PurchaseService {
 
 	ArrayList<PBoard> selectPBoard2();
 
+	int insertplusPoint(String user_id, double d, String comment);
+
 }

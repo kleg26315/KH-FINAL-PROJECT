@@ -94,5 +94,13 @@ public class PurchaseDAO {
 		return (ArrayList)sqlSession.selectList("purchaseMapper.selectPBoard2");
 	}
 
+	public int insertplusPoint(SqlSessionTemplate sqlSession, String user_id, double d, String comment) {
+		HashMap<String, String>map = new HashMap<>();
+		map.put("user_id", user_id);
+		map.put("d", Double.toString(d));
+		map.put("comment", comment);
+		return sqlSession.insert("purchaseMapper.insertplusPoint", map);
+	}
+
 
 }

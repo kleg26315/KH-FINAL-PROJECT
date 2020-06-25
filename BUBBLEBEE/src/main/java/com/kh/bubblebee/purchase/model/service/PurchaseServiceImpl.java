@@ -105,4 +105,9 @@ public class PurchaseServiceImpl implements PurchaseService {
 		return pDAO.selectPBoard2(sqlSession);
 	}
 
+	@Override
+	public int insertplusPoint(String user_id, double d, String comment) {
+		return pDAO.insertplusPoint(sqlSession, user_id, d, comment);
+	}
+
 }
