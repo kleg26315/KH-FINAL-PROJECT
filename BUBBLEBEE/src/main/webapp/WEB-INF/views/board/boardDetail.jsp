@@ -336,7 +336,10 @@
 		<div class="recommendation" style = "float : left; width : 60%; height : 260px; margin-top : 10px; margin-left : 20%;">
 			<c:forEach items = "${blist}" var = "blist" >
 			<div class = "recom" style = "cursor : pointer" id = "divcommit">
-			<form action = "findFrip.pu" method = "post" name = "fripCommit" >
+			<c:url var = "findFrip" value = "detail.bo">
+				<c:param name = "fno" value = "${blist.fno }"/>
+			</c:url>
+			<a href = "${findFrip }" style = "color : black">
 				<div class = "recomi">
 					<img src = "${contextPath }/resources/buploadFiles/${ blist.renamefilename}" style = "width : 100%; height: 100%;"/>
 				</div>
@@ -351,10 +354,11 @@
 				<div class = "recomp">
 					${blist.price }원
 					${blist.fno }
+					<input type = "text" style = "display : none" value = "${blist.fno }" name = "fno">
 				</div>
-				<input type = "text" style = "display : none" value = "${blist.fno }" name = "fno">
-			</form>
+			</a>
 			</div>
+			
 			</c:forEach>
 		</div>
 		<div class="blank"></div>
