@@ -208,5 +208,11 @@ public class BoardServiceImpl implements BoardService {
 	public int rejectClass(String fno) {
 		return bDAO.rejectClass(sqlSession, fno);
 	}
+
+	@Override
+	public int updateOption() {
+		// TODO Auto-generated method stub
+		return bDAO.updateOption(sqlSession);
+	}
 	
 }
