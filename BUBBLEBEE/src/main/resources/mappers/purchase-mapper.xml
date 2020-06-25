@@ -41,6 +41,7 @@
 		<result property = "ono" column = "ONO"/>
 		<result property = "discount" column = "DISCOUNT"/>
 		<result property = "dcode" column = "DCODE"/>
+		<result property = "buy_status" column = "BUY_STATUS"/>
 	</resultMap>
 	
 	<resultMap type = "PChoose" id = "ChooseResultSet">
@@ -77,7 +78,7 @@
 		insert into buying
 		values(SEQ_BUYING.nextval, #{gname},
 		#{gphone}, #{gaddress}, #{gmsg}, #{user_id},
-		#{ono}, #{gpay}, #{dcode} , #{ocode}
+		#{ono}, #{gpay}, #{dcode} , #{ocode}, default
 		)
 	</insert>
 
@@ -116,7 +117,7 @@
 		insert into buying
 		values(SEQ_BUYING.nextval, #{gname},
 		#{gphone}, #{gaddress}, #{gmsg}, #{user_id},
-		#{ono}, #{gpay}, #{dcode} , #{ocode}
+		#{ono}, #{gpay}, #{dcode} , #{ocode}, default
 		)
 	</insert>
 	

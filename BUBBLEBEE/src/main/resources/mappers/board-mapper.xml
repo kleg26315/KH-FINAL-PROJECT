@@ -226,18 +226,18 @@
 	<select id="selectFindList" resultType="Board">
 		select *
 		from board
-		where user_id like '%' || #{search} || '%'
+		where (user_id like '%' || #{search} || '%'
 		or ftitle like '%' || #{search} || '%'
-		or small_title like '%' || #{search} || '%'
+		or small_title like '%' || #{search} || '%')
 		and f_status = 'Y'
 	</select>
 	
 	<select id="getFindListCount" resultType="_int">
 		select count(*)
 		from board
-		where user_id like '%' || #{search} || '%'
+		where (user_id like '%' || #{search} || '%'
 		or ftitle like '%' || #{search} || '%'
-		or small_title like '%' || #{search} || '%'
+		or small_title like '%' || #{search} || '%')
 		and f_status = 'Y'
 	</select>
 	
@@ -383,7 +383,7 @@
 	<select id="getClassListCount" resultType="_int">
 		select count(*)
 		from board
-		where f_status = 'Y' and (category ='diy' or category ='cook' or category='sport' or category='learn')
+		where f_status = 'W' and (category ='diy' or category ='cook' or category='sport' or category='learn')
 	</select>
 	
 	<select id="selectClassList" resultType="Board">

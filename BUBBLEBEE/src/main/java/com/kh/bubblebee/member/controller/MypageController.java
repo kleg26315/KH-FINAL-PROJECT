@@ -28,6 +28,7 @@ import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.common.Pagination;
 import com.kh.bubblebee.member.model.exception.MemberException;
+import com.kh.bubblebee.member.model.service.MemberService;
 import com.kh.bubblebee.member.model.service.MypageService;
 import com.kh.bubblebee.member.model.vo.Hlike;
 import com.kh.bubblebee.member.model.vo.Member;
@@ -42,6 +43,9 @@ public class MypageController {
 	
 	@Autowired
 	private MypageService mgService;
+	
+	@Autowired
+	private MemberService mService;
 	
 	@Autowired
 	private AlertDAO aDAO;
@@ -132,9 +136,12 @@ public class MypageController {
 	}
 	// 장바구니 삭제
 	@RequestMapping("sListdelete.mg")
-	public void sListdelete(@RequestParam("tno") int tno,HttpServletResponse response) {
+	public void sListdelete(@RequestParam("tno") int tno,HttpServletResponse response, HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		int result = mgService.sListdelete(tno);
+		ArrayList<Board> slist = mService.getSlist(loginUser.getId());
+		session.setAttribute("slist", slist);
 		
 		boolean isDelete = result == 1 ? true : false;
 		
