@@ -108,9 +108,18 @@
 		select count(*)
 		from blist
 		where f_status='Y' and category=#{cate} and 
-		<![CDATA[ 
-			price>=#{sc.startPrice} and price<=#{sc.endPrice}
-		 ]]>
+		<choose>
+			<when test='sc.endPrice == 300000'>
+				<![CDATA[ 
+					price>=#{sc.startPrice}
+				 ]]>
+			 </when>
+			 <otherwise>
+			 	<![CDATA[ 
+					price>=#{sc.startPrice} and price<=#{sc.endPrice}
+				 ]]>
+			 </otherwise>
+		</choose>
 		<if test='ad2 != null'>
 			and ad1=#{ad1} and ad2=#{ad2} 
 		</if> 
@@ -130,9 +139,18 @@
 		                      from heart
 		                      where user_id_ht=#{id}) )
 		where f_status='Y' and category=#{cate} and
-		<![CDATA[ 
-			price>=#{sc.startPrice} and price<=#{sc.endPrice}
-		 ]]>
+		<choose>
+			<when test='sc.endPrice == 300000'>
+				<![CDATA[ 
+					price>=#{sc.startPrice}
+				 ]]>
+			 </when>
+			 <otherwise>
+			 	<![CDATA[ 
+					price>=#{sc.startPrice} and price<=#{sc.endPrice}
+				 ]]>
+			 </otherwise>
+		</choose>	
 		<if test='ad2 != null'>
 			and ad1=#{ad1} and ad2=#{ad2}
 		</if> 
