@@ -83,7 +83,7 @@
 	<select id="getPoint" resultType="_int">
 		select NVL(sum(p_money), 0)
 		from point
-		where user_id = #{id} and p_useday is null
+		where user_id = #{id}
 	</select>
 	
 	<select id="getSlist" resultType="Board">

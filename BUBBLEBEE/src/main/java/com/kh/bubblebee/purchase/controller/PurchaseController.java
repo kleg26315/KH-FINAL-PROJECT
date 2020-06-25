@@ -165,8 +165,9 @@ public class PurchaseController {
 				String comment =  discountPrice + " 사용" ;
 				String comment2 =  "결제 후 마일리지 적립" ;
 				
-				
-				int pused = pService.insertPused(user_id, discountPrice, comment);
+				if(discount1 != 0) {
+					int pused = pService.insertPused(user_id, discountPrice, comment);
+				}
 				int pp = pService.selectPPoint(user_id);
 				if(!gpay.equals("0")) {
 				int plusPoint = pService.insertplusPoint(user_id, Integer.parseInt(gpay)*0.01, comment2);
@@ -176,8 +177,7 @@ public class PurchaseController {
 				
 				if(purchaseThis1 > 0 && 
 						c != null &&
-						b != null &&
-						pused > 0) {
+						b != null) {
 					mv.addObject("p", p);
 					mv.addObject("c", c);
 					mv.addObject("b",b);
@@ -251,7 +251,9 @@ public class PurchaseController {
 			String comment =  discountPrice + " 사용" ;
 			String comment2 =  "결제 후 마일리지 적립" ;
 			
-			int pused = pService.insertPused(user_id, discountPrice, comment);
+			if(discount1 != 0) {
+				int pused = pService.insertPused(user_id, discountPrice, comment);
+			}
 			int pp = pService.selectPPoint(user_id);
 			if(!gpay.equals("0")) {
 			int plusPoint = pService.insertplusPoint(user_id, Integer.parseInt(gpay)*0.01, comment2);
@@ -261,7 +263,7 @@ public class PurchaseController {
 			
 			System.out.println("dcode : " + dcode + " gno : " + gno);
 			
-			if(purchaseThis1 != 0 && user_id != null && pused > 0 && gno > 0) {
+			if(purchaseThis1 != 0 && user_id != null && gno > 0) {
 				mv.addObject("gname", gname);
 				String address = gaddress1 + " " + gaddress2 +  " " + gaddress3 + " ";
 				mv.addObject("gaddress", address);
