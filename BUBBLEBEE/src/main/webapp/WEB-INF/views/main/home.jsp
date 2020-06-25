@@ -232,6 +232,13 @@
     border: none;
 }
 </style>
+<script>
+ window.onload = function(){
+		$.ajax({
+		url : 'option.do',
+	});
+	};
+</script>
 <body>
 	<header id="header">
 	  <c:import url="../layout/header.jsp"/>

@@ -28,6 +28,32 @@
 		]]>
 	</select>
 	
+	<update id="selectListfno" >
+	<if test="odeadline != null">
+		<![CDATA[
+			update board
+			set F_STATUS = 'N'
+			where board.fno in (
+		        select board.fno
+		        from board
+		        join choose on (board.fno=choose.fno)
+	       		where to_date(odeadline) < sysdate)
+		]]>
+	</if>
+	<if test="odeadline==null">
+		update board
+		set F_STATUS = 'Y'
+		where board.fno in (
+			select board.fno
+	        from board
+	        join choose on (board.fno=choose.fno)
+       		where odeadline is null)
+		        
+	</if>
+	</update>
+	
+	
+	
 	<select id="selectLtList" parameterType="map" resultType="Board">
 		<![CDATA[
 		select distinct un.fno, FTYPE, un.PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, AD1, AD2, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, RANK, RENAMEFILENAME, li

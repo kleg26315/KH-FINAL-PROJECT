@@ -185,7 +185,9 @@ public class BoardDAO {
 		return sqlSession.update("boardMapper.rejectClass", fno);
 	}
 
-	
-	
-	
+	public int updateOption(SqlSessionTemplate sqlSession) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("boardMapper.selectListfno");		
+	}
+
 }

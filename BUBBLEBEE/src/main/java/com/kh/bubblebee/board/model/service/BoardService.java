@@ -87,6 +87,8 @@ public interface BoardService {
 
 	int rejectClass(String fno);
 
+	int updateOption();
+
 	
 
 }

@@ -105,4 +105,9 @@ public class HomeController {
 	public String testView() {
 		return "test";
 	}
+	
+	@RequestMapping("option.do")
+	public void updateOption(HttpServletResponse res) {
+		int believe = bService.updateOption();
+	}
 }
