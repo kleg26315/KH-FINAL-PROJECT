@@ -180,8 +180,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public ArrayList<Board> selectFindFilterList(HashMap<String, Object> map, PageInfo pi) {
-		return bDAO.selectFindFilterList(sqlSession, map, pi);
+	public ArrayList<Board> selectFindFilterList(HashMap<String, Object> map) {
+		return bDAO.selectFindFilterList(sqlSession, map);
 	}
 
 	@Override

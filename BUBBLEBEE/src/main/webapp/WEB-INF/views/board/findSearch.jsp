@@ -24,7 +24,7 @@
 	
 	<br clear="all">  
      
-    <div class = "main">
+    <div class = "main" style="height: 100%;">
       	<div id="allLabel" style="margin-top:80px;">
        		<span>${search} 검색 결과 ${searchCount }</span>
       	</div>
