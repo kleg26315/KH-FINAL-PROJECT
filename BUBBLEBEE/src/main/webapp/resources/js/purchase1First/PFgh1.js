@@ -59,12 +59,12 @@ var costCarculate = function() {
 
 	if ($("#FCC1").is(":checked") == true) {
 		if ((ih1ih < tc1) && (ih1ih <= ih1)) {
-			$("#IH1I1").css("color", "black");
+			$("#IH1I1").css("color", "#F39C12");
 			$("#BIC3").text(totalC);
 			$("#BIC1").text(ih1ih);
 			$("#FBDI3").val(ih1ih);
 			$("#FBDI1").val(totalC + "원 결제하기");
-			$("#FBDI1").css("color", "black");
+			$("#FBDI1").css("color", "white");
 			$("#FBDI1").attr('disabled', false);
 			$("#FBDI2").val(totalC);
 		} else if ((ih1ih > ih1) && (ih1ih <= tc1)) {
@@ -98,7 +98,7 @@ var costCarculate = function() {
 			$("#BIC1").text("0");
 			$("#FBDI3").val(0);
 			$("#FBDI1").val(tc1 + "원 결제하기");
-			$("#FBDI1").css("color", "black");
+			$("#FBDI1").css("color", "white");
 			$("#FBDI1").attr('disabled', false);
 			$("#FBDI2").val(tc1);
 		}

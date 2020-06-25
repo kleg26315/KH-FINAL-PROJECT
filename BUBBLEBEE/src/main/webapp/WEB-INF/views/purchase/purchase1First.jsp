@@ -63,7 +63,7 @@
 						<!-- input -->
 						<div class = "mOptionO">
 							<h3 class = "mOptionO1">선택한 옵션</h3>
-							<input name = "oname" class = "mOptionO2" name = "rTitleDetail" value = "${ pslist.oname }" readonly style = "text-align : right; margin-left : -132px;">
+							<input name = "oname" class = "mOptionO2" name = "rTitleDetail" value = "${ pslist.oname }" readonly style = "text-align : right; margin-left : 515px;">
 							<input name = "ono" style = "display : none" value = "${pslist.ono }" >
 						</div>
 						<div class = "mOptionP">
@@ -148,8 +148,8 @@
 		
 					<h3 class = "mInfoH1" style = "margin-top : 12px;">
 						<input class = "mInfoH1I" id = "IH1I1" type = "text" placeholder = "사용 마일리지 " maxlength = "8" 
-						style = "border : 1px solid gray; text-align : right; margin-right : 24px; outline : none; border-radius : 2px 2px;"  onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
-						<input class = "mInfoH1B" id = "IH1B1" type = "button" value = "전체 사용" style = "outline : none;">
+						style = "border : 1px solid #F39C12; text-align : right; margin-right : 24px; outline : none; border-radius : 2px 2px; color : #F39C12;"  onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+						<input class = "mInfoH1B" id = "IH1B1" type = "button" value = "전체 사용" style = "outline : none; background-color : #F39C12; color : white; border:none;">
 					</h3>
 				</div>
 				<div style = "float:left; width : 100%;">
@@ -169,15 +169,15 @@
 				</div>
 				<div class = "mFin">
 					<div class = "mFinC">
-						<input class = "mFinCC" id = "FCC1" type = "checkbox">
-						<h3 class = "mFinCH">
+						<input class = "mFinCC" id = "FCC1" type = "checkbox" style = "margin-top : -4px;">
+						<h3 class = "mFinCH" style = "margin-left : 1%;">
 							개인정보 제 3자 동의, 결제 대행 서비스 이용 약관 등 모든 약관에 동의합니다.
 						</h3>
 					</div>
 				</div>
 				<div class = "mFinB">
 					<div class = "mFinBD">
-						<input class = "mFinBDI" id = "FBDI1" type = "button" style = "outline : none" value = "약관에 동의해 주세요" >
+						<input class = "mFinBDI" id = "FBDI1" type = "button" style = "outline : none; background-color : #F39C12; color : white;" value = "약관에 동의해 주세요" >
 						<input id = "FBDI2" style = "display : none;" name = "totalPrice">
 						<input id = "FBDI3" style = "display : none;" name = "discountPrice">
 					</div>
@@ -188,7 +188,7 @@
 			</div>
 			</form>
 		
-	<script src = "<%=request.getContextPath()%>/resources/js/purchase1First/PFgh1.js"></script>
+	<script src = "<%=request.getContextPath()%>/resources/js/purchase1First/PFgh1.js?ver=1"></script>
 	<script src = "<%=request.getContextPath()%>/resources/js/purchase1First/PFgh2.js"></script>
 </body>
 </html>
