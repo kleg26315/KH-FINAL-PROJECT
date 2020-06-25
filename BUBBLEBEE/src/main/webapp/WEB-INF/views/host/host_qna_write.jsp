@@ -24,6 +24,7 @@
       <form action="hostQnAenroll.ho" method="post">
       <input type="hidden" name="ref_fid" value="${fno}">
       <input type="hidden" name="user_id" value="${loginUser.id }">
+      <input type="hidden" name="hostId" value="${hostId }">
 	      <div id="all_wrap">
 				<div id="qna_all">
 					<div id="qna_wrap">

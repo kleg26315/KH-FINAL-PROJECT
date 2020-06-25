@@ -170,15 +170,16 @@ public class HostController {
 	}
 	// 호스트 게시판 별 문의 작성
 	@RequestMapping("hostQnAwriteView.ho")
-	public ModelAndView hostQnAwriteView(@RequestParam("fno") int fno,ModelAndView mv) {
+	public ModelAndView hostQnAwriteView(@RequestParam("fno") int fno,@RequestParam("hostId") String hostId,ModelAndView mv) {
 		System.out.println(fno);
 		mv.addObject("fno",fno);
+		mv.addObject("hostId",hostId);
 		mv.setViewName("host_qna_write");
 		return mv;
 	}
 	
 	@RequestMapping("hostQnAenroll.ho")
-	public ModelAndView hostQnAenroll(@ModelAttribute Review r,ModelAndView mv) {
+	public ModelAndView hostQnAenroll(@ModelAttribute Review r,@RequestParam("hostId") String hostId,ModelAndView mv) {
 		System.out.println(r);
 		
 		int result = hService.insertHostQnA(r);
@@ -186,7 +187,7 @@ public class HostController {
 		if(result >0) {
 			mv.addObject("fno",r.getRef_fid());
 			System.out.println("test"+r.getRef_fid());
-			mv.setViewName("host_qna");
+			mv.setViewName("redirect:hostQnA.ho?fno="+r.getRef_fid()+"&hostId="+hostId);
 		}
 		return mv;
 	}

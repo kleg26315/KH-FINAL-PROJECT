@@ -24,12 +24,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.bubblebee.alert.model.dao.AlertDAO;
 import com.kh.bubblebee.alert.model.vo.Alert;
+import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.common.PageInfo;
+import com.kh.bubblebee.common.Pagination;
 import com.kh.bubblebee.member.model.exception.MemberException;
 import com.kh.bubblebee.member.model.service.MypageService;
+import com.kh.bubblebee.member.model.vo.Hlike;
 import com.kh.bubblebee.member.model.vo.Member;
 import com.kh.bubblebee.notice.model.vo.Pagination2;
 import com.kh.bubblebee.purchase.model.vo.PPoint;
+import com.kh.bubblebee.purchase.model.vo.Paylist;
+import com.kh.bubblebee.purchase.model.vo.Slist;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -45,8 +50,26 @@ public class MypageController {
 	
 	//좋아요(모임)
 	@RequestMapping("mylike.mg")
-	public String mylikemeet() {
-		return "mylikemeet";
+	public ModelAndView mylikemeet(HttpSession session,@RequestParam(value="page" ,required = false) Integer page,ModelAndView mv) {
+		String userId = ((Member)session.getAttribute("loginUser")).getId();
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		int listCount = mgService.getbListCount(userId);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Board> bList = mgService.selectbList(pi,userId);
+		
+		System.out.println(pi);
+		
+		mv.addObject("bList",bList);
+		mv.addObject("pi", pi);
+		mv.setViewName("mylikemeet");
+		
+		return mv;
 	}
 	
 	//좋아요(클래스)
@@ -56,13 +79,28 @@ public class MypageController {
 	}
 	//좋아요(호스트)
 	@RequestMapping("mylikehost.mg")
-	public String mylikehost(HttpSession session) {
+	public ModelAndView mylikehost(HttpSession session,@RequestParam(value="page" ,required = false) Integer page,ModelAndView mv) {
 		
 		String userId = ((Member)session.getAttribute("loginUser")).getId();
 		
-//		ArrayList<Host> hList = mgService.mylikeHost();
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int listCount = mgService.gethListCount(userId);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Hlike> hList = mgService.selecthList(pi,userId);
+		
+		System.out.println(pi);
+		
+		mv.addObject("hList",hList);
+		mv.addObject("pi", pi);
+		mv.setViewName("mylikehost");
 
-		return "mylikehost";
+		return mv;
 	}
 	//참여 모임/클래스
 	@RequestMapping("mymeet.mg")
@@ -71,13 +109,63 @@ public class MypageController {
 	}
 	//장바구니
 	@RequestMapping("myslist.mg")
-	public String myslist() {
-		return "myslist";
+	public ModelAndView myslist(HttpSession session,@RequestParam(value="page" ,required = false) Integer page,ModelAndView mv) {
+		String userId = ((Member)session.getAttribute("loginUser")).getId();
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int listCount = mgService.getSListCount(userId);
+		
+		PageInfo pi = Pagination2.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Slist> sList = mgService.selectsList(pi,userId);
+		
+		mv.addObject("sList", sList);
+		mv.addObject("pi", pi);
+		mv.setViewName("myslist");
+		
+		
+		return mv;
+	}
+	// 장바구니 삭제
+	@RequestMapping("sListdelete.mg")
+	public void sListdelete(@RequestParam("tno") int tno,HttpServletResponse response) {
+		
+		int result = mgService.sListdelete(tno);
+		
+		boolean isDelete = result == 1 ? true : false;
+		
+		try {
+			response.getWriter().print(isDelete);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 	//결제내역
 	@RequestMapping("mypaid.mg")
-	public String mypaid() {
-		return "mypaid";
+	public ModelAndView mypaid(HttpSession session,@RequestParam(value="page" ,required = false) Integer page,ModelAndView mv) {
+		String userId = ((Member)session.getAttribute("loginUser")).getId();
+		
+		int currentPage=1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int listCount = mgService.getPListCount(userId);
+		
+		PageInfo pi = Pagination2.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Paylist> pList = mgService.selectpayList(pi,userId);
+		
+		mv.addObject("pList",pList);
+		mv.addObject("pi",pi);
+		mv.setViewName("mypaid");
+		return mv;
 	}
 	//마일리지
 		@RequestMapping("mypoint.mg")
@@ -88,8 +176,6 @@ public class MypageController {
 			if(page != null) {
 				currentPage = page;
 			}
-			
-			
 			
 			int listCount = mgService.getListCount(userId);
 			

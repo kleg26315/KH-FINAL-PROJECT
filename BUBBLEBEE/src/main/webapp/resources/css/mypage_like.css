@@ -230,9 +230,8 @@ section>nav{
  	margin-right: 30px;
 }
 
-.bbbbtn{
-	background: none;
-	border: none;
+.likebtn{
+	display: inline;
 }
 .paging{
 	margin: 20px 0;
