@@ -141,7 +141,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 			    		</div>
 			    		<div class="btn_wrap">
 			    			<div class="button" id="modifybtn"><c:url var="mo" value="bupdate1.bo?fno=${b.fno}"/><button><a href="${mo }">수정</a></button></div>
-			    			<div class="button" id="deletebtn"><a href="bdelete.bo?fno=${b.fno}"></a><button>삭제</button></div>
+			    			<div class="button" id="deletebtn"><a href="bdelete.bo?fno=${b.fno}"><button>마감</button></a></div>
 			    		</div>
 			    	</div>
 		    	</div>
@@ -195,14 +195,14 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 	<script>
 		$(function(){
 			// 삭제
-			$('#deletebtn').click(function(){
-				var bool = window.confirm('정말 삭제하시겠습니까?');
-				if(bool){
-					window.alert('삭제');
-				}else{
-					window.alert('취소');	
-				}
-			});
+// 			$('#deletebtn').click(function(){
+// 				var bool = window.confirm('정말 삭제하시겠습니까?');
+// 				if(bool){
+// 					window.alert('삭제');
+// 				}else{
+// 					window.alert('취소');	
+// 				}
+// 			});
 			$('.thimg_wrap').click(function(){
 				location.href="${bdetail}";
 			});

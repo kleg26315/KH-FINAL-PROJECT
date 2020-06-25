@@ -34,11 +34,12 @@
 				<div id="qna_wrap">
 						<div id="qna_text">문의하기</div>
 						<c:if test="${host.member.id  ne sessionScope.loginUser.id}">
-							<form action="hostQnAwriteView.ho" method="post">
+							<form action="hostQnAwriteView.ho">
 <!-- 							<button id="qna_btn">문의하기</button> -->
 							<input type="submit" id="qna_btn" value="문의하기" onsubmit="checked">
 							<input type="hidden" id="userId" value="${sessionScope.loginUser.id }">
 							<input type="hidden" name="fno" value="${fno}">
+							<input type="hidden" name="hostId" value="${host.member.id }">
 							</form>
 						</c:if>
 				</div>

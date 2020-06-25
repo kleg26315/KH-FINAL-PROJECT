@@ -33,4 +33,96 @@
 		<result property="p_useday" column="P_USEDAY"/>
 		<result property="user_id" column="USER_ID"/>
 	</resultMap>
+	
+	<select id="getSListCount" resultType="_int">
+	select count(*)
+	from SHLIST 
+	where user_id = #{userId}
+	</select>
+	
+	<select id="selectsList" resultMap="SListResultSet">
+	select *
+	from SHLIST
+	where user_id = #{userId}
+	</select>
+	
+	<resultMap type="Slist" id="SListResultSet">
+		<id property="tno" column="TNO"/>
+		<result property="ono" column="ONO"/>
+		<result property="oname" column="ONAME"/>
+		<result property="price" column="PRICE"/>
+		<result property="nickName" column="NICKNAME"/>
+		<result property="renamefilename" column="RENAMEFILENAME"/>
+		<result property="fno" column="FNO"/>
+		<result property="tcount" column="TCOUNT"/>
+		<result property="user_id" column="USER_ID"/>
+		<result property="ftitle" column="FTITLE"/>
+	</resultMap>
+	
+	<delete id="sListdelete">
+		delete from slist 
+		where tno = #{tno}
+	</delete>
+	
+	<select id="getPListCount" resultType="_int">
+	select count(*)
+	from paylist
+	where user_id = #{userId}
+	</select>
+	
+	<select id="selectpayList" resultMap="PayListResultSet">
+		select *
+		from paylist
+		where user_id = #{userId}
+	</select>
+	
+	<resultMap type="Paylist" id="PayListResultSet">
+		<result property="bdate" column="BDATE"/>
+		<result property="ftitle" column="FTITLE"/>
+		<result property="oname" column="ONAME"/>
+		<result property="renamefilename" column="RENAMEFILENAME"/>
+		<result property="ocode" column="OCODE"/>
+		<result property="nickname" column="NICKNAME"/>
+		<result property="price" column="PRICE"/>
+		<result property="gpay" column="GPAY"/>
+		<result property="gname" column="GNAME"/>
+		<result property="gphone" column="GPHONE"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="gmsg" column="GMSG"/>
+	</resultMap>
+	
+	<select id="gethListCount" resultType="_int">
+	select count(*)
+	from HoList
+	where hostid in (select host_id from heart where user_id=#{userId})
+	</select>
+	
+	<select id="selecthList" resultMap="HListResultSet">
+	select *
+	from HoList
+	where hostid in (select host_id from heart where user_id=#{userId})
+	</select>
+	
+	<resultMap type="Hlike" id="HListResultSet">
+		<id property="host_id" column="HOSTID"/>
+		<result property="nickname" column="NICKNAME"/>
+		<result property="profile" column="PROFILE"/>
+		<result property="lcount" column="LCOUNT"/>
+		<result property="fcount" column="FCOUNT"/>
+	</resultMap>
+	
+	<select id="getbListCount" resultType="_int">
+		select count(*)
+		from board b
+		join heart h on(fno = fno2)
+		where h.user_id_ht=#{userId} and f_status ='Y'
+	</select>
+	
+	<select id="selectbList" resultType="Board">
+		select *
+		from board b
+		join heart h on(fno = fno2)
+		where h.user_id_ht=#{userId} and f_status ='Y'
+	</select>
+	
 </mapper>

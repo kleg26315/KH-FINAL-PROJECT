@@ -19,6 +19,9 @@
 		<typeAlias type="com.kh.bubblebee.purchase.model.vo.PPoint" alias = "PPoint"/>
 		<typeAlias type="com.kh.bubblebee.account.model.vo.Account" alias = "Account"/>
 		<typeAlias type="com.kh.bubblebee.board.model.vo.Reply" alias="Reply"/>
+		<typeAlias type="com.kh.bubblebee.purchase.model.vo.Slist" alias = "Slist"/>
+		<typeAlias type="com.kh.bubblebee.purchase.model.vo.Paylist" alias = "Paylist"/>
+		<typeAlias type="com.kh.bubblebee.member.model.vo.Hlike" alias="Hlike"/>
 	</typeAliases>
 	
 	<mappers>

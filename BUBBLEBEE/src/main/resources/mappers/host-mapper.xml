@@ -50,7 +50,7 @@
 	<select id="selectBoard" resultType="Board">
 		select *
 		from board
-		where user_id = #{hostId} and f_status ='Y'
+		where user_id = #{hostId} and F_STATUS ='Y'
 		order by fno desc
 	</select>
 	
@@ -63,7 +63,7 @@
 			</when>
 			<otherwise>default</otherwise>
 		</choose>,
-		null,2)
+		null,2,null)
 	</insert>
 	
 	<select id="selectQnACount" resultType="_int">
@@ -169,13 +169,13 @@
 	<select id="getBListCount" parameterType="map" resultType="_int">
 	select count(*)
 	from board 
-	where ftype=#{ftype} and user_id =#{hostId}
+	where ftype=#{ftype} and user_id =#{hostId} and f_status ='Y'
 	</select>
 	
 	<select id="hostBoardAll" parameterType="map" resultType="Board">
 	select *
 	from board 
-	where ftype=#{ftype} and user_id =#{hostId}
+	where ftype=#{ftype} and user_id =#{hostId} and f_status ='Y'
 	</select>
 	
 	<select id="likeCount" resultType="_int">
