@@ -105,13 +105,13 @@
 	<select id="count_receivce" resultType="_int">
 		select count(*)
 		from alert
-		where user_id = #{id} and check_yn ='N'
+		where user_id = #{id} and check_yn ='N' and a_create_date >= TO_CHAR(ADD_MONTHS(SYSDATE, -1), 'YYYY-MM-DD')
 	</select>
 	
 	<select id="receivce_data" resultType="Alert">
 		select aid, a_content, a_create_date, bno, check_yn
 		from alert
-		where user_id = #{id}
+		where user_id = #{id} and a_create_date >= TO_CHAR(ADD_MONTHS(SYSDATE, -1), 'YYYY-MM-DD')
 		order by aid desc
 	</select>
 	

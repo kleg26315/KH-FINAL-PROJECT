@@ -136,7 +136,7 @@
 	<select id="selectAllId" resultType="string">
 		select user_id
 		from member	
-		where m_status = 'Y'
+		where m_status = 'Y' and user_id != 'admin@admin.admin'
 	</select>
 	
 	<insert id="insertAlert">
