@@ -41,10 +41,7 @@ public class ReviewController {
 		int listCount = rService.myReviewListCount(user_id);
 		PageInfo pi = Pagination2.getPageInfo(currentPage, listCount);
 		
-//		System.out.println("myrv수:"+listCount);
-		
 		ArrayList<Review> list = rService.selectMyReviewList(pi, user_id);
-//		System.out.println("화면리뷰:"+list);
 			
 			mv.addObject("list", list);
 			mv.addObject("pi", pi);
@@ -57,8 +54,6 @@ public class ReviewController {
 	// 후기작성폼
 	@RequestMapping("reviewInsertForm.mg")
 	public ModelAndView reviewInsertForm(@ModelAttribute Review r, ModelAndView mv) {
-//		System.out.println("r:"+r);
-		
 		
 		mv.addObject("review", r);
 		mv.setViewName("myreviewWrite");
@@ -72,8 +67,6 @@ public class ReviewController {
 		String user_id = ((Member)session.getAttribute("loginUser")).getId();
 		r.setUser_id(user_id);
 		
-//		System.out.println("rv:"+r);
-
 		int result1 = rService.insertReview(r);
 		
 		int currentPage = 1;
@@ -102,7 +95,6 @@ public class ReviewController {
 		
 		review.setCategory(r.getCategory());
 		review.setRef_fid(r.getRef_fid());
-//		review.setOdeadline(r.getOdeadline());
 		review.setFtitle(r.getFtitle());
 		
 		if(review!=null) {
@@ -130,7 +122,6 @@ public class ReviewController {
 			if(result1>0) {
 				//보드테이블에서 rsum,rcount업데이트
 				HashMap<String, Integer> map = new HashMap<String, Integer>();
-//				map.put("r", r);
 				map.put("ref_fid", r.getRef_fid());
 				map.put("exgrade", exgrade);
 				int result2 = rService.deleteReviewGrade(map);
