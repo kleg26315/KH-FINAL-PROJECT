@@ -70,19 +70,19 @@ public class PurchaseDAO {
 		return sqlSession.selectOne("purchaseMapper.selectBPBoard2", fno);
 	}
 
-	public PPoint selectPcost(SqlSessionTemplate sqlSession, String user_id) {
+	public int selectPcost(SqlSessionTemplate sqlSession, String user_id) {
 		return sqlSession.selectOne("purchaseMapper.selectPcost", user_id);
 	}
 
-	public int insertPused(SqlSessionTemplate sqlSession, String user_id, String discountP, String comment) {
+	public int insertPused(SqlSessionTemplate sqlSession, String user_id, String discountPrice, String comment) {
 		HashMap<String, String>map = new HashMap<>();
 		map.put("user_id", user_id);
-		map.put("discountP", discountP);
+		map.put("discountPrice", discountPrice);
 		map.put("comment", comment);
 		return sqlSession.insert("purchaseMapper.insertPused", map);
 	}
 
-	public PPoint selectPPoint(SqlSessionTemplate sqlSession, String user_id) {
+	public int selectPPoint(SqlSessionTemplate sqlSession, String user_id) {
 		return sqlSession.selectOne("purchaseMapper.selectPPoint", user_id);
 	}
 

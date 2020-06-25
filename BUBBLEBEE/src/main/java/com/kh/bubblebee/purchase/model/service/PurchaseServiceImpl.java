@@ -81,17 +81,17 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Override
-	public PPoint selectPcost(String user_id) {
+	public int selectPcost(String user_id) {
 		return pDAO.selectPcost(sqlSession, user_id);
 	}
 
 	@Override
-	public int insertPused(String user_id, String discountP, String comment) {
-		return pDAO.insertPused(sqlSession, user_id, discountP, comment);
+	public int insertPused(String user_id, String discountPrice, String comment) {
+		return pDAO.insertPused(sqlSession, user_id, discountPrice, comment);
 	}
 
 	@Override
-	public PPoint selectPPoint(String user_id) {
+	public int selectPPoint(String user_id) {
 		return pDAO.selectPPoint(sqlSession, user_id);
 	}
 

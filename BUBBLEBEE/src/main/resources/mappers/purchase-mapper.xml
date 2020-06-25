@@ -144,27 +144,25 @@
 		where fno = #{fno}
 	</select>
 	
-	<select id = "selectPcost" resultMap = "PointResultSet">
-		select * from
-		(select * from point where user_id = #{user_id}  order by pno desc)
-		where rownum = 1
+	<select id = "selectPcost" resultType="_int">
+		select sum(p_money) as p_cost from point
+		where user_id = #{user_id}
 	</select>
 	
 	<insert id="insertPused">
 		insert into point
 		values(
 		SEQ_POINT.nextval
-		, -#{discountP}
+		, -#{discountPrice}
 		, #{comment}
 		, default
 		, sysdate
 		, #{user_id})
 	</insert>
 	
-	<select id = "selectPPoint" resultMap = "PointResultSet">
-		select * from
-		(select * from point where user_id = #{user_id}  order by pno desc)
-		where rownum = 1
+	<select id = "selectPPoint" resultType = "_int">
+		select sum(p_money) as p_cost from point
+		where user_id = #{user_id}
 	</select>
 	
 	<insert id="addSlist">
