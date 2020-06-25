@@ -14,6 +14,7 @@
 	<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/smartEditor/js/service/HuskyEZCreator2.js" charset="UTF-8"></script>
 </head>
 <style>
+
 </style>
 <body>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=be0b8d3e154f1e2bf1a278bd7fbf3d2a&libraries=services"></script>
@@ -53,20 +54,20 @@
 					</td>
 					<td>
 						<span>
-							<select id="category2" name="category" class="test"style="display : none">
+							<select id="category2" name="category" class="category"style="display : none">
 								<option value="party">토크/파티</option>
 								<option value="like">취향</option>
 								<option value="study">스터디</option>
 								<option value="event">이벤트/공간</option>
 							</select> 
 							
-							<select id="category3" name="category" class="test" style="display : none">
+							<select id="category3" name="category" class="category" style="display : none">
 								<option value="diy">공예/DIY</option>
 								<option value="cook">요리</option>
 								<option value="sport">스포츠</option>
 								<option value="learn">어학/취업</option>
 							</select>
-							<select id="category4" name="category" class="test" style="display : none">
+							<select id="category4" name="category" class="category" style="display : none">
 								<option value="sell">작품</option>
 							</select>
 						</span>
@@ -76,23 +77,23 @@
 				<script>
 					function itemChange(sVal) {
 						if(sVal == "1"){
-							$('.test').css('display','none')
-				            $('.test').attr("name", null);
+							$('.category').css('display','none')
+				            $('.category').attr("name", null);
 				            $('#category2').css('display','block');
 				            $('#category2').attr("name","category");
 						}else if(sVal == "2"){
-							$('.test').css('display','none')
-				            $('.test').attr("name", null);
+							$('.category').css('display','none')
+				            $('.category').attr("name", null);
 				            $('#category3').css('display','block');
 				            $('#category3').attr("name","category");
 						}else if(sVal == "3"){
-							$('.test').css('display','none')
-				            $('.test').attr("name", null);
+							$('.category').css('display','none')
+				            $('.category').attr("name", null);
 				            $('#category4').css('display','block');
 				            $('#category4').attr("name","category");
 						} else if(sVal == "no"){
-							$('.test').css('display','none')
-				            $('.test').attr("name", null);
+							$('.category').css('display','none')
+				            $('.category').attr("name", null);
 						}
 					}
 					
@@ -280,6 +281,7 @@
 							$(obj).parent().parent().parent().next().remove();
 							$(obj).parent().parent().parent().parent().remove();
 						}
+
 						
 						function delete_file(obj){
 							$(obj).parent().parent().remove();
@@ -392,6 +394,7 @@
 						innerHtml += '<tr>';
 						innerHtml += '<td><input type="text" name="bDetail" class="bDetail"  placeholder="세부일정"></td>';
 						innerHtml += '</tr>';
+
 						$('#tbody2').append(innerHtml);
 					}else{
 						alert("최대 10개까지만 가능합니다.");
@@ -823,7 +826,7 @@
 					document.getElementsByClassName('bIncluded')[i].innerHTML += arr[i];
 				}
 			}
-			console.log("arr : " + arr);
+			//console.log("arr : " + arr);
 		}
 		</script>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
