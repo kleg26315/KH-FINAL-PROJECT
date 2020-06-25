@@ -183,7 +183,7 @@
 		insert into point
 		values(
 		SEQ_POINT.nextval
-		, -#{d}
+		, #{d}
 		, #{comment}
 		, default
 		, sysdate
