@@ -38,11 +38,11 @@ public interface PurchaseService {
 
 	PBoard selectBPBoard2(String fno);
 
-	PPoint selectPcost(String user_id);
+	int selectPcost(String user_id);
 
-	int insertPused(String user_id, String discountP, String comment);
+	int insertPused(String user_id, String discountPrice, String comment);
 
-	PPoint selectPPoint(String user_id);
+	int selectPPoint(String user_id);
 
 	int addSlist(HashMap<String, String> map);
 

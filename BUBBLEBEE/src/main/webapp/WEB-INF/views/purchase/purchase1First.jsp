@@ -144,7 +144,7 @@
 				<div class = "mInfo">
 					<h3 class = "mInfoH">마일리지</h3>
 					<h3 class = "mInfoH" style = "color : gray; margin-left : 20px; font-weight : 200;">보유</h3>
-< 					<input class = "mInfoHI" id = "IH1" type = "text"  value = "${ pcost.p_money }" readonly  name = "presentPoint"/> 
+< 					<input class = "mInfoHI" id = "IH1" type = "text"  value = "${ pcost }" readonly  name = "presentPoint"/> 
 		
 					<h3 class = "mInfoH1" style = "margin-top : 12px;">
 						<input class = "mInfoH1I" id = "IH1I1" type = "text" placeholder = "사용 마일리지 " maxlength = "8" 

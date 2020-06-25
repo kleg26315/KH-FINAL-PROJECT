@@ -65,7 +65,7 @@ public class PurchaseController {
 			
 			ArrayList<PBoard> plist = pService.selectBList(fno);
 			ArrayList<PChoose> pclist = pService.selectPList(onoo);
-			PPoint pcost = pService.selectPcost(user_id);
+			int pcost = pService.selectPcost(user_id);
 		
 			System.out.println("plist : " + plist);
 			System.out.println("pslist : " + pclist);
@@ -156,27 +156,28 @@ public class PurchaseController {
 				int purchaseThis1 = pService.insertPurchase(param);
 				PChoose c = pService.selectPChoose(ono);
 				PBoard b = pService.selectBPBoard(fno);
-				PPoint pp = pService.selectPPoint(user_id);
 				
 				int discount1 = Integer.parseInt(discountPrice);
 				int discount2 = presentPoint - discount1;
 				
 				String discountP = Integer.toString(discount2);
 				
-				String comment =  gpay + " 사용" ;
+				String comment =  discountPrice + " 사용" ;
 				String comment2 =  "결제 후 마일리지 적립" ;
 				
-				int pused = pService.insertPused(user_id, discountP, comment);
-				int plusPoint = pService.insertplusPoint(user_id, Integer.parseInt(gpay)*0.01, comment2);
 				
+				int pused = pService.insertPused(user_id, discountPrice, comment);
+				int pp = pService.selectPPoint(user_id);
+				if(!gpay.equals("0")) {
+				int plusPoint = pService.insertplusPoint(user_id, Integer.parseInt(gpay)*0.01, comment2);
+				}
 				System.out.println("gaddress : " + gaddress);
 				System.out.println("p : " + purchaseThis1);
 				
 				if(purchaseThis1 > 0 && 
 						c != null &&
 						b != null &&
-						pused > 0 &&
-						plusPoint > 0) {
+						pused > 0) {
 					mv.addObject("p", p);
 					mv.addObject("c", c);
 					mv.addObject("b",b);
@@ -241,21 +242,20 @@ public class PurchaseController {
 		if(loginUser != null) {
 			int purchaseThis1 = pService.insertPurchase2(param);
 			
-			int discount1 = Integer.parseInt(discountPrice);
 			
+			int discount1 = Integer.parseInt(discountPrice);
 			int discount2 = presentPoint - discount1;
 			
 			String discountP = Integer.toString(discount2);
 			
-			String comment = "결제금액은 " + gpay + " 원 입니다." ;
+			String comment =  discountPrice + " 사용" ;
+			String comment2 =  "결제 후 마일리지 적립" ;
 			
-			System.out.println(
-					"user_id : " + user_id
-					+ " discountP : " + discountP 
-					+ " comment : " + comment 
-					);
-			
-			int pused = pService.insertPused(user_id, discountP, comment);
+			int pused = pService.insertPused(user_id, discountPrice, comment);
+			int pp = pService.selectPPoint(user_id);
+			if(!gpay.equals("0")) {
+			int plusPoint = pService.insertplusPoint(user_id, Integer.parseInt(gpay)*0.01, comment2);
+			}
 			
 			int gno = pService.selectGno(dcode);
 			
@@ -296,7 +296,7 @@ public class PurchaseController {
 			Purchase p = pService.selectPurchase2(gno);
 			PChoose c = pService.selectPChoose2(ono);
 			PBoard b = pService.selectBPBoard2(fno);
-			PPoint pp = pService.selectPPoint(user_id);
+			int pp = pService.selectPPoint(user_id);
 			
 			System.out.println("kakao gno : " + gno);
 			System.out.println("kakao fno : " + fno);
@@ -304,7 +304,7 @@ public class PurchaseController {
 			System.out.println("kakao p : " + p);
 			System.out.println("kakao c : " + c);
 			System.out.println("kakao b : " + b);
-			if(p != null && c != null && b != null && pp != null) {
+			if(p != null && c != null && b != null ) {
 				mv.addObject("p", p);
 				mv.addObject("c", c);
 				mv.addObject("b", b);
