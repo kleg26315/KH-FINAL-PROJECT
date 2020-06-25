@@ -186,8 +186,8 @@
 		SEQ_POINT.nextval
 		, #{d}
 		, #{comment}
-		, default
 		, sysdate
+		, default
 		, #{user_id})
 	</insert>
 </mapper> 	
