@@ -361,6 +361,16 @@ public class PurchaseController {
 		return mv;
 	}
 	
+	@RequestMapping("findFrip.pu")
+	public ModelAndView findFrip(ModelAndView mv,
+			@RequestParam(value = "fno")int fno) {
+		
+		mv.addObject("fno", fno);
+		mv.setViewName("redirect:detail.bo");
+		
+		return mv;
+	}
+	
 
 	
 }

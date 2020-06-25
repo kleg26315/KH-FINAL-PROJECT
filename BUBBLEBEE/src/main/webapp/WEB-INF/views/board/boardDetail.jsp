@@ -193,7 +193,7 @@
 						<hr style="border: 0.5px solid lightgray">
 					</div>
 
-					<div class="hashTagQuestion">자주 묻는 질문 <input class="hashTagQuestionBtn" id="TQB1" type="button" value="V"></div>
+					<div class="hashTagQuestion">자주 묻는 질문 <input class="hashTagQuestionBtn" id="TQB1" type="button" value="∨"></div>
 					<div class="hashTagEnquiryContents">
 					<c:set var="splitArr" value="${ b.fminfo.split('<br>') }"/>
 					<c:set var="questionArr" value="${ splitArr[0].split(',') }" />
@@ -215,7 +215,7 @@
 					
 					<form action="hostQnA.ho">
 					<div class="hashTagEnquiry">
-						문의하기 <input class="hashTagEnquiryBtn" type="submit" value=">">
+						문의하기 <input class="hashTagEnquiryBtn" type="submit" value="∨">
 						<input type="hidden" name="fno" value="${b.fno }">
 						<input type="hidden" value="${host.member.id }" name="hostId">
 					</div>
@@ -227,7 +227,7 @@
 					</div>
 
 					<div class="hashTagRefund">
-						환불 정책 <input class="hashTagRefundBtn" id="TRB1" type="button" value="V">
+						환불 정책 <input class="hashTagRefundBtn" id="TRB1" type="button" value="∨">
 					</div>
 
 					<div class="hashTagRefundContents">
@@ -328,31 +328,35 @@
 		<header class = "bonjour1">
 			<div class="recommendationIntroduce" style = "float : left; width : 58%; margin-left : 21%; height : 80px;" >
 				<div style = "font-size : 16pt; font-weight : 600; float : left; width : 100%; margin-left : 0%; margin-top : 30px;">
-				이런 버블비는 어때요?
+				이런 버블은 어때요?
 				</div>
 			</div>
 		</header>
-		<form action = "findFrip.pu" method = "post" name = "frip2" id = "hugn">
+		
 		<div class="recommendation" style = "float : left; width : 60%; height : 260px; margin-top : 10px; margin-left : 20%;">
-			<c:forEach items = "${blist}" var = "blist">
-			<div class = "recom">
+			<c:forEach items = "${blist}" var = "blist" >
+			<div class = "recom" style = "cursor : pointer" id = "divcommit">
+			<form action = "findFrip.pu" method = "post" name = "fripCommit" >
 				<div class = "recomi">
-					<img src = "${contextPath }/resources/buploadFiles/${ b.renameFileName }" style = "width : 100%; height: 100%;"/>
+					<img src = "${contextPath }/resources/buploadFiles/${ blist.renamefilename}" style = "width : 100%; height: 100%;"/>
 				</div>
 				<div class = "recoms">
 					${blist.small_title }
 				</div>
 				<div class = "recomt" id = "recomt">
-					<input type = "text" id = "loc" style = "display : none;" value = "${blist.location }">
-					<input type = "text" id = "tit" style = "display : none;" value = "${blist.ftitle }">
-								</div>
+					[${fn:split(blist.location, " ")[1] }]
+					
+					${blist.ftitle }
+				</div>
 				<div class = "recomp">
 					${blist.price }원
+					${blist.fno }
 				</div>
+				<input type = "text" style = "display : none" value = "${blist.fno }" name = "fno">
+			</form>
 			</div>
 			</c:forEach>
 		</div>
-		</form>
 		<div class="blank"></div>
 	</section>
 	<!--  -->
@@ -365,21 +369,14 @@
 	<div style = "display : none">
 		<input type = "text" style = "display : none">
 	</div>
-	<script>
-		var loc = $("#loc").val();
-		var locs1 = loc.split("/");
-		var l1 = locs1[1];
-		var locs2 = l1.split(" ");
-		var l3 = locs2[1];
-		var tit = $("#tit").val();
-		$("#recomt").text("[" + l3 + "]" + " " + tit);
-	
-	</script>
-	
-	
 	<footer id="footer" style="padding-top: 115px;">
 		<c:import url="../layout/footer.jsp"/>
 	</footer>		
+	<script>
+		$("#divcommit").on("click", function(){
+			$('form[name=fripCommit]').submit();
+		})
+	</script>
 	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDhansol2.js"></script>
 	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDoption.js?ver=4"></script>
 	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDkakaomap.js"></script>
