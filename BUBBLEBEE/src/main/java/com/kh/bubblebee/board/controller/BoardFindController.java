@@ -133,9 +133,9 @@ public class BoardFindController {
 		}
 	
 		int listCount = bService.getFindFilterListCount(map);
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		/* PageInfo pi = Pagination.getPageInfo(currentPage, listCount); */
 		
-		ArrayList<Board> list = bService.selectFindFilterList(map, pi);
+		ArrayList<Board> list = bService.selectFindFilterList(map);
 		
 		
 		//어디서
@@ -146,7 +146,7 @@ public class BoardFindController {
 			mv.addObject("wlist", wlist);
 			mv.addObject("ad1", ad1);
 			mv.addObject("ad3", ad2);
-			mv.addObject("pi", pi);
+			/* mv.addObject("pi", pi); */
 			mv.addObject("a", a);
 			mv.addObject("startPrice", startPrice);
 			mv.addObject("endPrice", endPrice);

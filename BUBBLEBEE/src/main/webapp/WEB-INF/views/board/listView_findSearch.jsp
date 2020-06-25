@@ -30,7 +30,7 @@
 
 <br clear="all">  
      
-      <div class = "main">
+      <div class = "main" style="height: 100%;">
        	
       	<div id="allLabel" style="margin-top:80px;">
       		<span>${search} 검색 결과 ${searchCount }</span>
@@ -623,7 +623,7 @@
             </script>	                 
  
       <!-- 페이징 처리 -->
-         <c:if test="${not empty list }">
+      <%--    <c:if test="${not empty list }">
       <div id="paging" style="margin-left:50%; margin-top:30px; font-size:20px;">
 	      <!-- [이전] -->
 			<c:if test="${ pi.currentPage <= 1 }">
@@ -686,7 +686,7 @@
 			</c:if>
 		
 		</div>
-      	</c:if>
+      	</c:if> --%>
       	
       </div> <!-- main div끝 -->
       

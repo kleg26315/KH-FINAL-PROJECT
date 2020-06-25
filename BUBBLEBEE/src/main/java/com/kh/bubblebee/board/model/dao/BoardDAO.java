@@ -158,12 +158,8 @@ public class BoardDAO {
 		return sqlSession.selectOne("boardMapper.getFindFilterListCount", map);
 	}
 
-	public ArrayList<Board> selectFindFilterList(SqlSessionTemplate sqlSession, HashMap<String, Object> map,
-			PageInfo pi) {
-		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		
-		return (ArrayList)sqlSession.selectList("boardMapper.selectFindFilterList", map, rowBounds);
+	public ArrayList<Board> selectFindFilterList(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectFindFilterList", map);
 	}
 
 	public ArrayList<Board> selectwFindFilterList(SqlSessionTemplate sqlSession, String search) {

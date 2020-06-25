@@ -75,7 +75,7 @@ public interface BoardService {
 
 	int getFindFilterListCount(HashMap<String, Object> map);
 
-	ArrayList<Board> selectFindFilterList(HashMap<String, Object> map, PageInfo pi);
+	ArrayList<Board> selectFindFilterList(HashMap<String, Object> map);
 
 	ArrayList<Board> selectwFindFilterList(String search);
 
