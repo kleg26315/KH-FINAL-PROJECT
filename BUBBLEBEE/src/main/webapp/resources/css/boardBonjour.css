@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+div.recom{
+
+	float : left;
+	width : 23.8%;
+	margin-left : 1%;
+	height : 270px;
+}
+
+div.recomi{
+
+	float : left;
+	width : 100%;
+	height : 180px;
+}
+
+div.recoms{
+	margin-top : 10px;
+	float : left;
+	width : 100%;
+	height : 30px;
+	font-size : 12pt;
+}
+
+div.recomt{
+	float : left;
+	width : 100%;
+	height : 34px;
+	font-size : 13pt;
+	font-weight : 600;
+}
+
+div.recomp{
+	font-size : 13pt;
+	float : left;
+	width : 100%;
+	height : 34px;	
+	font-weight : 600;
+}

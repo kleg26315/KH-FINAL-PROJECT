@@ -416,9 +416,17 @@
 							   max: 30,
 							   values: [0, 30],
 							   slide: function(event, ui) {
-								   $("#amount").val(ui.values[0] + " ~ " + ui.values[1] + "만원");
-								   $("#sprice").val(ui.values[0]);
-								   $("#eprice").val(ui.values[1]);
+								   if(ui.values[1] ==30) {
+									   console.log(ui.values[1]);
+									   $("#amount").val(ui.values[0] + " ~ " + ui.values[1] + "만원이상");
+									   $("#sprice").val(ui.values[0]);
+									   $("#eprice").val(ui.values[1]); 
+								   } else {
+									   $("#amount").val(ui.values[0] + " ~ " + ui.values[1] + "만원");
+									   $("#sprice").val(ui.values[0]);
+									   $("#eprice").val(ui.values[1]);
+								   }
+								   
 							   }
 						   });
 						 } );

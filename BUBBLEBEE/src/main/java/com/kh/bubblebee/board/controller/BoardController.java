@@ -26,6 +26,7 @@ import com.kh.bubblebee.host.model.vo.Host;
 import com.kh.bubblebee.member.model.service.MemberService;
 import com.kh.bubblebee.member.model.vo.Member;
 import com.kh.bubblebee.purchase.model.service.PurchaseService;
+import com.kh.bubblebee.purchase.model.vo.PBoard;
 import com.kh.bubblebee.purchase.model.vo.Purchase;
 
 @Controller
@@ -139,14 +140,16 @@ public class BoardController {
 //		System.out.println("detail.bo의 host : " + host);
 		
 		ArrayList<Purchase> p = pService.selectOption(fno);
+		ArrayList<PBoard> blist = pService.selectPBoard2();
 		
 		System.out.println("detail.bo의 fno : " + fno);
 		System.out.println("detail.bo의 p : " + p);
 		
-		if(b != null) {
+		if(b != null && p != null && blist != null) {
 			mv.addObject("b", b)
 			  .addObject("host", host)
 			  .addObject("p", p)
+			  .addObject("blist", blist)
 			  .setViewName("boardDetail");
 			return mv;
 		}else {

@@ -193,7 +193,7 @@
 						<hr style="border: 0.5px solid lightgray">
 					</div>
 
-					<div class="hashTagQuestion">자주 묻는 질문 <input class="hashTagQuestionBtn" id="TQB1" type="button" value="V"></div>
+					<div class="hashTagQuestion">자주 묻는 질문 <input class="hashTagQuestionBtn" id="TQB1" type="button" value="∨"></div>
 					<div class="hashTagEnquiryContents">
 					<c:set var="splitArr" value="${ b.fminfo.split('<br>') }"/>
 					<c:set var="questionArr" value="${ splitArr[0].split(',') }" />
@@ -215,7 +215,7 @@
 					
 					<form action="hostQnA.ho">
 					<div class="hashTagEnquiry">
-						문의하기 <input class="hashTagEnquiryBtn" type="submit" value=">">
+						문의하기 <input class="hashTagEnquiryBtn" type="submit" value="∨">
 						<input type="hidden" name="fno" value="${b.fno }">
 						<input type="hidden" value="${host.member.id }" name="hostId">
 					</div>
@@ -227,7 +227,7 @@
 					</div>
 
 					<div class="hashTagRefund">
-						환불 정책 <input class="hashTagRefundBtn" id="TRB1" type="button" value="V">
+						환불 정책 <input class="hashTagRefundBtn" id="TRB1" type="button" value="∨">
 					</div>
 
 					<div class="hashTagRefundContents">
@@ -306,7 +306,7 @@
 				<c:if test = "${loginUser != null }">
 					<div>
 					<input class = "loginUserNull2" id = "optionNull3" type="button" value = "장바구니에 담기" 
-					style = "width : 310px; height: 40px; margin-top : 100%; background-color : rgb(249, 249, 249); border:none; border-radius : 2px 2px; outline : none;" >
+					style = "width : 310px; height: 40px; margin-top : 80%; background-color : rgb(249, 249, 249); border:none; border-radius : 2px 2px; outline : none;" >
 					</div>
 					<div style = "margin-top : 4px;">
 					<input class = "loginUserNull2" id = "optionNull4" type="button" value="참가하기" 
@@ -314,7 +314,7 @@
 					</div>
 					<div>
 					<input  class = "loginUserNull2" id = "comfirmNull3" type="submit" value = "장바구니에 담기" onclick="javascript: form.action='addslist.pu';"
-					style = "width : 310px;; height: 40px; margin-top : 100%; background-color : #F39C12; color : white; border:none; border-radius : 2px 2px; outline : none;">
+					style = "width : 310px;; height: 40px; margin-top : 80%; background-color : #F39C12; color : white; border:none; border-radius : 2px 2px; outline : none;">
 					</div>
 					<div style = "margin-top : 4px;">
 					<input  class = "loginUserNull2" id = "comfirmNull4" type="submit" value="참가하기" onclick="javascript: form.action='purchase1First.pu';"
@@ -326,14 +326,40 @@
 	</section>
 	<section class = "bonjour">
 		<header class = "bonjour1">
-			<div class="recommendationIntroduce" style = "float : left; width : 58%; margin-left : 21%; height : 280px;" >
-				<div style = "font-size : 16pt; font-weight : 600; float : left; width : 90%; margin-left : 5%; margin-top : 40px;">
-					이런 클래스는 어때요?
+			<div class="recommendationIntroduce" style = "float : left; width : 58%; margin-left : 21%; height : 80px;" >
+				<div style = "font-size : 16pt; font-weight : 600; float : left; width : 100%; margin-left : 0%; margin-top : 30px;">
+				이런 버블은 어때요?
 				</div>
 			</div>
 		</header>
-		<div class="recommendation">
+		
+		<div class="recommendation" style = "float : left; width : 60%; height : 260px; margin-top : 10px; margin-left : 20%;">
+			<c:forEach items = "${blist}" var = "blist" >
+			<div class = "recom" style = "cursor : pointer" id = "divcommit">
+			<c:url var = "findFrip" value = "detail.bo">
+				<c:param name = "fno" value = "${blist.fno }"/>
+			</c:url>
+			<a href = "${findFrip }" style = "color : black">
+				<div class = "recomi">
+					<img src = "${contextPath }/resources/buploadFiles/${ blist.renamefilename}" style = "width : 100%; height: 100%;"/>
+				</div>
+				<div class = "recoms">
+					${blist.small_title }
+				</div>
+				<div class = "recomt" id = "recomt">
+					[${fn:split(blist.location, " ")[1] }]
+					
+					${blist.ftitle }
+				</div>
+				<div class = "recomp">
+					${blist.price }원
+					${blist.fno }
+					<input type = "text" style = "display : none" value = "${blist.fno }" name = "fno">
+				</div>
+			</a>
+			</div>
 			
+			</c:forEach>
 		</div>
 		<div class="blank"></div>
 	</section>
@@ -342,16 +368,19 @@
 <!-- 		<input type = "text" style = "display : none"> -->
 <!-- 	</div> -->
 
-	</section>
+	
 	<!--  -->
 	<div style = "display : none">
-		<input type = "text" style = "display : none">ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹ
+		<input type = "text" style = "display : none">
 	</div>
-
-	
 	<footer id="footer" style="padding-top: 115px;">
 		<c:import url="../layout/footer.jsp"/>
 	</footer>		
+	<script>
+		$("#divcommit").on("click", function(){
+			$('form[name=fripCommit]').submit();
+		})
+	</script>
 	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDhansol2.js"></script>
 	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDoption.js?ver=4"></script>
 	<script src = "<%=request.getContextPath()%>/resources/js/boardDetail/BDkakaomap.js"></script>
