@@ -7,6 +7,8 @@ import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.board.model.vo.Reply;
 import com.kh.bubblebee.board.model.vo.Review;
 import com.kh.bubblebee.common.PageInfo;
+import com.kh.bubblebee.host.model.vo.Aclist;
+import com.kh.bubblebee.host.model.vo.Arlist;
 import com.kh.bubblebee.host.model.vo.Host;
 import com.kh.bubblebee.member.model.vo.Member;
 
@@ -77,6 +79,24 @@ public interface HostService {
 
 	// 호스트 프로필에서 좋아요 총 수
 	int likeCount(String hostId);
+
+	// 정산 페이징
+	int getAclistCount(String hostId);
+
+	// 정산 목록
+	ArrayList<Aclist> selectAcList(PageInfo pi, String hostId);
+
+	// 리뷰 개수
+	int getArListCount(String hostId);
+
+	// 호스트별 리뷰
+	ArrayList<Arlist> selectArList(PageInfo pi, String hostId);
+
+	// 업데이트 하기
+	int updateBuyAccount(Aclist list);
+
+	// account 테이블에 추가하기
+	int insertAcount(Aclist list);
 
 
 	

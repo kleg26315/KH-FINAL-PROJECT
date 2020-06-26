@@ -183,4 +183,68 @@
 	from heart
 	where user_id = #{hostId}
 	</select>
+	
+	<select id="getAclistCount" resultType="_int">
+	select count(distinct fno)
+	from aclist
+	where hostId = #{hostId} and buy_status ='Y'
+	group by hostid,fno,ftitle,TO_CHAR(bdate, 'yyyy-mm'), buy_status
+	</select>
+	
+	<select id="selectAcList" resultMap="aclistResultSet">
+	select hostid,fno,TO_CHAR(bdate, 'yyyy-mm') as bdate, ftitle, TO_CHAR(sum(ocode),'FM9,999,999,999') amount, TO_CHAR(sum(ocode * price), 'FM9,999,999,999') as total,TO_CHAR(sum(ocode * price)*0.2,'FM9,999,999,999') as fees,TO_CHAR(sum(ocode * price)-sum(ocode * price)*0.2,'FM9,999,999,999') as cmoney, buy_status 
+	from aclist
+	where hostId = #{hostId}
+	group by  hostid,fno,ftitle,TO_CHAR(bdate, 'yyyy-mm'), buy_status
+	</select>
+	
+	<resultMap type="Aclist" id="aclistResultSet">
+		<result property="hostId" column="HOSTID"/>
+		<result property="fno" column="FNO"/>
+		<result property="bdate" column="BDATE"/>
+		<result property="ftitle" column="FTITLE"/>
+		<result property="amount" column="AMOUNT"/>
+		<result property="total" column="TOTAL"/>
+		<result property="fees" column="FEES"/>
+		<result property="cprice" column="CMONEY"/>
+		<result property="buy_status" column="BUY_STATUS"/>
+	</resultMap>
+	
+	<select id="getArListcount" resultType="_int">
+	select count(*)
+	from allrlist
+	where hostId=#{hostId}
+	</select>
+	
+	<select id="selectArList" resultMap="arListResultSet">
+	select *
+	from allrlist
+	where hostId=#{hostId}
+	</select>
+	
+	<resultMap type="Arlist" id="arListResultSet">
+		<result property="fno" column="FNO"/>
+		<result property="ono" column="ONO"/>
+		<result property="q_create_date" column="Q_CREATE_DATE"/>
+		<result property="nickName" column="NICKNAME"/>
+		<result property="profile" column="PROFILE"/>
+		<result property="qcontent" column="QCONTENT"/>
+		<result property="grade" column="GRADE"/>
+		<result property="ftitle" column="FTITLE"/>
+		<result property="oname" column="ONAME"/>
+		<result property="price" column="PRICE"/>
+		<result property="hostId" column="HOSTID"/>
+	</resultMap>
+	
+	<update id="updateBuyAccount" parameterType="Aclist">
+	update buying 
+	set buy_status ='C'
+	where substr(dcode,1,6) in (select to_char(bdate,'yyyymm') from aclist where hostId=#{hostId} and buy_status ='Y' and to_char(bdate,'yyyymm') = to_char(#{bdate},'yyyymm')) 
+	and 
+	ono in
+	(select ono from aclist join choose on(aclist.fno = choose.fno) where aclist.hostid = #{hostId})
+	</update>
+	
+	
+	
 </mapper>

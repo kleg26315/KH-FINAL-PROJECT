@@ -2,6 +2,7 @@ package com.kh.bubblebee.host.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.board.model.vo.Reply;
@@ -24,10 +24,13 @@ import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.common.Pagination;
 import com.kh.bubblebee.host.model.exception.HostException;
 import com.kh.bubblebee.host.model.service.HostService;
+import com.kh.bubblebee.host.model.vo.Aclist;
+import com.kh.bubblebee.host.model.vo.Arlist;
 import com.kh.bubblebee.host.model.vo.Host;
 import com.kh.bubblebee.member.model.service.MemberService;
 import com.kh.bubblebee.member.model.vo.Member;
 import com.kh.bubblebee.notice.model.vo.Pagination2;
+import com.sun.tracing.dtrace.ModuleAttributes;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -92,7 +95,13 @@ public class HostController {
 	public ModelAndView hostProfileView(@RequestParam("hostId") String hostId,@RequestParam(value="page", required=false) Integer page,ModelAndView mv,HttpSession session) {
 		System.out.println(hostId);
 		
-		String userId = ((Member)session.getAttribute("loginUser")).getId();
+		String userId = "";
+		
+		if(((Member)session.getAttribute("loginUser")) == null) {
+			userId = "-";
+		}else {
+			userId = ((Member)session.getAttribute("loginUser")).getId();
+		}
 		
 		Host host = hService.selectHost(hostId);
 		
@@ -133,9 +142,25 @@ public class HostController {
 	}
 	// 호스트 리뷰
 	@RequestMapping("hostReview.ho")
-	public String hostReviewView(@RequestParam("hostId") String hostId) {
+	public ModelAndView hostReviewView(@RequestParam("hostId") String hostId,@RequestParam(value="page", required=false) Integer page,ModelAndView mv) {
 		System.out.println(hostId);
-		return "host_profile";
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int listCount = hService.getArListCount(hostId);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Arlist> arList = hService.selectArList(pi,hostId);
+		
+		mv.addObject("arList", arList);
+		mv.addObject("pi", pi);
+		mv.setViewName("host_review_all");
+		
+		return mv;
 	}
 	
 	// 호스트 게시판 별 문의 
@@ -310,5 +335,43 @@ public class HostController {
 		mv.setViewName("host_board_all");
 		
 		return mv;
+	}
+	
+	// 호스트 정산 요청
+	@RequestMapping("hostAccount.ho")
+	public ModelAndView hostAccount(HttpSession session,@RequestParam(value="page", required=false) Integer page,ModelAndView mv) {
+		
+		String hostId = ((Member)session.getAttribute("loginUser")).getId();
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int listCount = hService.getAclistCount(hostId);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Aclist> acList = hService.selectAcList(pi,hostId);
+		
+		mv.addObject("acList",acList);
+		mv.addObject("pi",pi);
+		mv.setViewName("hostpage_account");
+		
+		return mv;
+	}
+
+	@RequestMapping("requestAccount.ho")
+	public void requestAccount(@ModelAttribute Aclist list) {
+		System.out.println(list);
+		
+		// 보드 업데이트 하기
+		int result1 = hService.updateBuyAccount(list);
+		
+		System.out.println(result1);
+		
+		// account테이블에 넣기
+//		int result2 = hService.insertAcount(list); 
+		
 	}
 }

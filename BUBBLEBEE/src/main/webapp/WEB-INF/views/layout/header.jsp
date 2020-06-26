@@ -697,9 +697,9 @@
 	        socket = websocket;
 	        websocket.onopen = function(evt) {
 	            onOpen(evt);
-	            /* setTimeout(function(){
+	            	setTimeout(function(){
 	        		send_message();
-		        }, 1000); */
+		        }, 1000);
 	        };
 	        websocket.onmessage = function(evt) {
 	            onMessage(evt);

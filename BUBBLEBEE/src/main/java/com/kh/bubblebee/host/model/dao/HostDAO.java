@@ -12,6 +12,8 @@ import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.board.model.vo.Reply;
 import com.kh.bubblebee.board.model.vo.Review;
 import com.kh.bubblebee.common.PageInfo;
+import com.kh.bubblebee.host.model.vo.Aclist;
+import com.kh.bubblebee.host.model.vo.Arlist;
 import com.kh.bubblebee.host.model.vo.Host;
 import com.kh.bubblebee.member.model.vo.Member;
 
@@ -113,6 +115,34 @@ public class HostDAO {
 
 	public int likeCount(SqlSessionTemplate sqlSession, String hostId) {
 		return sqlSession.selectOne("hostMapper.likeCount",hostId);
+	}
+
+	public int getAclistCount(SqlSessionTemplate sqlSession, String hostId) {
+		return sqlSession.selectOne("hostMapper.getAclistCount",hostId);
+	}
+
+	public ArrayList<Aclist> selectAcList(SqlSessionTemplate sqlSession, PageInfo pi, String hostId) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("hostMapper.selectAcList",hostId,rowBounds);
+	}
+
+	public int getArListcount(SqlSessionTemplate sqlSession, String hostId) {
+		return sqlSession.selectOne("hostMapper.getArListcount",hostId);
+	}
+
+	public ArrayList<Arlist> selectArList(SqlSessionTemplate sqlSession, PageInfo pi, String hostId) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("hostMapper.selectArList",hostId,rowBounds);
+	}
+
+	public int updateBuyAccount(SqlSessionTemplate sqlSession, Aclist list) {
+		return sqlSession.update("hostMapper.updateBuyAccount", list);
+	}
+
+	public int insertAcount(SqlSessionTemplate sqlSession, Aclist list) {
+		return sqlSession.insert("hostMapper.insertAcount",list);
 	}
 
 	
