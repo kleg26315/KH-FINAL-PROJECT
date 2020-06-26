@@ -172,12 +172,20 @@
 	</insert>
 	
 	<select id = "selectPBoard2" resultMap = "PBoardResultSet">
-		SELECT  *
-		FROM BOARD
-		<![CDATA[
-		WHERE ROWNUM < 5 AND F_STATUS = 'Y'
+		SELECT *
+		FROM (SELECT ROWNUM RNUM,FNO, FTYPE, PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, 
+                            LAT, LON, FCONTAIN, FNCONTAIN, FCALENDAR, FMATERIALS, FMINFO, FPRECAUTION,
+                            USER_ID, HEART, RSUM, RCOUNT, F_CREATE_DATE, F_STATUS, ORIGINALFILENAME, 
+                            RENAMEFILENAME, INTRODUCE, MAXMEMBER
+            FROM ( SELECT *
+                         FROM BOARD
+                         WHERE F_STATUS = 'Y'
+                        ORDER BY HEART DESC
+                         )
+            )
+        <![CDATA[
+		WHERE RNUM < 5
 		]]>
-		ORDER BY HEART DESC 
 	</select>
 	
 	<insert id="insertplusPoint">
