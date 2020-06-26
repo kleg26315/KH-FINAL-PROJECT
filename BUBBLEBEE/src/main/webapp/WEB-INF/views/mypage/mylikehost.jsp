@@ -72,10 +72,10 @@
 			 					<br>
 			 					<div>
 			 					개설 
-			 					${ho.lcount}
+			 					${ho.fcount}
 			 					<span>|</span>
 			 					좋아요
-			 					${ho.fcount}
+			 					${ho.lcount}
 			 					</div>
 			 				</div>
 			 			</div>

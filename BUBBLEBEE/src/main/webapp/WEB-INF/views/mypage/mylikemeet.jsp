@@ -149,7 +149,7 @@
 	   </c:if>
 		</div>
 	</div>
-	<div style="text-align: center;">페이징 버튼 추가 예정</div>
+<!-- 	<div style="text-align: center;">페이징 버튼 추가 예정</div> -->
    </section>
      <script>
         $(function(){

@@ -89,7 +89,14 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 		   		</div>
 		   		<div class="result_wrap" style="border-left:1px solid lightgray;">
 		   			<div class="subtitle">Q&A 응답률</div>
-		   			<div class="result">${qna}%</div>
+		   			<div class="result">
+		   			<c:if test="${empty qna}">
+		   			0.0%
+		   			</c:if>
+		   			<c:if test="${!empty qna}">
+		   			${qna}%
+		   			</c:if>
+		   			</div>
 		   		</div>
 		   </div>
 		   

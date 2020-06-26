@@ -13,6 +13,8 @@ import com.kh.bubblebee.board.model.vo.Reply;
 import com.kh.bubblebee.board.model.vo.Review;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.host.model.dao.HostDAO;
+import com.kh.bubblebee.host.model.vo.Aclist;
+import com.kh.bubblebee.host.model.vo.Arlist;
 import com.kh.bubblebee.host.model.vo.Host;
 import com.kh.bubblebee.member.model.vo.Member;
 
@@ -133,6 +135,36 @@ public class HostServiceImpl implements HostService{
 	@Override
 	public int likeCount(String hostId) {
 		return hDAO.likeCount(sqlSession,hostId);
+	}
+
+	@Override
+	public int getAclistCount(String hostId) {
+		return hDAO.getAclistCount(sqlSession,hostId);
+	}
+
+	@Override
+	public ArrayList<Aclist> selectAcList(PageInfo pi, String hostId) {
+		return hDAO.selectAcList(sqlSession,pi,hostId);
+	}
+
+	@Override
+	public int getArListCount(String hostId) {
+		return hDAO.getArListcount(sqlSession,hostId);
+	}
+
+	@Override
+	public ArrayList<Arlist> selectArList(PageInfo pi, String hostId) {
+		return hDAO.selectArList(sqlSession,pi,hostId);
+	}
+
+	@Override
+	public int updateBuyAccount(Aclist list) {
+		return hDAO.updateBuyAccount(sqlSession,list);
+	}
+
+	@Override
+	public int insertAcount(Aclist list) {
+		return hDAO.insertAcount(sqlSession,list);
 	}
 
 

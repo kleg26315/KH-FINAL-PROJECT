@@ -92,7 +92,7 @@
 						<input class = "submitFormSectionMainData" type = "text" value = "${pp } 포인트" style = "margin-top : 46px;" readonly>
 					</div>
 					<div>
-						<input  class = "submitBtn" type = "submit" value = "장바구니로 돌아가기" style = "background-color : #F39C12; color : white;">
+						<input  class = "submitBtn" type = "submit" value = "결제내역 보기" style = "background-color : #F39C12; color : white;">
 					</div>
 				</div>
 			</section>

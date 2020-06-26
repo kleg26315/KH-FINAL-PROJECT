@@ -175,6 +175,9 @@ public class PurchaseController {
 				System.out.println("gaddress : " + gaddress);
 				System.out.println("p : " + purchaseThis1);
 				
+				int point = mService.getPoint(loginUser.getId());
+				session.setAttribute("point", point);
+				
 				if(purchaseThis1 > 0 && 
 						c != null &&
 						b != null) {
@@ -262,6 +265,9 @@ public class PurchaseController {
 			int gno = pService.selectGno(dcode);
 			
 			System.out.println("dcode : " + dcode + " gno : " + gno);
+			
+			int point = mService.getPoint(loginUser.getId());
+			session.setAttribute("point", point);
 			
 			if(purchaseThis1 != 0 && user_id != null && gno > 0) {
 				mv.addObject("gname", gname);
