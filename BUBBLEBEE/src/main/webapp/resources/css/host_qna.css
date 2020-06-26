@@ -125,3 +125,13 @@ header{z-index: 999;}
 .r_reList_recontent{
 	white-space: pre-line;
 }
+
+
+/* 후기 부분  */
+.rdetail_all{
+	color: lightgray;
+	width: max-content;
+}
+.rdetail_all:hover {
+	cursor: pointer;
+}

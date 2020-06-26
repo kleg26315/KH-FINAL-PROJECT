@@ -81,14 +81,20 @@
 					<!-- 호스트 -->
 					<div class="hashTagHostTitle">호스트</div>
 					<!-- 호스트 프로필 -->
-					<div class="hashTagHostImage">
-						<img class="hashTagHostImageContent"
-							src="${ host.member.profile }">
-					</div>
+				<div class="hashTagHostImage">
+			   		<c:choose>
+		         	<c:when test="${ fn:contains(host.member.profile,'http')}">
+		         		<img id="profile" class="hashTagHostImageContent" style="border-radius: 100%;" src="${host.member.profile}" />
+		         	</c:when>
+					<c:otherwise>
+						<img id="profile" class="hashTagHostImageContent" style="border-radius: 100%;" src="${contextPath}/resources/proFiles/${host.member.profile}" />
+					</c:otherwise>
+		        	 </c:choose>
+		   		</div>	
 					<!-- 호스트명 -->
-					<div class="hashTagHostName">${ host.member.userName }</div>
+					<div class="hashTagHostName">${ host.member.nickName }</div>
 					<!-- 해당 호스트가 개설한 클래스개수 | 좋아요 수  -->
-					<div class="hashTagHostLike">클래스 18 | 좋아요 1818</div>
+<!-- 					<div class="hashTagHostLike">클래스 18 | 좋아요 1818</div> -->
 					<!-- 호스트 소개 -->
 					<div class="hashTagHostInfo">${ host.introduction }</div>
 					<!-- 호스트 프로필 보기 버튼 -->
@@ -103,23 +109,23 @@
 					</div>
 
 					<div class="hashTagHostReview">호스트 후기</div>
-					<div class="hashTagHostImage2">
-						<img class="hashTagHostImageContent" src="">
-					</div>
-					<div class="hashTagHostName">석쵸니</div>
-					<div class="hashTagHostLike" style="height: 40px;">* * * * *
-						| 2018/8/18 8:18분 작성</div>
-					<div class="hashTagHostReviewComment">나는 그냥 창렬이랑 같이있는게 좋더라~</div>
-					<div class="hashTagHostReviewTitle">
-						[실전] 창렬이형의 실전 제압 기술 <br> 폭행 체험
-					</div>
-					<div class="hashTagHostReviewLike">
-						<div class="hashTagHostReviewLikeIn">도움이 됐어요 (thu)</div>
-					</div>
-					<div class="hashTagHostReviewImage">
-						<img class="hashTagHostImageContent"
-							src="">
-					</div>
+<!-- 					<div class="hashTagHostImage2"> -->
+<!-- 						<img class="hashTagHostImageContent" src=""> -->
+<!-- 					</div> -->
+<!-- 					<div class="hashTagHostName">석쵸니</div> -->
+<!-- 					<div class="hashTagHostLike" style="height: 40px;">* * * * * -->
+<!-- 						| 2018/8/18 8:18분 작성</div> -->
+<!-- 					<div class="hashTagHostReviewComment">나는 그냥 창렬이랑 같이있는게 좋더라~</div> -->
+<!-- 					<div class="hashTagHostReviewTitle"> -->
+<!-- 						[실전] 창렬이형의 실전 제압 기술 <br> 폭행 체험 -->
+<!-- 					</div> -->
+<!-- 					<div class="hashTagHostReviewLike"> -->
+<!-- 						<div class="hashTagHostReviewLikeIn">도움이 됐어요 (thu)</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="hashTagHostReviewImage"> -->
+<!-- 						<img class="hashTagHostImageContent" -->
+<!-- 							src=""> -->
+<!-- 					</div> -->
 					<form action="hostReview.ho" method="post">
 					<div class="hashTagHostReviewInfo">
 						<input class="hashTagHostInfoInBtn" type="submit"
@@ -269,7 +275,7 @@
 						<div class = "CLK" style = "float : left; width : 100%; background-color : rgb(249, 249, 249); margin-top : -20px; height : 94px; cursor : pointer;" id = "${ pu.ono }" >
 							<div style = "margin-top : 2px;" id = "${ pu.ono }"> 
 								<div style = "font-weight : 600; margin-left : 4%; margin-top : 16px;" id = "${ pu.ono }">
-									${pu.oname }
+									${pu.oname }  (${fn:split(pu.odeadline, "-")[0]}-${fn:split(pu.odeadline, "-")[1] }-${fn:split(pu.odeadline, "-")[2] }일)
 								</div>
 								<div style = "margin-left : 4%; width : 70%; float: left; margin-top : 16px; font-size : 10pt; color : rgb(85, 85, 85);" id = "${ pu.ono }">
 									남은 수량 ${pu.ocount }개
@@ -353,7 +359,6 @@
 				</div>
 				<div class = "recomp">
 					${blist.price }원
-					${blist.fno }
 					<input type = "text" style = "display : none" value = "${blist.fno }" name = "fno">
 				</div>
 			</a>

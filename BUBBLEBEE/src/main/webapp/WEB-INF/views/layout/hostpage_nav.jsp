@@ -133,6 +133,10 @@
 					location.href="hostBoardAll.ho?ftype=3";
 				});
 				
+				// 정산요청
+				$('#reaccount').click(function(){
+					location.href="hostAccount.ho"
+				});
 				//메인으로 돌아가기
 				$('#gomain').click(function(){
 					location.href="updateInfoForm.mg";

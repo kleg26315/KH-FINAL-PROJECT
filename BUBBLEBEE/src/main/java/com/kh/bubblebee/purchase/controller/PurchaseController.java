@@ -175,6 +175,9 @@ public class PurchaseController {
 				System.out.println("gaddress : " + gaddress);
 				System.out.println("p : " + purchaseThis1);
 				
+				int point = mService.getPoint(loginUser.getId());
+				session.setAttribute("point", point);
+				
 				if(purchaseThis1 > 0 && 
 						c != null &&
 						b != null) {
@@ -263,6 +266,9 @@ public class PurchaseController {
 			
 			System.out.println("dcode : " + dcode + " gno : " + gno);
 			
+			int point = mService.getPoint(loginUser.getId());
+			session.setAttribute("point", point);
+			
 			if(purchaseThis1 != 0 && user_id != null && gno > 0) {
 				mv.addObject("gname", gname);
 				String address = gaddress1 + " " + gaddress2 +  " " + gaddress3 + " ";
@@ -316,7 +322,7 @@ public class PurchaseController {
 				throw new PurchaseException("결제에 실패하였습니다!");
 			}
 		}else {
-			mv.addObject("message", "로그인이 필요한 서비스입니다.");
+			throw new PurchaseException("결제에 실패하였습니다!");
 		}
 		return mv;
 	}
