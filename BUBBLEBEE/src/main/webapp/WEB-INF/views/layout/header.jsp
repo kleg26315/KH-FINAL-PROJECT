@@ -440,12 +440,7 @@
     	
     	/* 쿠키 설정 */
     	function setCookie(cookie_name, value, days){
-    		var exdate = new Date();
-	   		exdate.setDate(exdate.getDate() + days);
-	    	// 설정 일수만큼 현재시간에 만료값으로 지정
-	
 	    	var prevCookie = getCookie(cookie_name);
-	    	var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
 	    	// 중복된 최근 검색이면 기존껀 삭제 후 가장 위로 올림 & 최대 5개 유지
 	    	if(typeof prevCookie == 'undefined' || prevCookie == ''){
 	    		document.cookie = cookie_name + '=' + value;
@@ -504,9 +499,7 @@
  		   		x = val[i].substr(0, val[i].indexOf('='));
  		   		y = val[i].substr(val[i].indexOf('=') + 1);
  		   		x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
- 		   		if (x == cookie_name) {
- 		     		return unescape(y); // unescape로 디코딩 후 값 리턴
- 		   		}
+ 		   		return y;
  		 	}
     	}
 
@@ -697,7 +690,7 @@
 	        socket = websocket;
 	        websocket.onopen = function(evt) {
 	            onOpen(evt);
-	            	setTimeout(function(){
+	            setTimeout(function(){
 	        		send_message();
 		        }, 1000);
 	        };
