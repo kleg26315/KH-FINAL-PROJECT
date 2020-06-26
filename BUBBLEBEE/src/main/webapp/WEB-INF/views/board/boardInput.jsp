@@ -278,7 +278,7 @@
 	                     });
 												
 						function delete1(obj){
-							//$(obj).parent().parent().parent().next().remove();
+							$(obj).parent().parent().parent().next().remove();
 							$(obj).parent().parent().parent().remove();
 						}
 
