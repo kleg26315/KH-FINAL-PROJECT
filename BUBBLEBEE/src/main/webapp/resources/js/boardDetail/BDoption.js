@@ -39,14 +39,6 @@ $(".CLK").on("click", function(){
 	
 	$("#confirmONO").val(onoo);
 	
-	console.log("confirmONO : " + $("#confirmONO").val());
-	console.log("conF : " + conF);
-	console.log("onaa : " + onaa);
-	console.log("ocoo : " + ocoo);
-	console.log("prii : " + prii);
-	console.log("onoo : " + onoo);
-	console.log(">>>>>>>>>>>>>>>>>>>>>>");
-	
 	$(".CLK").hide();
 	$("#CON").show();
 	

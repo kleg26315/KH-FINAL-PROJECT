@@ -314,7 +314,7 @@ public class PurchaseController {
 				throw new PurchaseException("결제에 실패하였습니다!");
 			}
 		}else {
-			mv.addObject("message", "로그인이 필요한 서비스입니다.");
+			throw new PurchaseException("결제에 실패하였습니다!");
 		}
 		return mv;
 	}
