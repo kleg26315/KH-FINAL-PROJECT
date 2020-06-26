@@ -343,7 +343,7 @@
 	   		<label style="font-weight: bold; font-size: 20px;">내 주변 모임</label>
 	   		<br><br>
 	   		<div id="map" style="width:100%; height: 350px;"></div>
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27cfa1d7725d616c3b4f7135fba99e8e"></script>
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=be0b8d3e154f1e2bf1a278bd7fbf3d2a&libraries=services"></script>
 	   </div>
 	   
 	   <br>
