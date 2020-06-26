@@ -226,17 +226,17 @@
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" id="op2" class="op2" name="price" placeholder="가격(5000원 이상)"   required onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+								<input type="text" id="op2" class="op2" name="price" placeholder="가격(5000원 이상)" required>
 							</td>
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" id="op3" class="op3" name="ocount" placeholder="수량(재고)" required onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+								<input type="text" id="op3" class="op3" name="ocount" placeholder="수량(재고)" onkeyup="onlyNumber(this);" required>
 							</td>
 						</tr>
 						<tr>	
 							<td>
-								<input type="date" id="op4" class="op4" name="odeadline" placeholder="마감일"  >
+								<input type="date" id="op4" class="op4" name="odeadline" placeholder="마감일">
 							</td>
 						</tr>
 					<tbody id="tbody1">
@@ -244,12 +244,6 @@
 					</tbody>
 					</table>
 					<script>
-					   $(function(){
-	                         $('.op4').prop('min', function(){
-	                             return new Date().toJSON().split('T')[0];
-	                         });
-	                     });
-						
 						$('#btn_op').on('click', function(){
 							var bot = $('#tbody1 tr').length;
 							
@@ -261,13 +255,13 @@
 								innerHtml += '<td rowspan="4"><button type="button" class="btnDelete" onclick="delete1(this); ">삭제</button></td>';
 								innerHtml += '</tr>';
 								innerHtml += '<tr>';
-								innerHtml += '<td><input type="text" onkeyup="onlyNumber(this);" class="op2" name="price" placeholder="가격(5000원 이상)" >원</td>';
+								innerHtml += '<td><input type="text" class="op2" name="price" placeholder="가격(5000원 이상)" onkeyup="money(this);">원</td>';
 								innerHtml += '</tr>';
 								innerHtml += '<tr>';
-								innerHtml += '<td><input type="text" class="op3" name="ocount" placeholder="수량(재고)"></td>';
+								innerHtml += '<td><input type="text" class="op3" name="ocount" onkeyup="onlyNumber(this);"  placeholder="수량(재고)"></td>';
 								innerHtml += '</tr>';
 								innerHtml += '<tr>';
-								innerHtml += '<td><input type="date" class="op4" name="odeadline" placeholder="2020-06-29"></td>';
+								innerHtml += '<td><input type="date" class="op4" name="odeadline"></td>';
 								innerHtml += '</tr>';
 								
 								$('#tbody1').append(innerHtml);
@@ -276,10 +270,16 @@
 								return false;
 							}
 						});
+						
+						$(function(){
+	                         $('.op4').prop('min', function(){
+	                             return new Date().toJSON().split('T')[0];
+	                         });
+	                     });
 												
 						function delete1(obj){
-							$(obj).parent().parent().parent().next().remove();
-							$(obj).parent().parent().parent().parent().remove();
+							//$(obj).parent().parent().parent().next().remove();
+							$(obj).parent().parent().parent().remove();
 						}
 
 						
@@ -290,6 +290,19 @@
 						function onlyNumber(a){
 							$(a).val($(a).val().replace(/[^0-9]/g,""));
 						}
+						
+						function money(b){
+							if (/\D/.test(this.value)) {
+						        this.value = this.value.replace(/\D/g, '')
+						        alert('숫자만 입력가능합니다.');
+						    }
+							  if (this.value > 5000) {
+							      this.value = 5000;
+							      alert('5000원 이상 작성해주세요.');
+							  }
+						}
+						
+						
 					</script>
 					<table>
 					<tr>
@@ -778,10 +791,10 @@
 		  }
 		});
 		
-		//
+		
 		//포함사항, 불포함사항, 준비물, 유의사항 500자 제한
 		$(function(){
-			$('.bIncluded').click(function(e){
+			$('.bIncluded').keyup(function(e){
 				// console.log(this);
 				var counter = $(this).val();
 				
@@ -802,7 +815,7 @@
 		}
 		
 		var loginUser = '${loginUser.id}';
-		$('.bIncluded, .se2_inputarea').click(function(e){
+		$('.bIncluded, .se2_inputarea').keyup(function(e){
 			var editor = $('iframe').contents().find('iframe').contents().find('.se2_inputarea').text();
 			var test = [$('#fcontain').val(), $('#fncontain').val(), $('#fmaterials').val(), $('#fprecaution').val(), editor]
 			
@@ -817,13 +830,14 @@
 			var test = localStorage.getItem(loginUser);
 				test = test.replace(/\"/gi, "");
 				test = test.replace(/\[/gi, "");
-				test = test.replace(/\]/gi, "");
-			var arr = test.split(",");
+				test = test.replace(/\n/g, "");
 			
+			var arr = test.split(",");
+			    
 			if(arr != null ){
 				for(var i=0; i<arr.length; i++){
 					console.log(arr[i])	
-					document.getElementsByClassName('bIncluded')[i].innerHTML += arr[i];
+					document.getElementsByClassName('bIncluded', 'se2_inputarea')[i].innerHTML += arr[i];
 				}
 			}
 			//console.log("arr : " + arr);
