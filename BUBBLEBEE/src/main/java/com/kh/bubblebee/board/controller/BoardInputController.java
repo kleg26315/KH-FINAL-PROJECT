@@ -177,10 +177,16 @@ public class BoardInputController {
 		String[] deadline = odeadline.split(",");
 		
 		HashMap<String, Option> map = new HashMap<>();
-		for(int i = 0; i < name.length; i++) {
-			map.put("op" + i, new Option(name[i], pr[i], count[i], deadline[i]));
+		if(deadline == null) {
+			for(int i = 0; i < name.length; i++) {
+				map.put("op" + i, new Option(name[i], pr[i], count[i], null));
+			}
+		}else {
+			for(int i = 0; i < name.length; i++) {
+				map.put("op" + i, new Option(name[i], pr[i], count[i], deadline[i]));
+			}
 		}
-	
+		
 		String[] originalFileName = new String[reloadFile.size()];
 		
 		for(int i = 0; i<reloadFile.size(); i++) {
@@ -210,8 +216,8 @@ public class BoardInputController {
 		
 		if(result1 > 0) {
 			if(result2 > 0) {
-				mv.addObject("lat", lat);
-				mv.addObject("lon", lon);
+				mv.addObject("lat", b.getLat());
+				mv.addObject("lon", b.getLon());
 				mv.addObject("location", b.getLocation());
 				mv.addObject("fminfo", b.getFminfo());
 				mv.addObject("fcalendar", b.getFcalendar());

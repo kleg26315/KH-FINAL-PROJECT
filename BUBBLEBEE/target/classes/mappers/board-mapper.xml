@@ -110,7 +110,7 @@
 		update board
  		set FTYPE= #{ftype}, PRICE=#{price}, SMALL_TITLE=#{small_title}, FTITLE=#{ftitle}, CATEGORY=#{category}, LOCATION=#{location}, LAT=#{lat}, LON=#{lon}, 
 			FCONTAIN=#{fcontain}, FNCONTAIN=#{fncontain}, FCALENDAR=#{fcalendar}, FMATERIALS=#{fmaterials}, FMINFO=#{fminfo}, FPRECAUTION=#{fprecaution}, 
-			ORIGINALFILENAME=#{originalFileName},RENAMEFILENAME=#{renameFileName}, INTRODUCE=#{introduce}, MAXMEMBER=#{maxMember})
+			ORIGINALFILENAME=#{originalFileName},RENAMEFILENAME=#{renameFileName}, INTRODUCE=#{introduce}, MAXMEMBER=#{maxMember}
  		where fno = #{fno}	
 	</update>
 	
@@ -178,12 +178,12 @@
 		<choose>
 			<when test='sc.endPrice == 300000'>
 				<![CDATA[ 
-					price>=#{sc.startPrice}
+					un.price>=#{sc.startPrice}
 				 ]]>
 			 </when>
 			 <otherwise>
 			 	<![CDATA[ 
-					price>=#{sc.startPrice} and price<=#{sc.endPrice}
+					un.price>=#{sc.startPrice} and un.price<=#{sc.endPrice}
 				 ]]>
 			 </otherwise>
 		</choose>	
@@ -200,10 +200,10 @@
 				order by (rsum/decode(rcount,0,1,rcount)) desc
 		    </if>
 		    <if test='sc.highprice != null'>
-		    	order by price desc
+		    	order by un.price desc
 		    </if>
 		    <if test='sc.lowprice != null'>
-		    	order by price
+		    	order by un.price
 		    </if>
 	</select>
 	

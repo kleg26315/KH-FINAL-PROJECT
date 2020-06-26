@@ -11,8 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="resources/css/boardInput.css">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script src="resources/js/jquery-ui.js"></script>
-
 	<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/smartEditor/js/service/HuskyEZCreator2.js" charset="UTF-8"></script>
 </head>
 <style>
@@ -244,7 +242,7 @@
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" id="op3" class="op3" name="ocount" value="${ o.ocount }" required onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+								<input type="text" id="op3" class="op3" name="ocount" value="${ o.ocount }" required onkeyup="onlyNumber(this);" >
 							</td>
 						</tr>
 						<tr>	
@@ -275,13 +273,13 @@
 								innerHtml += '<td rowspan="4"><button type="button" class="btnDelete" onclick="delete1(this); ">삭제</button></td>';
 								innerHtml += '</tr>';
 								innerHtml += '<tr>';
-								innerHtml += '<td><input type="text" onkeyup="onlyNumber(this);" class="op2" name="price" placeholder="가격(5000원 이상)" >원</td>';
+								innerHtml += '<td><input type="text" class="op2" name="price" placeholder="가격(5000원 이상)" >원</td>';
 								innerHtml += '</tr>';
 								innerHtml += '<tr>';
-								innerHtml += '<td><input type="text" class="op3" name="ocount" placeholder="수량(재고)"></td>';
+								innerHtml += '<td><input type="text" class="op3" name="ocount" onkeyup="onlyNumber(this);" placeholder="수량(재고)"></td>';
 								innerHtml += '</tr>';
 								innerHtml += '<tr>';
-								innerHtml += '<td><input type="date" class="op4" name="odeadline" placeholder="2020-06-29"></td>';
+								innerHtml += '<td><input type="date" class="op4" name="odeadline"></td>';
 								innerHtml += '</tr>';
 								
 								$('#tbody1').append(innerHtml);
@@ -305,6 +303,17 @@
 						function onlyNumber(a){
 							$(a).val($(a).val().replace(/[^0-9]/g,""));
 						}
+						
+						$('.op2').on('keyup', function() {
+						    if (/\D/.test(this.value)) {
+						        this.value = this.value.replace(/\D/g, '')
+						        alert('숫자만 입력가능합니다.');
+						    }
+						  if (this.value > 5000) {
+						      this.value = 5000;
+						      alert('5000원 이상 작성해주세요.');
+						  }
+						});
 					</script>
 					<table>
 					<tr>
@@ -712,7 +721,8 @@
 						}else{
 							var result = confirm('모임/클래스/판매 수정 완료');
 							if(result){
-								$('#form').submit();		
+								$('#form').submit();
+								localStorage.removeItem(loginUser);
 							} else{
 								alert('등록을 취소합니다.');
 							}
@@ -729,6 +739,10 @@
    </footer>
    
 		<script>
+			$('.b_An').click(function(e){
+				addressInfo();
+			});
+			
 			function addressInfo(){
 				var address = $('.postcodify_address').val();
 				console.log(address);
@@ -827,22 +841,37 @@
 		});
 		
 		//자동저장
-		$('#im').click(function(){
-			var fcontain = $('#fcontain').val();
-			var fncontain = $('#fncontain').val();
-			var fmaterials = $('#fmaterials').val();
-			var fprecaution = $('#fprecaution').val();
+		window.onload = function(){
+			gettheLocal();
+		}
+		
+		var loginUser = '${loginUser.id}';
+		$('.bIncluded, .se2_inputarea').click(function(e){
+			var editor = $('iframe').contents().find('iframe').contents().find('.se2_inputarea').text();
+			var test = [$('#fcontain').val(), $('#fncontain').val(), $('#fmaterials').val(), $('#fprecaution').val(), editor]
 			
-			if(true){
-				localStorage.setItem('fcontain', fcontain);
-				localStorage.setItem('fncontain', fncontain);
-				localStorage.setItem('fmaterials', fmaterials);
-				localStorage.setItem('fprecaution', fprecaution);
-				
-				document.querySelector('#fcontain').innerHTML = localStorage.getItem("fcontain");
-				$('#form').submit();		
+			console.log("test : " + test);
+			if(test !=""){
+				localStorage.setItem(loginUser, JSON.stringify(test));
+				console.log("loginUser : " + loginUser);
 			}
 		})
+		
+		function gettheLocal(){
+			var test = localStorage.getItem(loginUser);
+				test = test.replace(/\"/gi, "");
+				test = test.replace(/\[/gi, "");
+				test = test.replace(/\]/gi, "");
+			var arr = test.split(",");
+			
+			if(arr != null ){
+				for(var i=0; i<arr.length; i++){
+					console.log(arr[i])	
+					document.getElementsByClassName('bIncluded')[i].innerHTML += arr[i];
+				}
+			}
+			//console.log("arr : " + arr);
+		}
 		</script>
 		
 		
