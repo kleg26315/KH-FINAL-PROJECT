@@ -109,23 +109,23 @@
 					</div>
 
 					<div class="hashTagHostReview">호스트 후기</div>
-<!-- 					<div class="hashTagHostImage2"> -->
-<!-- 						<img class="hashTagHostImageContent" src=""> -->
-<!-- 					</div> -->
-<!-- 					<div class="hashTagHostName">석쵸니</div> -->
-<!-- 					<div class="hashTagHostLike" style="height: 40px;">* * * * * -->
-<!-- 						| 2018/8/18 8:18분 작성</div> -->
-<!-- 					<div class="hashTagHostReviewComment">나는 그냥 창렬이랑 같이있는게 좋더라~</div> -->
-<!-- 					<div class="hashTagHostReviewTitle"> -->
-<!-- 						[실전] 창렬이형의 실전 제압 기술 <br> 폭행 체험 -->
-<!-- 					</div> -->
-<!-- 					<div class="hashTagHostReviewLike"> -->
-<!-- 						<div class="hashTagHostReviewLikeIn">도움이 됐어요 (thu)</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="hashTagHostReviewImage"> -->
-<!-- 						<img class="hashTagHostImageContent" -->
-<!-- 							src=""> -->
-<!-- 					</div> -->
+					<div class="hashTagHostImage2">
+						<img class="hashTagHostImageContent" src="">
+					</div>
+					<div class="hashTagHostName">석쵸니</div>
+					<div class="hashTagHostLike" style="height: 40px;">* * * * *
+						| 2018/8/18 8:18분 작성</div>
+					<div class="hashTagHostReviewComment">나는 그냥 창렬이랑 같이있는게 좋더라~</div>
+					<div class="hashTagHostReviewTitle">
+						[실전] 창렬이형의 실전 제압 기술 <br> 폭행 체험
+					</div>
+					<div class="hashTagHostReviewLike">
+						<div class="hashTagHostReviewLikeIn"></div>
+					</div>
+					<div class="hashTagHostReviewImage">
+						<img class="hashTagHostImageContent"
+							src="">
+					</div>
 					<form action="hostReview.ho" method="post">
 					<div class="hashTagHostReviewInfo">
 						<input class="hashTagHostInfoInBtn" type="submit"
