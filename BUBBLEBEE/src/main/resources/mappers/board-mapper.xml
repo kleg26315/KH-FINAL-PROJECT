@@ -136,7 +136,7 @@
 	<select id="selectBoard" resultType="Board">
 		select *
 		from board
-		where fno=#{fno} and f_status='Y'
+		where fno=#{fno} and (f_status='Y' or f_status='W')
 	</select>
 	
 	<select id="getSearchListCount" resultType="_int">
