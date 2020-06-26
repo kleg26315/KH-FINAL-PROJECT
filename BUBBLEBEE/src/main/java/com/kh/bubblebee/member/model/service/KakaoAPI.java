@@ -36,15 +36,15 @@ public class KakaoAPI {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
-            sb.append("&client_id=27cfa1d7725d616c3b4f7135fba99e8e");
-            sb.append("&redirect_uri=http://localhost:8780/bubblebee/kakao.me");
+            sb.append("&client_id=be0b8d3e154f1e2bf1a278bd7fbf3d2a");
+            sb.append("&redirect_uri=http://192.168.10.4:8780/bubblebee/kakao.me");
             sb.append("&code=" + authorize_code);
             bw.write(sb.toString());
             bw.flush();
             
             //    결과 코드가 200이라면 성공
             int responseCode = conn.getResponseCode();
-            System.out.println("responseCode : " + responseCode);
+            System.out.println("asdfasresponseCode : " + responseCode);
  
             //    요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));

@@ -29,7 +29,7 @@
 }
 </style>
 <body>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27cfa1d7725d616c3b4f7135fba99e8e&libraries=services"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=be0b8d3e154f1e2bf1a278bd7fbf3d2a&libraries=services"></script>
 	<header id="header" style="z-index: 99999">
 		<%@ include file="../layout/header.jsp"%>
 	</header>
