@@ -251,11 +251,13 @@
 				<img id="prev" src="${contextPath }/resources/img/prev.png">
 			</button>
 		   <img class="slides" id="slide1" src="${contextPath }/resources/img/ybee.png">
-		   <img class="slides" id="slide2" src="${contextPath }/resources/img/bubbleperson.png">
-		   <img class="slides" id="slide3" src="${contextPath }/resources/img/mmoim.jpg">
+		   <img class="slides" id="slide2" src="${contextPath }/resources/img/banner1.PNG">
+		   <img class="slides" id="slide3" src="${contextPath }/resources/img/banner2.PNG">
+		   <img class="slides" id="slide4" src="${contextPath }/resources/img/banner3.PNG">
 		   <button class="btn-direction"><img id="next" src="${contextPath }/resources/img/next.png"></button>
 		   <script>
 		   $(document).ready(function(){
+			    $('#slide4').hide();
 			    $('#slide3').hide();
 				$('#slide2').hide();
 	
@@ -271,6 +273,10 @@
 						currentSlide = 3;
 					} else if (currentSlide == 3) {
 						$('#slide3').hide();
+						$('#slide4').fadeIn(800);
+						currentSlide = 4;
+					} else if (currentSlide == 4) {
+						$('#slide4').hide();
 						$('#slide1').fadeIn(800);
 						currentSlide = 1;
 					}
@@ -279,8 +285,8 @@
 				$('#prev').click(function() {
 					if (currentSlide == 1) {
 						$('#slide1').hide();
-						$('#slide3').fadeIn(800);
-						currentSlide = 3;
+						$('#slide4').fadeIn(800);
+						currentSlide = 4;
 					} else if (currentSlide == 2) {
 						$('#slide2').hide();
 						$('#slide1').fadeIn(800);
@@ -289,6 +295,10 @@
 						$('#slide3').hide();
 						$('#slide2').fadeIn(800);
 						currentSlide = 2;
+					} else if (currentSlide == 4) {
+						$('#slide4').hide();
+						$('#slide3').fadeIn(800);
+						currentSlide = 3;
 					}
 				});
 				 
@@ -303,6 +313,10 @@
 						currentSlide = 3;
 					} else if (currentSlide == 3) {
 						$('#slide3').hide();
+						$('#slide4').fadeIn(800);
+						currentSlide = 4;
+					} else if (currentSlide == 4) {
+						$('#slide4').hide();
 						$('#slide1').fadeIn(800);
 						currentSlide = 1;
 					}
