@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.kh.bubblebee.board.model.vo.Board;
-import com.kh.bubblebee.board.model.vo.Option;
 import com.kh.bubblebee.member.model.vo.Member;
+import com.kh.bubblebee.purchase.model.vo.Slist;
 
 public interface MemberService {
 
@@ -25,7 +25,7 @@ public interface MemberService {
 
 	int getPoint(String id);
 
-	ArrayList<Board> getSlist(String id);
+	ArrayList<Slist> getSlist(String id);
 
 	ArrayList<Board> getHlist(String id);
 

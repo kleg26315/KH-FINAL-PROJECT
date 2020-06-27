@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.member.model.dao.MemberDAO;
 import com.kh.bubblebee.member.model.vo.Member;
+import com.kh.bubblebee.purchase.model.vo.Slist;
 
 @Service("mService")
 public class MemberServiceImpl implements MemberService{
@@ -62,7 +63,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public ArrayList<Board> getSlist(String id) {
+	public ArrayList<Slist> getSlist(String id) {
 		return mDAO.getSlist(sqlSession, id);
 	}
 
