@@ -2,17 +2,19 @@ package com.kh.bubblebee.account.model.service;
 
 import java.util.ArrayList;
 
-import com.kh.bubblebee.account.model.vo.Account;
 import com.kh.bubblebee.common.PageInfo;
+import com.kh.bubblebee.host.model.vo.Aclist;
 
 public interface AccountService {
 
 	int getAccountListCount();
 
-	ArrayList<Account> selectAccountList(PageInfo pi);
+	ArrayList<Aclist> selectAccountList(PageInfo pi);
 
-	ArrayList<Account> selectAllAccountList();
+	ArrayList<Aclist> selectAllAccountList();
 
-	int agreeAccount(String acno);
+	int agreeAccount(String fno, String id, String ftitle, String people, String sales, String amount);
+
+	int updateBuying(String fno, String id, String bdate);
 
 }

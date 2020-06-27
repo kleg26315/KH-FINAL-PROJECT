@@ -68,6 +68,9 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
     color: #fff;
     border-radius: 5px;
 }
+.detailTR{
+	cursor: pointer;
+}
 </style>
 <body>
    <header id="header">
@@ -111,7 +114,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
              	<tr>
              		<th style="display: none;">정산 요청 번호</th>
              		<th style="width: 11%">정산 요청일</th>
-             		<th style="width: 12%">호스트</th>
+             		<th style="width: 17%">호스트</th>
              		<th style="width: 31%">클래스명</th>
              		<th style="width: 5%">참여</th>
              		<th style="text-align: right">매출</th>
@@ -132,13 +135,13 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 					<c:forEach var="ac" items="${ list }">
 						<!-- ★ 클릭 시 어떤 클래스인지 디테일 뷰로 넘어가게 하자 ★ -->
 		            	<tr>
-		            		<td style="display: none;">${ac.acno }</td>
-		             		<td>${ac.period }</td>
-		             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${ac.user_name }</td>
-		             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${ac.name}</td>
-		             		<td>${ac.people }</td>
-		             		<td style="text-align: right">&#8361;${ac.sales }</td>
-		             		<td style="text-align: right">&#8361;${ac.amount }</td>
+		            		<td style="display: none;">${ac.fno }</td>
+		             		<td class="detailTR">${ac.bdate }</td>
+		             		<td class="detailTR" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${ac.hostId }</td>
+		             		<td class="detailTR" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${ac.ftitle}</td>
+		             		<td class="detailTR">${ac.amount }</td>
+		             		<td class="detailTR" style="text-align: right">&#8361;${ac.total }</td>
+		             		<td class="detailTR" style="text-align: right">&#8361;${ac.cprice }</td>
 		             		<td style="text-align: center;"><button class="agreeBtn">정산승인</button></td>
 		             	</tr>
 					</c:forEach>
@@ -147,13 +150,13 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 					</tr>
 					<c:forEach var="acAll" items="${ AllList }">
 		            	<tr style="display: none;">
-		            		<td style="display: none;">${acAll.acno }</td>
-		             		<td>${acAll.period }</td>
-		             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${acAll.user_name }</td>
-		             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${acAll.name}</td>
-		             		<td>${acAll.people }</td>
-		             		<td style="text-align: right">&#8361;${acAll.sales }</td>
-		             		<td style="text-align: right">&#8361;${acAll.amount }</td>
+		            		<td style="display: none;">${acAll.fno }</td>
+		             		<td>${acAll.bdate }</td>
+		             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${acAll.hostId }</td>
+		             		<td style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${acAll.ftitle}</td>
+		             		<td>${acAll.amount }</td>
+		             		<td style="text-align: right">&#8361;${acAll.total }</td>
+		             		<td style="text-align: right">&#8361;${acAll.cprice }</td>
 		             		<td style="text-align: center;"><button class="agreeBtn">정산승인</button></td>
 		             	</tr>
 					</c:forEach>
@@ -224,12 +227,24 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 			});
 		};
 		
+		$('.detailTR').click(function(){
+			   var fno = $(this).parent().children().eq(0).text();
+		   	   location.href = 'detail.bo?fno='+ fno;
+		})
+		   
 		$('.agreeBtn').click(function(){
-			var acno = $(this).parent().parent().children().eq(0).text();
+			var fno = $(this).parent().parent().children().eq(0).text();
+			var bdate = $(this).parent().parent().children().eq(1).text();
+			var id = $(this).parent().parent().children().eq(2).text();
+			var ftitle = $(this).parent().parent().children().eq(3).text();
+			var people = $(this).parent().parent().children().eq(4).text();
+			var sales = $(this).parent().parent().children().eq(5).text();
+			var amount = $(this).parent().parent().children().eq(6).text();
+
 			var result = confirm('정말로 정산요청을 승인하시겠습니까?');
 			if(result){
 				alert('정산 처리 완료');
-				location.href = 'agreeAccount.ad?acno='+ acno;
+				location.href = 'agreeAccount.ad?fno='+ fno+"&id="+id+"&ftitle="+ftitle+"&people="+people+"&sales="+sales+"&amount="+amount+"&bdate="+bdate;
 			} else{
 				alert('정산 처리 취소');	
 			}

@@ -25,6 +25,7 @@ import com.kh.bubblebee.account.model.vo.Account;
 import com.kh.bubblebee.board.model.service.BoardService;
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.common.PageInfo;
+import com.kh.bubblebee.host.model.vo.Aclist;
 import com.kh.bubblebee.notice.model.exception.NoticeException;
 import com.kh.bubblebee.notice.model.vo.Pagination2;
 
@@ -48,9 +49,9 @@ public class AdminController {
 		
 		PageInfo pi = Pagination2.getPageInfo(currentPage, listCount);
 		
-		ArrayList<Account> list = acService.selectAccountList(pi);
+		ArrayList<Aclist> list = acService.selectAccountList(pi);
 		
-		ArrayList<Account> AllList = acService.selectAllAccountList();
+		ArrayList<Aclist> AllList = acService.selectAllAccountList();
 		
 		if(list != null) {
 			// list, pi, view
@@ -102,11 +103,18 @@ public class AdminController {
 	}
 	
 	@RequestMapping("agreeAccount.ad")
-	public String agreeAccount(@RequestParam(value="acno") String acno) {
-		int result = acService.agreeAccount(acno);
+	public String agreeAccount(@RequestParam(value="fno") String fno, @RequestParam("id") String id,
+			@RequestParam("ftitle") String ftitle, @RequestParam("people") String people, @RequestParam("sales") String sales,
+			@RequestParam("amount") String amount, @RequestParam("bdate") String bdate){
+		int result = acService.agreeAccount(fno, id, ftitle, people, sales, amount);
+		int result2 = acService.updateBuying(fno, id, bdate);
 		
 		if(result > 0) {
-			return "redirect:account.ad";
+			if(result2 > 0) {
+				return "redirect:account.ad";
+			} else {
+				throw new NoticeException("정산승인 처리에 실패했습니다.");
+			}
 		} else {
 			throw new NoticeException("정산승인 처리에 실패했습니다.");
 		}

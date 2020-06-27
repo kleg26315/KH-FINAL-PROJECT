@@ -21,7 +21,6 @@
 	<header id="header">
 	     <c:import url="../layout/header.jsp"/>
 	</header> 
-
    <section style="padding-top: 115px; padding-left: 20%; width: 78%;">
       <div class = "main2">
 
@@ -111,6 +110,5 @@
    <footer id="footer" style="padding-top: 115px;">
 		<c:import url="../layout/footer.jsp"/>
 	</footer>
-   
 </body>
 </html>
