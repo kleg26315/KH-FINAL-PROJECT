@@ -203,7 +203,7 @@
 								      		<c:forEach var="s" items="${ slist }">
 								      			<a class="list_el" href="detail.bo?fno=${s.fno }">
 												  <div class="thumb_content">
-												  <c:set var="rf" value="${ s.renameFileName }"/>
+												  <c:set var="rf" value="${ s.renamefilename }"/>
 								                     <% 
 								                     	String rf = (String)pageContext.getAttribute("rf");
 								                     	String str = null;
@@ -218,7 +218,7 @@
 												  <img src="${contextPath }/resources/buploadFiles/${ str}"></div>
 												  <div class="item_content">
 												    <p class="item_title">${s.ftitle }</p>
-												    <p class="item_price">&#8361;${s.price }</p>
+												    <p class="item_price">&#8361;${s.price * s.tcount}</p>
 												  </div>
 												</a>
 								      		</c:forEach>

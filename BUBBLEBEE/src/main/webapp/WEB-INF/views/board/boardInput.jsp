@@ -809,7 +809,7 @@
 		});
 		
 		
-		//자동저장
+		//임시저장
 		window.onload = function(){
 			gettheLocal();
 		}
@@ -830,7 +830,7 @@
 			var test = localStorage.getItem(loginUser);
 				test = test.replace(/\"/gi, "");
 				test = test.replace(/\[/gi, "");
-				test = test.replace(/\n/g, "");
+				test = test.replace(/\]/gi, "");
 			
 			var arr = test.split(",");
 			    
