@@ -95,7 +95,7 @@
 	</select>
 	
 	<insert id="insertBoard">
-		<if test="ftype==1 and ftype==3">
+		<if test="ftype==1 or ftype==3">
 			insert into board
 			values(SEQ_BOARD.nextval, #{ftype}, #{price}, #{small_title}, #{ftitle}, #{category}, #{location}, #{lat}, #{lon}, 
 				#{fcontain}, #{fncontain}, #{fcalendar}, #{fmaterials}, #{fminfo}, #{fprecaution}, #{user_id},
