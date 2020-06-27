@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -59,6 +60,7 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="insert.no", method = RequestMethod.POST)
+	@ResponseBody
 	public String insertNotice(@RequestParam("title") String title, @RequestParam("content") String content, Model model) {
 		
 		int result = nService.insertNotice(title, content);
@@ -70,7 +72,8 @@ public class NoticeController {
 		}
 		
 		if(result > 0) {
-			return "redirect:list.no";
+			/* return "redirect:list.no"; */
+			return "success";
 		} else {
 			throw new NoticeException("공지사항 등록에 실패하였습니다.");
 		}

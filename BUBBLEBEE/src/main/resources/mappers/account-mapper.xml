@@ -2,16 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="accountMapper">
 	<select id="getAccountListCount" resultType="_int">
-		select count(*)
-		from account
-		where progress = 'N'
+		select count(*) from 
+		(select hostid,buy_status,count(distinct fno)
+		from aclist
+		where buy_status='C'
+		group by hostid,fno,ftitle,TO_CHAR(bdate, 'yyyy-mm'),buy_status)
 	</select>
 	
-	<select id="selectAccountList" resultMap="accountResultSet">
-		select acno, member.user_id AS USER_ID, period, name, people, TO_CHAR(sales, 'FM9,999,999,999') as sales, TO_CHAR(amount, 'FM9,999,999,999') as amount, progress, user_name
-		from account, member
-		where account.user_id = member.user_id and progress = 'N'
-		order by acno asc
+	<select id="selectAccountList" resultMap="aclistResultSet">
+		select hostid,fno,TO_CHAR(bdate, 'yyyy-mm') as bdate, ftitle, TO_CHAR(sum(ocode),'FM9,999,999,999') amount, TO_CHAR(sum(ocode * price), 'FM9,999,999,999') as total,TO_CHAR(sum(ocode * price)*0.2,'FM9,999,999,999') as fees,TO_CHAR(sum(ocode * price)-sum(ocode * price)*0.2,'FM9,999,999,999') as cmoney, buy_status 
+		from aclist
+		where buy_status= 'C'
+		group by  hostid,fno,ftitle,TO_CHAR(bdate, 'yyyy-mm'), buy_status
 	</select>
 	
 	<resultMap type="Account" id="accountResultSet">
@@ -26,16 +28,35 @@
 		<result property="user_name" column="USER_NAME"/>
 	</resultMap>
 	
-	<select id="selectAllAccountList" resultMap="accountResultSet">
-		select acno, member.user_id AS USER_ID, period, name, people, TO_CHAR(sales, 'FM9,999,999,999') as sales, TO_CHAR(amount, 'FM9,999,999,999') as amount, progress, user_name
-		from account, member
-		where account.user_id = member.user_id and progress = 'N'
-		order by acno asc
+	<select id="selectAllAccountList" resultMap="aclistResultSet">
+		select hostid,fno,TO_CHAR(bdate, 'yyyy-mm') as bdate, ftitle, TO_CHAR(sum(ocode),'FM9,999,999,999') amount, TO_CHAR(sum(ocode * price), 'FM9,999,999,999') as total,TO_CHAR(sum(ocode * price)*0.2,'FM9,999,999,999') as fees,TO_CHAR(sum(ocode * price)-sum(ocode * price)*0.2,'FM9,999,999,999') as cmoney, buy_status 
+		from aclist
+		where buy_status= 'C'
+		group by  hostid,fno,ftitle,TO_CHAR(bdate, 'yyyy-mm'), buy_status
 	</select>
 	
-	<update id="agreeAccount">
-		update account
-		set progress = 'Y'
-		where acno = #{acno}
+	<insert id="agreeAccount">
+		insert into account values(seq_account.nextval, #{id}, sysdate, #{ftitle}, #{people}, #{sales}, #{amount}, default)
+	</insert>
+	
+	<update id="updateBuying">
+		update buying 
+		set buy_status ='N'
+		where substr(dcode,1,6) in (select to_char(bdate,'yyyymm') from aclist where hostId=#{id} and buy_status='C' and to_char(bdate,'yyyy-mm')=#{bdate})
+		and ono in (select ono from choose where fno = #{fno})
 	</update>
+	
+	<resultMap type="Aclist" id="aclistResultSet">
+		<result property="hostId" column="HOSTID"/>
+		<result property="fno" column="FNO"/>
+		<result property="bdate" column="BDATE"/>
+		<result property="ftitle" column="FTITLE"/>
+		<result property="amount" column="AMOUNT"/>
+		<result property="total" column="TOTAL"/>
+		<result property="fees" column="FEES"/>
+		<result property="cprice" column="CMONEY"/>
+		<result property="buy_status" column="BUY_STATUS"/>
+	</resultMap>
+	
+	
 </mapper>

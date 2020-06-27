@@ -683,20 +683,16 @@
     
     <!-- 알림 스크립트 -->
     <script>
-    var socket = null;
+        var socket = null;
 	    var wsUri = "ws://"+location.host+"/bubblebee/count";
 	    function send_message(){
 	        websocket = new WebSocket(wsUri);
 	        socket = websocket;
 	        websocket.onopen = function(evt) {
 	            onOpen(evt);
-	            setTimeout(function(){
-	        		send_message();
-		        }, 1000);
 	        };
 	        websocket.onmessage = function(evt) {
 	            onMessage(evt);
-	            websocket.close();
 	        };
 	        websocket.onerror = function(evt) {
 	            onError(evt);
@@ -709,6 +705,9 @@
 	    }
 	
 	    function onMessage(evt) {
+	    	if(evt.data == 'reload'){
+	    		onOpen();
+	    	}else{
 	    	var realData = [];
 	    	realData = evt.data.split('&');
 	    	console.log(realData[1]);
@@ -778,6 +777,7 @@
 					location.href = 'noticeSelect.no?bno='+ bno;
 			    })
 			}
+	    	}
 	    }
 	
 	    function onError(evt) {
