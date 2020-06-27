@@ -95,10 +95,19 @@
 	</select>
 	
 	<insert id="insertBoard">
-		insert into board
-		values(SEQ_BOARD.nextval, #{ftype}, #{price}, #{small_title}, #{ftitle}, #{category}, #{location}, #{lat}, #{lon}, 
+		<if test="ftype==1 and ftype==2">
+			insert into board
+			values(SEQ_BOARD.nextval, #{ftype}, #{price}, #{small_title}, #{ftitle}, #{category}, #{location}, #{lat}, #{lon}, 
 				#{fcontain}, #{fncontain}, #{fcalendar}, #{fmaterials}, #{fminfo}, #{fprecaution}, #{user_id},
 				 default, default, default, sysdate, default, #{originalFileName}, #{renameFileName}, #{introduce}, #{maxMember})
+		</if>
+		
+		<if test="ftype==2">
+			insert into board
+			values(SEQ_BOARD.nextval, #{ftype}, #{price}, #{small_title}, #{ftitle}, #{category}, #{location}, #{lat}, #{lon}, 
+					#{fcontain}, #{fncontain}, #{fcalendar}, #{fmaterials}, #{fminfo}, #{fprecaution}, #{user_id},
+					 default, default, default, sysdate, 'W', #{originalFileName}, #{renameFileName}, #{introduce}, #{maxMember})
+		</if>
 	</insert>
 	
 	<insert id="insertBoardOption">
