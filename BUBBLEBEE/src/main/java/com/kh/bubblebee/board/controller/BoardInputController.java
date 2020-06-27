@@ -61,7 +61,7 @@ public class BoardInputController {
 			for(int i = 0; i < name.length; i++) {
 				map.put("op" + i, new Option(name[i], pr[i], count[i], null));
 			}
-		}else {
+		}else if(deadline != null) {
 			for(int i = 0; i < name.length; i++) {
 				map.put("op" + i, new Option(name[i], pr[i], count[i], deadline[i]));
 			}
