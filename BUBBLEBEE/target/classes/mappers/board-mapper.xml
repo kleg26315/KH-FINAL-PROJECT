@@ -259,7 +259,7 @@
 		<![CDATA[
 		select *
 		from (
-			select rownum rnum, fno, ftype, price, small_title, ftitle, Round((rsum/rcount),1) as avgrv
+			select rownum rnum, fno, ftype, price, small_title, ftitle, Round((rsum/rcount),1) as avgrv, renamefilename
 			from board
 			where rcount!=0 and rsum!=0 and f_status='Y' and ftype=1
 			order by avgrv desc)
@@ -271,7 +271,7 @@
 		<![CDATA[
 		select *
 		from (
-			select rownum rnum, fno, ftype, price, small_title, ftitle, Round((rsum/rcount),1) as avgrv
+			select rownum rnum, fno, ftype, price, small_title, ftitle, Round((rsum/rcount),1) as avgrv, renamefilename
 			from board
 			where rcount!=0 and rsum!=0 and f_status='Y' and ftype=2
 			order by avgrv desc)
@@ -283,7 +283,7 @@
 		<![CDATA[
 		select *
 		from (
-			select rownum rnum, fno, ftype, price, small_title, ftitle, Round((rsum/rcount),1) as avgrv
+			select rownum rnum, fno, ftype, price, small_title, ftitle, Round((rsum/rcount),1) as avgrv, renamefilename
 			from board
 			where rcount!=0 and rsum!=0 and f_status='Y' and ftype=1
 			order by avgrv desc)
@@ -295,7 +295,7 @@
 		<![CDATA[
 		select *
 		from (
-			select rownum rnum, fno, ftype, price, small_title, ftitle, Round((rsum/rcount),1) as avgrv
+			select rownum rnum, fno, ftype, price, small_title, ftitle, Round((rsum/rcount),1) as avgrv, renamefilename
 			from board
 			where rcount!=0 and rsum!=0 and f_status='Y' and ftype=2
 			order by avgrv desc)
