@@ -394,4 +394,14 @@
 		set f_status = 'R'
 		where fno = #{fno}
 	</update>
+	
+	<select id="selectReview" resultType="Review">
+		select fno ref_fid, ono ono1, ftitle, oname, qcontent, q_create_date, r.user_id writer, nickname, profile
+		from review r
+		    join choose c using (ono) 
+		    join board b using (fno)
+		    join member m on (b.user_id = m.user_id)
+		where REF_FID=2 and SECRET_YN='N' and Q_STATUS='Y'
+	</select>
+	
 </mapper>

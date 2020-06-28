@@ -4,14 +4,11 @@ package com.kh.bubblebee.board.model.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.kh.bubblebee.account.model.vo.Account;
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.board.model.vo.Option;
 import com.kh.bubblebee.board.model.vo.Review;
-import com.kh.bubblebee.board.model.vo.SearchCondition;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.host.model.vo.Host;
-import com.kh.bubblebee.member.model.vo.Member;
 
 public interface BoardService {
 
@@ -88,6 +85,8 @@ public interface BoardService {
 	int rejectClass(String fno);
 
 	int updateOption();
+
+	Review selectReview(int fno);
 
 	
 

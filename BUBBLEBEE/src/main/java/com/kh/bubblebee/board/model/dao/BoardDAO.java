@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.board.model.vo.Option;
+import com.kh.bubblebee.board.model.vo.Review;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.host.model.vo.Host;
 
@@ -188,6 +189,10 @@ public class BoardDAO {
 	public int updateOption(SqlSessionTemplate sqlSession) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("boardMapper.selectListfno");		
+	}
+
+	public Review selectReview(SqlSessionTemplate sqlSession, int fno) {
+		return sqlSession.selectOne("boardMapper.selectReview", fno);
 	}
 
 }

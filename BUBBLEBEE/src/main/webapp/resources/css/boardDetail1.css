@@ -136,8 +136,6 @@ div.hashTagHostReview{
 
 div.hashTagHostReviewComment{
    float : left;   
-   width : 100%;
-   height : 40px;
    font-size : 11pt;
    font-weight : 600;
 }
@@ -280,7 +278,7 @@ div.hashTagQuestion{
 
 div.hashTagLocationInfo{
    float:left;
-   width : 50%;
+   /* width : 50%; */
    height : 40px;
    margin-top : 20px;
 }
@@ -362,7 +360,7 @@ input.hashTagQuestionBtn{
    font-weight : 200;
 }
 
-input.hashTagEnquiryBtn{
+input#hashTagEnquiryBtn{
    margin-left : 81%; 
    border : none; 
    outline : none; 
