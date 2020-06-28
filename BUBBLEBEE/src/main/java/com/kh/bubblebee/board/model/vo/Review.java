@@ -2,6 +2,7 @@ package com.kh.bubblebee.board.model.vo;
 
 import java.sql.Date;
 
+import com.kh.bubblebee.host.model.vo.Host;
 import com.kh.bubblebee.member.model.vo.Member;
 
 public class Review {
@@ -27,11 +28,18 @@ public class Review {
 	private String profile; //프로필사진
 	private String ono; //옵션번호
 	
+	//한솔
+	private int ono1;
+	private String oname;
+	private String writer;
+	private String nickname;
+	
 	public Review() {}
 
 	public Review(int qno, String qcontent, Date q_create_date, Date q_modify_date, String q_status, int ref_fid,
 			String user_id, String secret_yn, int grade, int qtype, Member member, String bday, String odeadline,
-			String category, String ftitle, String renamefilename, String profile, String ono) {
+			String category, String ftitle, String renamefilename, String profile, String ono, String oname, 
+			String writer, String nickname, int ono1) {
 		super();
 		this.qno = qno;
 		this.qcontent = qcontent;
@@ -51,6 +59,18 @@ public class Review {
 		this.renamefilename = renamefilename;
 		this.profile = profile;
 		this.ono = ono;
+		this.oname = oname;
+		this.writer = writer;
+		this.nickname = nickname;
+		this.ono1 = ono1;
+	}
+
+	public int getOno1() {
+		return ono1;
+	}
+
+	public void setOno1(int ono1) {
+		this.ono1 = ono1;
 	}
 
 	public int getQno() {
@@ -196,6 +216,30 @@ public class Review {
 	public void setOno(String ono) {
 		this.ono = ono;
 	}
+	
+	public String getOname() {
+		return oname;
+	}
+
+	public void setOname(String oname) {
+		this.oname = oname;
+	}
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
+	public String getnickname() {
+		return nickname;
+	}
+
+	public void setnickname(String nickname) {
+		this.nickname = nickname;
+	}
 
 	@Override
 	public String toString() {
@@ -203,13 +247,8 @@ public class Review {
 				+ q_modify_date + ", q_status=" + q_status + ", ref_fid=" + ref_fid + ", user_id=" + user_id
 				+ ", secret_yn=" + secret_yn + ", grade=" + grade + ", qtype=" + qtype + ", member=" + member
 				+ ", bday=" + bday + ", odeadline=" + odeadline + ", category=" + category + ", ftitle=" + ftitle
-				+ ", renamefilename=" + renamefilename + ", profile=" + profile + ", ono=" + ono + "]";
+				+ ", renamefilename=" + renamefilename + ", profile=" + profile + ", ono=" + ono  + ", oname=" + oname 
+				+ ", writer=" + writer + ", nickname=" + nickname + ", ono1=" + "]";
+		 
 	}
-
-	
-
-	
-	
-
-	
 }

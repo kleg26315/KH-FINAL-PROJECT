@@ -70,11 +70,9 @@
 				<div class="hashTagTitle">${ b.ftitle }</div>
 				<div class="hashTagPrice">${ b.price } 원</div>
 				<hr>
-				<div>
-					<div>좋아요 누른 인원 + 명이 좋아한 모임</div>
-					<div>원하는 요일 날짜</div>
-					<div>장소</div>
-					<div>첫 후기 남기고 1,000마일리지 받아가세요!</div>
+				<br>
+				<div style="float: left; width: 100%; height: 20px;">
+					<hr style="border: 0.5px solid lightgray">
 				</div>
 				<hr>
 				<div>
@@ -107,29 +105,28 @@
 					<div style="float: left; width: 100%; height: 20px;">
 						<hr style="border: 0.5px solid lightgray">
 					</div>
-
+					
+					
 					<div class="hashTagHostReview">호스트 후기</div>
-					<div class="hashTagHostImage2">
-						<img class="hashTagHostImageContent" src="">
-					</div>
-					<div class="hashTagHostName">석쵸니</div>
-					<div class="hashTagHostLike" style="height: 40px;">* * * * *
-						| 2018/8/18 8:18분 작성</div>
-					<div class="hashTagHostReviewComment">나는 그냥 창렬이랑 같이있는게 좋더라~</div>
-					<div class="hashTagHostReviewTitle">
-						[실전] 창렬이형의 실전 제압 기술 <br> 폭행 체험
-					</div>
-					<div class="hashTagHostReviewLike">
-						<div class="hashTagHostReviewLikeIn"></div>
-					</div>
-					<div class="hashTagHostReviewImage">
-						<img class="hashTagHostImageContent"
-							src="">
-					</div>
+					<c:choose>
+						<c:when test="${ not empty review }">
+							<div class="hashTagHostImage2">
+								<img class="hashTagHostImageContent" src="${ review.profile }">
+							</div>
+							<div class="hashTagHostName">${ review.nickname }</div>
+							<div class="hashTagHostLike" style="height: 40px;">${ review.qcontent} <br> ${ review.q_create_date } 작성 </div>
+							<div class="hashTagHostReviewTitle">
+								참여 버블 : ${ review.ftitle } <br> 구매 옵션 : ${ review.oname }
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div style="width: 100%; float: left;">작성한 후기가 없습니다.</div>
+						</c:otherwise>
+					</c:choose>
+					
 					<form action="hostReview.ho" method="post">
 					<div class="hashTagHostReviewInfo">
-						<input class="hashTagHostInfoInBtn" type="submit"
-							value="1818개 후기 모두 보기">
+						<input class="hashTagHostInfoInBtn" type="submit" value="후기 모두 보기">
 							<input type="hidden" value="${host.member.id }" name="hostId">
 					</div>
 					</form>
@@ -188,12 +185,7 @@
 					<div class="hashTagLocation">진행 장소</div>
 					<div class="hashTagLocationContent" id="map"></div>
 					<div class="hashTagLocationInfo" id="address">${ b.location }</div>
-
-					<div class="hashTagLocationPaste">
-						<input type="hidden" id="ShareUrl">
-						<input class="hashTagLocationPasteBtn" type="button" onclick="copyUrl();" value="주소 복사">
-					</div>
-
+					
 					<div
 						style="float: left; width: 100%; height: 20px; margin-top: -18px;">
 						<hr style="border: 0.5px solid lightgray">
@@ -206,10 +198,10 @@
 					<c:set var="answerArr" value="${ splitArr[1].split(',') }" />
 					
 					<c:forEach var="ques" items="${ questionArr }" varStatus="que">
-						${ ques } <br> 
+						질문 : ${ ques } <br> 
 						<c:forEach var="anss" items="${ answerArr }" varStatus="anw">
 							<c:if test="${ que.index eq anw.index }">
-								&nbsp;&nbsp;${ anss }<br>
+								&nbsp;&nbsp; 답변 : ${ anss }<br>
 							</c:if>
 						</c:forEach>
 					</c:forEach>
@@ -221,7 +213,7 @@
 					
 					<form action="hostQnA.ho">
 					<div class="hashTagEnquiry">
-						문의하기 <input class="hashTagEnquiryBtn" type="submit" value="∨">
+						문의하기 <input id="hashTagEnquiryBtn" type="submit" value="v">
 						<input type="hidden" name="fno" value="${b.fno }">
 						<input type="hidden" value="${host.member.id }" name="hostId">
 					</div>
