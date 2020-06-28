@@ -10,7 +10,7 @@
 	
 	<select id="selectList" resultType="Board">
 		<![CDATA[
-		select distinct un.fno, FTYPE, un.PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, AD1, AD2, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, RANK, RENAMEFILENAME, li
+		select *
 		from(select FNO, FTYPE, PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, AD1, AD2, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, RANK, RENAMEFILENAME, 'hy' li
 	     	 from blist
 	     	 where fno in (select fno2
@@ -21,9 +21,8 @@
 			  from blist
 			  where fno not in (select fno2   
 								from heart
-								where user_id_ht=#{id}) ) un
-		left join choose c on (un.fno = c.fno)
-		where f_status='Y' and category=#{cate} and to_date(odeadline) > sysdate
+								where user_id_ht=#{id}) ) 
+		where f_status='Y' and category=#{cate}
 		order by rank desc
 		]]>
 	</select>
@@ -42,7 +41,7 @@
 	
 	<select id="selectLtList" parameterType="map" resultType="Board">
 		<![CDATA[
-		select distinct un.fno, FTYPE, un.PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, AD1, AD2, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, RANK, RENAMEFILENAME, li
+		select *
 		from(select FNO, FTYPE, PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, AD1, AD2, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, RANK, RENAMEFILENAME, 'hy' li
 	     	 from blist
 	     	 where fno in (select fno2
@@ -53,16 +52,15 @@
 			  from blist
 			  where fno not in (select fno2   
 								from heart
-								where user_id_ht=#{id}) ) un
-		left join choose c on (un.fno = c.fno)
-		where f_status='Y' and category=#{cate} and to_date(odeadline) > sysdate
+								where user_id_ht=#{id}) ) 
+		where f_status='Y' and category=#{cate}
 		order by f_create_date desc
 		]]>
 	</select>
 	
 	<select id="selectHtList" parameterType="map" resultType="Board">
 		<![CDATA[
-		select distinct un.fno, FTYPE, un.PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, AD1, AD2, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, RANK, RENAMEFILENAME, li
+		select *
 		from(select FNO, FTYPE, PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, AD1, AD2, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, RANK, RENAMEFILENAME, 'hy' li
 	     	 from blist
 	     	 where fno in (select fno2
@@ -73,9 +71,8 @@
 			  from blist
 			  where fno not in (select fno2   
 								from heart
-								where user_id_ht=#{id}) ) un
-		left join choose c on (un.fno = c.fno)
-		where f_status='Y' and category=#{cate} and to_date(odeadline) > sysdate
+								where user_id_ht=#{id}) )
+		where f_status='Y' and category=#{cate}
 		order by rank desc
 		]]>
 	</select>
@@ -156,7 +153,7 @@
 	</select>
 	
 	<select id="selectSearchList" parameterType="map" resultType="Board">
-		select distinct un.fno, FTYPE, un.PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, AD1, AD2, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, RANK, RENAMEFILENAME, li
+		select *
 		from(select FNO, FTYPE, PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, AD1, AD2, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, RANK, RENAMEFILENAME, 'hy' li
 		     from blist
 		     where fno in (select fno2
@@ -167,18 +164,17 @@
 		    from blist
 		    where fno not in (select fno2
 		                      from heart
-		                      where user_id_ht=#{id}) ) un
-		join choose c on (un.fno = c.fno)
-		where f_status='Y' and category=#{cate} and to_date(ODEADLINE) > sysdate and           
+		                      where user_id_ht=#{id}) )
+		where f_status='Y' and category=#{cate} and           
 		<choose>
 			<when test='sc.endPrice == 300000'>
 				<![CDATA[ 
-					un.price>=#{sc.startPrice}
+					price>=#{sc.startPrice}
 				 ]]>
 			 </when>
 			 <otherwise>
 			 	<![CDATA[ 
-					un.price>=#{sc.startPrice} and un.price<=#{sc.endPrice}
+					price>=#{sc.startPrice} and price<=#{sc.endPrice}
 				 ]]>
 			 </otherwise>
 		</choose>	
@@ -195,10 +191,10 @@
 				order by (rsum/decode(rcount,0,1,rcount)) desc
 		    </if>
 		    <if test='sc.highprice != null'>
-		    	order by un.price desc
+		    	order by price desc
 		    </if>
 		    <if test='sc.lowprice != null'>
-		    	order by un.price
+		    	order by price
 		    </if>
 	</select>
 	
@@ -239,8 +235,7 @@
 	<select id="selectwList" resultType="Board">
 		select DISTINCT AD1, AD2
 		from BLIST
-		join choose using (fno)
-        where to_date(ODEADLINE) > sysdate and category=#{cate}
+        where category=#{cate}
 	</select>
 	
 	<select id="makrLocation" resultType="Board">
