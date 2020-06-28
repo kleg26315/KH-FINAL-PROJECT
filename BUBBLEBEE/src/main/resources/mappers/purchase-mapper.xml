@@ -78,7 +78,7 @@
 		insert into buying
 		values(SEQ_BUYING.nextval, #{gname},
 		#{gphone}, #{gaddress}, #{gmsg}, #{user_id},
-		#{ono}, #{gpay}, #{dcode} , #{ocode}, default
+		#{ono}, #{gpay}, #{dcode} , #{ocode}
 		)
 	</insert>
 
@@ -117,7 +117,7 @@
 		insert into buying
 		values(SEQ_BUYING.nextval, #{gname},
 		#{gphone}, #{gaddress}, #{gmsg}, #{user_id},
-		#{ono}, #{gpay}, #{dcode} , #{ocode}, default
+		#{ono}, #{gpay}, #{dcode} , #{ocode}
 		)
 	</insert>
 	
