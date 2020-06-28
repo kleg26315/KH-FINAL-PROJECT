@@ -55,10 +55,10 @@
 					<c:set var="renameFileNameArr" value="${ renameFileName.split(',') }"/>
 					<!-- ${ renameFileNameArr[1] }  -->
 					<c:forEach var="i" begin="0" end="${fn:length(renameFileNameArr)-1}">
-						<div id = "img" >
+						<div id = "img" style="height: 100% !important;, width: 100% !important;">
 							<!-- <img src="<%=request.getContextPath() %>/src/main/webapp/resources\buploadFiles\${ renameFileNameArr[i] }" class="hospitalImage"> -->
 							<!-- <img src="/Users/hansolkim/git/KH-FINAL-PROJECT/BUBBLEBEE/src/main/webapp/resources\buploadFiles\20200610165932(0).jpeg" class="hospitalImage"> -->
-							<img src = "${contextPath }/resources/buploadFiles/${ renameFileNameArr[i] }"/>
+							<img src = "${contextPath }/resources/buploadFiles/${ renameFileNameArr[i] }" style="width: 700px; height: 400px !important;"/>
 						</div>
 					</c:forEach>
 				</div>
