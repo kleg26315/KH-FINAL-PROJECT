@@ -93,7 +93,7 @@
 		from choose
 		where fno = #{fno}
 		<![CDATA[ 
-			and TO_DATE(ODEADLINE) > SYSDATE or ODEADLINE is null
+			and (TO_DATE(ODEADLINE) > SYSDATE or ODEADLINE is null)
 	 	]]>
 	</select>
 

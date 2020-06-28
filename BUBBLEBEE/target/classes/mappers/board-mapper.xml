@@ -40,8 +40,6 @@
 		]]>
 	</update>
 	
-	
-	
 	<select id="selectLtList" parameterType="map" resultType="Board">
 		<![CDATA[
 		select distinct un.fno, FTYPE, un.PRICE, SMALL_TITLE, FTITLE, CATEGORY, LOCATION, AD1, AD2, F_CREATE_DATE, F_STATUS, RSUM, RCOUNT, RANK, RENAMEFILENAME, li
