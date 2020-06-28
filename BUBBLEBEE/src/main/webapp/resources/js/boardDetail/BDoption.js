@@ -83,9 +83,6 @@ $(".CLK").on("click", function(){
 	
 	BTN1.append(BTN1V);
 	BTN2.append(BTN2V);
-	
-//		CONT.append(CONT1, CONT2);
-//		$("#CON").append(CONT);
 
 	$("#CON").append(CONT1, CONT2, BTN1, MID, BTN2);
 	
