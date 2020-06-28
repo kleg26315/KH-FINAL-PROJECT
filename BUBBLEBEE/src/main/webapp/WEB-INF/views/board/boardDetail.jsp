@@ -55,10 +55,10 @@
 					<c:set var="renameFileNameArr" value="${ renameFileName.split(',') }"/>
 					<!-- ${ renameFileNameArr[1] }  -->
 					<c:forEach var="i" begin="0" end="${fn:length(renameFileNameArr)-1}">
-						<div id = "img" >
+						<div id = "img" style="height: 100% !important;, width: 100% !important;">
 							<!-- <img src="<%=request.getContextPath() %>/src/main/webapp/resources\buploadFiles\${ renameFileNameArr[i] }" class="hospitalImage"> -->
 							<!-- <img src="/Users/hansolkim/git/KH-FINAL-PROJECT/BUBBLEBEE/src/main/webapp/resources\buploadFiles\20200610165932(0).jpeg" class="hospitalImage"> -->
-							<img src = "${contextPath }/resources/buploadFiles/${ renameFileNameArr[i] }"/>
+							<img src = "${contextPath }/resources/buploadFiles/${ renameFileNameArr[i] }" style="width: 700px; height: 400px !important;"/>
 						</div>
 					</c:forEach>
 				</div>
@@ -263,7 +263,11 @@
 						</div>
 						<hr style = "margin-top : 0px;">
 						<c:forEach var = "pu" items = "${ p }" varStatus = "index">
+
+						
+
 						<div class = "CLK" style = "float : left; width : 100%; background-color : rgb(249, 249, 249); margin-top : -20px; height : 94px; cursor : pointer;" id = "${ pu.ono }" >
+
 							<div style = "margin-top : 2px;" id = "${ pu.ono }"> 
 								<div style = "font-weight : 600; margin-left : 4%; margin-top : 16px;" id = "${ pu.ono }">
 									<c:if test="${pu.odeadline == null }">

@@ -48,7 +48,8 @@ public class PurchaseController {
 		
 		
 		System.out.println("loginUser : " + loginUser);
-		System.out.println("ono : " + onoo);
+		System.out.println("ono : " + ono);
+		System.out.println("onoo : " + onoo);
 		System.out.println("fno : " + fno);
 		System.out.println("ocode : " + ocode);
 		
@@ -66,7 +67,7 @@ public class PurchaseController {
 				mv.addObject("fno", fno);
 				mv.addObject("pslist", pclist);
 				mv.addObject("pcost", pcost);
-				mv.addObject("plist", plist);
+				mv.addObject("plist", plist);	
 				mv.addObject("ocode", ocode);
 				mv.setViewName("purchase1First");
 			}else {
