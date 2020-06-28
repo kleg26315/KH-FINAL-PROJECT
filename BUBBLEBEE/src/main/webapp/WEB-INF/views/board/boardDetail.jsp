@@ -29,7 +29,7 @@
 }
 </style>
 <body>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27cfa1d7725d616c3b4f7135fba99e8e&libraries=services"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=be0b8d3e154f1e2bf1a278bd7fbf3d2a&libraries=services"></script>
 	<header id="header" style="z-index: 99999">
 		<%@ include file="../layout/header.jsp"%>
 	</header>
@@ -55,10 +55,10 @@
 					<c:set var="renameFileNameArr" value="${ renameFileName.split(',') }"/>
 					<!-- ${ renameFileNameArr[1] }  -->
 					<c:forEach var="i" begin="0" end="${fn:length(renameFileNameArr)-1}">
-						<div id = "img" >
+						<div id = "img" style="height: 100% !important;, width: 100% !important;">
 							<!-- <img src="<%=request.getContextPath() %>/src/main/webapp/resources\buploadFiles\${ renameFileNameArr[i] }" class="hospitalImage"> -->
 							<!-- <img src="/Users/hansolkim/git/KH-FINAL-PROJECT/BUBBLEBEE/src/main/webapp/resources\buploadFiles\20200610165932(0).jpeg" class="hospitalImage"> -->
-							<img src = "${contextPath }/resources/buploadFiles/${ renameFileNameArr[i] }"/>
+							<img src = "${contextPath }/resources/buploadFiles/${ renameFileNameArr[i] }" style="width: 700px; height: 400px !important;"/>
 						</div>
 					</c:forEach>
 				</div>
@@ -70,11 +70,9 @@
 				<div class="hashTagTitle">${ b.ftitle }</div>
 				<div class="hashTagPrice">${ b.price } 원</div>
 				<hr>
-				<div>
-					<div>좋아요 누른 인원 + 명이 좋아한 모임</div>
-					<div>원하는 요일 날짜</div>
-					<div>장소</div>
-					<div>첫 후기 남기고 1,000마일리지 받아가세요!</div>
+				<br>
+				<div style="float: left; width: 100%; height: 20px;">
+					<hr style="border: 0.5px solid lightgray">
 				</div>
 				<hr>
 				<div>
@@ -107,29 +105,28 @@
 					<div style="float: left; width: 100%; height: 20px;">
 						<hr style="border: 0.5px solid lightgray">
 					</div>
-
+					
+					
 					<div class="hashTagHostReview">호스트 후기</div>
-					<div class="hashTagHostImage2">
-						<img class="hashTagHostImageContent" src="">
-					</div>
-					<div class="hashTagHostName">석쵸니</div>
-					<div class="hashTagHostLike" style="height: 40px;">* * * * *
-						| 2018/8/18 8:18분 작성</div>
-					<div class="hashTagHostReviewComment">나는 그냥 창렬이랑 같이있는게 좋더라~</div>
-					<div class="hashTagHostReviewTitle">
-						[실전] 창렬이형의 실전 제압 기술 <br> 폭행 체험
-					</div>
-					<div class="hashTagHostReviewLike">
-						<div class="hashTagHostReviewLikeIn"></div>
-					</div>
-					<div class="hashTagHostReviewImage">
-						<img class="hashTagHostImageContent"
-							src="">
-					</div>
+					<c:choose>
+						<c:when test="${ not empty review }">
+							<div class="hashTagHostImage2">
+								<img class="hashTagHostImageContent" src="${ review.profile }">
+							</div>
+							<div class="hashTagHostName">${ review.nickname }</div>
+							<div class="hashTagHostLike" style="height: 40px;">${ review.qcontent} <br> ${ review.q_create_date } 작성 </div>
+							<div class="hashTagHostReviewTitle">
+								참여 버블 : ${ review.ftitle } <br> 구매 옵션 : ${ review.oname }
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div style="width: 100%; float: left;">작성한 후기가 없습니다.</div>
+						</c:otherwise>
+					</c:choose>
+					
 					<form action="hostReview.ho" method="post">
 					<div class="hashTagHostReviewInfo">
-						<input class="hashTagHostInfoInBtn" type="submit"
-							value="1818개 후기 모두 보기">
+						<input class="hashTagHostInfoInBtn" type="submit" value="후기 모두 보기">
 							<input type="hidden" value="${host.member.id }" name="hostId">
 					</div>
 					</form>
@@ -188,12 +185,7 @@
 					<div class="hashTagLocation">진행 장소</div>
 					<div class="hashTagLocationContent" id="map"></div>
 					<div class="hashTagLocationInfo" id="address">${ b.location }</div>
-
-					<div class="hashTagLocationPaste">
-						<input type="hidden" id="ShareUrl">
-						<input class="hashTagLocationPasteBtn" type="button" onclick="copyUrl();" value="주소 복사">
-					</div>
-
+					
 					<div
 						style="float: left; width: 100%; height: 20px; margin-top: -18px;">
 						<hr style="border: 0.5px solid lightgray">
@@ -206,10 +198,10 @@
 					<c:set var="answerArr" value="${ splitArr[1].split(',') }" />
 					
 					<c:forEach var="ques" items="${ questionArr }" varStatus="que">
-						${ ques } <br> 
+						질문 : ${ ques } <br> 
 						<c:forEach var="anss" items="${ answerArr }" varStatus="anw">
 							<c:if test="${ que.index eq anw.index }">
-								&nbsp;&nbsp;${ anss }<br>
+								&nbsp;&nbsp; 답변 : ${ anss }<br>
 							</c:if>
 						</c:forEach>
 					</c:forEach>
@@ -221,7 +213,7 @@
 					
 					<form action="hostQnA.ho">
 					<div class="hashTagEnquiry">
-						문의하기 <input class="hashTagEnquiryBtn" type="submit" value="∨">
+						문의하기 <input id="hashTagEnquiryBtn" type="submit" value="v">
 						<input type="hidden" name="fno" value="${b.fno }">
 						<input type="hidden" value="${host.member.id }" name="hostId">
 					</div>
@@ -271,12 +263,19 @@
 						</div>
 						<hr style = "margin-top : 0px;">
 						<c:forEach var = "pu" items = "${ p }" varStatus = "index">
+
 						
-						<div class = "CLK" style = "float : left; width : 100%; background-color : rgb(249, 249, 249);
-						 margin-top : -20px; height : 94px; cursor : pointer;" id = "${ pu.ono }" >
+
+						<div class = "CLK" style = "float : left; width : 100%; background-color : rgb(249, 249, 249); margin-top : -20px; height : 94px; cursor : pointer;" id = "${ pu.ono }" >
+
 							<div style = "margin-top : 2px;" id = "${ pu.ono }"> 
 								<div style = "font-weight : 600; margin-left : 4%; margin-top : 16px;" id = "${ pu.ono }">
-									${pu.oname }  (${fn:split(pu.odeadline, "-")[0]}-${fn:split(pu.odeadline, "-")[1] }-${fn:split(pu.odeadline, "-")[2] }일)
+									<c:if test="${pu.odeadline == null }">
+										${pu.oname }
+									</c:if>
+									<c:if test="${pu.odeadline != null }">
+										${pu.oname }  (${fn:split(pu.odeadline, "-")[0]}-${fn:split(pu.odeadline, "-")[1] }-${fn:split(pu.odeadline, "-")[2] }일)
+									</c:if>
 								</div>
 								<div style = "margin-left : 4%; width : 70%; float: left; margin-top : 16px; font-size : 10pt; color : rgb(85, 85, 85);" id = "${ pu.ono }">
 									남은 수량 ${pu.ocount }개

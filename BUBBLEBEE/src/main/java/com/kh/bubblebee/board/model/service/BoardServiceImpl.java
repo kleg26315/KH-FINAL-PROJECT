@@ -7,10 +7,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.bubblebee.account.model.vo.Account;
 import com.kh.bubblebee.board.model.dao.BoardDAO;
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.board.model.vo.Option;
+import com.kh.bubblebee.board.model.vo.Review;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.host.model.vo.Host;
 
@@ -213,6 +213,11 @@ public class BoardServiceImpl implements BoardService {
 	public int updateOption() {
 		// TODO Auto-generated method stub
 		return bDAO.updateOption(sqlSession);
+	}
+
+	@Override
+	public Review selectReview(int fno) {
+		return bDAO.selectReview(sqlSession, fno);
 	}
 	
 }

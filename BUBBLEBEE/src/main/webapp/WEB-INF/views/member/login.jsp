@@ -66,7 +66,7 @@ input.loginFBtn {
 		<br><br>
 		<%
 			String clientId = "dVAQqRoybJtaWsPJGo6d";//애플리케이션 클라이언트 아이디값";
-			String redirectURI = URLEncoder.encode("http://localhost:8780/bubblebee/callback.me", "UTF-8");
+			String redirectURI = URLEncoder.encode("http://192.168.10.4:8780/bubblebee/callback.me", "UTF-8");
 			SecureRandom random = new SecureRandom();
 			String state = new BigInteger(130, random).toString();
 			String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
@@ -96,7 +96,7 @@ input.loginFBtn {
 		      success: function(authObj) {
 		        /* alert(JSON.stringify(authObj)) */
 		        $(function send(authObj){
-		        	location.href="https://kauth.kakao.com/oauth/authorize?client_id=27cfa1d7725d616c3b4f7135fba99e8e&redirect_uri=http://localhost:8780/bubblebee/kakao.me&response_type=code";
+		        	location.href="https://kauth.kakao.com/oauth/authorize?client_id=be0b8d3e154f1e2bf1a278bd7fbf3d2a&redirect_uri=http://192.168.10.4:8780/bubblebee/kakao.me&response_type=code";
 		        });
 		      },
 		      fail: function(err) {

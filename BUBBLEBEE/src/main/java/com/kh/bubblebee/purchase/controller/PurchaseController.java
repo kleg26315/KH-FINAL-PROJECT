@@ -1,37 +1,29 @@
 package com.kh.bubblebee.purchase.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Date;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.member.model.service.MemberService;
 import com.kh.bubblebee.member.model.vo.Member;
 import com.kh.bubblebee.purchase.model.exception.PurchaseException;
 import com.kh.bubblebee.purchase.model.service.PurchaseService;
 import com.kh.bubblebee.purchase.model.vo.PBoard;
 import com.kh.bubblebee.purchase.model.vo.PChoose;
-import com.kh.bubblebee.purchase.model.vo.PPoint;
-import com.kh.bubblebee.purchase.model.vo.PSList;
 import com.kh.bubblebee.purchase.model.vo.Purchase;
+import com.kh.bubblebee.purchase.model.vo.Slist;
 
 @Controller
 public class PurchaseController {
@@ -352,7 +344,7 @@ public class PurchaseController {
 			
 			if(result > 0) {
 				// 장바구니 조회
-    			ArrayList<Board> slist = mService.getSlist(loginUser.getId());
+    			ArrayList<Slist> slist = mService.getSlist(loginUser.getId());
     			session.setAttribute("slist", slist);
 				mv.addObject("ono", onoo).addObject("tcount",ocode).setViewName("redirect:myslist.mg");
 			}else {

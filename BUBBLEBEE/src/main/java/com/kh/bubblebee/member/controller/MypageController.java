@@ -140,7 +140,7 @@ public class MypageController {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		int result = mgService.sListdelete(tno);
-		ArrayList<Board> slist = mService.getSlist(loginUser.getId());
+		ArrayList<Slist> slist = mService.getSlist(loginUser.getId());
 		session.setAttribute("slist", slist);
 		
 		boolean isDelete = result == 1 ? true : false;

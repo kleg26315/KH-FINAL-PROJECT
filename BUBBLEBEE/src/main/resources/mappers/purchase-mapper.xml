@@ -92,12 +92,9 @@
 		select *
 		from choose
 		where fno = #{fno}
-		<if test='ODEADLINE != null'>
-			<![CDATA[ 
-				and TO_DATE(ODEADLINE) > SYSDATE 
-		 	]]>
-		</if> 
-	
+		<![CDATA[ 
+			and (TO_DATE(ODEADLINE) > SYSDATE or ODEADLINE is null)
+	 	]]>
 	</select>
 
 	

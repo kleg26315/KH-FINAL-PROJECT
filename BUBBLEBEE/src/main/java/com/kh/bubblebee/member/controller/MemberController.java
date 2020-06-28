@@ -3,7 +3,9 @@ package com.kh.bubblebee.member.controller;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.InetAddress;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
@@ -39,6 +41,7 @@ import com.kh.bubblebee.member.model.exception.MemberException;
 import com.kh.bubblebee.member.model.service.KakaoAPI;
 import com.kh.bubblebee.member.model.service.MemberService;
 import com.kh.bubblebee.member.model.vo.Member;
+import com.kh.bubblebee.purchase.model.vo.Slist;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -122,7 +125,7 @@ public class MemberController {
     			point = mService.getPoint(loginUser.getId());
     			session.setAttribute("point", point);
     			// 장바구니 조회
-    			ArrayList<Board> slist = mService.getSlist(loginUser.getId());
+    			ArrayList<Slist> slist = mService.getSlist(loginUser.getId());
     			session.setAttribute("slist", slist);
     			// 좋아요 조회
     			ArrayList<Board> hlist = mService.getHlist(loginUser.getId());
@@ -143,7 +146,7 @@ public class MemberController {
             			session.setMaxInactiveInterval(6000);
             			session.setAttribute("point", point);
             			// 장바구니 조회
-            			ArrayList<Board> slist = mService.getSlist(loginUser.getId());
+            			ArrayList<Slist> slist = mService.getSlist(loginUser.getId());
             			session.setAttribute("slist", slist);
             			// 좋아요 조회
             			ArrayList<Board> hlist = mService.getHlist(loginUser.getId());
@@ -180,7 +183,7 @@ public class MemberController {
 			int point = mService.getPoint(m.getId());
 			session.setAttribute("point", point);
 			// 장바구니 조회
-			ArrayList<Board> slist = mService.getSlist(m.getId());
+			ArrayList<Slist> slist = mService.getSlist(m.getId());
 			session.setAttribute("slist", slist);
 			// 좋아요 조회
 			ArrayList<Board> hlist = mService.getHlist(m.getId());
@@ -209,7 +212,7 @@ public class MemberController {
 				int point = mService.getPoint(m.getId());
 				session.setAttribute("point", point);
 				// 장바구니 조회
-				ArrayList<Board> slist = mService.getSlist(m.getId());
+				ArrayList<Slist> slist = mService.getSlist(m.getId());
 				session.setAttribute("slist", slist);
 				// 좋아요 조회
 				ArrayList<Board> hlist = mService.getHlist(m.getId());
@@ -240,7 +243,7 @@ public class MemberController {
 			point = mService.getPoint(loginUser.getId());
 			session.setAttribute("point", point);
 			// 장바구니 조회
-			ArrayList<Board> slist = mService.getSlist(loginUser.getId());
+			ArrayList<Slist> slist = mService.getSlist(loginUser.getId());
 			session.setAttribute("slist", slist);
 			// 좋아요 조회
 			ArrayList<Board> hlist = mService.getHlist(loginUser.getId());
@@ -257,7 +260,7 @@ public class MemberController {
 					point = mService.getPoint(loginUser.getId());
 					session.setAttribute("point", point);
 					// 장바구니 조회
-					ArrayList<Board> slist = mService.getSlist(loginUser.getId());
+					ArrayList<Slist> slist = mService.getSlist(loginUser.getId());
 					session.setAttribute("slist", slist);
 					// 좋아요 조회
 					ArrayList<Board> hlist = mService.getHlist(loginUser.getId());
@@ -325,7 +328,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="emailSendPage.me" ,method=RequestMethod.POST)
-	public String emailSendPage(@RequestParam("email") String email) {
+	public String emailSendPage(@RequestParam("email") String email, HttpServletRequest request) throws UnknownHostException {
 		String host = "smtp.naver.com";
 		String user = "kleg26315@naver.com";
 		String password = "12rnstn!!";
@@ -364,6 +367,22 @@ public class MemberController {
 			}
 		});
 		
+		InetAddress local = InetAddress.getLocalHost();
+	      
+	      String ip = local.getHostAddress();
+	      int port = request.getServerPort();
+	      String juso = ip+":"+port;
+	      
+
+	      String message = "";
+	      message += "<div align='center' style='border:1px solid black; font-family:verdana; width: 500px; height: 400px; background-color: #292c2f;'>";
+	      message += "<br><br><img style='width: 156px;' src=\"http://"+juso+"/bubblebee/resources/img/footerLogo.png\">";
+	      message += "<h2 style='color: white;'>임시 비밀번호 발급</h2>";
+	      message += "<div style='font-size: 130%; color: white;'>";
+	      message += email+"님의 임시 비밀번호 입니다.<br>비밀번호를 변경하여 사용하세요.<br><br> 임시 비밀번호 : <strong>";
+	      message += temp+"</strong></div><br></div>";
+	      
+	      
 		try {
 			MimeMessage msg = new MimeMessage(session);
 			msg.setFrom(new InternetAddress(user, "BUBBLEBEE"));
@@ -371,7 +390,7 @@ public class MemberController {
 			
 			msg.setSubject("[BUBBLEBEE] 임시 비밀번호 발급 메일입니다.	");
 			
-			msg.setText("임시 비밀번호 : " +temp);
+			msg.setText(message, "utf-8", "html");
 			
 			Transport.send(msg);
 		} catch(Exception e) {

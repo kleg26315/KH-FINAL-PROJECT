@@ -194,7 +194,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<input type="text" id="maxMember" name="maxMember" placeholder="최소 1명 이상 최대 20명 이하"  maxlength="2"  required >
+							<input type="text" id="maxMember" name="maxMember" placeholder="최소 1명 이상 최대 20명 이하"  maxlength="2" >
 						</td>
 					</tr>
 					
@@ -226,7 +226,7 @@
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" id="op2" class="op2" name="price" placeholder="가격(5000원 이상)" required>
+								<input type="text" id="op2" class="op2" name="price" placeholder="가격(5000원 이상)" onkeyup="money(this);">
 							</td>
 						</tr>
 						<tr>	
@@ -278,7 +278,7 @@
 	                     });
 												
 						function delete1(obj){
-							//$(obj).parent().parent().parent().next().remove();
+							$(obj).parent().parent().parent().next().remove();
 							$(obj).parent().parent().parent().remove();
 						}
 
@@ -292,12 +292,12 @@
 						}
 						
 						function money(b){
-							if (/\D/.test(this.value)) {
-						        this.value = this.value.replace(/\D/g, '')
+							if (/\D/.test(b.value)) {
+						        b.value = b.value.replace(/\D/g, '')
 						        alert('숫자만 입력가능합니다.');
 						    }
-							  if (this.value > 5000) {
-							      this.value = 5000;
+							  if (b.value < 5000) {
+							      b.value = 5000;
 							      alert('5000원 이상 작성해주세요.');
 							  }
 						}
@@ -809,7 +809,7 @@
 		});
 		
 		
-		//자동저장
+		//임시저장
 		window.onload = function(){
 			gettheLocal();
 		}
@@ -830,7 +830,7 @@
 			var test = localStorage.getItem(loginUser);
 				test = test.replace(/\"/gi, "");
 				test = test.replace(/\[/gi, "");
-				test = test.replace(/\n/g, "");
+				test = test.replace(/\]/gi, "");
 			
 			var arr = test.split(",");
 			    

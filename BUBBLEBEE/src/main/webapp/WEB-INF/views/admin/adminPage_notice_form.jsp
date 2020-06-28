@@ -145,25 +145,35 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 	          },
 		    fCreator: "createSEditor2"
 		});   
-		
+
 		$('#save').click(function(){
-	        oEditors.getById["smartEditor"].exec("UPDATE_CONTENTS_FIELD", []);
-	        var smartEditor = $("#smartEditor").val();
+	       oEditors.getById["smartEditor"].exec("UPDATE_CONTENTS_FIELD", []);
+	       var smartEditor = $("#smartEditor").val();
 			var title = $('#title').val();
 			if(title == "" || title.trim() == ""){
 				alert('제목을 입력해주세요');
 				$('#title').focus();
 				return;
 			} else if( smartEditor == ""  || smartEditor == null || smartEditor == '&nbsp;' || smartEditor == '<p>&nbsp;</p>' || smartEditor== '<p><br></p>')  {
-	             alert("내용을 입력하세요.");
-	             oEditors.getById["smartEditor"].exec("FOCUS"); //포커싱
-	             return;
+	            alert("내용을 입력하세요.");
+	            oEditors.getById["smartEditor"].exec("FOCUS"); //포커싱
+	            return;
 			} else{
 				var result = confirm('정말로 공지사항 등록하시겠습니까?');
 				if(result){
+					/* $('#frm').submit(); */
+					$.ajax({
+						type: "POST",
+						url: "insert.no",
+						data: {title:title, content:smartEditor},
+						success: function(data){
+							if(data == "success"){
+								socket.send("reload");
+								location.href="list.no";
+							}
+						}
+					})
 					alert('공지사항 등록 완료');
-					/* socket.send(); */
-					$('#frm').submit();			
 				} else{
 					alert('등록을 취소합니다.');
 				}

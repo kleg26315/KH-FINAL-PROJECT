@@ -203,7 +203,7 @@
 								      		<c:forEach var="s" items="${ slist }">
 								      			<a class="list_el" href="detail.bo?fno=${s.fno }">
 												  <div class="thumb_content">
-												  <c:set var="rf" value="${ s.renameFileName }"/>
+												  <c:set var="rf" value="${ s.renamefilename }"/>
 								                     <% 
 								                     	String rf = (String)pageContext.getAttribute("rf");
 								                     	String str = null;
@@ -218,7 +218,7 @@
 												  <img src="${contextPath }/resources/buploadFiles/${ str}"></div>
 												  <div class="item_content">
 												    <p class="item_title">${s.ftitle }</p>
-												    <p class="item_price">&#8361;${s.price }</p>
+												    <p class="item_price">&#8361;${s.price * s.tcount}</p>
 												  </div>
 												</a>
 								      		</c:forEach>
@@ -683,20 +683,16 @@
     
     <!-- 알림 스크립트 -->
     <script>
-    var socket = null;
+        var socket = null;
 	    var wsUri = "ws://"+location.host+"/bubblebee/count";
 	    function send_message(){
 	        websocket = new WebSocket(wsUri);
 	        socket = websocket;
 	        websocket.onopen = function(evt) {
 	            onOpen(evt);
-	            setTimeout(function(){
-	        		send_message();
-		        }, 1000);
 	        };
 	        websocket.onmessage = function(evt) {
 	            onMessage(evt);
-	            websocket.close();
 	        };
 	        websocket.onerror = function(evt) {
 	            onError(evt);
@@ -709,6 +705,9 @@
 	    }
 	
 	    function onMessage(evt) {
+	    	if(evt.data == 'reload'){
+	    		onOpen();
+	    	}else{
 	    	var realData = [];
 	    	realData = evt.data.split('&');
 	    	console.log(realData[1]);
@@ -778,6 +777,7 @@
 					location.href = 'noticeSelect.no?bno='+ bno;
 			    })
 			}
+	    	}
 	    }
 	
 	    function onError(evt) {

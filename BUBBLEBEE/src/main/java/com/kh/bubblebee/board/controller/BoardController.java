@@ -20,6 +20,7 @@ import com.kh.bubblebee.board.model.exception.BoardException;
 import com.kh.bubblebee.board.model.service.BoardService;
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.board.model.vo.PaginationLi;
+import com.kh.bubblebee.board.model.vo.Review;
 import com.kh.bubblebee.common.PageInfo;
 import com.kh.bubblebee.common.Pagination;
 import com.kh.bubblebee.host.model.vo.Host;
@@ -141,6 +142,8 @@ public class BoardController {
 		
 		ArrayList<Purchase> p = pService.selectOption(fno);
 		ArrayList<PBoard> blist = pService.selectPBoard2();
+		Review r = bService.selectReview(fno);
+		System.out.println("lsitlist : " + r);
 		
 		System.out.println("detail.bo의 fno : " + fno);
 		System.out.println("detail.bo의 p : " + p);
@@ -150,6 +153,7 @@ public class BoardController {
 			  .addObject("host", host)
 			  .addObject("p", p)
 			  .addObject("blist", blist)
+			  .addObject("review", r)
 			  .setViewName("boardDetail");
 			return mv;
 		}else {

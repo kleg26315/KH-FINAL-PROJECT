@@ -86,13 +86,31 @@
 		where user_id = #{id}
 	</select>
 	
-	<select id="getSlist" resultType="Board">
+	<!-- <select id="getSlist" resultType="Board">
 		select board.fno, board.ftitle,  board.price, renamefilename
 		from slist, choose, board
 		where slist.ono = choose.ono
 		and choose.fno = board.fno
 		and slist.user_id = #{id}
+	</select> -->
+	<select id="getSlist" resultMap="SListResultSet">
+		select *
+		from SHLIST
+		where user_id = #{userId}
 	</select>
+	
+	<resultMap type="Slist" id="SListResultSet">
+		<id property="tno" column="TNO"/>
+		<result property="ono" column="ONO"/>
+		<result property="oname" column="ONAME"/>
+		<result property="price" column="PRICE"/>
+		<result property="nickName" column="NICKNAME"/>
+		<result property="renamefilename" column="RENAMEFILENAME"/>
+		<result property="fno" column="FNO"/>
+		<result property="tcount" column="TCOUNT"/>
+		<result property="user_id" column="USER_ID"/>
+		<result property="ftitle" column="FTITLE"/>
+	</resultMap>
 	
 	<select id="getHlist" resultType="Board">
 		select fno, board.ftitle, board.price, renamefilename

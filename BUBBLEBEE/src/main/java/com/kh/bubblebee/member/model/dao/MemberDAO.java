@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.bubblebee.board.model.vo.Board;
 import com.kh.bubblebee.member.model.vo.Member;
+import com.kh.bubblebee.purchase.model.vo.Slist;
 
 @Repository("mDAO")
 public class MemberDAO {
@@ -46,7 +47,7 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.getPoint", id);
 	}
 
-	public ArrayList<Board> getSlist(SqlSessionTemplate sqlSession, String id) {
+	public ArrayList<Slist> getSlist(SqlSessionTemplate sqlSession, String id) {
 		return (ArrayList)sqlSession.selectList("memberMapper.getSlist", id);
 	}
 
