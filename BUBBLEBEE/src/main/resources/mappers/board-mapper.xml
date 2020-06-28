@@ -401,7 +401,7 @@
 		    join choose c using (ono) 
 		    join board b using (fno)
 		    join member m on (b.user_id = m.user_id)
-		where REF_FID=2 and SECRET_YN='N' and Q_STATUS='Y'
+		where REF_FID=#{fno} and SECRET_YN='N' and Q_STATUS='Y' and QTYPE=1
 	</select>
 	
 </mapper>
