@@ -82,7 +82,7 @@
 			insert into board
 			values(SEQ_BOARD.nextval, #{ftype}, #{price}, #{small_title}, #{ftitle}, #{category}, #{location}, #{lat}, #{lon}, 
 				#{fcontain}, #{fncontain}, #{fcalendar}, #{fmaterials}, #{fminfo}, #{fprecaution}, #{user_id},
-				 default, default, default, sysdate, default, #{originalFileName}, #{renameFileName}, #{introduce}, #{maxMember})
+				 default, default, default, sysdate, default, #{originalFileName}, #{renameFileName}, #{maxMember}, #{introduce})
 		</if>
 		
 		<if test="ftype==2">
@@ -400,8 +400,9 @@
 		from review r
 		    join choose c using (ono) 
 		    join board b using (fno)
-		    join member m on (b.user_id = m.user_id)
+		    join member m on (r.user_id = m.user_id)
 		where REF_FID=#{fno} and SECRET_YN='N' and Q_STATUS='Y' and QTYPE=1
+		order by q_create_date desc
 	</select>
 	
 </mapper>
