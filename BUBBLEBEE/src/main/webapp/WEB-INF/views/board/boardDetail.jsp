@@ -275,7 +275,12 @@
 						<div class = "CLK" style = "float : left; width : 100%; background-color : rgb(249, 249, 249); margin-top : -20px; height : 94px; cursor : pointer;" id = "${ pu.ono }" >
 							<div style = "margin-top : 2px;" id = "${ pu.ono }"> 
 								<div style = "font-weight : 600; margin-left : 4%; margin-top : 16px;" id = "${ pu.ono }">
-									${pu.oname }  (${fn:split(pu.odeadline, "-")[0]}-${fn:split(pu.odeadline, "-")[1] }-${fn:split(pu.odeadline, "-")[2] }일)
+									<c:if test="pu.odeadline == null">
+										${pu.oname }
+									</c:if>
+									<c:if test="pu.odeadline != null">
+										${pu.oname }  (${fn:split(pu.odeadline, "-")[0]}-${fn:split(pu.odeadline, "-")[1] }-${fn:split(pu.odeadline, "-")[2] }일)
+									</c:if>
 								</div>
 								<div style = "margin-left : 4%; width : 70%; float: left; margin-top : 16px; font-size : 10pt; color : rgb(85, 85, 85);" id = "${ pu.ono }">
 									남은 수량 ${pu.ocount }개
