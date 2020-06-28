@@ -271,14 +271,13 @@
 						</div>
 						<hr style = "margin-top : 0px;">
 						<c:forEach var = "pu" items = "${ p }" varStatus = "index">
-						
 						<div class = "CLK" style = "float : left; width : 100%; background-color : rgb(249, 249, 249); margin-top : -20px; height : 94px; cursor : pointer;" id = "${ pu.ono }" >
 							<div style = "margin-top : 2px;" id = "${ pu.ono }"> 
 								<div style = "font-weight : 600; margin-left : 4%; margin-top : 16px;" id = "${ pu.ono }">
-									<c:if test="pu.odeadline == null">
+									<c:if test="${pu.odeadline == null }">
 										${pu.oname }
 									</c:if>
-									<c:if test="pu.odeadline != null">
+									<c:if test="${pu.odeadline != null }">
 										${pu.oname }  (${fn:split(pu.odeadline, "-")[0]}-${fn:split(pu.odeadline, "-")[1] }-${fn:split(pu.odeadline, "-")[2] }일)
 									</c:if>
 								</div>
