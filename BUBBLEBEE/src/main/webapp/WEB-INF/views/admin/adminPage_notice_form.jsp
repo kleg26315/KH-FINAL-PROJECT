@@ -154,7 +154,8 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 				alert('제목을 입력해주세요');
 				$('#title').focus();
 				return;
-			} else if( smartEditor == ""  || smartEditor == null || smartEditor == '&nbsp;' || smartEditor == '<p>&nbsp;</p>' || smartEditor== '<p><br></p>')  {
+			} else if( smartEditor == ""  || smartEditor == null || smartEditor == '&nbsp;' ||
+					smartEditor == '<p>&nbsp;</p>' || smartEditor== '<p><br></p>')  {
 	            alert("내용을 입력하세요.");
 	            oEditors.getById["smartEditor"].exec("FOCUS"); //포커싱
 	            return;

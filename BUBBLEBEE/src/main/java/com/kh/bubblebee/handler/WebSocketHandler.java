@@ -18,14 +18,12 @@ import com.kh.bubblebee.notice.model.dao.NoticeDAO;
 public class WebSocketHandler extends TextWebSocketHandler {
 	@Autowired
 	SqlSessionTemplate sqlSession;
-	
 	@Autowired
 	private AlertDAO aDAO;
-	
 	@Autowired
 	private NoticeDAO nDAO;
 	
-	List<WebSocketSession> sessionList = new ArrayList();
+	List<WebSocketSession> sessionList = new ArrayList<>();
 	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
