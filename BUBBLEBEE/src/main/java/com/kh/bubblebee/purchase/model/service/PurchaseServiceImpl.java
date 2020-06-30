@@ -110,4 +110,9 @@ public class PurchaseServiceImpl implements PurchaseService {
 		return pDAO.insertplusPoint(sqlSession, user_id, d, comment);
 	}
 
+	@Override
+	public String selectUserName(String user_id) {
+		return pDAO.selectUserName(sqlSession, user_id);
+	}
+
 }

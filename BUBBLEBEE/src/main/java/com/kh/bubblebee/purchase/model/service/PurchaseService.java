@@ -50,4 +50,6 @@ public interface PurchaseService {
 
 	int insertplusPoint(String user_id, double d, String comment);
 
+	String selectUserName(String user_id);
+
 }

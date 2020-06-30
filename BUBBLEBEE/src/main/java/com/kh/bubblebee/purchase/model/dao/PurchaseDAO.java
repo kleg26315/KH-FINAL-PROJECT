@@ -102,5 +102,10 @@ public class PurchaseDAO {
 		return sqlSession.insert("purchaseMapper.insertplusPoint", map);
 	}
 
+	public String selectUserName(SqlSessionTemplate sqlSession, String user_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("purchaseMapper.selectUserName", user_id);
+	}
+
 
 }

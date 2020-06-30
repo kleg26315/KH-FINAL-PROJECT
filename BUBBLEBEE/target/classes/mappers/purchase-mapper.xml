@@ -195,4 +195,10 @@
 		, default
 		, #{user_id})
 	</insert>
+	
+	<select id = "selectUserName" resultType = "string">
+		select user_name
+		from member
+		where user_id = #{user_id}
+	</select>
 </mapper> 	
