@@ -53,12 +53,29 @@ public class PurchaseController {
 		System.out.println("fno : " + fno);
 		System.out.println("ocode : " + ocode);
 		
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHss");
+		Calendar thisTime = Calendar.getInstance();
+		
+		String format_time = format.format(thisTime.getTime());
+		
+		SimpleDateFormat format2 = new SimpleDateFormat("MM월dd일");
+		Calendar thisTime2 = Calendar.getInstance();
+		
+		String format_time2 = format2.format(thisTime2.getTime());
+		
+		
+		
+		
+		
 		if(loginUser != null) {
 			String user_id = loginUser.getId();
 			
+			System.out.println("user_id : " + user_id);
 			ArrayList<PBoard> plist = pService.selectBList(fno);
 			ArrayList<PChoose> pclist = pService.selectPList(onoo);
 			int pcost = pService.selectPcost(user_id);
+			String user_name = pService.selectUserName(user_id);
+			System.out.println("user_name : " + user_name);
 		
 			System.out.println("plist : " + plist);
 			System.out.println("pslist : " + pclist);
@@ -69,7 +86,10 @@ public class PurchaseController {
 				mv.addObject("pcost", pcost);
 				mv.addObject("plist", plist);	
 				mv.addObject("ocode", ocode);
-				mv.setViewName("purchase1First");
+				mv.addObject("sysdate", format_time);
+				mv.addObject("sysdate2", format_time2);
+				mv.addObject("user_name", user_name);
+				mv.setViewName("purchase2First");
 			}else {
 				throw new PurchaseException("구매에 실패하였습니다.");
 			}

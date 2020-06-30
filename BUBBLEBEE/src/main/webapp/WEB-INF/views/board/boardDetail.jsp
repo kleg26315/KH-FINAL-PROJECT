@@ -120,7 +120,7 @@
 							</div>
 						</c:when>
 						<c:otherwise>
-							<div style="width: 100%; float: left;">작성한 후기가 없습니다.</div>
+							<div style="width: 100%; float: left; height : 200px">작성한 후기가 없습니다.</div>
 						</c:otherwise>
 					</c:choose>
 					
