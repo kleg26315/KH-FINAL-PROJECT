@@ -167,5 +167,10 @@ public class HostServiceImpl implements HostService{
 		return hDAO.insertAcount(sqlSession,list);
 	}
 
+	@Override
+	public ArrayList<Integer> selectLikeBoard(String userId) {
+		return hDAO.selectLikeBoard(sqlSession,userId);
+	}
+
 
 }

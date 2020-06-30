@@ -145,6 +145,10 @@ public class HostDAO {
 		return sqlSession.insert("hostMapper.insertAcount",list);
 	}
 
+	public ArrayList<Integer> selectLikeBoard(SqlSessionTemplate sqlSession, String userId) {
+		return (ArrayList)sqlSession.selectList("hostMapper.selectLikeBoard",userId);
+	}
+
 	
 
 	

@@ -29,7 +29,7 @@
 				<!-- 후기가 없을때 -->
 				<c:if test="${empty arList }">
 				<div id="no_all">
-					<img src="${contextPath }/resources/img/review.png" width="80px" height="80px">
+					<div style="text-align: center;"><img src="${contextPath }/resources/img/review.png" width="80px" height="80px"></div>
 					<div id="no_text">남겨진 후기가 없어요</div>
 				</div>
 				</c:if>

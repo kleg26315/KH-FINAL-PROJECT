@@ -630,7 +630,7 @@
 			
 			<div id="btn_area">
 				<button id="complete" type="button">완료</button>
-				<button onclick="location.href='history.back()'" id="cancel">취소</button>
+				<button onclick="location.href='javascript:history.back()'" id="cancel">취소</button>
 			</div>
 				<script>
 					$('#complete').on('click', function(){

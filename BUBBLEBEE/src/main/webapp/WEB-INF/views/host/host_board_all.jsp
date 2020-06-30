@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>내 클래스</title>
+    <title>버블 관리</title>
      <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <style>
@@ -50,10 +50,24 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 	 		 <c:import url="../layout/hostpage_nav.jsp"/> 
 	 	</nav>
 	    <div id="c_body">
-		    <div class="main_title">내 클래스</div>
+		    <div class="main_title">
+		    <c:choose>
+			    		<c:when test="${ftype == 1 }">
+			    		내 모임
+			    		</c:when>
+			    		<c:when test="${ftype == 2 }">
+			    		내 클래스
+			    		</c:when>
+			    		<c:otherwise>
+			    		내 작품
+			    		</c:otherwise>
+			    	</c:choose>
+		    </div>
 			<div class="class_list">
 				<div class="list_text" id="ongoing">진행중</div>
+				<c:if test="${ftype == 2 }">
 				<div class="list_text" id="wait">대기중</div>
+				</c:if>
 				<div class="list_text" id="end">종료</div>
 			</div>
 			<!-- 모임/클래스/작품이 없는 경우 -->
@@ -207,6 +221,10 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 				location.href="${bdetail}";
 			});
 			
+			$('#end').click(function(){
+				var ftype = "${ftype}";
+// 				location.href=""
+			});
 		});
 	</script>
    </section>

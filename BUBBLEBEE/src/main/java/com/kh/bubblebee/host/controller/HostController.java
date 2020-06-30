@@ -2,7 +2,6 @@ package com.kh.bubblebee.host.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletResponse;
@@ -30,7 +29,6 @@ import com.kh.bubblebee.host.model.vo.Host;
 import com.kh.bubblebee.member.model.service.MemberService;
 import com.kh.bubblebee.member.model.vo.Member;
 import com.kh.bubblebee.notice.model.vo.Pagination2;
-import com.sun.tracing.dtrace.ModuleAttributes;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -122,16 +120,19 @@ public class HostController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		
-		
-		
 		ArrayList<Board> bList = hService.selectBoard(pi,hostId);
+		
+		ArrayList<Integer> flist = hService.selectLikeBoard(userId);
+		
+		System.out.println(flist);
+		
 		if(host != null && bList != null) {
 			mv.addObject("likeCount",likeCount);
 			mv.addObject("check",check);
 			mv.addObject("host",host);
 			mv.addObject("pi",pi);
 			mv.addObject("bList",bList);
+			mv.addObject("flist",flist);
 			mv.setViewName("host_profile");
 			
 			return mv;
@@ -165,7 +166,8 @@ public class HostController {
 	
 	// 호스트 게시판 별 문의 
 	@RequestMapping("hostQnA.ho")
-	public ModelAndView hostQnAView(@RequestParam("fno") int fno,@RequestParam(value="page2", required=false) Integer page,@RequestParam("hostId") String hostId,ModelAndView mv) {
+	public ModelAndView hostQnAView(@RequestParam("fno") int fno,@RequestParam(value="page2", required=false) Integer page,
+									@RequestParam("hostId") String hostId,ModelAndView mv) {
 		System.out.println(fno);
 		System.out.println(hostId);
 		//페이징 처리를 위한 전체 개수 가져오기
@@ -329,6 +331,7 @@ public class HostController {
 		
 		ArrayList<Board> bList = hService.hostBoardAll(pi,map);
 	
+		mv.addObject("hostId",hostId);
 		mv.addObject("bList", bList);
 		mv.addObject("pi",pi);
 		mv.addObject("ftype", ftype);
@@ -337,7 +340,7 @@ public class HostController {
 		return mv;
 	}
 	
-	// 호스트 정산 요청
+	// 호스트 정산 요청페이지
 	@RequestMapping("hostAccount.ho")
 	public ModelAndView hostAccount(HttpSession session,@RequestParam(value="page", required=false) Integer page,ModelAndView mv) {
 		
@@ -348,7 +351,10 @@ public class HostController {
 			currentPage = page;
 		}
 		
+		
 		int listCount = hService.getAclistCount(hostId);
+		
+		
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
@@ -360,7 +366,8 @@ public class HostController {
 		
 		return mv;
 	}
-
+	
+	// 정산요청하기
 	@RequestMapping("requestAccount.ho")
 	public void requestAccount(@ModelAttribute Aclist list) {
 		System.out.println(list);
@@ -369,9 +376,19 @@ public class HostController {
 		int result1 = hService.updateBuyAccount(list);
 		
 		System.out.println(result1);
-		
-		// account테이블에 넣기
-//		int result2 = hService.insertAcount(list); 
-		
 	}
+	
+	// 정산 완료 페이지
+	@RequestMapping("completeAccount.ho")
+	public ModelAndView completeAccount(HttpSession session,ModelAndView mv,@RequestParam(value="page", required=false) Integer page) {
+		
+		String hostId = ((Member)session.getAttribute("loginUser")).getId();
+		
+		
+		
+		
+		
+		return mv;
+	}
+	
 }

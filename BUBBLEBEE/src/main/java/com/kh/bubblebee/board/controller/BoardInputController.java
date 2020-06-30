@@ -54,13 +54,24 @@ public class BoardInputController {
 		String[] name = oname.split(",");
 		String[] pr = price.split(",");
 		String[] count = ocount.split(",");
-		String[] deadline = odeadline.split(",");
+		String[] deadline = null;
+		
+		System.out.println(odeadline);
+		
+		if(odeadline != null) {
+			deadline = odeadline.split(",");
+		}
+		
+		System.out.println(odeadline);
+		System.out.println(deadline);
 		
 		HashMap<String, Option> map = new HashMap<>();
 		if(deadline == null) {
 			for(int i = 0; i < name.length; i++) {
 				map.put("op" + i, new Option(name[i], pr[i], count[i], null));
 			}
+			System.out.println(odeadline);
+			System.out.println(deadline);
 		}else if(deadline != null) {
 			for(int i = 0; i < name.length; i++) {
 				map.put("op" + i, new Option(name[i], pr[i], count[i], deadline[i]));

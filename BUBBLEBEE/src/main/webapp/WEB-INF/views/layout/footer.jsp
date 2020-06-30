@@ -45,7 +45,7 @@
                         	<a onclick="window.open('about:blank').location.href='https://github.com/leehj00'" id="makeCenter">이화진</a>
                         </li>
                         <li>
-                        	<a onclick="window.open('about:blank').location.href='https://github.com/jhAg047">전희은</a>
+                        	<a onclick="window.open('about:blank').location.href='https://github.com/jhAg047'">전희은</a>
                         	<a onclick="window.open('about:blank').location.href='https://github.com/kuku2000213'" id="makeCenter">최규혁</a>
                         </li>
                     </ul>

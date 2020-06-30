@@ -109,6 +109,7 @@ div.hashTagHostLike{
    margin-left : 2%;
    margin-top : 10px;
    font-weight : 600;
+   overflow: hidden;
 }
 
 div.hashTagHostInfo{

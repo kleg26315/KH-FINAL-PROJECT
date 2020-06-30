@@ -14,7 +14,7 @@ public class Aclist {
 	private String buy_status; // 정산 상태
 	
 	public Aclist() {}
-
+	
 	public Aclist(String hostId, int fno, String bdate, String ftitle, int amount, String total, String fees,
 			String cprice, String buy_status) {
 		super();

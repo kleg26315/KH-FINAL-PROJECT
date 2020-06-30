@@ -37,7 +37,7 @@ public class KakaoAPI {
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=be0b8d3e154f1e2bf1a278bd7fbf3d2a");
-            sb.append("&redirect_uri=http://192.168.10.4:8780/bubblebee/kakao.me");
+            sb.append("&redirect_uri=http://121.165.136.173:8780/bubblebee/kakao.me");
             sb.append("&code=" + authorize_code);
             bw.write(sb.toString());
             bw.flush();

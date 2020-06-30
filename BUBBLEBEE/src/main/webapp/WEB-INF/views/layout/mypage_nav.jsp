@@ -39,7 +39,7 @@
 <body>
 	<ul id="ul_list">
 	    		<li id="l_like" class="nav_li"><a href="mylike.mg">좋아요</a></li>
-	    		<li id="l_class" class="nav_li"><a href="mymeet.mg">참여 모임/클래스</a></li>
+<!-- 	    		<li id="l_class" class="nav_li"><a href="mymeet.mg">참여 모임/클래스</a></li> -->
 	    		<li id="l_slist" class="nav_li"><a href="myslist.mg">장바구니</a></li>
 	    		<li id="l_paid" class="nav_li"><a href="mypaid.mg">결제내역</a></li>
 	    		<li id="l_point" class="nav_li"><a href="mypoint.mg">마일리지</a></li>

@@ -98,6 +98,9 @@ public interface HostService {
 	// account 테이블에 추가하기
 	int insertAcount(Aclist list);
 
+	// 좋아요 목록 받아오기
+	ArrayList<Integer> selectLikeBoard(String userId);
+
 
 	
 
