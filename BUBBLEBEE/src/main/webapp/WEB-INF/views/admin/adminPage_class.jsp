@@ -69,6 +69,12 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
     color: #fff;
     border-radius: 5px;
 }
+.agreeBtn2{
+	border: none;
+    background: #f1e018;
+    color: #fff;
+    border-radius: 5px;
+}
 </style>
 <body>
    <header id="header">
@@ -131,7 +137,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 	             			<td class="detailTR" style="cursor: pointer; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${c.nickname }</td>
 		             		<td class="detailTR" style="cursor: pointer; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${c.ftitle }</td>
 		             		<td style="text-align: center;"><button class="agreeBtn" id="agree">클래스 승인</button></td>
-		             		<td style="text-align: center;"><button class="agreeBtn" id="reject">승인 거절</button></td>
+		             		<td style="text-align: center;"><button class="agreeBtn2" id="reject">승인 거절</button></td>
 	             		</tr>
              		</c:forEach>
              	</c:if>
@@ -189,7 +195,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 	   	   location.href = 'detail.bo?fno='+ fno;
 	   })
 	   
-	   $('#agree').click(function(){
+	   $('.agreeBtn').click(function(){
 			var fno = $(this).parent().parent().children().eq(0).text();
 			var result = confirm('정말로 승인하시겠습니까?');
 			if(result){
@@ -199,7 +205,7 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 				alert('승인 처리 취소');	
 			}
 		})
-		 $('#reject').click(function(){
+		 $('.agreeBtn2').click(function(){
 			var fno = $(this).parent().parent().children().eq(0).text();
 			var id = $(this).parent().parent().children().eq(1).text();
 			var title = $(this).parent().parent().children().eq(3).text();

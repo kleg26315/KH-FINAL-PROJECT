@@ -7,12 +7,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
 .moim{
 	display: flex;
+	flex-wrap: wrap;
     min-height: 1px;
 }
 .moim > *{
-	margin-right: 10px;
+	margin-right: 7px;
     width: calc(25% - 7.5px);
     margin-bottom: 31px;
 }

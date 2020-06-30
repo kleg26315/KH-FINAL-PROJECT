@@ -204,7 +204,7 @@
 					</table>
 					<table>
 						<tr>
-							<th style="width: 50%;">구매옵션</th>
+							<th style="width: 50%;">옵션</th>
 							<td style="padding-left: 5px;"> 
 								<button type="button" id="btn_op">옵션 추가하기</button>
 							</td>

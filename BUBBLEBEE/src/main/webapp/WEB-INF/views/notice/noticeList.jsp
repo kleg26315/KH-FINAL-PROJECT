@@ -36,7 +36,7 @@
 				</table>
 				<div class="ncontent" style="display:none">${n.bcontent } <br><br>
 				<c:if test="${ sessionScope.loginUser.id eq 'admin@admin.admin'}">
-					<span id="delB">삭제</span>&nbsp;&nbsp;<span id="updB">수정</span>
+					<span class="delB">삭제</span>&nbsp;&nbsp;<span class="updB">수정</span>
 				</c:if>
 				</div>
 			</div>
@@ -49,7 +49,7 @@
 	 			})
 	 		});
 	 		
-	 		$('#delB').click(function(){
+	 		$('.delB').click(function(){
 	 			var bno = $(this).parent().parent().children().eq(0).val();
 	 			var result = confirm('정말로 삭제하시겠습니까?');
 	 			if(result){
@@ -60,7 +60,7 @@
 	 			}
 	 		})
 	 		
-	 		$('#updB').click(function(){
+	 		$('.updB').click(function(){
 	 			var bno = $(this).parent().parent().children().eq(0).val();
  				location.href = 'updateNoticeForm.no?bno='+ bno;
 	 		})

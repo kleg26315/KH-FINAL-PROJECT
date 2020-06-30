@@ -91,7 +91,7 @@ tbody td{line-height: 30px;}
 				     				<td>${ac.cprice}</td>
 				     				<td>
 				     					<c:choose>
-				     						<c:when test="${ac.buy_status}">
+				     						<c:when test="${ac.buy_status eq 'Y'}">
 						     					<div class="re_account_wrap">
 						     					<div class="re_account_btn ">정산요청하기</div>
 						     					<input type="hidden" value="${ac.bdate}" class="bdate">
@@ -103,11 +103,11 @@ tbody td{line-height: 30px;}
 						     					<input type="hidden" value="${ac.buy_status }" class="buy_status">
 						     					</div>
 				     						</c:when>
-				     						<c:otherwise>
-				     							<div class="re_com_account">
-				     								<div class="re_com_account_btn">정산 요청 완료</div>
-				     							</div>
-				     						</c:otherwise>
+				     						<c:when test="${ac.buy_status eq 'C'}">
+												<div class="re_com_account">
+				     								<div class="re_com_account_btn">정산 처리중</div>
+				     							</div>				     						
+				     						</c:when>
 				     					</c:choose>
 				     				</td>
 				     			</tr>
@@ -133,15 +133,17 @@ tbody td{line-height: 30px;}
 		 var buy_status = $(this).find('.buy_status').val();
 		 
 		 var abtn = $(this).find('.re_account_btn');
-		 $.ajax({
-			url:'requestAccount.ho',
-			data:{hostId:hostId,bdate:bdate,ftitle:ftitle,amount:amount,total:total,cprice:cprice,fno:fno,buy_status:buy_status},
-			success:function(data){
-				if(data == "true"){
-				abtn.toggleClass('comaccount');
-				}
-			}
-		 });
+// 		 $.ajax({
+// 			url:'requestAccount.ho',
+// 			data:{hostId:hostId,bdate:bdate,ftitle:ftitle,amount:amount,total:total,cprice:cprice,fno:fno,buy_status:buy_status},
+// 			success:function(data){
+// 				if(data == "true"){
+				
+// 				}
+// 			}
+// 		 });
+		abtn.text('정산 처리중');
+		abtn.css({'color':'black','background':'#eee'});
 	  }); 
    });
    </script>

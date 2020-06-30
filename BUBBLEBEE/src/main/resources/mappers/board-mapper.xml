@@ -241,6 +241,7 @@
 	<select id="makrLocation" resultType="Board">
 		select *
 		from board
+		where f_status='Y'
 	</select>
 	
 	<update id="plusHeart">
@@ -401,8 +402,7 @@
 		    join choose c using (ono) 
 		    join board b using (fno)
 		    join member m on (r.user_id = m.user_id)
-		where REF_FID=#{fno} and SECRET_YN='N' and Q_STATUS='Y' and QTYPE=1
-		order by q_create_date desc
+		where REF_FID=#{fno} and SECRET_YN='N' and Q_STATUS='Y' and QTYPE=1 and rownum = 1
 	</select>
 	
 </mapper>
