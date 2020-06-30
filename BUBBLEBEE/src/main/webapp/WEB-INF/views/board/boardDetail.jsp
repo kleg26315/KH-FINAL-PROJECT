@@ -111,7 +111,14 @@
 					<c:choose>
 						<c:when test="${ not empty review }">
 							<div class="hashTagHostImage2">
-								<img class="hashTagHostImageContent" src="${ review.profile }">
+								<c:choose>
+		         					<c:when test="${ fn:contains(review.profile, 'http')}">
+		         					<img src="${review.profile}"  height="90px" width="90px" class="hashTagHostImageContent"/>
+		         					</c:when>
+		         					<c:otherwise>
+		         					<img src="${contextPath }/resources/proFiles/${review.profile}" height="90px" width="90px" class="hashTagHostImageContent"/>
+		         					</c:otherwise>
+    								</c:choose>
 							</div>
 							<div class="hashTagHostName">${ review.nickname }</div>
 							<div class="hashTagHostLike" style="height: 40px;">${ review.qcontent} <br> ${ review.q_create_date } 작성 </div>
@@ -124,7 +131,7 @@
 						</c:otherwise>
 					</c:choose>
 					
-					<form action="hostReview.ho" method="post">
+					<form action="hostReview.ho">
 					<div class="hashTagHostReviewInfo">
 						<input class="hashTagHostInfoInBtn" type="submit" value="후기 모두 보기">
 							<input type="hidden" value="${host.member.id }" name="hostId">

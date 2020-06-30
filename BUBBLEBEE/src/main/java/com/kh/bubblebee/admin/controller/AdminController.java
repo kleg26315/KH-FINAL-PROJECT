@@ -138,7 +138,7 @@ public class AdminController {
 		
 		String host = "smtp.naver.com";
 		String user = "kleg26315@naver.com";
-		String password = "12rnstn!!";
+		String password = "12rnstn@@";
 		
 		String to_email = id;
 		

@@ -33,6 +33,15 @@ tbody td{line-height: 30px;}
     padding: 5px;
     border-radius: 5px;
 }
+.re_com_account_btn{
+	background: #eee;
+    width: max-content;
+    color: black;
+    margin:5px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
 .noaccount{background: #F39C12; color: white;}
 .comaccount{background: #eee;color: white;}
 .re_account_btn:hover {
@@ -81,16 +90,25 @@ tbody td{line-height: 30px;}
 				     				<td>${ac.fees}</td>
 				     				<td>${ac.cprice}</td>
 				     				<td>
-				     					<div class="re_account_wrap">
-				     					<div class="re_account_btn ">정산요청하기</div>
-				     					<input type="hidden" value="${ac.bdate}" class="bdate">
-				     					<input type="hidden" value="${ac.ftitle}" class="ftitle">
-				     					<input type="hidden" value="${ac.amount}" class="amount">
-				     					<input type="hidden" value="${ac.total}" class="total">
-				     					<input type="hidden" value="${ac.cprice}" class="cprice">
-				     					<input type="hidden" value="${ac.fno }" class="fno">
-				     					<input type="hidden" value="${ac.buy_status }" class="buy_status">
-				     					</div>
+				     					<c:choose>
+				     						<c:when test="${ac.buy_status}">
+						     					<div class="re_account_wrap">
+						     					<div class="re_account_btn ">정산요청하기</div>
+						     					<input type="hidden" value="${ac.bdate}" class="bdate">
+						     					<input type="hidden" value="${ac.ftitle}" class="ftitle">
+						     					<input type="hidden" value="${ac.amount}" class="amount">
+						     					<input type="hidden" value="${ac.total}" class="total">
+						     					<input type="hidden" value="${ac.cprice}" class="cprice">
+						     					<input type="hidden" value="${ac.fno }" class="fno">
+						     					<input type="hidden" value="${ac.buy_status }" class="buy_status">
+						     					</div>
+				     						</c:when>
+				     						<c:otherwise>
+				     							<div class="re_com_account">
+				     								<div class="re_com_account_btn">정산 요청 완료</div>
+				     							</div>
+				     						</c:otherwise>
+				     					</c:choose>
 				     				</td>
 				     			</tr>
 				     			</c:forEach>

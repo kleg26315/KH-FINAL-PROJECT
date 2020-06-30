@@ -181,22 +181,39 @@
 	<select id="likeCount" resultType="_int">
 	select count(*)
 	from heart
-	where user_id = #{hostId}
+	where host_id = #{hostId}
 	</select>
 	
 	<select id="getAclistCount" resultType="_int">
-	select count(distinct fno)
+	select count(*) from 
+	(select hostid,buy_status,count(distinct fno)
 	from aclist
-	where hostId = #{hostId} and buy_status ='Y'
-	group by hostid,fno,ftitle,TO_CHAR(bdate, 'yyyy-mm'), buy_status
+	where hostId = #{hostId} and (buy_status='C' or buy_status='Y')
+	group by hostid,fno,ftitle,TO_CHAR(bdate, 'yyyy-mm'),buy_status)
 	</select>
 	
 	<select id="selectAcList" resultMap="aclistResultSet">
 	select hostid,fno,TO_CHAR(bdate, 'yyyy-mm') as bdate, ftitle, TO_CHAR(sum(ocode),'FM9,999,999,999') amount, TO_CHAR(sum(ocode * price), 'FM9,999,999,999') as total,TO_CHAR(sum(ocode * price)*0.2,'FM9,999,999,999') as fees,TO_CHAR(sum(ocode * price)-sum(ocode * price)*0.2,'FM9,999,999,999') as cmoney, buy_status 
 	from aclist
-	where hostId = #{hostId}
+	where hostId = #{hostId} (buy_status='C' or buy_status='Y')
 	group by  hostid,fno,ftitle,TO_CHAR(bdate, 'yyyy-mm'), buy_status
 	</select>
+	
+	<select id="" resultType="_int">
+	select count(*) from 
+	(select hostid,buy_status,count(distinct fno)
+	from aclist
+	where hostId = #{hostId} and buy_status='N'
+	group by hostid,fno,ftitle,TO_CHAR(bdate, 'yyyy-mm'),buy_status)
+	</select>
+	
+	<select id="" resultMap="aclistResultSet">
+	select hostid,fno,TO_CHAR(bdate, 'yyyy-mm') as bdate, ftitle, TO_CHAR(sum(ocode),'FM9,999,999,999') amount, TO_CHAR(sum(ocode * price), 'FM9,999,999,999') as total,TO_CHAR(sum(ocode * price)*0.2,'FM9,999,999,999') as fees,TO_CHAR(sum(ocode * price)-sum(ocode * price)*0.2,'FM9,999,999,999') as cmoney, buy_status 
+	from aclist
+	where hostId = #{hostId} and buy_status='N'
+	group by  hostid,fno,ftitle,TO_CHAR(bdate, 'yyyy-mm'), buy_status
+	</select>
+	
 	
 	<resultMap type="Aclist" id="aclistResultSet">
 		<result property="hostId" column="HOSTID"/>
@@ -239,12 +256,16 @@
 	<update id="updateBuyAccount" parameterType="Aclist">
 	update buying 
 	set buy_status ='C'
-	where substr(dcode,1,6) in (select to_char(bdate,'yyyymm') from aclist where hostId=#{hostId} and buy_status ='Y' and to_char(bdate,'yyyymm') = to_char(#{bdate},'yyyymm')) 
+	where substr(dcode,1,6) in (select to_char(bdate,'yyyymm') from aclist where hostId=#{hostId} and buy_status ='Y' and to_char(bdate,'yyyy-mm') = #{bdate})
 	and 
 	ono in
-	(select ono from aclist join choose on(aclist.fno = choose.fno) where aclist.hostid = #{hostId})
+	(select ono from choose where fno=#{fno})
 	</update>
 	
-	
+	<select id="selectLikeBoard" resultType="_integer">
+	select fno2
+	from heart 
+	where user_id_ht = #{userId}
+	</select>
 	
 </mapper>

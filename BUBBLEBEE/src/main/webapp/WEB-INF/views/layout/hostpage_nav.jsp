@@ -43,34 +43,16 @@
 		<div>			
 			<div id="moim" class="menu">
 			<div><img src="${contextPath}/resources/img/moim.png" width="20px" height="20px"></div>
-				<div class="htitle">모임관리</div>
+				<div class="htitle">버블관리</div>
 				<div><img id="showLayers1" class="showLayers" src="${contextPath }/resources/img/up.png"  width="15" /></div>
 			</div>
 				<div id="mtab" class="tab">
 					<div id="mymoim" class="line">내 모임</div>
-					<div id="mymoimplan" class="line">일정 관리</div>
+					<div id="myclass" class="line">내 클래스</div>
+					<div id="myproduct" class="line">내 작품</div>
 				</div>
 		</div>
-			<div id="class" class="menu">
-			<div><img src="${contextPath}/resources/img/class.png" width="20px" height="20px"></div>
-				<div class="htitle">클래스관리</div>
-				<div><img id="showLayers2" class="showLayers" src="${contextPath }/resources/img/up.png"  width="15" /></div>
-			</div>
-				<div id="ctab" class="tab">
-					<div id="myclass" class="line">내 클래스</div>
-					<div id="myclassplan" class="line">일정 관리</div>
-					
-				</div>
-			<div id="product" class="menu">
-			<div><img src="${contextPath}/resources/img/class.png" width="20px" height="20px"></div>
-				<div class="htitle">작품관리</div>
-				<div><img id="showLayers2-1" class="showLayers" src="${contextPath }/resources/img/up.png"  width="15" /></div>
-			</div>
-				<div id="ptab" class="tab">
-					<div id="myproduct" class="line">내 작품</div>
-					<div id="myproductplan" class="line">일정 관리</div>
-					
-				</div>	
+				
 			<div id="account" class="menu">
 			<div><img src="${contextPath}/resources/img/money.png" width="20px" height="20px"></div>
 				<div class="htitle">

@@ -374,6 +374,19 @@
 	   	<br><br>
 	   	<div class="moim">
 	   		<c:forEach items="${ mList }" var="ml">
+	   		<c:set var="rf2" value="${ ml.renameFileName }"/>
+                     <% 
+                     	String rf2 = (String)pageContext.getAttribute("rf2");
+                     	String str2 = null;
+                     	if(!rf2.contains(",")) {
+                     		str2 = rf2;
+                     	} else {
+                     		int idx2 = rf2.indexOf(",");
+                			str2 = rf2.substring(0, idx2);
+                     	}
+            			
+            			pageContext.setAttribute("str2", str2);
+                     %> 
 	   		<div class="moim_total">
 	   			<a href="detail.bo?fno=${ ml.fno }">
 	   				<div class="moim_each">
@@ -383,7 +396,7 @@
 								<img width='16' height='18' src="${contextPath }/resources/img/빈하트.png" alt="찜하기">
 								</button>
 							</div>
-							<img id="" width="100%" height="200" class="" src="${contextPath }/resources/img/main.png" />
+							<img id="" width="100%" height="200" class="" src="${contextPath }/resources/buploadFiles/${ str2 }" />
 						</div>
 	   					<div class="moim_small_title">${ ml.small_title }</div>
 	   					<div class="moim_title">${ ml.ftitle }</div>
@@ -410,6 +423,19 @@
 	   	<br><br>
 	   	<div class="moim">
 	   		<c:forEach items="${ cList }" var="cl">
+	   		<c:set var="rf3" value="${ cl.renameFileName }"/>
+                     <% 
+                     	String rf3 = (String)pageContext.getAttribute("rf3");
+                     	String str3 = null;
+                     	if(!rf3.contains(",")) {
+                     		str3 = rf3;
+                     	} else {
+                     		int idx2 = rf3.indexOf(",");
+                			str3 = rf3.substring(0, idx2);
+                     	}
+            			
+            			pageContext.setAttribute("str3", str3);
+                     %> 
 	   		<div class="moim_total">
 	   			<a href="detail.bo?fno=${ cl.fno }">
 	   				<div class="moim_each">
@@ -419,7 +445,7 @@
 								<img width='16' height='18' src="${contextPath }/resources/img/빈하트.png" alt="찜하기">
 								</button>
 							</div>
-							<img id="" width="100%" height="200" class="" src="${contextPath }/resources/img/main.png" />
+							<img id="" width="100%" height="200" class="" src="${contextPath }/resources/buploadFiles/${ str3 }" />
 						</div>
 	   					<div class="moim_small_title">${ cl.small_title }</div>
 	   					<div class="moim_title">${ cl.ftitle }</div>
@@ -437,7 +463,7 @@
 	   	</div>
 	   </div>
 	   
-	   <button onclick="location.href='test.do'">버튼</button>
+<!-- 	   <button onclick="location.href='test.do'">버튼</button> -->
 	</section>
 	
 	<script>

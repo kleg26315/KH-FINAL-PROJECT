@@ -81,11 +81,11 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 		   <div class="main_all" style="height: 180px;">
 		   		<div class="result_wrap" style="border-right: 1px solid lightgray;">
 		   			<div class="subtitle">남겨진 후기</div>
-		   			<div class="result">3</div>
+		   			<div class="result">0</div>
 		   		</div>
 		   		<div class="result_wrap">
 		   			<div class="subtitle">평균 평점</div>
-		   			<div class="result">3.4</div>
+		   			<div class="result">0.0</div>
 		   		</div>
 		   		<div class="result_wrap" style="border-left:1px solid lightgray;">
 		   			<div class="subtitle">Q&A 응답률</div>
@@ -104,11 +104,11 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 				<div class="sales_all">
 					<div class="sales_wrap" style="border-bottom: 1px solid lightgray;">
 							<div class="">이번 달 매출액</div>
-							<div class="">36,000원</div>
+							<div class="">0원</div>
 					</div>
 					<div class="sales_wrap">
 						<div class="">전체 매출액</div>
-						<div class="">250,000원</div>
+						<div class="">0원</div>
 					</div>	
 				</div>
 		   </div>
@@ -141,7 +141,8 @@ section>nav{-webkit-box-flex: 0;flex-grow: 0;flex-shrink: 0;flex-basis: 18%;max-
 		  location.href="hostUpdateProfile.ho";
 	   });
 	   $('.kakaoBtn').click(function(){
-		  location.href="http://pf.kakao.com/_RdFxkxb";
+// 		  location.href="http://pf.kakao.com/_RdFxkxb";
+		  window.open('about:blank').location.href="http://pf.kakao.com/_RdFxkxb";
 	   });
    });
    </script>

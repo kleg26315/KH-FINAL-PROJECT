@@ -331,7 +331,7 @@ public class MemberController {
 	public String emailSendPage(@RequestParam("email") String email, HttpServletRequest request) throws UnknownHostException {
 		String host = "smtp.naver.com";
 		String user = "kleg26315@naver.com";
-		String password = "12rnstn!!";
+		String password = "12rnstn@@";
 		
 		String to_email = email;
 		
